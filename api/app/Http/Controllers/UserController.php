@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use function Laravel\Prompts\password;
 
 class UserController extends Controller
 {
@@ -19,9 +21,22 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //name, cpf, password, email, registration, genre
+        $validation = $request->validate([
+            'name' => 'required',
+            'cpf' => ['required','numeric'],
+            'email' => ['required','email'],
+            'registration' => ['nullable'],
+            'genre' => ['nullable'],
+            'password' => ['required','min:6'],
+        ]);
+        try {
+            $user = User::create($validation);
+            return AuthController::login($request,201);
+        } catch (\Error $e) {
+            return $e;
+        }
     }
-
     /**
      * Display the specified resource.
      */

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('cpf');
             $table->string('email')->unique();
             $table->string('registration')->nullable();
-            $table->string('genre');
+            $table->string('genre')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

@@ -14,6 +14,7 @@ import { createVuetify } from 'vuetify'
 // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
 export default createVuetify({
   theme: {
+    defaultTheme: 'dark',
     themes: {
       light: {
         colors: {
@@ -23,4 +24,16 @@ export default createVuetify({
       },
     },
   },
+  defaults: {
+    VBtn: {
+      variant: 'tonal'
+    },
+    VTextField: {
+      variant: 'outlined',
+      clearable: true
+    },
+    VSelect: {
+      variant: 'outlined'
+    }
+  }
 })

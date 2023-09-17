@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use function Laravel\Prompts\password;
+use \App\Http\Controllers\AuthController;
 
 class UserController extends Controller
 {
@@ -31,8 +31,9 @@ class UserController extends Controller
             'password' => ['required','min:6'],
         ]);
         try {
-            $user = User::create($validation);
-            return AuthController::login($request,201);
+            User::create($validation);
+            $auth = new AuthController();
+            return $auth->login($request, 201);
         } catch (\Error $e) {
             return $e;
         }

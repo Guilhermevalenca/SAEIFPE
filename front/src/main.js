@@ -19,8 +19,3 @@ const app = createApp(App)
 registerPlugins(app)
 
 app.mount('#app')
-
-// URL do arquivo de imagem
-const imageUrl = './iconsets/files/cpf.jpg';
-
-// Faça uma solicitação HTTP para carregar o arquivo

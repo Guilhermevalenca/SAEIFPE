@@ -31,7 +31,7 @@
         </v-row>
       </v-card-text>
       <v-card-actions>
-        <v-btn type="submit" color="success">Registrar</v-btn>
+        <v-btn :loading="loading" type="submit" color="success">Registrar</v-btn>
       </v-card-actions>
     </v-form>
   </v-card>
@@ -44,6 +44,7 @@ export default {
   name: "RegistrationForm",
   data() {
     return {
+      loading: false,
       name: '',
       email: '',
       cpf: '',
@@ -77,7 +78,13 @@ export default {
             if(value) {
               return true
             }
-            return 'Email obrigatório'
+            return 'O email é obrigatório';
+          },
+          value => {
+            if(/.+@.+\..+/.test(value)) {
+              return true
+            }
+            return 'Email inválido';
           }
         ],
         cpf: [
@@ -86,7 +93,15 @@ export default {
               return true
             }
             return 'cpf obrigatório'
-          }
+          },
+          value => {
+            const caseOne = value.length === 11 && /^\d+$/.test(value);
+            const caseTwo = value.length === 14 && ( /^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(value) );
+            if(caseOne || caseTwo) {
+              return true;
+            }
+            return 'cpf inválido';
+          },
         ],
         genre: {
           selected: [
@@ -109,35 +124,66 @@ export default {
         password: [
           value => {
             if(value) {
-              return true
+              return true;
             }
-            return 'Senha obrigatório'
+            return 'Senha obrigatória';
+          },
+          value => {
+            if(/\d/.test(value) && /[a-zA-Z]/.test(value)) {
+              return true;
+            }
+            return 'Senha precisa ter caracteres alfanuméricos (letras e números)';
+          },
+          value => {
+            if(value.length >= 6) {
+              return true;
+            }
+            return 'Senha precisa ter no mínimo 6 caracteres';
           }
         ],
         confirmPassword: [
           value => {
             if(value) {
-              return true
+              return true;
             }
-            return 'Confirme sua senha é obrigatório'
-          }
+            return 'É necessário confirmar sua senha';
+          },
+          value => {
+            if(value === this.password) {
+              return true;
+            }
+            return 'Senhas diferentes';
+          },
         ]
       }
     }
   },
   methods: {
     registerRegistration() {
+      this.loading = true;
+      const verifyCPF = (value) => {
+        if(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(value)) {
+          return value.replace(/[^0-9]/g, "");
+        }
+        return value;
+      }
       const data = {
         name: this.name,
-        cpf: this.cpf,
+        cpf: verifyCPF(this.cpf),
         email: this.email,
         registration: this.registration,
         genre: this.genre.selected === 'Outro' ? this.genre.other : this.genre.selected,
         password: this.password
       }
       axios.post('users/create',data)
-        .then(response => console.log(response))
+        .then(response => {
+          if(response.data.success) {
+            localStorage.setItem('token',response.data.token);
+            window.dispatchEvent(new Event('logged')); //evento é escutado no created no AppBar, caminhos do arquivo: src/layouts/default/AppBar.vue
+          }
+        })
         .catch(error => console.log(error))
+        .finally(() => this.loading = false);
     }
   },
 }

@@ -15,7 +15,7 @@
       </template>
     </v-tooltip>
     <div v-if="!isLoggedIn">
-      <v-btn @click="login = true">Login</v-btn>
+      <v-btn color="secondary" @click="login = true">Login</v-btn>
       <Login v-model="login" @cancel="login = false"/>
     </div>
     <div v-else>

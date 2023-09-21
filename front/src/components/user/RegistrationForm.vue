@@ -31,7 +31,7 @@
         </v-row>
       </v-card-text>
       <v-card-actions>
-        <v-btn :loading="loading" type="submit" color="success">Registrar</v-btn>
+        <v-btn :loading="loading" type="submit" color="secondary">Registrar</v-btn>
       </v-card-actions>
     </v-form>
   </v-card>

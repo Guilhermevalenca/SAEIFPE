@@ -27,6 +27,10 @@ class AuthController extends Controller
     }
     public function me(Request $request)
     {
-        return response($request->user(),200);
+        $response = [
+            'user' => $request->user(),
+            'success' => true
+        ];
+        return response($response,200);
     }
 }

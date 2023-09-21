@@ -11,7 +11,14 @@ Route::prefix('users')
         Route::controller(UserController::class)
             ->group(function () {
                 Route::post('create','store');
+
+                Route::middleware('auth:sanctum')
+                    ->group(function () {
+                        Route::put('','update');
+                        Route::delete('','destroy');
+                    });
             });
+
         Route::controller(AuthController::class)
             ->group(function () {
                 Route::post('login','login');

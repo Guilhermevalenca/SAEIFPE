@@ -14,22 +14,43 @@
         </v-btn>
       </template>
     </v-tooltip>
+    <div v-if="!isLoggedIn">
+      <v-btn @click="login = true">Login</v-btn>
+      <Login v-model="login" @cancel="login = false"/>
+    </div>
+    <div v-else>
+      <LoggedUserOptions />
+    </div>
   </v-app-bar>
 </template>
 
 <script>
 import { useTheme } from 'vuetify';
+import Login from "@/components/user/Login.vue";
+import LoggedUserOptions from "@/components/user/LoggedUserOptions.vue";
+import axios from "axios";
 
 export default {
+  components: {LoggedUserOptions, Login},
   data() {
     return {
       theme: useTheme(),
+      login: false,
+      isLoggedIn: false
     }
   },
   methods: {
     alterTheme() {
       this.theme.global.name = this.theme.global.current.dark ? 'light' : 'dark';
     }
+  },
+  created() {
+    window.addEventListener('logged', () => {
+      this.isLoggedIn = true;
+    });
+    window.addEventListener('logouted', () => {
+      this.isLoggedIn = false;
+    })
   }
 }
 </script>

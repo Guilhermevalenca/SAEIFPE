@@ -1,9 +1,9 @@
 <template>
-  <v-card>
+  <v-card width="500px">
     <v-card-title>{{ title }}</v-card-title>
     <v-card-text>{{ text }}</v-card-text>
-    <v-icon v-if="success" icon="mdi-check-circle" />
-    <v-icon v-else icon="mdi-alert-circle-check-outline" />
+    <v-icon color="success" v-if="success" icon="mdi-check-circle" />
+    <v-icon color="red" v-else icon="mdi-alert-circle-check-outline" />
   </v-card>
 </template>
 

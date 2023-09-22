@@ -5,7 +5,7 @@
       <v-card-text>
         <v-form @submit.prevent="login()">
           <v-text-field v-model="cpf" :rules="rules.cpf" required label="cpf" placeholder="Digite aqui seu cpf" />
-          <v-text-field v-model="password" :rules="rules.password" required label="password" placeholder="Digite aqui sua senha"/>
+          <v-text-field v-model="password" :rules="rules.password" required label="password" placeholder="Digite aqui sua senha" prepend-inner-icon="mdi-lock-outline" :append-inner-icon="showIconPassword ? 'mdi-eye' : 'mdi-eye-off'" :type="showIconPassword ? 'text' : 'password'" @click:append-inner="showIconPassword = !showIconPassword"/>
           <v-card-actions>
             <v-btn color="secondary" type="submit">Acessar</v-btn>
             <v-btn @click="$emit('cancel')">cancelar</v-btn>
@@ -25,6 +25,7 @@ export default {
     return {
       cpf: '',
       password: '',
+      showIconPassword: false,
       rules: {
         cpf: [
           value => {

@@ -1,22 +1,34 @@
 <template>
-  <v-card>
-    <v-card-title>Formulário de cadastro</v-card-title>
+  <v-card >
+    <v-card-title class="text-center">Formulário de cadastro</v-card-title>
+    <v-spacer class="pa-6" />
     <v-card-text class="d-flex justify-center">
       <v-form @submit.prevent="registerRegistration()" class="w-50">
         <v-row>
-          <v-text-field v-model="name" prepend-inner-icon="mdi-account-outline" label="Nome completo" placeholder="Digite seu nome completo" :rules="rules.name" required />
+          <v-col>
+            <v-text-field v-model="name" prepend-inner-icon="mdi-account-outline" label="Nome completo" placeholder="Digite seu nome completo" :rules="rules.name" required />
+          </v-col>
         </v-row>
 
         <v-row>
-          <v-text-field v-model="email" prepend-inner-icon="mdi-email-outline" label="Email pessoal" placeholder="Digite seu email"  hint="exemplo@gmail.com" :rules="rules.email" required />
+          <v-col>
+            <v-text-field v-model="email" prepend-inner-icon="mdi-email-outline" label="Email pessoal" placeholder="Digite seu email"  hint="exemplo@gmail.com" persistent-hint :rules="rules.email" required />
+          </v-col>
         </v-row>
 
         <v-row>
-          <v-text-field v-model="cpf" label="CPF" placeholder="Digite seu cpf" hint="000.000.000-00"   :rules.="rules.cpf" required />
+          <v-col>
+            <v-text-field v-model="cpf" persistent-hint label="CPF" placeholder="Digite seu cpf" hint="000.000.000-00"   :rules.="rules.cpf" required />
+          </v-col>
         </v-row>
 
         <v-row>
-          <v-text-field prepend-inner-icon="mdi-phone-outline" v-model.number="phone" label="Telefone(Opcional)" hint="(00) 00000-0000" persistent-hint placeholder="digite o numero do telefone" :counter="11" />
+          <v-col cols="6">
+            <v-text-field prepend-inner-icon="mdi-phone-outline" persistent-hint v-model.number="phone.number" label="Telefone(Opcional)" hint="(00) 00000-0000" placeholder="digite o numero do telefone" :counter="11" />
+          </v-col>
+          <v-col>
+            <v-checkbox v-model="phone.wpp" label="Este número é whatsapp" />
+          </v-col>
         </v-row>
 
         <v-row>
@@ -39,7 +51,7 @@
           </v-col>
         </v-row>
         <v-card-actions>
-          <v-btn :loading="loading" :disabled="!formInvalid" type="submit" color="secondary">Registrar</v-btn>
+          <v-btn :loading="loading" :disabled="!formInvalid" type="submit" :color="!formInvalid ? '' : 'secondary'" variant="elevated">Registrar</v-btn>
         </v-card-actions>
       </v-form>
     </v-card-text>
@@ -57,7 +69,10 @@ export default {
       name: '',
       email: '',
       cpf: '',
-      phone: '',
+      phone: {
+        number: '',
+        wpp: false
+      },
       genre: {
         selected: '',
         options: [
@@ -178,7 +193,8 @@ export default {
         name: this.name,
         cpf: modifyCPF(this.cpf),
         email: this.email,
-        phone: this.phone,
+        phone: this.phone.number,
+        phoneIsWhatsApp: this.phone.wpp,
         genre: this.genre.selected === 'Outro' ? this.genre.other : this.genre.selected,
         password: this.password
       }
@@ -207,17 +223,6 @@ export default {
         return false;
       });
       const rulesGenreOther = this.genre.other !== '' ? this.rules.genre.other.some(rule => rule(this.genre.other) === true) : false;
-      console.log(rulesName);
-      const rules = {
-        name: rulesName,
-        email: rulesEmail,
-        cpf: rulesCPF,
-        password: rulesPassword,
-        confirmPassword: rulesConfirm,
-        genreSelected: rulesGenreSelected,
-        genreOther: rulesGenreOther
-      };
-      console.table(rules);
       return rulesName && rulesEmail && rulesCPF && (rulesPassword && rulesConfirm) && (rulesGenreSelected || rulesGenreOther);
     }
   }

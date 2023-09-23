@@ -22,6 +22,7 @@ class User extends Authenticatable
         'cpf',
         'email',
         'phone',
+        'phoneIsWhatsApp',
         'genre',
         'password',
     ];

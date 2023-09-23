@@ -3,7 +3,7 @@
     <v-card-title class="text-center">Formulário de cadastro</v-card-title>
     <v-spacer class="pa-6" />
     <v-card-text class="d-flex justify-center">
-      <v-form @submit.prevent="registerRegistration()" class="w-50">
+      <v-form @submit.prevent="registerRegistration()" :class="[phoneDisplayForForms]">
         <v-row>
           <v-col>
             <v-text-field v-model="name" prepend-inner-icon="mdi-account-outline" label="Nome completo" placeholder="Digite seu nome completo" :rules="rules.name" required />
@@ -23,7 +23,7 @@
         </v-row>
 
         <v-row>
-          <v-col :cols="phoneDisplay" md="7">
+          <v-col :cols="phoneDisplayForCols" md="7">
             <v-text-field prepend-inner-icon="mdi-phone-outline" persistent-hint v-model.number="phone.number" label="Telefone(Opcional)" hint="(00) 00000-0000" placeholder="digite o numero do telefone" :counter="11" />
           </v-col>
           <v-col md="4">
@@ -32,7 +32,7 @@
         </v-row>
 
         <v-row>
-          <v-col>
+          <v-col :cols="genre.selected === 'Outro' ? phoneDisplayForCols : ''">
             <v-select label="Gênero" v-model="genre.selected" prepend-inner-icon="mdi-gender-male-female-variant" :items="genre.options" :rules="rules.genre.selected" required />
           </v-col>
 
@@ -42,7 +42,7 @@
         </v-row>
 
         <v-row>
-          <v-col>
+          <v-col :cols="phoneDisplayForCols">
             <v-text-field label="password" placeholder="Digite sua senha" v-model="password" prepend-inner-icon="mdi-lock-outline" :append-inner-icon="showIcon.password ? 'mdi-eye' : 'mdi-eye-off'" :type="showIcon.password ? 'text' : 'password'" @click:append-inner="showIcon.password = !showIcon.password" :rules="rules.password" required />
           </v-col>
 
@@ -178,7 +178,8 @@ export default {
           }
         ]
       },
-      phoneDisplay: window.innerWidth <= 800 ? '12' : '6'
+      phoneDisplayForCols: window.innerWidth <= 800 ? '12' : '6',
+      phoneDisplayForForms: window.innerWidth <= 800 ? 'w-75' : 'w-50'
     }
   },
   methods: {

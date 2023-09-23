@@ -26,7 +26,7 @@ class UserController extends Controller
             'name' => 'required',
             'cpf' => ['required','numeric'],
             'email' => ['required','email'],
-            'registration' => ['nullable'],
+            'phone' => ['nullable'],
             'genre' => ['nullable'],
             'password' => ['required','min:6'],
         ]);

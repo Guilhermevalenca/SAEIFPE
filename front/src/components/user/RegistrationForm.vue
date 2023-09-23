@@ -23,10 +23,10 @@
         </v-row>
 
         <v-row>
-          <v-col cols="6">
+          <v-col :cols="phoneDisplay" md="7">
             <v-text-field prepend-inner-icon="mdi-phone-outline" persistent-hint v-model.number="phone.number" label="Telefone(Opcional)" hint="(00) 00000-0000" placeholder="digite o numero do telefone" :counter="11" />
           </v-col>
-          <v-col>
+          <v-col md="4">
             <v-checkbox v-model="phone.wpp" label="Este número é whatsapp" />
           </v-col>
         </v-row>
@@ -177,7 +177,8 @@ export default {
             return 'É necessário confirmar sua senha';
           }
         ]
-      }
+      },
+      phoneDisplay: window.innerWidth <= 800 ? '12' : '6'
     }
   },
   methods: {

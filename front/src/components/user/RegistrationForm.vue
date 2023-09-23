@@ -4,19 +4,27 @@
     <v-card-text class="d-flex justify-center">
       <v-form @submit.prevent="registerRegistration()" class="w-50">
         <v-row>
-          <v-text-field v-model="name" prepend-inner-icon="mdi-account-outline" label="Nome completo" placeholder="Digite seu nome completo" :rules="rules.name" required />
+          <v-col>
+            <v-text-field v-model="name" prepend-inner-icon="mdi-account-outline" label="Nome completo" placeholder="Digite seu nome completo" :rules="rules.name" required />
+          </v-col>
         </v-row>
 
         <v-row>
-          <v-text-field v-model="email" prepend-inner-icon="mdi-email-outline" label="Email pessoal" placeholder="Digite seu email"  hint="exemplo@gmail.com" :rules="rules.email" required />
+          <v-col>
+            <v-text-field v-model="email" prepend-inner-icon="mdi-email-outline" label="Email pessoal" placeholder="Digite seu email"  hint="exemplo@gmail.com" :rules="rules.email" required />
+          </v-col>
         </v-row>
 
         <v-row>
-          <v-text-field v-model="cpf" label="CPF" placeholder="Digite seu cpf" hint="000.000.000-00"   :rules.="rules.cpf" required />
+          <v-col>
+            <v-text-field v-model="cpf" label="CPF" placeholder="Digite seu cpf" hint="000.000.000-00"   :rules.="rules.cpf" required />
+          </v-col>
         </v-row>
 
         <v-row>
-          <v-text-field prepend-inner-icon="mdi-phone-outline" v-model.number="phone" label="Telefone(Opcional)" hint="(00) 00000-0000" persistent-hint placeholder="digite o numero do telefone" :counter="11" />
+          <v-col>
+            <v-text-field prepend-inner-icon="mdi-phone-outline" v-model.number="phone" label="Telefone(Opcional)" hint="(00) 00000-0000" persistent-hint placeholder="digite o numero do telefone" :counter="11" />
+          </v-col>
         </v-row>
 
         <v-row>

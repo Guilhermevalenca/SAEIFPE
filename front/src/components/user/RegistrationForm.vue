@@ -1,6 +1,7 @@
 <template>
   <v-card>
-    <v-card-title>Formulário de cadastro</v-card-title>
+    <v-card-title class="text-center">Formulário de cadastro</v-card-title>
+    <v-spacer class="pa-6" />
     <v-card-text class="d-flex justify-center">
       <v-form @submit.prevent="registerRegistration()" class="w-50">
         <v-row>
@@ -215,17 +216,6 @@ export default {
         return false;
       });
       const rulesGenreOther = this.genre.other !== '' ? this.rules.genre.other.some(rule => rule(this.genre.other) === true) : false;
-      console.log(rulesName);
-      const rules = {
-        name: rulesName,
-        email: rulesEmail,
-        cpf: rulesCPF,
-        password: rulesPassword,
-        confirmPassword: rulesConfirm,
-        genreSelected: rulesGenreSelected,
-        genreOther: rulesGenreOther
-      };
-      console.table(rules);
       return rulesName && rulesEmail && rulesCPF && (rulesPassword && rulesConfirm) && (rulesGenreSelected || rulesGenreOther);
     }
   }

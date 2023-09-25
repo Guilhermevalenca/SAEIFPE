@@ -1,8 +1,11 @@
 <template>
   <v-card>
     <v-card-title  :class="['text-center', phoneDisplay ? 'ma-2' : 'ma-3', phoneDisplay ? '' : 'justify-md-center']">
-      Saudações, comunidade IFPE Campus Igarassu
+      <div>Saudações, comunidade IFPE</div>
     </v-card-title>
+    <v-card-subtitle>
+      Campus Igarassu
+    </v-card-subtitle>
     <v-card-text class="ma-3">
       <p>
         Somos do terceiro período do curso Técnico em Informática para Internet, e através da disciplina de projeto e prática II estamos envolvidos em um projeto institucional, junto com a CREE (Coordenação de Relações Empresariais, Estágios e Egressos).

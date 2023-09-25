@@ -1,5 +1,5 @@
 <template>
-  <v-dialog persistent width="900px" v-model="messageAlert">
+  <v-dialog persistent :width="phoneDisplay ? 'default' : '900px'" v-model="messageAlert">
     <UserRegistrarionAlert :phoneDisplay="phoneDisplay" @closeAlert="messageAlert = false" />
   </v-dialog>
   <v-card >

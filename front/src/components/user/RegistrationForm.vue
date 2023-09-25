@@ -1,27 +1,12 @@
 <template>
   <v-dialog persistent width="900px" v-model="messageAlert">
-    <v-card>
-      <v-card-title  :class="['text-center', phoneDisplay ? 'ma-2' : 'ma-3', phoneDisplay ? '' : 'justify-md-center']">
-          Saudações, comunidade IFPE Campus Igarassu
-      </v-card-title>
-      <v-card-text class="ma-3">
-        <p>
-          Somos do terceiro período do curso Técnico em Informática para Internet, e através da disciplina de projeto e prática II estamos envolvidos em um projeto institucional, junto com a CREE (Coordenação de Relações Empresariais, Estágios e Egressos).
-        </p>
-        <p>
-          Nós e a instituição precisamos da ajuda de vocês para levantar dados sobre discentes e egressos, com o objetivo de trazer uma plataforma que una estes estudantes e possa fazer um acompanhamento de suas carreiras. Estamos aceitando todos(a) os(as) estudantes, mas se você está próximo da finalização do curso, sua adesão é imprescindível. Contamos com vocês!
-        </p>
-      </v-card-text>
-      <v-card-actions class="d-flex justify-center">
-        <v-btn class="mb-6" color="secondary" variant="outlined" @click="messageAlert = false">vamos lá!</v-btn>
-      </v-card-actions>
-    </v-card>
+    <UserRegistrarionAlert :phoneDisplay="phoneDisplay" @closeAlert="messageAlert = false" />
   </v-dialog>
   <v-card >
     <v-card-title class="text-center">Formulário de cadastro</v-card-title>
     <v-spacer class="pa-6" />
     <v-card-text class="d-flex justify-center">
-      <v-form @submit.prevent="registerRegistration()" :class="[phoneDisplayForForms]">
+      <v-form @submit.prevent="registerRegistration()" :class="[phoneDisplay ? 'w-75' : 'w-50']">
         <v-row>
           <v-col>
             <v-text-field v-model="name" prepend-inner-icon="mdi-account-outline" label="Nome completo" placeholder="Digite seu nome completo" :rules="rules.name" required />
@@ -41,7 +26,7 @@
         </v-row>
 
         <v-row>
-          <v-col :cols="phoneDisplayForCols" md="7">
+          <v-col :cols="phoneDisplay ? '12' : '6'" md="7">
             <v-text-field prepend-inner-icon="mdi-phone-outline" persistent-hint v-model.number="phone.number" label="Telefone(Opcional)" hint="apenas números" placeholder="digite o número do telefone" :counter="11" />
           </v-col>
           <v-col md="4">
@@ -50,7 +35,7 @@
         </v-row>
 
         <v-row>
-          <v-col :cols="genre.selected === 'Outro' ? phoneDisplayForCols : ''">
+          <v-col :cols="genre.selected === 'Outro' ? phoneDisplay ? '12' : '6' : ''">
             <v-select label="Gênero" v-model="genre.selected" prepend-inner-icon="mdi-gender-male-female-variant" :items="genre.options" :rules="rules.genre.selected" required />
           </v-col>
 
@@ -60,7 +45,7 @@
         </v-row>
 
         <v-row>
-          <v-col :cols="phoneDisplayForCols">
+          <v-col :cols="phoneDisplay ? '12' : '6'">
             <v-text-field label="Senha" placeholder="Digite sua senha" v-model="password" prepend-inner-icon="mdi-lock-outline" :append-inner-icon="showIcon.password ? 'mdi-eye' : 'mdi-eye-off'" :type="showIcon.password ? 'text' : 'password'" @click:append-inner="showIcon.password = !showIcon.password" :rules="rules.password" required />
           </v-col>
 
@@ -78,9 +63,11 @@
 
 <script>
 import axios from "axios";
+import UserRegistrarionAlert from "@/components/user/alerts/UserRegistrarionAlert.vue";
 
 export default {
   name: "RegistrationForm",
+  components: {UserRegistrarionAlert},
   data() {
     return {
       loading: false,
@@ -196,8 +183,6 @@ export default {
           }
         ]
       },
-      phoneDisplayForCols: window.innerWidth <= 800 ? '12' : '6',
-      phoneDisplayForForms: window.innerWidth <= 800 ? 'w-75' : 'w-50',
       messageAlert: true,
       phoneDisplay: window.innerWidth <= 800
     }

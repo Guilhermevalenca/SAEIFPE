@@ -27,7 +27,7 @@ class UserController extends Controller
             'cpf' => ['required','numeric'],
             'email' => ['required','email'],
             'phone' => ['nullable'],
-            'phoneIsWhatsApp' => ['boolean'],
+            'phoneIsWhatsApp' => ['nullable','boolean'],
             'genre' => ['nullable'],
             'password' => ['required','min:6'],
         ]);

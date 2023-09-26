@@ -15,11 +15,14 @@ axios.interceptors.request.use((config) => {
 axios.interceptors.response.use(function (response) {
   return response;
 },function (error) {
-  if(error.response.status === 429) {
-    Swal.fire({
-      title: 'Error',
-      text: 'Você foi proibido temporariamente de realizar algumas ações no site, por motivos de segurança'
-    });
+  console.log(error);
+  if(error.response.status) {
+    if(error.response.status === 429) {
+      Swal.fire({
+        title: 'Error',
+        text: 'Você foi proibido temporariamente de realizar algumas ações no site, por motivos de segurança'
+      });
+    }
   }
   return Promise.reject(error);
 });

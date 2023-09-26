@@ -1,10 +1,10 @@
 <template>
-  <v-dialog persistent :width="phoneDisplay ? 'default' : '900px'" v-model="messageAlert">
+  <v-dialog persistent :width="phoneDisplay ? 'auto' : '900px'" v-model="messageAlert">
     <UserRegistrarionAlert :phoneDisplay="phoneDisplay" @closeAlert="messageAlert = false" />
   </v-dialog>
   <v-card >
     <v-card-title class="text-center">Formulário de cadastro</v-card-title>
-    <v-spacer class="pa-6" />
+    <v-spacer :class="[phoneDisplay ? '' : 'pa-6']" />
     <v-card-text class="d-flex justify-center">
       <v-form @submit.prevent="registerRegistration()" :class="[phoneDisplay ? 'w-75' : 'w-50']">
         <v-row>
@@ -29,8 +29,8 @@
           <v-col :cols="phoneDisplay ? '12' : '6'" md="7">
             <v-text-field prepend-inner-icon="mdi-phone-outline" persistent-hint v-model.number="phone.number" label="Telefone(Opcional)" hint="apenas números" placeholder="digite o número do telefone" :counter="11" />
           </v-col>
-          <v-col md="4">
-            <v-checkbox v-model="phone.wpp" label="Este número é whatsapp" />
+          <v-col md="4" class="mt-n8 mb-0 pb-0">
+            <v-checkbox v-model="phone.wpp" label="Este número é whatsapp"  />
           </v-col>
         </v-row>
 
@@ -53,8 +53,8 @@
             <v-text-field v-model="confirmPassword" label="Confirme senha" placeholder="Confirme sua senha" persistent-placeholder prepend-inner-icon="mdi-lock-outline" :append-inner-icon="showIcon.confirmPassword ? 'mdi-eye' : 'mdi-eye-off'" :type="showIcon.confirmPassword ? 'text' : 'password'" @click:append-inner="showIcon.confirmPassword = !showIcon.confirmPassword" :rules="rules.confirmPassword" required />
           </v-col>
         </v-row>
-        <v-card-actions>
-          <v-btn :loading="loading" :disabled="!formInvalid" type="submit" :color="!formInvalid ? '' : 'secondary'" variant="elevated">Registrar</v-btn>
+        <v-card-actions class="d-flex justify-end">
+          <v-btn class="mb-7" :loading="loading" :disabled="!formInvalid" type="submit" :color="!formInvalid ? '' : 'secondary'" variant="elevated">Registrar</v-btn>
         </v-card-actions>
       </v-form>
     </v-card-text>
@@ -75,7 +75,7 @@ export default {
       email: '',
       cpf: '',
       phone: {
-        number: '',
+        number: null,
         wpp: false
       },
       genre: {

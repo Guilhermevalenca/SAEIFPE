@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card width="900px">
     <v-card-title  :class="['text-center', 'ma-2', phoneDisplay ? '' : 'justify-md-center']">
       Saudações, comunidade IFPE {{ phoneDisplay ? '' : "Campus Igarassu" }}
     </v-card-title>

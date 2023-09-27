@@ -1,6 +1,6 @@
 <template>
   <v-app-bar flat>
-    <v-app-bar-nav-icon v-if="false" @click="$emit('drawer')" />
+    <v-app-bar-nav-icon @click="$emit('drawer')" />
     <v-app-bar-title>
       <v-avatar>
         <v-img src="https://ingresso.ifpe.edu.br/static/img/ifpe-logo.svg" cover />
@@ -14,7 +14,7 @@
         </v-btn>
       </template>
     </v-tooltip>
-    <div v-if="!isLoggedIn">
+    <div v-if="!$store.state.logged">
       <v-btn color="secondary" @click="login = true">Login</v-btn>
       <Login v-model="login" @cancel="login = false"/>
     </div>
@@ -28,7 +28,6 @@
 import { useTheme } from 'vuetify';
 import Login from "@/components/user/Login.vue";
 import LoggedUserOptions from "@/components/user/LoggedUserOptions.vue";
-import axios from "axios";
 
 export default {
   components: {LoggedUserOptions, Login},
@@ -36,7 +35,6 @@ export default {
     return {
       theme: useTheme(),
       login: false,
-      isLoggedIn: false
     }
   },
   methods: {
@@ -44,13 +42,5 @@ export default {
       this.theme.global.name = this.theme.global.current.dark ? 'light' : 'dark';
     }
   },
-  created() {
-    window.addEventListener('logged', () => {
-      this.isLoggedIn = true;
-    });
-    window.addEventListener('logouted', () => {
-      this.isLoggedIn = false;
-    })
-  }
 }
 </script>

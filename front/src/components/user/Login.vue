@@ -7,7 +7,7 @@
           <v-text-field v-model="cpf" :rules="rules.cpf" required label="cpf" placeholder="Digite aqui seu cpf" />
           <v-text-field v-model="password" :rules="rules.password" required label="password" placeholder="Digite aqui sua senha" prepend-inner-icon="mdi-lock-outline" :append-inner-icon="showIconPassword ? 'mdi-eye' : 'mdi-eye-off'" :type="showIconPassword ? 'text' : 'password'" @click:append-inner="showIconPassword = !showIconPassword"/>
           <v-card-actions>
-            <v-btn color="secondary" type="submit">Acessar</v-btn>
+            <v-btn :loading="loading" color="secondary" type="submit">Acessar</v-btn>
             <v-btn @click="$emit('cancel')">cancelar</v-btn>
           </v-card-actions>
         </v-form>
@@ -26,6 +26,7 @@ export default {
       cpf: '',
       password: '',
       showIconPassword: false,
+      loading: false,
       rules: {
         cpf: [
           value => {
@@ -48,17 +49,20 @@ export default {
   },
   methods: {
     login() {
+      this.loading = true;
       axios.post('users/login',{
         cpf: this.cpf,
         password: this.password
       })
         .then(response => {
+          console.log(response);
           if(response.data.success) {
             localStorage.setItem('token',response.data.token);
-            window.dispatchEvent(new Event('logged')); //evento é escutado no created no AppBar, caminhos do arquivo: src/layouts/default/AppBar.vue
+            this.$store.dispatch('changeLogged', 1);
           }
         })
-        .catch(error => console.log(error));
+        .catch(error => console.log(error))
+        .finally(() => this.loading = false);
     }
   }
 }

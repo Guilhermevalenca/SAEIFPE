@@ -44,7 +44,7 @@ export default {
         .then(response => {
           if(response.data.success) {
             localStorage.removeItem('token');
-            window.dispatchEvent(new Event('logouted'));
+            this.$store.dispatch('changeLogged', 0);
           } else {
             console.log(response);
           }

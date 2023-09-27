@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite --host --mode development",
     "build": "vite build --mode development",
-    "preview": "vite preview",
-    "lint": "eslint . --fix --ignore-path .gitignore"
+    "lint": "eslint . --fix --ignore-path .gitignore",
+    "dev": "vite --host --mode development",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@mdi/font": "7.0.96",
@@ -17,10 +17,12 @@
     "vue": "^3.2.0",
     "vue-router": "^4.0.0",
     "vuetify": "^3.0.0",
+    "vuex": "^4.0.0",
     "webfontloader": "^1.0.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
+    "@vue/cli-plugin-vuex": "~5.0.0",
     "eslint": "^8.37.0",
     "eslint-plugin-vue": "^9.3.0",
     "sass": "^1.60.0",

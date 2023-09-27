@@ -13,7 +13,7 @@
     </v-card-subtitle>
     <v-card-text class="d-flex text-body-1">
       <div>
-        Muito obrigado por aderirem, pessoal! Em breve traremos novidades e funcionalidades para a aplicação. Esperaremos vocês nessas fases de testes para termos uma aplicação limpa e com boa usabilidade.
+        Muito obrigado por aderirem! Este foi apenas um cadastro inicial para atualizarmos seus dados de contato pessoal. Solicitamos o CPF para possibilitar o cruzamento dos dados com o Q-Acadêmico e mesclar suas informações no futuro. Em breve vocês receberão novidades e funcionalidades do sistema.
       </div>
     </v-card-text>
   </v-card>

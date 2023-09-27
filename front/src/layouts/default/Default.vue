@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <ItemDrawer v-model="isDrawerOpen" />
+    <ItemDrawer v-if="false" v-model="isDrawerOpen" />
 
     <default-bar @drawer="isDrawerOpen = !isDrawerOpen" />
 

@@ -29,7 +29,7 @@
           <v-col :cols="phoneDisplay ? '12' : '6'" md="7">
             <v-text-field prepend-inner-icon="mdi-phone-outline" persistent-hint v-model.number="phone.number" label="Telefone(Opcional)" hint="apenas números" placeholder="digite o número do telefone" :counter="11" />
           </v-col>
-          <v-col md="4" class="mt-n8 mb-0 pb-0">
+          <v-col md="4" :class="phoneDisplay ? 'mt-n8 mb-0 pb-0' : ''">
             <v-checkbox v-model="phone.wpp" label="Este número é whatsapp"  />
           </v-col>
         </v-row>
@@ -48,7 +48,6 @@
           <v-col :cols="phoneDisplay ? '12' : '6'">
             <v-text-field label="Senha" placeholder="Digite sua senha" v-model="password" prepend-inner-icon="mdi-lock-outline" :append-inner-icon="showIcon.password ? 'mdi-eye' : 'mdi-eye-off'" :type="showIcon.password ? 'text' : 'password'" @click:append-inner="showIcon.password = !showIcon.password" :rules="rules.password" required />
           </v-col>
-
           <v-col>
             <v-text-field v-model="confirmPassword" label="Confirme senha" placeholder="Confirme sua senha" persistent-placeholder prepend-inner-icon="mdi-lock-outline" :append-inner-icon="showIcon.confirmPassword ? 'mdi-eye' : 'mdi-eye-off'" :type="showIcon.confirmPassword ? 'text' : 'password'" @click:append-inner="showIcon.confirmPassword = !showIcon.confirmPassword" :rules="rules.confirmPassword" required />
           </v-col>
@@ -209,7 +208,7 @@ export default {
         .then(response => {
           if(response.data.success) {
             localStorage.setItem('token',response.data.token);
-            window.dispatchEvent(new Event('logged')); //evento é escutado no created no AppBar, caminhos do arquivo: src/layouts/default/AppBar.vue
+            this.$store.dispatch('changeLogged', 1);
           }
         })
         .catch(error => console.log(error))

@@ -6,30 +6,25 @@
     <v-row>
       <v-col />
     </v-row>
-    <v-row class="justify-center">
-      <MessageDefault :title="messageDefault.title" :text="messageDefault.text" :success="messageDefault.success" />
+    <v-row class="d-flex justify-center">
+      <UserIsLoggedSuccess />
     </v-row>
   </div>
 </template>
 
 <script>
 import RegistrationForm from "@/components/user/RegistrationForm.vue";
-import MessageDefault from "@/components/MessageDefault.vue";
 import axios from "axios";
+import UserIsLoggedSuccess from "@/components/user/UserIsLoggedSuccess.vue";
 
 export default {
   components: {
-    MessageDefault,
+    UserIsLoggedSuccess,
     RegistrationForm,
   },
   data() {
     return {
       logged: false,
-      messageDefault: {
-        title: 'Cadastro finalizado',
-        text: 'Cadastro realizado com sucesso',
-        success: true
-      }
     }
   },
   methods: {

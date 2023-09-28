@@ -6,6 +6,11 @@
       </v-list-item>
     </v-list>
     <v-list>
+      <v-list-item to="posts">
+        Postagem do IFPE
+      </v-list-item>
+    </v-list>
+    <v-list>
       <v-list-group>
         <template #activator="{props}">
           <v-list-item v-bind="props">

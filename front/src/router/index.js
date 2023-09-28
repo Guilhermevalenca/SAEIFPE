@@ -25,6 +25,18 @@ const routes = [
             component: () => import('@/views/AboutView.vue')
           }
         ]
+      },
+      {
+        path: 'posts',
+        name: 'postsDefault',
+        component: () => import('@/layouts/posts/Posts.vue'),
+        children: [
+          {
+            path: '',
+            name: 'postsView',
+            component: () => import('@/views/PostsView.vue')
+          }
+        ]
       }
     ],
   },

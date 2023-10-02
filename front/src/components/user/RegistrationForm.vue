@@ -3,7 +3,7 @@
     <UserRegistrarionAlert :phoneDisplay="phoneDisplay" @closeAlert="messageAlert = false" />
   </v-dialog>
   <v-card >
-    <v-card-title class="text-center">Formulário de cadastro</v-card-title>
+    <v-card-title class="text-center">Formulário de Cadastro</v-card-title>
     <v-spacer :class="[phoneDisplay ? '' : 'pa-6']" />
     <v-card-text class="d-flex justify-center">
       <v-form @submit.prevent="registerRegistration()" :class="[phoneDisplay ? 'w-75' : 'w-50']">

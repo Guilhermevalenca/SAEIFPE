@@ -37,6 +37,18 @@ const routes = [
             component: () => import('@/views/PostsView.vue')
           }
         ]
+      },
+      {
+        path: 'form',
+        name: 'formDefault',
+        component: () => import('@/layouts/form/Form.vue'),
+        children: [
+          {
+            path: '',
+            name: 'formView',
+            component: () => import('@/views/FormView.vue')
+          }
+        ]
       }
     ],
   },

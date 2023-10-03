@@ -37,6 +37,18 @@ const routes = [
             component: () => import('@/views/PostsView.vue')
           }
         ]
+      },
+      {
+        path: 'depositions',
+        name: 'depositionsDefault',
+        component: () => import('@/layouts/depositions/Depositions.vue'),
+        children: [
+          {
+            path: '',
+            name: 'DepositionsView',
+            component: () => import('@/views/DepositionsView.vue')
+          }
+        ]
       }
     ],
   },

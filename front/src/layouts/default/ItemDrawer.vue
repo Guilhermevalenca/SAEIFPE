@@ -9,6 +9,9 @@
       <v-list-item to="posts">
         Postagem do IFPE
       </v-list-item>
+    <v-list-item to="depositions">
+      Depoimentos
+    </v-list-item>
     </v-list>
     <v-list>
       <v-list-group>

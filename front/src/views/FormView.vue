@@ -120,7 +120,105 @@
                     </v-card>
                     </v-col>
                 </v-row>
-
+                <v-row>
+                    <v-col>
+                        <v-card elevation="4">
+                            <v-card-text>
+                            <v-radio-group label="Qual é a sua atual situação?">
+                                <v-radio label="Apenas trabalhando" value="1"></v-radio>
+                                <v-radio label="Apenas estudando" value="2"></v-radio>
+                                <v-radio label="Trabalhando e estudando" value="3"></v-radio>
+                                <v-radio label="Outro" value="4"></v-radio>
+                            </v-radio-group>
+                            </v-card-text>
+                    </v-card>
+                    </v-col>
+                </v-row>
+                <v-row>
+                    <v-col>
+                        <v-card elevation = "4">
+                            <v-card-text>
+                            <v-radio-group label="Qual é a sua atual situação no mercado de trabalho?">
+                                <v-radio label="Estagiário(a)" value="1"></v-radio>
+                                <v-radio label="Empreendedor(a)" value="2"></v-radio>
+                                <v-radio label="Autônomo(a) ou prestador(a) de serviços" value="3"></v-radio>
+                                <v-radio label="Empregado(a), com carteira assinada" value="4"></v-radio>
+                                <v-radio label="Empregado(a), sem carteira assinada" value="5"></v-radio>
+                                <v-radio label="Servidor(a) público(a) concursado(a)" value="6"></v-radio>
+                                <v-radio label="Contrato temporário em instituição pública" value="7"></v-radio>
+                                <v-radio label="Contrato temporário em empresa privada" value="8"></v-radio>
+                                <v-radio label="Desempregado (responda as próximas questões se baseando no seu emprego mais recente)" value="9"></v-radio>
+                                <v-radio label="Outro:" value="10"></v-radio>
+                            </v-radio-group>
+                            </v-card-text>
+                        </v-card>
+                    </v-col>
+                </v-row>
+                <v-row>
+                    <v-col>
+                        <v-card elevation="4">
+                            <v-card-text>
+                            <v-radio-group label="Durante o seu curso você estagia ou já estagiou?">
+                                <v-radio label="Sim" value="1"></v-radio>
+                                <v-radio label="Não" value="2"></v-radio>
+                                <v-radio label="Não se aplica" value="3"></v-radio>
+                                <v-radio label="Outro" value="4"></v-radio>
+                            </v-radio-group>
+                            </v-card-text>
+                    </v-card>
+                    </v-col>
+                </v-row>
+                <v-row>
+                    <v-col>
+                        <v-card elevation="4">
+                        <v-card-title style="font-size: 16px;">
+                            Caso você realize ou tenha realizado estágio durante seu curso no IFPE, em que empresa(s) você estagiou?
+                        </v-card-title>
+                        <v-text-field label="Sua resposta" variant="outlined"></v-text-field>
+                        </v-card>
+                    </v-col>
+                </v-row>
+                <v-row>
+                    <v-col>
+                        <v-card elevation="4">
+                            <v-card-text>
+                            <v-radio-group label="Caso você esteja trabalhando, a sua atividade profissional está na área do seu curso?">
+                                <v-radio label="Sim" value="1"></v-radio>
+                                <v-radio label="Não" value="2"></v-radio>
+                                <v-radio label="Não se aplica" value="3"></v-radio>
+                            </v-radio-group>
+                            </v-card-text>
+                    </v-card>
+                    </v-col>
+                </v-row>
+                <v-row>
+                    <v-col>
+                        <v-card elevation="4">
+                            <v-card-text>
+                            <v-radio-group label="Você têm dificuldades para conciliar o seu curso com a sua atividade profissional?">
+                                <v-radio label="Sim" value="1"></v-radio>
+                                <v-radio label="Não" value="2"></v-radio>
+                                <v-radio label="Não se aplica" value="3"></v-radio>
+                            </v-radio-group>
+                            </v-card-text>
+                    </v-card>
+                    </v-col>
+                </v-row>
+                <v-row>
+                    <v-col>
+                        <v-card elevation="4">
+                            <v-card-text>
+                                Escolha suas opções
+                            <v-checkbox-group label="...">
+                                <v-checkbox label="Falta de experiência profissional" value="1"></v-checkbox>
+                                <v-checkbox label="Falta de conhecimento teórico" value="2"></v-checkbox>
+                                <v-checkbox label="Falta de conhecimento de outros idiomas" value="3"></v-checkbox>
+                                <v-checkbox label="Sim" value="4"></v-checkbox>
+                            </v-checkbox-group>
+                            </v-card-text>
+                    </v-card>
+                    </v-col>
+                </v-row>
             </v-form> 
         </v-card-text>
     </v-card>

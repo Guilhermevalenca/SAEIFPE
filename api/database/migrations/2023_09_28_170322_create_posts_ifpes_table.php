@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('posts_ifpes', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('content');
+            $table->string('send_to');
+            $table->foreignId('user_id')
+                ->references('id')
+                ->on('users');
+            $table->boolean('visible')->default(true);
             $table->timestamps();
         });
     }

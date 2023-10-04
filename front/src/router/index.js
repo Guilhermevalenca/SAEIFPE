@@ -35,6 +35,11 @@ const routes = [
             path: '',
             name: 'postsView',
             component: () => import('@/views/PostsView.vue')
+          },
+          {
+            path: 'create',
+            name: 'postsCreated',
+            component: () => import('@/components/posts/PostsCreated.vue')
           }
         ]
       },

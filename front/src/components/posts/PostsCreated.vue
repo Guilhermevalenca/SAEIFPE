@@ -1,5 +1,9 @@
 <template>
-  <div></div>
+  <v-card>
+    <v-card-title>
+      <div>Criando postagem</div>
+    </v-card-title>
+  </v-card>
 </template>
 
 <script>

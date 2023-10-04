@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\postsIfpeResource;
 use App\Models\postsIfpe;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class PostsIfpeController extends Controller
 {
@@ -12,7 +14,7 @@ class PostsIfpeController extends Controller
      */
     public function index()
     {
-        //
+        return postsIfpeResource::collection(postsIfpe::paginate());
     }
 
     /**
@@ -20,7 +22,22 @@ class PostsIfpeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validation = $request->validate([
+            'title' => ['required','string'],
+            'content' => ['required','string'],
+            'send_to' => ['required','string', Rule::exists('users','course')],
+            'user_id' => $request->user()['id']
+        ]);
+        if($validation) {
+
+            try {
+                $post = postsIfpe::create($validation);
+                return response($post,201);
+            } catch (\Error $e) {
+                return response(['error' => $e],400);
+            }
+
+        }
     }
 
     /**

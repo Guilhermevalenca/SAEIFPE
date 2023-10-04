@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -19,7 +20,7 @@ class postsIfpeResource extends JsonResource
             'title' => $this->title,
             'content' => $this->content,
             'send_to' => $this->send_to,
-            'user' => new UserResource($this->user_id)
+            'user' => new UserResource(User::findOrFail($this->user_id))
         ];
     }
 }

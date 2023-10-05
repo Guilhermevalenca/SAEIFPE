@@ -1,47 +1,35 @@
 <template>
+    <v-dialog persistent :width="phoneDisplay ? 'auto' : '900px'" v-model="messageAlert">
+    <DepositionsAlert :phoneDisplay="phoneDisplay" @closeAlert="messageAlert = false" />
+  </v-dialog>
 <section>
-    <div>
-        <v-form>
-            <v-card>
-                <v-textarea label="vish kk" placeholder="Digite aqui seu depoimento" variant="outlined"></v-textarea>
-                <v-btn type="submit">postar</v-btn>
-            </v-card>
-            </v-form>
-        <v-form>
-            <v-card>
-                <template v-slot:prepend>
-                <v-avatar   
-                color="black"
-                image= "https://med.virginia.edu/diabetes-technology/wp-content/uploads/sites/265/2020/10/Blank-Avatar.png"
-                >
-            </v-avatar>
-        </template>
-        <v-row class="random">
-            merda
-        </v-row>
-                <v-card-title>
-                    vish kk
-                </v-card-title>
-                <v-card-text>
-                    kkkkkkkkkkkkk
-                </v-card-text>
-            </v-card>
+    <v-card>
+        <v-form class="pa-2">
+            <v-card-text class="d-flex justify-center flex-column">
+                <v-textarea persistent-placeholder placeholder="Digite aqui seu depoimento" variant="outlined"></v-textarea>
+                <div class="d-flex justify-end">
+                    <v-btn type="submit">postar</v-btn>
+                </div>
+            </v-card-text>
         </v-form>
-    </div>
+    </v-card>
 </section>
 </template>
 
 <script> 
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import DepositionsAlert from '../user/alerts/DepositionsAlert.vue';
 
 export default{
     name: 'AddDepositions',
-    data(){
-        return{
-
-        }
-    }
+    data() {
+        return {
+            components: { DepositionsAlert }, 
+      messageAlert: true,
+      phoneDisplay: window.innerWidth <= 800
+        };
+    },
 }
 </script>
 

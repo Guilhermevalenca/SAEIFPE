@@ -97,5 +97,3 @@ O Classroom é a ferramenta utilizada atualmente pela CREE para acompanhamento d
 ## Formulários
 
 É através de formulários que a CREE busca captar os dados dos egressos e deverá continuar desta forma, pois há uma política de acompanhamento de egressos na instituição que os elabora, a intenção é manter opções mais simples e rápidas para melhorar a adesão. Atualmente esses formulários são enviados através da plataforma Classroom, mas não há adesão significativa dos egressos, o que planejamos contornar com a aplicação.
-
-

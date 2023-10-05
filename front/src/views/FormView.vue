@@ -209,7 +209,7 @@
                         <v-card elevation="4">
                             <v-card-text>
                                 Escolha suas opções
-                            <v-checkbox-group label="...">
+                            <v-checkbox-group >
                                 <v-checkbox label="Falta de experiência profissional" value="1"></v-checkbox>
                                 <v-checkbox label="Falta de conhecimento teórico" value="2"></v-checkbox>
                                 <v-checkbox label="Falta de conhecimento de outros idiomas" value="3"></v-checkbox>
@@ -219,6 +219,9 @@
                     </v-card>
                     </v-col>
                 </v-row>
+                <v-card-actions class="d-flex justify-end">
+          <v-btn class="mb-7" :loading="loading" :disabled="!formInvalid" type="submit" :color="!formInvalid ? '' : 'secondary'" variant="elevated">Registrar</v-btn>
+        </v-card-actions>
             </v-form> 
         </v-card-text>
     </v-card>

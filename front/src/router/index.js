@@ -54,7 +54,7 @@ const routes = [
             component: () => import('@/views/DepositionsView.vue')
           }
         ]
-      }
+      },
     ],
   },
 ]

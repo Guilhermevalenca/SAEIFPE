@@ -25,9 +25,10 @@ class PostsIfpeController extends Controller
         $validation = $request->validate([
             'title' => ['required','string'],
             'content' => ['required','string'],
-            'send_to' => ['required','string', Rule::exists('users','course')],
+            'send_to' => ['required','array'],
             'user_id' => $request->user()['id']
         ]);
+        return response($validation, 200);
         if($validation) {
 
             try {

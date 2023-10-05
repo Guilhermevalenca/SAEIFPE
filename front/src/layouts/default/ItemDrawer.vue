@@ -5,11 +5,11 @@
         Inicio
       </v-list-item>
 
-      <v-list-item to="posts">
+      <v-list-item to="/posts">
         Postagem do IFPE
       </v-list-item>
 
-      <v-list-item to="depositions">
+      <v-list-item to="/depositions">
         Depoimentos
       </v-list-item>
 
@@ -24,7 +24,7 @@
         <v-list-item>opção 3</v-list-item>
       </v-list-group>
 
-      <v-list-item to="about">
+      <v-list-item to="/about">
         Sobre
       </v-list-item>
     </v-list>

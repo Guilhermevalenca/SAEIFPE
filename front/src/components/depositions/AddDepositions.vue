@@ -1,5 +1,5 @@
 <template>
-        <v-form class="pa-10">
+        <v-form class="pa-10 ml-10 mr-10">
             <v-card-text class="d-flex justify-center flex-column">
                 <v-textarea persistent-placeholder placeholder="Digite aqui seu depoimento" variant="outlined"></v-textarea>
                 <div class="d-flex justify-end">

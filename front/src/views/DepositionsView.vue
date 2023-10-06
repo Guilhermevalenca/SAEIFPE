@@ -1,9 +1,11 @@
 <template>
-    <v-dialog persistent :width="phoneDisplay ? 'auto' : '900px'" v-model="messageAlert">
-    <DepositionsAlert :phoneDisplay="phoneDisplay" @closeAlert="messageAlert = false" />
-    </v-dialog>
-    <AddDepositions/>
-    <ListDepositions/>
+    <section class="ml-10 mr-10">
+        <v-dialog persistent :width="phoneDisplay ? 'auto' : '900px'" v-model="messageAlert">
+        <DepositionsAlert :phoneDisplay="phoneDisplay" @closeAlert="messageAlert = false" />
+        </v-dialog>
+        <AddDepositions/>
+        <ListDepositions/>
+    </section>
 
 </template>
 

@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\postsIfpeResource;
+use App\Http\Resources\PostsIfpeResource;
 use App\Models\postsIfpe;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 
 class PostsIfpeController extends Controller
 {
@@ -14,7 +13,7 @@ class PostsIfpeController extends Controller
      */
     public function index()
     {
-        return postsIfpeResource::collection(postsIfpe::paginate());
+        return PostsIfpeResource::collection(postsIfpe::paginate(5));
     }
 
     /**
@@ -25,15 +24,14 @@ class PostsIfpeController extends Controller
         $validation = $request->validate([
             'title' => ['required','string'],
             'content' => ['required','string'],
-            'send_to' => ['required','array'],
-            'user_id' => $request->user()['id']
+            'send_to' => 'required'
         ]);
-        return response($validation, 200);
         if($validation) {
-
+            $validation['user_id'] = $request->user()->id;
+            $validation['send_to'] = json_encode($validation['send_to']);
             try {
-                $post = postsIfpe::create($validation);
-                return response($post,201);
+                postsIfpe::create($validation);
+                return response(['success' => true],201);
             } catch (\Error $e) {
                 return response(['error' => $e],400);
             }

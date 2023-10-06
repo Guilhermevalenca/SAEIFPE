@@ -11,7 +11,7 @@
 
 <script>
 import Swal from 'sweetalert2';
-import DepositionsAlert from '@/components/user/alerts/DepositionsAlert.vue'
+import DepositionsAlert from '@/components/depositions/alerts/DepositionsAlert.vue'
 import AddDepositions from '@/components/depositions/AddDepositions.vue';
 import ListDepositions from '@/components/depositions/ListDepositions.vue';
 export default{
@@ -22,7 +22,7 @@ export default{
         ListDepositions
     },
     created(){
-        
+
     }
 }
 </script>

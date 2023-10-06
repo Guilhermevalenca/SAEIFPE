@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('posts_ifpes', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('content');
+            $table->text('content');
             $table->json('send_to');
             $table->foreignId('user_id')
                 ->references('id')

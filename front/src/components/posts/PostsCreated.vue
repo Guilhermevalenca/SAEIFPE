@@ -4,7 +4,7 @@
       <div>Criando postagem</div>
     </v-card-title>
     <v-card-text class="d-flex justify-center">
-      <v-form @submit.prevent="createPost" class="w-50">
+      <v-form @submit.prevent="createPost()" class="w-50">
         <legend>Dados da publicação</legend>
 
         <div class="ma-4">
@@ -31,6 +31,17 @@
       </v-form>
     </v-card-text>
   </v-card>
+  <div>
+    <v-dialog persistent v-model="showMessage.success">
+      <v-card>
+        <v-card-title>Publicação criada com sucesso</v-card-title>
+        <v-card-actions class="d-flex justify-end">
+          <v-btn :loading="loading.messageSuccess" @click="async () => { loading.messageSuccess = true; await reset(); showMessage.success = false; loading.messageSuccess = false }">criar nova postagem</v-btn>
+          <v-btn to="/posts" color="secondary">OK</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </div>
 </template>
 
 <script>
@@ -40,11 +51,18 @@ export default {
   name: "PostsCreated",
   data() {
     return {
-      courses: '',
+      courses: [],
       courseSelected: [],
       isAllCourses: false,
       title: '',
-      description: ''
+      description: '',
+      showMessage: {
+        success: false,
+        failed: false
+      },
+      loading: {
+        messageSuccess: false
+      }
     }
   },
   methods: {
@@ -75,8 +93,23 @@ export default {
         send_to: this.isAllCourses ? this.courses : this.courseSelected
       }
       axios.post('postsIfpe',data)
-        .then(response => console.log(response))
-        .catch(error => console.log(error));
+        .then(response => {
+          if(response.data.success) {
+            this.showMessage.success = true;
+          }else {
+            this.showMessage.failed = true;
+          }
+        })
+        .catch(error => {
+          console.log(error);
+          this.showMessage.failed = true;
+        });
+    },
+    async reset() {
+      this.courseSelected = [];
+      this.isAllCourses = false;
+      this.title = '';
+      this.description = '';
     }
   },
   beforeCreate() {

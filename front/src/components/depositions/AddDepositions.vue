@@ -16,16 +16,16 @@
 </section>
 </template>
 
-<script> 
+<script>
 import axios from 'axios'
 import Swal from 'sweetalert2'
-import DepositionsAlert from '../user/alerts/DepositionsAlert.vue';
+import DepositionsAlert from './alerts/DepositionsAlert.vue';
 
 export default{
     name: 'AddDepositions',
     data() {
         return {
-            components: { DepositionsAlert }, 
+            components: { DepositionsAlert },
       messageAlert: true,
       phoneDisplay: window.innerWidth <= 800
         };
@@ -38,6 +38,6 @@ export default{
   display: flex;
   position: relative;
   top: -2em;
-  right: -5em; 
+  right: -5em;
 }
 </style>

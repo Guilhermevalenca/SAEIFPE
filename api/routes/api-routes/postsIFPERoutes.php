@@ -7,6 +7,7 @@ Route::controller(PostsIfpeController::class)
     ->middleware(['auth:sanctum','ability:adm,manage,analyst'])
     ->group(function () {
 
+        Route::get('postsIfpe','index');
         Route::post('postsIfpe','store');
 
     });

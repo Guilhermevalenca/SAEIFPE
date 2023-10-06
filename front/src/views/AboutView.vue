@@ -5,12 +5,12 @@
     </v-card-title>
     <v-card-text>
       <About></About>
-    </v-card-text> 
+    </v-card-text>
   </v-card>
 </template>
 
 <script>
-import About from '@/components/About.vue';
+import About from '@/components/about/About.vue';
 
 export default {
   name: "AboutView",

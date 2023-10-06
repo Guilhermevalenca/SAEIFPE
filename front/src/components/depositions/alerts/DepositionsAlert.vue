@@ -9,7 +9,7 @@
         </div>
       </v-card-text>
       <v-card-actions class="d-flex justify-center">
-        <v-btn class="mb-6" color="secondary" variant="outlined" @click="$emit('closeAlert')">vamos lá!</v-btn>
+        <v-btn class="mb-6" color="secondary" variant="outlined d-flex justify-end" @click="$emit('closeAlert')">vamos lá!</v-btn>
       </v-card-actions>
     </v-card>
   </template>

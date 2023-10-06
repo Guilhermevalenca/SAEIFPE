@@ -1,5 +1,5 @@
 <template>
- <v-form class="pa-10 ml-10 mr-10">
+ <v-form class="d-flex justify-center pa-10 ml-10 mr-10 w-50">
             <v-card class="pa-2">
                 <v-card-text>
                 <v-avatar v-slot="auto"

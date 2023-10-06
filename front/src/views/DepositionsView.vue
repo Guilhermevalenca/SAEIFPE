@@ -1,5 +1,5 @@
 <template>
-    <section class="ml-10 mr-10">
+    <section class="d-flex flex-column d-flex justify-center ml-10 mr-10">
         <v-dialog persistent :width="phoneDisplay ? 'auto' : '900px'" v-model="messageAlert">
         <DepositionsAlert :phoneDisplay="phoneDisplay" @closeAlert="messageAlert = false" />
         </v-dialog>

@@ -7,34 +7,51 @@
             <div>Construa seu formulário</div>
         </v-card-title>
         <v-spacer :class="[phoneDisplay ? '' : 'pa-6']"> </v-spacer>
-        <v-card-text class="d-flex justify-center">
+        <v-card-text class="w-75">
             <v-card v-for="(question, index) in questions" :key="index">
               <v-card-title>Escolha qual o tipo de pergunta</v-card-title>
-              <v-select v-model="typeQuestions[index]" :items="['Texto', 'Múltipla escolhas', 'Escolha única']" />
               <v-card-text>
-                <div v-if="typeQuestions[index]"></div>
-                <div v-if="typeQuestions[index]"></div>
-                <div v-if="typeQuestions[index]"></div>
+                <v-select v-model="typeQuestions[index]" :items="types" item-title="name" item-value="id" />
+                <div v-if="typeQuestions[index]">
+                  <label>Pergunta:</label>
+                  <v-text-field placeholder="Escreva a pergunta aqui" hint="Exemplo de titulo"/>
+                </div>
+
+                <div v-if="typeQuestions[index] === 'unique'">
+                  <UniqueQuestionsForm />
+                </div>
+                <div v-if="typeQuestions[index] === 'multiple'">
+                  <MultipleQuestionsForm />
+                </div>
               </v-card-text>
             </v-card>
         </v-card-text>
     </v-card>
 </template>
 
-  <script>
+<script>
+import UniqueQuestionsForm from "@/components/forms/createQuestions/UniqueQuestionsForm.vue";
+import MultipleQuestionsForm from "@/components/forms/createQuestions/MultipleQuestionsForm.vue";
+
   export default {
     name: "formDefault",
+    components: {MultipleQuestionsForm, UniqueQuestionsForm},
     data() {
       return {
-        questions: [],
+        questions: [null],
         typeQuestions: [],
         types: [
           {
-            id: 'text',
+            id: 'open-ended',
             name: 'Texto'
           },
           {
-            id: ''
+            id: 'unique',
+            name: 'Escolha única'
+          },
+          {
+            id: 'multiple',
+            name: 'Múltipla escolhas'
           }
         ]
       }

@@ -23,7 +23,13 @@
         <v-list-item>opção 2</v-list-item>
         <v-list-item>opção 3</v-list-item>
       </v-list-group>
-
+    </v-list>
+    <v-list>
+      <v-list-item to="form">
+        Formulário
+      </v-list-item>
+    </v-list>
+    <v-list>
       <v-list-item to="/about">
         Sobre
       </v-list-item>

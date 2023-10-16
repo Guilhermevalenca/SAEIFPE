@@ -44,6 +44,17 @@ const routes = [
         ]
       },
       {
+        path: 'form',
+        name: 'formDefault',
+        component: () => import('@/layouts/form/Form.vue'),
+        children: [
+          {
+            path: '',
+            name: 'formView',
+            component: () => import('@/views/FormView.vue')
+          }
+        ]
+      },
         path: 'depositions',
         name: 'depositionsDefault',
         component: () => import('@/layouts/depositions/Depositions.vue'),

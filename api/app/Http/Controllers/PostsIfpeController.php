@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PostsIfpeResource;
 use App\Models\postsIfpe;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,7 @@ class PostsIfpeController extends Controller
      */
     public function index()
     {
-        //
+        return PostsIfpeResource::collection(postsIfpe::paginate(5));
     }
 
     /**
@@ -20,7 +21,22 @@ class PostsIfpeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validation = $request->validate([
+            'title' => ['required','string'],
+            'content' => ['required','string'],
+            'send_to' => 'required'
+        ]);
+        if($validation) {
+            $validation['user_id'] = $request->user()->id;
+            $validation['send_to'] = json_encode($validation['send_to']);
+            try {
+                postsIfpe::create($validation);
+                return response(['success' => true],201);
+            } catch (\Error $e) {
+                return response(['error' => $e],400);
+            }
+
+        }
     }
 
     /**

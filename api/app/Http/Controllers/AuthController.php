@@ -12,7 +12,7 @@ class AuthController extends Controller
         if(Auth::attempt($request->only('cpf','password'))) {
             $user = $request->user();
             //Usuários comuns pelo fato de serem alunos completando cadastros
-            $token = $request->user()->createToken('user-common',$user['user_category']);
+            $token = $request->user()->createToken('user-common',[$user['user_category']]);
             $response = [
                 'token' => $token->plainTextToken,
                 'success' => true

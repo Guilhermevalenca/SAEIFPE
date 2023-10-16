@@ -12,6 +12,8 @@
     "@mdi/font": "7.0.96",
     "axios": "^1.5.0",
     "core-js": "^3.29.0",
+    "maska": "^2.1.10",
+    "moment": "^2.29.4",
     "roboto-fontface": "*",
     "sweetalert2": "^11.7.28",
     "vue": "^3.2.0",

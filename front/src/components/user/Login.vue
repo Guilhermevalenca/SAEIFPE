@@ -4,6 +4,7 @@
       <v-card-title>Login</v-card-title>
       <v-card-text>
         <v-form @submit.prevent="login()">
+          <input type="hidden" v-maska data-maska="###.###.###-##" v-model="cpf">
           <v-text-field v-model="cpf" :rules="rules.cpf" required label="cpf" placeholder="Digite aqui seu cpf" />
           <v-text-field v-model="password" :rules="rules.password" required label="password" placeholder="Digite aqui sua senha" prepend-inner-icon="mdi-lock-outline" :append-inner-icon="showIconPassword ? 'mdi-eye' : 'mdi-eye-off'" :type="showIconPassword ? 'text' : 'password'" @click:append-inner="showIconPassword = !showIconPassword"/>
           <v-card-actions>
@@ -18,9 +19,11 @@
 
 <script>
 import axios from "axios";
+import { vMaska} from "maska";
 
 export default {
   name: "LoginUser",
+  directives: {maska: vMaska},
   data() {
     return {
       cpf: '',
@@ -50,8 +53,14 @@ export default {
   methods: {
     login() {
       this.loading = true;
+      const modifyCPF = (value) => {
+        if(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(value)) {
+          return value.replace(/[^0-9]/g, "");
+        }
+        return value;
+      }
       axios.post('users/login',{
-        cpf: this.cpf,
+        cpf: modifyCPF(this.cpf),
         password: this.password
       })
         .then(response => {

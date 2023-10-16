@@ -35,6 +35,11 @@ const routes = [
             path: '',
             name: 'postsView',
             component: () => import('@/views/PostsView.vue')
+          },
+          {
+            path: 'create',
+            name: 'postsCreated',
+            component: () => import('@/components/posts/PostsCreated.vue')
           }
         ]
       },
@@ -49,7 +54,18 @@ const routes = [
             component: () => import('@/views/FormView.vue')
           }
         ]
-      }
+      },
+        path: 'depositions',
+        name: 'depositionsDefault',
+        component: () => import('@/layouts/depositions/Depositions.vue'),
+        children: [
+          {
+            path: '',
+            name: 'DepositionsView',
+            component: () => import('@/views/DepositionsView.vue')
+          }
+        ]
+      },
     ],
   },
 ]

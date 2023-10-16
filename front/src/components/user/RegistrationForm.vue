@@ -21,13 +21,15 @@
 
         <v-row>
           <v-col>
-            <v-text-field v-model="cpf" persistent-hint prepend-inner-icon="mdi-card-account-details-outline" label="CPF" placeholder="Digite seu cpf" hint="000.000.000-00"   :rules.="rules.cpf" required />
+            <input type="hidden" v-maska data-maska="###.###.###-##" v-model="cpf">
+            <v-text-field hide-details="auto" v-model="cpf" persistent-hint prepend-inner-icon="mdi-card-account-details-outline" label="CPF" placeholder="Digite seu cpf" hint="000.000.000-00" :rules="rules.cpf" required />
           </v-col>
         </v-row>
 
         <v-row>
           <v-col :cols="phoneDisplay ? '12' : '6'" md="7">
-            <v-text-field prepend-inner-icon="mdi-phone-outline" persistent-hint v-model.number="phone.number" label="Telefone(Opcional)" hint="apenas números" placeholder="digite o número do telefone" :counter="11" />
+            <input type="hidden" v-maska data-maska="(##) #####-####" v-model="phone.number">
+            <v-text-field prepend-inner-icon="mdi-phone-outline" persistent-hint v-model.number="phone.number" label="Telefone(Opcional)" hint="(00) 00000-0000" placeholder="digite o número do telefone" />
           </v-col>
           <v-col md="4" :class="phoneDisplay ? 'mt-n8 mb-0 pb-0' : ''">
             <v-checkbox v-model="phone.wpp" label="Este número é whatsapp"  />
@@ -63,10 +65,12 @@
 <script>
 import axios from "axios";
 import UserRegistrarionAlert from "@/components/user/alerts/UserRegistrarionAlert.vue";
+import { vMaska } from 'maska';
 
 export default {
   name: "RegistrationForm",
   components: {UserRegistrarionAlert},
+  directives: { maska: vMaska },
   data() {
     return {
       loading: false,
@@ -195,17 +199,21 @@ export default {
         }
         return value;
       }
+      const modifyPhoneNumber = (value) => {
+        return value.replace(/[()\-\s]/g, "");
+      }
       const data = {
         name: this.name,
         cpf: modifyCPF(this.cpf),
         email: this.email,
-        phone: this.phone.number,
+        phone: modifyPhoneNumber(this.phone.number),
         phoneIsWhatsApp: this.phone.wpp,
         genre: this.genre.selected === 'Outro' ? this.genre.other : this.genre.selected,
         password: this.password
       }
       axios.post('users/create',data)
         .then(response => {
+          console.log(response);
           if(response.data.success) {
             localStorage.setItem('token',response.data.token);
             this.$store.dispatch('changeLogged', 1);

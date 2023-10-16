@@ -15,7 +15,8 @@ class AuthController extends Controller
             $token = $request->user()->createToken('user-common',[$user['user_category']]);
             $response = [
                 'token' => $token->plainTextToken,
-                'success' => true
+                'success' => true,
+                'abilities' => $token
             ];
             return response($response, $status);
         }

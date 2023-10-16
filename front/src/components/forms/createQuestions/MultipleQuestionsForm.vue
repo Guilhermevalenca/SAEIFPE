@@ -33,6 +33,9 @@
 <script>
 export default {
   name: "MultipleQuestionsForm",
+  props: {
+    getValues: Boolean
+  },
   data() {
     return {
       options: [
@@ -49,6 +52,16 @@ export default {
     },
     removeOption() {
       this.options.pop();
+    }
+  },
+  watch: {
+    getValues: {
+      handler($new) {
+        if($new) {
+          this.$emit('send_data',this.options)
+        }
+      },
+      deep: true
     }
   }
 }

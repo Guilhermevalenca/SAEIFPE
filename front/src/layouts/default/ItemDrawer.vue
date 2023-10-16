@@ -26,7 +26,7 @@
     </v-list>
     <v-list>
       <v-list-item to="form">
-        Formulário
+        Formulários
       </v-list-item>
     </v-list>
     <v-list>

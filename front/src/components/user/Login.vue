@@ -67,6 +67,7 @@ export default {
           console.log(response);
           if(response.data.success) {
             localStorage.setItem('token',response.data.token);
+            console.log(response.data.abilities);
             this.$store.dispatch('changeLogged', 1);
           }
         })

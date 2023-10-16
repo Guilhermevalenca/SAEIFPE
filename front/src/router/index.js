@@ -55,6 +55,7 @@ const routes = [
           }
         ]
       },
+      {
         path: 'depositions',
         name: 'depositionsDefault',
         component: () => import('@/layouts/depositions/Depositions.vue'),

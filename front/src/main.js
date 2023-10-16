@@ -15,7 +15,7 @@ import { createApp } from 'vue'
 import { registerPlugins } from '@/plugins'
 import axios from "axios";
 
-const app = createApp(App)
+const app = createApp(App);
 
 registerPlugins(app)
 

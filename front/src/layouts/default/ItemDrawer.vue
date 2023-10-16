@@ -4,8 +4,15 @@
       <v-list-item to="/">
         Inicio
       </v-list-item>
-    </v-list>
-    <v-list>
+
+      <v-list-item to="/posts">
+        Postagem do IFPE
+      </v-list-item>
+
+      <v-list-item to="/depositions">
+        Depoimentos
+      </v-list-item>
+
       <v-list-group>
         <template #activator="{props}">
           <v-list-item v-bind="props">
@@ -18,7 +25,12 @@
       </v-list-group>
     </v-list>
     <v-list>
-      <v-list-item to="about">
+      <v-list-item to="form">
+        Formulários
+      </v-list-item>
+    </v-list>
+    <v-list>
+      <v-list-item to="/about">
         Sobre
       </v-list-item>
     </v-list>

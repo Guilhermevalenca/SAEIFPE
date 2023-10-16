@@ -25,7 +25,36 @@ const routes = [
             component: () => import('@/views/AboutView.vue')
           }
         ]
-      }
+      },
+      {
+        path: 'posts',
+        name: 'postsDefault',
+        component: () => import('@/layouts/posts/Posts.vue'),
+        children: [
+          {
+            path: '',
+            name: 'postsView',
+            component: () => import('@/views/PostsView.vue')
+          },
+          {
+            path: 'create',
+            name: 'postsCreated',
+            component: () => import('@/components/posts/PostsCreated.vue')
+          }
+        ]
+      },
+      {
+        path: 'depositions',
+        name: 'depositionsDefault',
+        component: () => import('@/layouts/depositions/Depositions.vue'),
+        children: [
+          {
+            path: '',
+            name: 'DepositionsView',
+            component: () => import('@/views/DepositionsView.vue')
+          }
+        ]
+      },
     ],
   },
 ]

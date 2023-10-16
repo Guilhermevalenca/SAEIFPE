@@ -2,10 +2,12 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\PostsIfpe\PostsIfpeUsersResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Models\User;
 
-class UserResource extends JsonResource
+class PostsIfpeResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,11 +19,10 @@ class UserResource extends JsonResource
 //        return parent::toArray($request);
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'cpf' => $this->cpf,
-            'email' => $this->email,
-            'phone' => $this->phone,
-            'genre' => $this->genre
+            'title' => $this->title,
+            'content' => $this->content,
+            'send_to' => json_decode($this->send_to),
+            'user' => new PostsIfpeUsersResource( User::findOrFail($this->user_id) )
         ];
     }
 }

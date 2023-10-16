@@ -1,15 +1,23 @@
 <template>
   <v-card>
     <v-card-title>
-      <div>Sobre</div>
+      <div class="cabecalho">Sobre</div>
     </v-card-title>
+    <v-card-text>
+      <About></About>
+    </v-card-text>
   </v-card>
 </template>
 
 <script>
+import About from '@/components/about/About.vue';
+
 export default {
-  name: "AboutView"
-}
+  name: "AboutView",
+  components: {
+    About,
+  },
+};
 </script>
 
 <style scoped>

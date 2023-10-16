@@ -10,8 +10,9 @@ class AuthController extends Controller
     public function login(Request $request, $status = 200)
     {
         if(Auth::attempt($request->only('cpf','password'))) {
+            $user = $request->user();
             //Usuários comuns pelo fato de serem alunos completando cadastros
-            $token = $request->user()->createToken('user-common');
+            $token = $request->user()->createToken('user-common',[$user['user_category']]);
             $response = [
                 'token' => $token->plainTextToken,
                 'success' => true

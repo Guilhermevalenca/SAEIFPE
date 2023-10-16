@@ -30,6 +30,7 @@ class UserController extends Controller
             'phoneIsWhatsApp' => ['nullable','boolean'],
             'genre' => ['nullable'],
             'password' => ['required','min:6'],
+            'user_category' => ['nullable','string']
         ]);
         try {
             User::create($validation);

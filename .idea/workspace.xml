@@ -1,21 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6ddcb037-6d75-4f72-b91c-d5052cc2b014" name="Changes" comment="" />
+    <list default="true" id="6ddcb037-6d75-4f72-b91c-d5052cc2b014" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/SAEIFPE.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SAEIFPE.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/api/composer.json</pharConfigPath>
     <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe" />
   <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": -1
+  "associatedIndex": 1
 }]]></component>
   <component name="ProjectId" id="2VQyQOw6L3FlMuapoTRwMe2iCll" />
   <component name="ProjectViewState">
@@ -28,6 +35,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.laravel-idea.search-composer-json": "true",
     "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "tests",
     "last_opened_file_path": "C:/Users/aluno.lab03/Documents/GitHub/SAEIFPE/api",
     "settings.editor.selected.configurable": "configurable.group.language",
     "vue.rearranger.settings.migration": "true"
@@ -42,6 +50,7 @@
       <option name="presentableId" value="Default" />
       <updated>1694782582604</updated>
       <workItem from="1694782585912" duration="23000" />
+      <workItem from="1696592214519" duration="18000" />
     </task>
     <servers />
   </component>

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\PostsIfpe;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserResource extends JsonResource
+class PostsIfpeUsersResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,11 +17,7 @@ class UserResource extends JsonResource
 //        return parent::toArray($request);
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'cpf' => $this->cpf,
-            'email' => $this->email,
-            'phone' => $this->phone,
-            'genre' => $this->genre
+            'name' => $this->name
         ];
     }
 }

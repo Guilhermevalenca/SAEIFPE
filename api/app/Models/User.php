@@ -25,6 +25,7 @@ class User extends Authenticatable
         'phoneIsWhatsApp',
         'genre',
         'password',
+        'user_category'
     ];
 
     /**

@@ -5,173 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ddcb037-6d75-4f72-b91c-d5052cc2b014" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/Layouts/default/AppBar.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Layouts/default/Default.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Layouts/default/ItemDrawer.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Testing.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/plugins/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/plugins/vuetify.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/plugins/webfontloader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/SAEIFPE.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SAEIFPE.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/phpunit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/phpunit.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/web-routes/FormsRoutes.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/web-routes/postsIFPERoutes.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/.env.example" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Console/Kernel.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Exceptions/Handler.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Http/Controllers/AuthController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Http/Controllers/Controller.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Http/Controllers/DepositionsController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Http/Controllers/FormController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Http/Controllers/PostsIfpeController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Http/Controllers/UserController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Http/Kernel.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Http/Middleware/Authenticate.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Http/Middleware/EncryptCookies.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Http/Middleware/PreventRequestsDuringMaintenance.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Http/Middleware/RedirectIfAuthenticated.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Http/Middleware/TrimStrings.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Http/Middleware/TrustHosts.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Http/Middleware/TrustProxies.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Http/Middleware/ValidateSignature.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Http/Middleware/VerifyCsrfToken.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Http/Resources/PostsIfpe/PostsIfpeUsersResource.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Http/Resources/PostsIfpeResource.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Http/Resources/UserResource.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Models/Depositions.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Models/Scopes/postsIfpeScope.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Models/User.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Models/UsersAdms.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Models/UsersDefaults.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Models/UsersModerators.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Models/form.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Models/postsIfpe.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Providers/AppServiceProvider.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Providers/AuthServiceProvider.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Providers/BroadcastServiceProvider.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Providers/EventServiceProvider.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Providers/RouteServiceProvider.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/artisan" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/bootstrap/app.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/bootstrap/cache/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/composer.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/composer.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/config/app.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/config/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/config/broadcasting.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/config/cache.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/config/cors.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/config/database.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/config/filesystems.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/config/hashing.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/config/logging.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/config/mail.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/config/queue.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/config/sanctum.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/config/services.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/config/session.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/config/view.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/database/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/database/factories/UserFactory.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/database/migrations/2014_10_12_100000_create_password_reset_tokens_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/database/migrations/2019_08_19_000000_create_failed_jobs_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/database/migrations/2019_12_14_000001_create_personal_access_tokens_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/database/migrations/2023_09_28_170322_create_posts_ifpes_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/database/migrations/2023_10_02_231336_create_depositions_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/database/migrations/2023_10_05_141140_create_users_defaults_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/database/migrations/2023_10_05_141145_create_users_adms_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/database/migrations/2023_10_05_141205_create_users_moderators_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/database/migrations/2023_10_05_143243_create_forms_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/database/migrations/2023_10_06_102634_create_questions_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/database/migrations/2023_10_06_102650_create_options_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/database/migrations/2023_10_06_104939_create_responses_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/database/seeders/DatabaseSeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/phpunit.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/public/.htaccess" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/public/index.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/public/robots.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/resources/css/app.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/resources/js/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/resources/js/bootstrap.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/resources/views/welcome.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/routes/api-routes/postsIFPERoutes.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/routes/api-routes/userRoutes.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/routes/api.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/routes/channels.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/routes/console.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/routes/web.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/storage/app/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/storage/app/public/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/storage/framework/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/storage/framework/cache/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/storage/framework/cache/data/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/storage/framework/sessions/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/storage/framework/testing/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/storage/framework/views/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/storage/logs/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/tests/CreatesApplication.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/tests/Feature/ExampleTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/tests/TestCase.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/tests/Unit/ExampleTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/vite.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/.browserslistrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/.env.example" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/.eslintrc.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/jsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/App.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/assets/icons/cpf.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/assets/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/assets/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/axios/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/about/About.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/depositions/AddDepositions.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/depositions/ListDepositions.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/depositions/alerts/DepositionsAlert.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/forms/CreateForms.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/forms/MyFormsCreated.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/forms/createQuestions/MultipleQuestionsForm.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/forms/createQuestions/UniqueQuestionsForm.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/posts/PostsCreated.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/user/LoggedUserOptions.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/user/Login.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/user/RegistrationForm.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/user/UserIsLoggedSuccess.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/user/alerts/UserRegistrarionAlert.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/layouts/About.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/layouts/default/AppBar.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/layouts/default/Default.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/layouts/default/ItemDrawer.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/layouts/default/View.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/layouts/depositions/Depositions.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/layouts/form/Form.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/layouts/posts/Posts.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/plugins/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/plugins/vuetify.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/plugins/webfontloader.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/router/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/store/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/styles/settings.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/AboutView.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/DepositionsView.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/FormView.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/Home.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/PostsView.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/vite.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Layouts/GuestLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Layouts/GuestLayout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Layouts/default/ItemDrawer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Layouts/default/ItemDrawer.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Auth/ConfirmPassword.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Auth/ConfirmPassword.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Auth/ForgotPassword.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Auth/ForgotPassword.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Auth/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Auth/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Auth/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Auth/Register.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Auth/ResetPassword.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Auth/ResetPassword.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Auth/VerifyEmail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Auth/VerifyEmail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Dashboard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Dashboard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -324,30 +173,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.laravel-idea.search-composer-json": "true",
-    "RunOnceActivity.laravel-idea.update-module-directories": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "laravel---fullStack",
-    "last_opened_file_path": "/home/guilherme/SAEIFPE/resources/js/Pages",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "configurable.group.language",
-    "ts.external.directory.path": "/home/guilherme/.local/share/JetBrains/Toolbox/apps/phpstorm-2/plugins/javascript-impl/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.laravel-idea.search-composer-json&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.laravel-idea.update-module-directories&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;laravel---fullStack&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/guilherme/SAEIFPE/resources/js/Pages&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.language&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/guilherme/.local/share/JetBrains/Toolbox/apps/phpstorm-2/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "vue.recent.templates": [
-      "Vue Options API Component"
+  &quot;keyToStringList&quot;: {
+    &quot;vue.recent.templates&quot;: [
+      &quot;Vue Options API Component&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/js/Pages" />
@@ -381,7 +230,8 @@
       <workItem from="1694782585912" duration="23000" />
       <workItem from="1696592214519" duration="18000" />
       <workItem from="1698281955379" duration="7268000" />
-      <workItem from="1698323420557" duration="8202000" />
+      <workItem from="1698323420557" duration="8203000" />
+      <workItem from="1698358262845" duration="11471000" />
     </task>
     <servers />
   </component>

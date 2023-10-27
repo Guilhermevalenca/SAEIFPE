@@ -2,6 +2,11 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
 </script>
+<script>
+export default {
+  name: 'Dashboard'
+}
+</script>
 
 <template>
     <Head title="Dashboard" />

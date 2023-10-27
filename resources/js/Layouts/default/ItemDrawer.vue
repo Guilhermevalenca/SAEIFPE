@@ -1,45 +1,45 @@
 <template>
     <v-navigation-drawer>
         <v-list>
+
+          <Link :href="route('home')">
             <v-list-item to="/">
-                Inicio
+              Inicio
             </v-list-item>
+          </Link>
 
-            <v-list-item to="/posts">
-                Postagem do IFPE
+          <Link>
+            <v-list-item to="/">
+              Postagem do IFPE
             </v-list-item>
+          </Link>
 
-            <v-list-item to="/depositions">
-                Depoimentos
+          <Link>
+            <v-list-item to="/">
+              Depoimentos
             </v-list-item>
+          </Link>
 
-            <v-list-group>
-                <template #activator="{props}">
-                    <v-list-item v-bind="props">
-                        opções
-                    </v-list-item>
-                </template>
-                <v-list-item>opção 1</v-list-item>
-                <v-list-item>opção 2</v-list-item>
-                <v-list-item>opção 3</v-list-item>
-            </v-list-group>
-        </v-list>
-        <v-list>
-            <v-list-item to="form">
-                Formulários
+          <Link>
+            <v-list-item to="/">
+              Formulários
             </v-list-item>
-        </v-list>
-        <v-list>
-            <v-list-item to="/about">
-                Sobre
+          </Link>
+
+          <Link>
+            <v-list-item to="/">
+              Sobre
             </v-list-item>
+          </Link>
         </v-list>
     </v-navigation-drawer>
 </template>
 
 <script>
+import { Link } from '@inertiajs/vue3';
 export default {
-    name: "ItemDrawer"
+  name: "ItemDrawer",
+  components: {Link}
 }
 </script>
 

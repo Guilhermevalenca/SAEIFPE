@@ -4,24 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ddcb037-6d75-4f72-b91c-d5052cc2b014" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/routes/web-routes/FormsRoutes.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/web-routes/postsIFPERoutes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Layouts/GuestLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Layouts/GuestLayout.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Layouts/default/ItemDrawer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Layouts/default/ItemDrawer.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Auth/ConfirmPassword.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Auth/ConfirmPassword.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Auth/ForgotPassword.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Auth/ForgotPassword.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Auth/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Auth/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Auth/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Auth/Register.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Auth/ResetPassword.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Auth/ResetPassword.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Auth/VerifyEmail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Auth/VerifyEmail.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Dashboard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Dashboard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
-    </list>
+    <list default="true" id="6ddcb037-6d75-4f72-b91c-d5052cc2b014" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -231,7 +214,7 @@
       <workItem from="1696592214519" duration="18000" />
       <workItem from="1698281955379" duration="7268000" />
       <workItem from="1698323420557" duration="8203000" />
-      <workItem from="1698358262845" duration="11471000" />
+      <workItem from="1698358262845" duration="11914000" />
     </task>
     <servers />
   </component>

@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ddcb037-6d75-4f72-b91c-d5052cc2b014" name="Changes" comment="" />
+    <list default="true" id="6ddcb037-6d75-4f72-b91c-d5052cc2b014" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Testing.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Testing.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -156,30 +160,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.laravel-idea.search-composer-json&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.laravel-idea.update-module-directories&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;laravel---fullStack&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/guilherme/SAEIFPE/resources/js/Pages&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.language&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/home/guilherme/.local/share/JetBrains/Toolbox/apps/phpstorm-2/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.laravel-idea.search-composer-json": "true",
+    "RunOnceActivity.laravel-idea.update-module-directories": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "laravel---fullStack",
+    "last_opened_file_path": "/home/guilherme/SAEIFPE/resources/js/Pages",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "configurable.group.language",
+    "ts.external.directory.path": "/home/guilherme/.local/share/JetBrains/Toolbox/apps/phpstorm-2/plugins/javascript-impl/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;vue.recent.templates&quot;: [
-      &quot;Vue Options API Component&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ],
+    "vue.recent.templates": [
+      "Vue Options API Component"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/js/Pages" />
@@ -214,7 +221,7 @@
       <workItem from="1696592214519" duration="18000" />
       <workItem from="1698281955379" duration="7268000" />
       <workItem from="1698323420557" duration="8203000" />
-      <workItem from="1698358262845" duration="11914000" />
+      <workItem from="1698358262845" duration="14407000" />
     </task>
     <servers />
   </component>

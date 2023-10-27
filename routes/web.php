@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -32,6 +33,12 @@ Route::get('/dashboard', function () {
 Route::get('/testing', function () {
     return Inertia::render('Testing');
 })->middleware(['auth', 'verified'])->name('testing');
+
+Route::post('/testing', function(Request $request) {
+    return Inertia::render('Testing', [
+        'data' => $request->input()
+    ]);
+})->middleware('auth')->name('testing_create');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

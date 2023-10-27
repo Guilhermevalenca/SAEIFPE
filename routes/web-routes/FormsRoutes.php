@@ -9,9 +9,9 @@ Route::controller(FormController::class)
     ->whereNumber('id')
     ->group(function () {
 
-        Route::get('forms','index');
+        Route::get('forms','index')->name('forms_index');
         Route::get('forms/{id}','show');
-        Route::post('forms','store');
+        Route::post('forms','store')->name('forms_store');
         Route::delete('forms/{id}','destroy');
 
     });

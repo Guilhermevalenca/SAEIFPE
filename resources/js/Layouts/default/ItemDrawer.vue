@@ -8,25 +8,25 @@
             </v-list-item>
           </Link>
 
-          <Link>
+          <Link :href="route('home')">
             <v-list-item to="/">
               Postagem do IFPE
             </v-list-item>
           </Link>
 
-          <Link>
+          <Link :href="route('home')">
             <v-list-item to="/">
               Depoimentos
             </v-list-item>
           </Link>
 
-          <Link>
+          <Link :href="route('forms_index')">
             <v-list-item to="/">
               Formulários
             </v-list-item>
           </Link>
 
-          <Link>
+          <Link :href="route('home')">
             <v-list-item to="/">
               Sobre
             </v-list-item>

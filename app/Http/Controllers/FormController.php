@@ -5,19 +5,23 @@ namespace App\Http\Controllers;
 use App\Http\Resources\FormResource;
 use App\Models\Form;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class FormController extends Controller
 {
     public function index()
     {
-        $paginate = Form::where('user_id','=',Auth::id())->where('visible','=','1')->paginate();
+        $paginate = Form::where('user_id','=',Auth::id())->where('visible','=','1')->paginate(50);
         $forms = FormResource::collection($paginate);
 
         $response = [
             'forms' => $forms,
             'allPages' => $paginate->lastPage()
         ];
-        return response($response,200);
+        return Inertia::render('Forms', [
+            'data' => $response
+        ]);
     }
     public function show($id, Form $form)
     {
@@ -35,7 +39,8 @@ class FormController extends Controller
     }
     public function store(Request $request, Form $form)
     {
-        return response($form->createForm($request->input()), 201);
+        $form->createForm($request->input());
+        return redirect()->route('forms_index');
     }
     public function update(Request $request, $id)
     {

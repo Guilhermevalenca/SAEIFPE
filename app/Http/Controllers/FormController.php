@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\FormResource;
 use App\Models\Form;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -19,7 +20,7 @@ class FormController extends Controller
             'forms' => $forms,
             'allPages' => $paginate->lastPage()
         ];
-        return Inertia::render('Forms', [
+        return Inertia::render('forms/FormsAdm', [
             'data' => $response
         ]);
     }
@@ -52,6 +53,6 @@ class FormController extends Controller
         $form->update([
             'visible' => 0
         ]);
-        return response(['success' => true,],200);
+        return redirect()->route('forms_index');
     }
 }

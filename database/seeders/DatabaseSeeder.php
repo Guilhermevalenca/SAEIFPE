@@ -23,7 +23,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'usuário administrador',
             'cpf' => '12345678910',
             'email' => 'adm@gmail.com',
-            'password' => 'ipi123'
+            'password' => 'ipi123',
+            'role' => 'adm'
         ]);
         \App\Models\UsersAdm::factory()->create([
             'users_id' => $userAdm->id
@@ -32,7 +33,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'usuário estudante',
             'cpf' => '12345678911',
             'email' => 'student@gmail.com',
-            'password' => 'ipi123'
+            'password' => 'ipi123',
+            'role' => 'student'
         ]);
         \App\Models\UsersStudying::factory()->create([
             'users_id' => $userStudying->id
@@ -42,7 +44,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'usuário egresso',
             'cpf' => '12345678912',
             'email' => 'graduate@gmail.com',
-            'password' => 'ipi123'
+            'password' => 'ipi123',
+            'role' => 'graduate'
         ]);
         \App\Models\UsersGraduates::factory()->create([
             'users_id' => $userGraduates->id,

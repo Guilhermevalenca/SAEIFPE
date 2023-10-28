@@ -48,17 +48,6 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-
-
-
-
-
-
-
-
-
-
-
 Route::controller(\App\Http\Controllers\TestController::class)
     ->whereNumber('id')
     ->group(function () {
@@ -68,23 +57,3 @@ Route::controller(\App\Http\Controllers\TestController::class)
         Route::post('test/create','store')->name('test_store');
 
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

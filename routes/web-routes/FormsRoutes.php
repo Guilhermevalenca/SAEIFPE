@@ -12,7 +12,7 @@ Route::controller(FormController::class)
         Route::get('forms','index')->name('forms_index');
         Route::get('forms/{id}','show');
         Route::post('forms','store')->name('forms_store');
-        Route::delete('forms/{id}','destroy');
+        Route::delete('forms/{id}','destroy')->name('forms_destroy');
 
     });
 
@@ -32,8 +32,8 @@ Route::controller(FormResponseController::class)
         Route::middleware('auth')
             ->group(function () {
 
-                Route::get('forms/users','index');
-                Route::post('forms/response','store');
+                Route::get('forms/response','index')->name('forms_index_response');
+                Route::post('forms/response','store')->name('forms_store_response');
 
             });
 

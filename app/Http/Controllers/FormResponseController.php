@@ -10,6 +10,7 @@ use App\Models\forms\Options;
 use App\Models\forms\Responses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class FormResponseController extends Controller
 {
@@ -22,7 +23,9 @@ class FormResponseController extends Controller
             'forms' => $forms,
             'allPages' => $paginate->lastPage()
         ];
-        return response($response,200);
+        return Inertia::render('forms/FormsForUsers', [
+            'data' => $response
+        ]);
     }
     public function store(Request $request)
     {

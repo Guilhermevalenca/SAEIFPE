@@ -1,6 +1,28 @@
-<script setup>
+<template>
+    <Head title="Welcome" />
 
-</script>
+    <Default>
+        <div class="min-h-screen d-flex justify-center items-center">
+
+            <v-card :width="phoneDisplay ? '' : '900px'">
+                <v-card-title  :class="['text-center', phoneDisplay ? '' : 'justify-md-center']">
+                    <h3>Saudações, comunidade IFPE <span v-if="!phoneDisplay">Campus Igarassu</span></h3>
+                    <span v-if="phoneDisplay"> Campus Igarassu</span>
+                </v-card-title>
+                <v-card-text class="d-flex text-body-1">
+                    <div>
+                        A CREE (Coordenação de Relações Empresariais, Estágios e Egressos) está realizando um levantamento de dados sobre discentes e egressos, com o objetivo de trazer uma plataforma para interagir com estes estudantes e fazer um acompanhamento de suas carreiras. Este é um cadastro inicial, apenas para atualizar informações de contato, portanto é imprescindível que as informações de contato como email e telefone estejam corretas.
+                    </div>
+                </v-card-text>
+                <v-card-actions class="d-flex justify-center">
+                    <v-btn class="mb-6" color="secondary" variant="outlined">vamos lá!</v-btn>
+                </v-card-actions>
+            </v-card>
+
+        </div>
+    </Default>
+</template>
+
 <script>
 import Default from "@/Layouts/default/Default.vue";
 import { Head, Link } from '@inertiajs/vue3';
@@ -24,20 +46,13 @@ export default {
             required: true,
         },
     },
-    created() {
-        console.log(this.canLogin);
+    data() {
+        return {
+            phoneDisplay: window.innerWidth <= 800
+        }
     }
 }
 </script>
-<template>
-    <Head title="Welcome" />
-
-    <Default>
-        <v-card>
-            <v-card-title>Bem vindos!</v-card-title>
-        </v-card>
-    </Default>
-</template>
 
 <style>
 .bg-dots-darker {

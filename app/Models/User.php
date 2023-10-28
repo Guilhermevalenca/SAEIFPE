@@ -20,6 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'cpf',
         'password',
     ];
 
@@ -42,4 +43,22 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function role($id)
+    {
+        $testingAdm = UsersAdm::where('users_id','=',$id)->get()->count();
+        if($testingAdm >= 1) {
+            return 'adm';
+        }
+
+        $testingGraduates = UsersGraduates::where('users_id','=',$id)->get()->count();
+        if($testingGraduates >= 1) {
+            return 'graduate';
+        }
+
+        $testingStudying = UsersStudying::where('users_id','=',$id)->get()->count();
+        if($testingStudying >= 1) {
+            return 'studying';
+        }
+        return 'other';
+    }
 }

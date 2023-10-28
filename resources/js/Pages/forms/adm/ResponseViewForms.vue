@@ -84,7 +84,7 @@ export default {
         },
         {
           id: 'polarArea',
-          name: 'Área polar'
+          name: 'Área polar/Pizza'
         },
         {
           id: 'radar',

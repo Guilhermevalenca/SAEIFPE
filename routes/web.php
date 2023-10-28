@@ -47,3 +47,44 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+
+
+
+
+
+
+
+
+
+
+Route::controller(\App\Http\Controllers\TestController::class)
+    ->whereNumber('id')
+    ->group(function () {
+
+        Route::get('test','index')->name('test_index');
+        Route::get('test/create','create')->name('test_create');
+        Route::post('test/create/{id}','store')->name('test_store');
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

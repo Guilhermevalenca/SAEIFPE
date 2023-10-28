@@ -39,11 +39,6 @@
                             </td>
                         </ul>
                     </div>
-                    <div>
-                        <ul>
-                            {{ id }}
-                        </ul>
-                    </div>
 
                 </v-card-text>
 
@@ -61,8 +56,7 @@ export default {
     name: "Test",
     components: {Default, Link},
     props: {
-        data: Object,
-        id: Object
+        data: Object
     }
 }
 </script>

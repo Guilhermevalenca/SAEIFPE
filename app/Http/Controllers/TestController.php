@@ -18,8 +18,7 @@ class TestController extends Controller
     public function store(Request $request, $id)
     {
         $response = [
-            'data' => $request->input(),
-            'id' => $id
+            'data' => $request->input()
         ];
         return Inertia::render('Test', $response);
     }

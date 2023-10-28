@@ -13,7 +13,9 @@
                 <v-card-actions class="v-card__actions">
                     <v-tooltip text="Gráficos das respostas">
                         <template #activator="{ props }">
-                            <v-btn :to="{name: 'responseViewForm', params: { id: form.id }}" v-bind="props" icon="mdi-chart-line" />
+                          <Link v-bind="props" :href="route('forms_showByFormId_responded', {id: form.id})">
+                            <v-btn icon="mdi-chart-line" />
+                          </Link>
                         </template>
                     </v-tooltip>
 
@@ -25,7 +27,7 @@
 
                     <v-tooltip text="Apagar formulário">
                         <template #activator="{ props }">
-                            <Link v-bind="props" :href="route('forms_destroy', {id: form.id})" method="delete">
+                            <Link v-bind="props" :href="route('forms_destroy', {id: form.id})" method="delete" as="button">
                                 <v-btn icon="mdi-delete" />
                             </Link>
                         </template>
@@ -33,7 +35,9 @@
 
                     <v-tooltip text="Visualizar formulário">
                         <template #activator="{ props }">
-                            <v-btn :to="{name: 'seeForm', params: { id: form.id }}" v-bind="props" icon="mdi-text-search-variant" />
+                            <Link v-bind="props" :href="route('forms_show', {id: form.id})">
+                              <v-btn icon="mdi-text-search-variant" />
+                            </Link>
                         </template>
                     </v-tooltip>
                 </v-card-actions>

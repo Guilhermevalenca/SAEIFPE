@@ -43,9 +43,6 @@
 <script>
 export default {
     name: "UniqueQuestionsForm",
-    props: {
-        getValues: Boolean
-    },
     data() {
         return {
             options: [
@@ -65,11 +62,9 @@ export default {
         }
     },
     watch: {
-        getValues: {
+        options: {
             handler($new) {
-                if($new) {
-                    this.$emit('send_data',this.options)
-                }
+              this.$emit('send_data',$new);
             },
             deep: true
         }

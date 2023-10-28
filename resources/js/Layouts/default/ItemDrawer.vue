@@ -20,7 +20,7 @@
             </v-list-item>
           </Link>
 
-          <Link :href="$page.props.auth.user.role === 'adm' ? route('forms_index') : route('forms_index_response')">
+          <Link v-if="$page.props.auth.user !== null" :href="$page.props.auth.user.role === 'adm' ? route('forms_index') : route('forms_index_response')">
             <v-list-item to="/">
               Formulários
             </v-list-item>

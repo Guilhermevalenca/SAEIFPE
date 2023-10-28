@@ -10,7 +10,9 @@
                 <v-card-actions class="d-flex justify-end">
                     <v-tooltip text="Responder formulário">
                         <template #activator="{ props }">
-                            <v-btn v-show="!form.responded" :to="{name: 'responseForm', params: {id: form.id}}" v-bind="props" icon="mdi-text-box" />
+                          <Link v-bind="props" v-show="!form.responded" :href="route('forms_show_response', {id: form.id})">
+                            <v-btn icon="mdi-text-box" />
+                          </Link>
                         </template>
                     </v-tooltip>
                     <v-tooltip text="Você já respondeu esse formulário">
@@ -25,8 +27,10 @@
 </template>
 
 <script>
+import { Link } from '@inertiajs/vue3';
 export default {
     name: "ShowFormsForUsers",
+    components: {Link},
     props: {
         data: Object
     },

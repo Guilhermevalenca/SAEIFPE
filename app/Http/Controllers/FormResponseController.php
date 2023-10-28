@@ -27,6 +27,22 @@ class FormResponseController extends Controller
             'data' => $response
         ]);
     }
+    public function show($id, Form $form)
+    {
+        $form = $form->find($id);
+        $questions = $form->questions()
+            ->with('options')
+            ->select('id','ask','type')
+            ->get();
+
+        $response = [
+            'form' => new FormResource($form),
+            'questions' => $questions
+        ];
+        return Inertia::render('forms/otherUsers/ResponseForms', [
+            'data' => $response
+        ]);
+    }
     public function store(Request $request)
     {
         $ids = [];
@@ -53,7 +69,7 @@ class FormResponseController extends Controller
                 array_push($response, Responses::create($values));
             }
 
-            return response(['success' => true, 'data' => $response], 200);
+            return redirect()->route('forms_index_response');
 
         }
 
@@ -67,6 +83,8 @@ class FormResponseController extends Controller
         foreach ($questions as $question) {
             array_push($response['questions'],FormResponseResource::collection($question));
         }
-        return response($response, 200);
+        return Inertia::render('forms/adm/ResponseViewForms', [
+            'data' => $response,
+        ]);
     }
 }

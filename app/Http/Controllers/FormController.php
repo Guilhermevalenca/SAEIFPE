@@ -36,7 +36,9 @@ class FormController extends Controller
             'form' => new FormResource($form),
             'questions' => $questions
         ];
-        return response($response, 200);
+        return Inertia::render('forms/adm/SeeFormCreated', [
+            'data' => $response
+        ]);
     }
     public function store(Request $request, Form $form)
     {

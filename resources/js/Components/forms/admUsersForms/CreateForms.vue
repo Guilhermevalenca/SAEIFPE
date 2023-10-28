@@ -29,11 +29,11 @@
                             </div>
 
                             <div class="ma-2" v-if="typeQuestions[index] === 'unique'">
-                                <UniqueQuestionsForm :getValues="getvalues" @send_data="(v) => {form.questions[index].responses = v; questions[index].type = typeQuestions[index]}" />
+                                <UniqueQuestionsForm @send_data="(v) => {form.questions[index].responses = v; form.questions[index].type = typeQuestions[index]}" />
                             </div>
 
                             <div class="ma-2" v-if="typeQuestions[index] === 'multiple'">
-                                <MultipleQuestionsForm :getValues="getvalues" @send_data="(v) => {form.questions[index].responses = v; form.questions[index].type = typeQuestions[index]}" />
+                                <MultipleQuestionsForm @send_data="(v) => {form.questions[index].responses = v; form.questions[index].type = typeQuestions[index]}" />
                             </div>
                         </v-card>
 
@@ -109,7 +109,6 @@ export default {
                     name: 'Múltipla escolhas'
                 }
             ],
-            getvalues: false,
             creatingForm: false
         }
     },
@@ -127,15 +126,15 @@ export default {
         },
         createForm() {
             this.creatingForm = true;
-            this.getvalues = true;
 
             this.form.questions.map(question => {
                 if(question.type === '') {
                     question.type = 'open-ended';
                 }
+                console.log(question);
                 return question;
             });
-
+            console.log(this.form);
             this.form.post(route('forms_store'));
             this.clearComponent();
         },
@@ -149,7 +148,6 @@ export default {
                 }
             ];
             this.typeQuestions = [];
-            this.getvalues = false;
             this.creatingForm = false;
         }
     }

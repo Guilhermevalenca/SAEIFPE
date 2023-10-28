@@ -48,7 +48,7 @@ class Form extends Model
             return ['success' => false, 'error' => $e];
         }
     }
-    public function questions(): HasMany
+    public function questions()
     {
         return $this->hasMany(Questions::class);
     }

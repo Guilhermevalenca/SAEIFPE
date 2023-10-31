@@ -21,7 +21,9 @@
 
                     <v-tooltip text="Editar formulário">
                         <template #activator="{ props }">
-                            <v-btn :to="{name: 'editForm', params: {id: form.id}}" v-bind="props" icon="mdi-pencil-outline" />
+                            <Link v-bind="props" :href="route('forms_edit', {id: form.id})">
+                                <v-btn icon="mdi-pencil-outline" />
+                            </Link>
                         </template>
                     </v-tooltip>
 
@@ -57,7 +59,6 @@ export default {
     data() {
         return {
             forms: this.data.forms.data,
-            allPages: this.data.allPages,
             noForms: false,
         }
     },
@@ -71,10 +72,9 @@ export default {
         data: {
             handler($new) {
                 this.forms = $new.forms.data;
-                this.allPages = $new.allPages;
             },
             deep: true
-        }
+        },
     }
 }
 </script>

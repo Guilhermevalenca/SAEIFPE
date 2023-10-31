@@ -11,7 +11,12 @@ Route::controller(FormController::class)
 
         Route::get('forms','index')->name('forms_index');
         Route::get('forms/{id}','show')->name('forms_show');
+
         Route::post('forms','store')->name('forms_store');
+
+        Route::get('forms/edit/{id}','edit')->name('forms_edit');
+        Route::put('forms','update')->name('forms_update');
+
         Route::delete('forms/{id}','destroy')->name('forms_destroy');
 
     });

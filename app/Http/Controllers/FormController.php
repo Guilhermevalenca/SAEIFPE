@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\FormResource;
+use App\Http\Resources\forms\QuestionsGetAllRelationsResource;
 use App\Models\Form;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -13,12 +14,13 @@ class FormController extends Controller
 {
     public function index()
     {
-        $paginate = Form::where('user_id','=',Auth::id())->where('visible','=','1')->paginate(50);
+        $paginate = Form::where('user_id','=',Auth::id())->where('visible','=','1')->paginate(1);
         $forms = FormResource::collection($paginate);
 
         $response = [
             'forms' => $forms,
-            'allPages' => $paginate->lastPage()
+            'allPages' => $paginate->lastPage(),
+            'page' => $paginate
         ];
         return Inertia::render('forms/FormsAdm', [
             'data' => $response
@@ -45,9 +47,26 @@ class FormController extends Controller
         $form->createForm($request->input());
         return redirect()->route('forms_index');
     }
-    public function update(Request $request, $id)
+    public function edit($id, Form $form)
     {
+        $form = $form->find($id);
+        $questions = $form->questions()
+            ->with('options')
+            ->select('id','ask','type')
+            ->get();
 
+        $response = [
+            'form' => new FormResource($form),
+            'questions' => QuestionsGetAllRelationsResource::collection($questions)
+        ];
+        return Inertia::render('forms/adm/EditForm', [
+            'data' => $response
+        ]);
+    }
+    public function update(Request $request, Form $form)
+    {
+        $form->updateForm($request->input());
+        return redirect()->route('forms_index');
     }
     public function destroy($id)
     {

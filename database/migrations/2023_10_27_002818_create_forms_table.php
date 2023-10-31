@@ -18,6 +18,11 @@ return new class extends Migration
                 ->references('id')
                 ->on('users');
             $table->boolean('visible')->default(1);
+            //Utilizando referencia pra mesma tabela, para realizar a edição
+            //Guardando respostas antigas para esse formulário
+            $table->foreignId('forms_id')->nullable()
+                ->references('id')
+                ->on('forms');
             $table->timestamps();
         });
     }

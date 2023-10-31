@@ -48,6 +48,44 @@ class Form extends Model
             return ['success' => false, 'error' => $e];
         }
     }
+    public function updateForm($data)
+    {
+        DB::beginTransaction();
+        try {
+            $this->find($data['forms_id'])
+                ->update([
+                    'visible' => 0
+                ]);
+            $form = $this->create([
+                'title' => $data['title'],
+                'user_id' => Auth::id(),
+                'forms_id' => $data['forms_id']
+            ]);
+            foreach ($data['questions'] as $value) {
+
+                $question = Questions::create([
+                    'ask' => $value['ask'] . '',
+                    'type' => $value['type'],
+                    'form_id' => $form['id']
+                ]);
+
+                if($question['type'] !== 'open-ended') {
+
+                    foreach ($value['options'] as $elements) {
+                        Options::create([
+                            'descriptions' => $elements['descriptions'],
+                            'questions_id' => $question['id']
+                        ]);
+                    }
+
+                }
+            }
+            DB::commit();
+            return ['success' => true];
+        } catch (\Error $e) {
+            return ['success' => false, 'error' => $e];
+        }
+    }
     public function questions()
     {
         return $this->hasMany(Questions::class);

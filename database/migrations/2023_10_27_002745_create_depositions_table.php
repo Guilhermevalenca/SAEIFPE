@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('depositions', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger();
             $table->text('content');
             $table->string('picture')->nullable();
             $table->string('school');

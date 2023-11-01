@@ -25,7 +25,7 @@
 
 <script>
 import Default from "@/Layouts/default/Default.vue";
-import { Head, Link } from '@inertiajs/vue3';
+import {Head, Link} from '@inertiajs/vue3';
 
 export default {
     name: 'Welcome',
@@ -50,7 +50,7 @@ export default {
         return {
             phoneDisplay: window.innerWidth <= 800
         }
-    }
+    },
 }
 </script>
 

@@ -1,4 +1,5 @@
 <template>
+  <Head title="Form" />
   <Default>
 
     <v-card>
@@ -36,10 +37,11 @@
 import UniqueQuestionsViewForm from '@/Components/forms/admUsersForms/SeeFormCreated/UniqueQuestionsViewForm.vue';
 import MultipleQuestionsViewForm from "@/Components/forms/admUsersForms/SeeFormCreated/MultipleQuestionsViewForm.vue";
 import Default from "@/Layouts/default/Default.vue";
+import {Head} from "@inertiajs/vue3";
 
 export default {
   name: "SeeFormCreated",
-  components: {Default, MultipleQuestionsViewForm, UniqueQuestionsViewForm},
+  components: {Head, Default, MultipleQuestionsViewForm, UniqueQuestionsViewForm},
   props: {
     data: Object
   },

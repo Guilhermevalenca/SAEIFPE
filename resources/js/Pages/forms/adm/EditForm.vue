@@ -1,4 +1,5 @@
 <template>
+    <Head title="Editando formulário" />
     <Default>
         <v-form @submit.prevent="submit()">
             <v-card>
@@ -79,12 +80,12 @@
 
 <script>
 import Default from '@/Layouts/default/Default.vue';
-import {useForm} from "@inertiajs/vue3";
+import {Head, useForm} from "@inertiajs/vue3";
 import UniqueQuestionsEditForm from "@/Components/forms/admUsersForms/EditForm/UniqueQuestionsEditForm.vue";
 import MultipleQuestionsEditForm from "@/Components/forms/admUsersForms/EditForm/MultipleQuestionsEditForm.vue";
 export default {
     name: "EditForm",
-    components: {MultipleQuestionsEditForm, UniqueQuestionsEditForm, Default},
+    components: {Head, MultipleQuestionsEditForm, UniqueQuestionsEditForm, Default},
     props: {
         data: Object
     },

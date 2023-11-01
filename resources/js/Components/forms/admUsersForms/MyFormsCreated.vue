@@ -11,10 +11,18 @@
             </v-col>
             <v-col>
                 <v-card-actions class="v-card__actions">
+                    <v-tooltip text="Enviar este formulário pelo email">
+                        <template #activator="{ props }">
+                            <Link v-bind="props" :href="route('forms_sendEmail')">
+                                <v-btn icon="mdi-email-multiple-outline" />
+                            </Link>
+                        </template>
+                    </v-tooltip>
+
                     <v-tooltip text="Gráficos das respostas">
                         <template #activator="{ props }">
                           <Link v-bind="props" :href="route('forms_showByFormId_responded', {id: form.id})">
-                            <v-btn icon="mdi-chart-line" />
+                              <v-btn icon="mdi-chart-line" />
                           </Link>
                         </template>
                     </v-tooltip>

@@ -19,6 +19,8 @@ Route::controller(FormController::class)
 
         Route::delete('forms/{id}','destroy')->name('forms_destroy');
 
+        Route::get('forms/sendEmail','sendEmail')->name('forms_sendEmail');
+
     });
 
 Route::controller(FormResponseController::class)

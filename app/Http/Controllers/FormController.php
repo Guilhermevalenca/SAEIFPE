@@ -68,6 +68,10 @@ class FormController extends Controller
         $form->updateForm($request->input());
         return redirect()->route('forms_index');
     }
+    public function sendEmail()
+    {
+        return Inertia::render('forms/adm/SendFormByEmail');
+    }
     public function destroy($id)
     {
         $form = Form::findOrFail($id);

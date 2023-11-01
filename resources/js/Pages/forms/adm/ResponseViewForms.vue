@@ -1,4 +1,5 @@
 <template>
+  <Head title="Responder formulário" />
   <v-card>
     <v-card-title class="d-flex justify-center">
       <div>{{ form.title }}</div>
@@ -53,10 +54,11 @@
 <script>
 import ResponseAssembleGraphs from "@/Components/forms/admUsersForms/responseViewForms/ResponseAssembleGraphs.vue";
 import ResponseOpenEnded from "@/Components/forms/admUsersForms/responseViewForms/ResponseOpenEnded.vue";
+import {Head} from "@inertiajs/vue3";
 
 export default {
   name: "ResponseViewForms",
-  components: {ResponseOpenEnded, ResponseAssembleGraphs},
+  components: {Head, ResponseOpenEnded, ResponseAssembleGraphs},
   props: {
     data: Object
   },

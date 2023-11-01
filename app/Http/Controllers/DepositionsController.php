@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Depositions;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class DepositionsController extends Controller
 {
@@ -12,11 +13,11 @@ class DepositionsController extends Controller
      */
     public function index()
     {
-        $response =[
-            'depositions'=> Depositions::all(),
-            'success' => true
+        $response = [
+            'data'=> Depositions::all()
         ];
-        return response($response, 200);
+//        return response($response, 200);
+        return Inertia::render('depositions/Depositions',$response);
     }
 
     /**
@@ -29,11 +30,8 @@ class DepositionsController extends Controller
             'picture'=>['nullable', 'string'],
             'school' =>['required','string'],
         ]);
-        $response = [
-            'deposition'=> Depositions::create($validate),
-            'success'=> true
-        ];
-        return response($response,201);
+        Depositions::create($validate);
+        return redirect()->route('depoimentos_mural');
     }
 
     /**

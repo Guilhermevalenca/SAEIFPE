@@ -12,11 +12,11 @@ class Depositions extends Model
     use HasFactory;
     protected $fillable = ['content','picture'];
 
-    protected static function boot()
-    {
-        parent::boot();
-        static::addGlobalScope(new GlobalScope());
-    }
+//    protected static function boot()
+//    {
+//        parent::boot();
+//        static::addGlobalScope(new GlobalScope());
+//    }
 
     public function user(): BelongsTo
     {

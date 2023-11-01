@@ -14,7 +14,7 @@
             </v-list-item>
           </Link>
 
-          <Link :href="route('home')">
+          <Link :href="route('depoimentos_mural')">
             <v-list-item to="/">
               Depoimentos
             </v-list-item>

@@ -7,7 +7,7 @@ Route::controller(DepositionsController::class)
     //->middleware(['auth:sanctum','ability:adm,manage,analyst'])
     ->group(function () {
 
-        Route::get('depoimentos/mural','index')->name('mural');
-        Route::post('depoimentos/criar','store')->name('criar');
+        Route::get('depoimentos/mural','index')->name('depoimentos_mural');
+        Route::post('depoimentos/criar','store')->name('depoimentos_criar');
 
     });

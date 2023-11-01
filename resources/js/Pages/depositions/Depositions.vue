@@ -1,7 +1,12 @@
 <template>
 <Default>
-    <AddDeposition/>
-    <ViewDepositions/>
+    <v-card-title class="d-flex align-center flex-row justify-center">
+        Depoimentos
+    </v-card-title>
+    <v-main class="d-flex align-center flex-row justify-center">
+        <AddDeposition/>
+        <ViewDepositions/>
+    </v-main>
 </Default>
 </template>
 <script>

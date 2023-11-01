@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('depositions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger();
             $table->text('content');
             $table->string('picture')->nullable();
             $table->string('school');
             $table->timestamps();
+            $table->foreignId('user_id')->references('id')->on('users');
+
         });
     }
 
@@ -27,5 +28,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('depositions');
+
     }
 };

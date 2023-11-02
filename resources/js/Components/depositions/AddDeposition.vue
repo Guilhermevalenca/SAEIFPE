@@ -10,7 +10,7 @@
         variant="plain"
     ></v-file-input>
     <div class="d-flex justify-end">
-        <v-btn class="mb-6 d-flex justify-end" color="newColorGreen" variant="outlined" type="submit">Enviar</v-btn>
+        <v-btn class="mb-6 d-flex justify-end" color="secondary" variant="outlined" type="submit">Enviar</v-btn>
     </div>
 </v-card>
 </template>

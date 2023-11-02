@@ -18,12 +18,17 @@ export default createVuetify({
     components,
     directives,
     theme: {
-        defaultTheme: 'dark',
+        defaultTheme: 'light',
         themes: {
             light: {
                 colors: {
                     primary: '#1867C0',
-                    secondary: '#5CBBF6',
+                    secondary: '#35972F',
+                },
+            },
+            dark: {
+                colors: {
+                    secondary: '#35972F',
                 },
             },
         },

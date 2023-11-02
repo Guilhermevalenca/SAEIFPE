@@ -1,5 +1,5 @@
 <template>
-    <v-navigation-drawer>
+    <v-navigation-drawer color="secondary">
         <v-list>
 
           <Link :href="route('home')">

@@ -24,14 +24,12 @@ export default createVuetify({
                 colors: {
                     primary: '#1867C0',
                     secondary: '#2E8429',
-                    card_colors: '#ffffff',
                     background: '#e1e6d3'
                 },
             },
             dark: {
                 colors: {
                     secondary: '#2E8429',
-                    card_colors: '#1C1C1C'
                 },
             },
         },
@@ -46,9 +44,6 @@ export default createVuetify({
         },
         VSelect: {
             variant: 'outlined'
-        },
-        VCard: {
-            color: 'card_colors'
         },
         VFooter: {
             color: 'background'

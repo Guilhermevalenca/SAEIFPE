@@ -4,7 +4,7 @@
 
         <DefaultAppBar @drawer="isDrawerOpen = !isDrawerOpen" />
 
-        <v-main>
+        <v-main class="ma-5">
             <slot />
         </v-main>
         <v-footer>

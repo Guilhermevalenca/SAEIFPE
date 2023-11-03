@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\FormResource;
 use App\Http\Resources\forms\QuestionsGetAllRelationsResource;
+use App\Mail\FormEmail;
 use App\Models\Form;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
 
 class FormController extends Controller
@@ -68,9 +70,23 @@ class FormController extends Controller
         $form->updateForm($request->input());
         return redirect()->route('forms_index');
     }
-    public function sendEmail()
+    public function createSendEmail($id)
     {
-        return Inertia::render('forms/adm/SendFormByEmail');
+        return Inertia::render('forms/adm/SendFormByEmail', [
+            'data' => Form::find($id)
+        ]);
+    }
+    public function sendEmail(Request $request, $id)
+    {
+        $data = [
+            'title' => $request->input('title'),
+            'text' => $request->input('text'),
+            'fromName' => 'disgrama',
+            'fromEmail' => 'gui@gmail.com',
+            'form_id' => $id
+        ];
+        $send = Mail::to('gui@gmail.com','guilherme')->send(new FormEmail($data));
+        dd($send);
     }
     public function destroy($id)
     {

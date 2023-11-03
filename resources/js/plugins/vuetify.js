@@ -24,6 +24,7 @@ export default createVuetify({
                 colors: {
                     primary: '#1867C0',
                     secondary: '#2E8429',
+                    background: '#e1e6d3'
                 },
             },
             dark: {
@@ -43,6 +44,9 @@ export default createVuetify({
         },
         VSelect: {
             variant: 'outlined'
+        },
+        VFooter: {
+            color: 'background'
         }
     }
 })

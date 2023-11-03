@@ -13,7 +13,7 @@
                 <v-card-actions class="v-card__actions">
                     <v-tooltip text="Enviar este formulário pelo email">
                         <template #activator="{ props }">
-                            <Link v-bind="props" :href="route('forms_sendEmail')">
+                            <Link v-bind="props" :href="route('forms_createSendEmail', { id: form.id })">
                                 <v-btn icon="mdi-email-multiple-outline" />
                             </Link>
                         </template>

@@ -9,18 +9,26 @@ Route::controller(FormController::class)
     ->whereNumber('id')
     ->group(function () {
 
-        Route::get('forms','index')->name('forms_index');
-        Route::get('forms/{id}','show')->name('forms_show');
+        Route::get('forms','index')
+            ->name('forms_index');
+        Route::get('forms/{id}','show')
+            ->name('forms_show');
 
-        Route::post('forms','store')->name('forms_store');
+        Route::post('forms','store')
+            ->name('forms_store');
 
-        Route::get('forms/edit/{id}','edit')->name('forms_edit');
-        Route::put('forms','update')->name('forms_update');
+        Route::get('forms/edit/{id}','edit')
+            ->name('forms_edit');
+        Route::put('forms','update')
+            ->name('forms_update');
 
-        Route::delete('forms/{id}','destroy')->name('forms_destroy');
+        Route::delete('forms/{id}','destroy')
+            ->name('forms_destroy');
 
-        Route::get('forms/sendEmail','sendEmail')->name('forms_sendEmail');
-
+        Route::get('forms/sendEmail/{id}','createSendEmail')
+            ->name('forms_createSendEmail');
+        Route::post('forms/sendEmail/{id}','sendEmail')
+            ->name('forms_sendEmail');
     });
 
 Route::controller(FormResponseController::class)
@@ -28,10 +36,14 @@ Route::controller(FormResponseController::class)
     ->whereNumber('id')
     ->group(function () {
 
-        Route::get('forms/response','index')->name('forms_index_response');
-        Route::get('forms/response/{id}','show')->name('forms_show_response');
-        Route::post('forms/response','store')->name('forms_store_response');
+        Route::get('forms/response','index')
+            ->name('forms_index_response');
+        Route::get('forms/response/{id}','show')
+            ->name('forms_show_response');
+        Route::post('forms/response','store')
+            ->name('forms_store_response');
 
-        Route::get('forms/responded/{id}', 'showByFormId')->name('forms_showByFormId_responded');
+        Route::get('forms/responded/{id}', 'showByFormId')
+            ->name('forms_showByFormId_responded');
 
     });

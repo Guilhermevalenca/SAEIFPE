@@ -1,5 +1,5 @@
 <template>
-    <v-app-bar variant="flat">
+    <v-app-bar color="secondary" variant="flat">
         <v-app-bar-nav-icon @click="$emit('drawer')" />
 
         <v-app-bar-title>

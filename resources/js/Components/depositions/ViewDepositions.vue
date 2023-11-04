@@ -1,5 +1,12 @@
 <template>
-<v-card class="d-flex flex-column justify-center pa-10 w-50 h-auto">
+<v-card class="d-flex flex-column justify-center pa-10 w-75 h-auto">
+    <v-card-item class="d-flex justify-end ma-0 pa-0">
+        <v-icon
+            end
+            icon="mdi mdi-school"
+        ></v-icon>
+        <span>ADM</span>
+    </v-card-item>
     <v-card-text class="d-flex flex-row">
     <v-avatar v-slot="auto"
               color="black"
@@ -17,7 +24,15 @@
 </template>
 <script>
 export default {
-    name: "ViewDepositions"
+    name: "ViewDepositions",
+    data(){
+        return{
+            depositions:{
+
+            }
+        }
+    },
+
 }
 </script>
 

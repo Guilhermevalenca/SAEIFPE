@@ -3,9 +3,13 @@
     <v-card-title class="d-flex align-center flex-row justify-center">
         Depoimentos
     </v-card-title>
-    <v-main class="d-flex align-center flex-column justify-center">
+    <v-main class="d-flex align-center flex-column justify-center pa-2">
+        <v-container class="d-flex justify-center">
         <AddDeposition/>
+        </v-container>
+        <v-container class="d-flex justify-center">
         <ViewDepositions/>
+        </v-container>
     </v-main>
 </Default>
 </template>

@@ -4,11 +4,10 @@
         <v-card-text class="d-flex pa-0 flex-column">
     <v-textarea persistent-placeholder placeholder="Digite aqui seu depoimento" variant="solo-filled" auto-grow class="mb-0"></v-textarea>
             <div class="bosta">
-            <v-file-input
-                class="w-0 ma-0 pa-0 h-0"
-                prepend-icon="none"
-                prepend-inner-icon="mdi mdi-camera"
-            ></v-file-input>
+            <v-file-input>
+                <v-icon icon="mdi mdi-camera"
+                ></v-icon>
+ 1           </v-file-input>
             </div>
         </v-card-text>
     <div class="d-flex justify-end ma-0">

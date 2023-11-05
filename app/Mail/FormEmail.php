@@ -9,6 +9,7 @@ use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Inertia\Inertia;
 
 class FormEmail extends Mailable
 {
@@ -39,7 +40,7 @@ class FormEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            html: 'mail/formMail',
+            view: 'mail.formMail'
         );
     }
 

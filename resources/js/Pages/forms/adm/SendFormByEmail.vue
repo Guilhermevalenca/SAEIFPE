@@ -63,8 +63,8 @@ export default {
             isDialogOpen: false,
             form: useForm({
                 title: '',
-                text: ''
-            })
+                text: '',
+            }),
         }
     },
     methods: {

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormController;
 use \App\Http\Controllers\FormResponseController;
@@ -47,3 +48,11 @@ Route::controller(FormResponseController::class)
             ->name('forms_showByFormId_responded');
 
     });
+
+Route::post('templateSendFormByEmail', function (Request $request) {
+    \Inertia\Inertia::render('mail/forms/TemplateSendFormByEmail', [
+        'title' => $request->input('title'),
+        'text' => $request->input('text'),
+        'form_id' => $request->input('form_id')
+    ]);
+})->name('templateSendFormByEmail');

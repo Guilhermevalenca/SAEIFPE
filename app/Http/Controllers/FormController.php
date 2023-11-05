@@ -83,9 +83,9 @@ class FormController extends Controller
             'text' => $request->input('text'),
             'fromName' => 'disgrama',
             'fromEmail' => 'gui@gmail.com',
-            'form_id' => $id
+            'form_id' => $id,
         ];
-        $send = Mail::to('gui@gmail.com','guilherme')->send(new FormEmail($data));
+        $send = Mail::to('guilherm3@gmail.com','guilherme')->send(new FormEmail($data));
         dd($send);
     }
     public function destroy($id)

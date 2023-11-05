@@ -3,8 +3,11 @@
         <v-app-bar-nav-icon @click="$emit('drawer')" />
 
         <v-app-bar-title>
+<!--            <v-avatar>-->
+<!--                <v-img src="https://ingresso.ifpe.edu.br/static/img/ifpe-logo.svg" cover />-->
+<!--            </v-avatar>-->
             <v-avatar>
-                <v-img src="https://ingresso.ifpe.edu.br/static/img/ifpe-logo.svg" cover />
+                <img ref="ola" src="../../assets/ifpe_logo_white.svg" >
             </v-avatar>
             IFPE Campus Igarassu
         </v-app-bar-title>
@@ -19,7 +22,7 @@
 
         <div v-if="$page.props.auth.user === null">
             <Link :href="route('login')">
-                <v-btn color="secondary">login</v-btn>
+                <v-btn>login</v-btn>
             </link>
             <Link :href="route('register')">
                 <v-btn>registrar</v-btn>
@@ -32,9 +35,13 @@
 
                         <v-menu>
                             <template #activator="{ props }">
-                                <v-btn v-bind="props">{{ $page.props.auth.user.name }}</v-btn>
+                                <v-btn variant="plain" v-bind="props">
+                                    {{ $page.props.auth.user.name }}
+                                    <v-avatar>
+                                        <v-img src="https://thumbs.dreamstime.com/z/s%C3%ADmbolo-de-perfil-masculino-inteligente-retrato-estilo-desenho-animado-m%C3%ADnimo-166146967.jpg" />
+                                    </v-avatar>
+                                </v-btn>
                             </template>
-
                             <v-card>
                                 <v-list>
                                     <Link :href="route('profile.edit')">
@@ -75,6 +82,12 @@ export default {
         alterTheme() {
             this.theme.global.name = this.theme.global.current.dark ? 'light' : 'dark';
         }
+    },
+    created() {
+
+    },
+    mounted() {
+        console.log(this.$refs.ola);
     }
 }
 </script>

@@ -8,7 +8,7 @@
             </v-container>
         </v-card-text>
     <div class="d-flex justify-end ma-0">
-        <v-btn class="mb-6 d-flex justify-end" color="secondary" variant="outlined" type="submit">Enviar</v-btn>
+        <v-btn class="mb-6 d-flex justify-end" color="tertiary" variant="outlined" type="submit">Enviar</v-btn>
     </div>
     </v-form>
 </v-card>

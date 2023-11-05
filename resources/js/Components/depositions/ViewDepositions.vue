@@ -1,5 +1,5 @@
 <template>
-<v-card class="d-flex flex-column justify-center pa-10 w-75 h-auto">
+<v-card id="Depoimentos" class="d-flex flex-column justify-center pa-10 w-75 h-auto rounded-xl" variant="flat" :style="'border: 1px solid #2E8429;'">
     <v-card-item class="d-flex justify-end ma-0 pa-0">
         <v-icon
             end
@@ -37,6 +37,10 @@ export default {
 </script>
 
 
-<style scoped>
-
+<style scoped lang="scss">
+#Depoimentos{
+    .mdi:before, .mdi-set {
+        color:#2E8429;
+    }
+}
 </style>

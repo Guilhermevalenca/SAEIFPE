@@ -1,14 +1,11 @@
 <template>
-<v-card class="d-flex flex-column justify-center pa-10 w-75 h-auto">
+<v-card id="Add-card" class="d-flex flex-column justify-center pa-10 w-75 h-auto rounded-xl" variant="flat" :style="'border: 1px solid #2E8429;'">
     <v-form>
         <v-card-text class="d-flex pa-0 flex-column">
-    <v-textarea persistent-placeholder placeholder="Digite aqui seu depoimento" variant="solo-filled" auto-grow class="mb-0"></v-textarea>
-            <div class="bosta">
-            <v-file-input>
-                <v-icon icon="mdi mdi-camera"
-                ></v-icon>
- 1           </v-file-input>
-            </div>
+    <v-textarea persistent-placeholder placeholder="Digite aqui seu depoimento" variant="outlined" auto-grow class="mb-0 rounded-xl"></v-textarea>
+            <v-container id="test" class="pa-0 justify-start">
+                <v-file-input prepend-icon="mdi mdi-camera"></v-file-input>
+            </v-container>
         </v-card-text>
     <div class="d-flex justify-end ma-0">
         <v-btn class="mb-6 d-flex justify-end" color="secondary" variant="outlined" type="submit">Enviar</v-btn>
@@ -21,10 +18,15 @@ export default {
     name: "AddDeposition"
 }
 </script>
-
-<style scoped>
-.bosta{
-    width: 0.8em;
-    height: 1em;
+<style lang="scss">
+#test{
+.v-input__control {
+    height: 4em;
+    display: none;
+}
+    .v-input{
+        font-size: 1.6em;
+        color: #2E8429;
+    }
 }
 </style>

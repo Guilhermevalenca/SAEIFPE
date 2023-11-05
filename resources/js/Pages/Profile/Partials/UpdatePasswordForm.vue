@@ -1,10 +1,10 @@
 <template>
     <section>
         <header>
-            <h2 class="text-lg font-medium">Update Password</h2>
+            <h2 class="text-lg font-medium">Atualizar senha</h2>
 
             <p class="mt-1 text-sm">
-                Ensure your account is using a long, random password to stay secure.
+                Certifique-se de que sua conta esteja usando uma senha longa e aleatória para permanecer segura.
             </p>
         </header>
 
@@ -31,7 +31,7 @@
             </div>
 
             <div class="flex items-center gap-4">
-                <v-btn type="submit" color="secondary" :disabled="form.processing">Save</v-btn>
+                <v-btn type="submit" color="secondary" :disabled="form.processing">Salvar</v-btn>
 
                 <Transition
                     enter-active-class="transition ease-in-out"
@@ -39,7 +39,7 @@
                     leave-active-class="transition ease-in-out"
                     leave-to-class="opacity-0"
                 >
-                    <p v-if="form.recentlySuccessful" class="text-sm">Saved.</p>
+                    <p v-if="form.recentlySuccessful" class="text-sm">Salvou.</p>
                 </Transition>
             </div>
         </v-form>

@@ -16,7 +16,10 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->boolean('phoneIsWhatsApp')->default(false);
             $table->string('genre')->nullable();
-            $table->string('course')->nullable();
+
+            $listCourses = ['ADM', 'IPI', 'LOG', 'TGQ', 'TSI'];
+            $table->enum('course', $listCourses);
+
             $table->foreignId('users_id')
                 ->references('id')
                 ->on('users');

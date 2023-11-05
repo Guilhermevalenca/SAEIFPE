@@ -45,8 +45,8 @@ export default createVuetify({
         VSelect: {
             variant: 'outlined'
         },
-        VFooter: {
-            color: 'background'
+        VCard: {
+            style: 'border-color: #2E8429;'
         }
     }
 })

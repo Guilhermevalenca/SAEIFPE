@@ -34,7 +34,7 @@ export default {
 </script>
 <template>
     <Default>
-        <Head title="Log in" />
+        <Head title="Login" />
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
             {{ status }}

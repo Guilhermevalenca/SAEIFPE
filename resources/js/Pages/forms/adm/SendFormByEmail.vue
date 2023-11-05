@@ -29,9 +29,24 @@
 
                         <v-card-text>
 
-                            <v-text-field label="Titulo" placeholder="Escreva o titulo do email"
-                                          v-model="form.title" />
+                            <v-text-field label="Titulo" placeholder="Escreva o titulo do email" v-model="form.title" />
+
                             <v-textarea label="Escreva o conteúdo do email" rows="6" max-rows="30" v-model="form.text" />
+
+                            <v-container>
+                                <v-checkbox v-model="form.allGraduates" label="Deseja enviar para todos os egressos" />
+
+                                <v-checkbox v-model="form.student" label="Enviar esté email para os atuais estudantes" />
+                            </v-container>
+
+                            <v-tooltip text="Escolha qual ou quais pessoas de determinados cursos vão receber este email">
+                                <template #activator="{ props }">
+
+                                    <v-autocomplete :disabled="form.allGraduates" v-bind="props" label="Curso(s) destinatários" :items="courses" item-value="id" item-title="name" chips multiple v-model="form.courses" />
+
+                                </template>
+                            </v-tooltip>
+
 
                         </v-card-text>
 
@@ -64,14 +79,46 @@ export default {
             form: useForm({
                 title: '',
                 text: '',
+                courses: [],
+                allGraduates: false,
+                student: false
             }),
+            courses: [
+                {
+                    id: 'ADM',
+                    name: 'ADM - Bacharelado em Administração'
+                },
+                {
+                    id: 'IPI',
+                    name: 'IPI - Técnico em Informatica para Internet'
+                },
+                {
+                    id: 'LOG',
+                    name: 'LOG - Técnico em Logística'
+                },
+                {
+                    id: 'TGQ',
+                    name: 'TGQ - Tecnologia em Gestão de Qualidade'
+                },
+                {
+                    id: 'TSI',
+                    name: 'TSI - Tecnologia de Sistema para Internet'
+                },
+            ]
         }
     },
     methods: {
         submit() {
+            console.table({
+                title: this.form.title,
+                text: this.form.text,
+                allGraduates: this.form.allGraduates,
+                student: this.form.student,
+                courses: this.form.courses
+            });
             this.form.post(route('forms_sendEmail', { id: this.data.id}));
         }
-    }
+    },
 }
 </script>
 

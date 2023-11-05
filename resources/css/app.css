@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.default-card-border{
+    border: 1px solid #2E8429;
+}

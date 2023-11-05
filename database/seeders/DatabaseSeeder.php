@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
             'users_id' => $userStudying->id
         ]);
         //cpf phone phoneIsWhatsApp genre course
-        $userGraduates = \App\Models\User::factory()->create([
+        $userGraduates1 = \App\Models\User::factory()->create([
             'name' => 'usuário egresso',
             'cpf' => '12345678912',
             'email' => 'graduate@gmail.com',
@@ -48,8 +48,22 @@ class DatabaseSeeder extends Seeder
             'role' => 'graduate'
         ]);
         \App\Models\UsersGraduates::factory()->create([
-            'users_id' => $userGraduates->id,
+            'users_id' => $userGraduates1->id,
             'phone' => '81994139948',
+            'phoneIsWhatsApp' => true,
+            'genre' => 'Masculino',
+            'course' => 'IPI'
+        ]);
+        $userGraduates2 = \App\Models\User::factory()->create([
+            'name' => 'usuário egresso2',
+            'cpf' => '12345678913',
+            'email' => 'graduate2@gmail.com',
+            'password' => 'ipi123',
+            'role' => 'graduate'
+        ]);
+        \App\Models\UsersGraduates::factory()->create([
+            'users_id' => $userGraduates2->id,
+            'phone' => '82994139948',
             'phoneIsWhatsApp' => true,
             'genre' => 'Masculino',
             'course' => 'IPI'

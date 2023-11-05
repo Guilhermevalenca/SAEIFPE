@@ -37,9 +37,9 @@
                             <template #activator="{ props }">
                                 <v-btn variant="plain" v-bind="props">
                                     {{ $page.props.auth.user.name }}
-                                    <v-avatar>
-                                        <v-img src="https://thumbs.dreamstime.com/z/s%C3%ADmbolo-de-perfil-masculino-inteligente-retrato-estilo-desenho-animado-m%C3%ADnimo-166146967.jpg" />
-                                    </v-avatar>
+<!--                                    <v-avatar>-->
+<!--                                        <v-img src="https://thumbs.dreamstime.com/z/s%C3%ADmbolo-de-perfil-masculino-inteligente-retrato-estilo-desenho-animado-m%C3%ADnimo-166146967.jpg" />-->
+<!--                                    </v-avatar>-->
                                 </v-btn>
                             </template>
                             <v-card>

@@ -29,7 +29,7 @@ class FormEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address($this->data['fromEmail'], $this->data['fromName']),
+            replyTo: $this->data['recipients'],
             subject: $this->data['title'],
         );
     }

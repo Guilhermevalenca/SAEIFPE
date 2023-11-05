@@ -7,16 +7,18 @@ use App\Http\Resources\forms\QuestionsGetAllRelationsResource;
 use App\Mail\FormEmail;
 use App\Models\Form;
 use App\Models\User;
+use App\Models\UsersGraduates;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
+use Illuminate\Mail\Mailables\Address;
 
 class FormController extends Controller
 {
     public function index()
     {
-        $paginate = Form::where('user_id','=',Auth::id())->where('visible','=','1')->paginate(1);
+        $paginate = Form::where('user_id','=',Auth::id())->where('visible','=','1')->paginate();
         $forms = FormResource::collection($paginate);
 
         $response = [
@@ -78,15 +80,18 @@ class FormController extends Controller
     }
     public function sendEmail(Request $request, $id)
     {
+        $recipients = UsersGraduates::whereIn('course', $request->input('courses'))->with('users')->get();
         $data = [
             'title' => $request->input('title'),
             'text' => $request->input('text'),
-            'fromName' => 'disgrama',
-            'fromEmail' => 'gui@gmail.com',
             'form_id' => $id,
+            'recipients' => []
         ];
-        $send = Mail::to('guilherm3@gmail.com','guilherme')->send(new FormEmail($data));
-        dd($send);
+        foreach ($recipients as $index => $value) {
+            $data['recipients'][$index] = new Address($value['users']['email'], $value['users']['name']);
+        }
+        Mail::to(Auth::user(),Auth::getName())->send(new FormEmail($data));
+
     }
     public function destroy($id)
     {

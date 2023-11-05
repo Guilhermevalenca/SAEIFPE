@@ -1,10 +1,10 @@
 <template>
     <section>
         <header>
-            <h2 class="text-lg font-medium">Profile Information</h2>
+            <h2 class="text-lg font-medium">Informação do Perfil</h2>
 
             <p class="mt-1 text-sm">
-                Update your account's profile information and email address.
+                Atualize as informações de perfil e endereço de e-mail da sua conta.
             </p>
         </header>
 
@@ -23,16 +23,16 @@
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
 
-            <div v-if="mustVerifyEmail && user.email_verified_at === null">
+            <div v-if="mustVerifyEmail && $page.props.auth.user.email_verified_at === null">
                 <p class="text-sm mt-2 text-gray-800">
-                    Your email address is unverified.
+                    Seu endereço de e-mail não foi verificado.
                     <Link
                         :href="route('verification.send')"
                         method="post"
                         as="button"
                         class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
-                        Click here to re-send the verification email.
+                        Clique aqui para reenviar o e-mail de verificação.
                     </Link>
                 </p>
 
@@ -40,12 +40,12 @@
                     v-show="status === 'verification-link-sent'"
                     class="mt-2 font-medium text-sm text-green-600"
                 >
-                    A new verification link has been sent to your email address.
+                    Um novo link de verificação foi enviado para seu endereço de e-mail.
                 </div>
             </div>
 
             <div class="flex items-center gap-4">
-                <v-btn type="submit" color="secondary" :disabled="form.processing">Save</v-btn>
+                <v-btn type="submit" color="secondary" :disabled="form.processing">Salvar</v-btn>
 
                 <Transition
                     enter-active-class="transition ease-in-out"
@@ -53,7 +53,7 @@
                     leave-active-class="transition ease-in-out"
                     leave-to-class="opacity-0"
                 >
-                    <p v-if="form.recentlySuccessful" class="text-sm ">Saved.</p>
+                    <p v-if="form.recentlySuccessful" class="text-sm ">Salvou.</p>
                 </Transition>
             </div>
         </v-form>

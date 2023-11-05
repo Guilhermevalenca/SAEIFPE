@@ -3,7 +3,7 @@
       <v-card>
           <v-card-title class="d-flex justify-center">Formulários</v-card-title>
           <v-card-actions class="d-flex justify-end">
-              <v-btn color="secondary" variant="outlined" @click="isCreateForms = !isCreateForms">{{ isCreateForms ? 'Meus Formulários' : 'Criar formulário' }}</v-btn>
+              <v-btn color="tertiary" variant="outlined" @click="isCreateForms = !isCreateForms">{{ isCreateForms ? 'Meus Formulários' : 'Criar formulário' }}</v-btn>
           </v-card-actions>
           <v-card-text>
               <div v-show="! isCreateForms">

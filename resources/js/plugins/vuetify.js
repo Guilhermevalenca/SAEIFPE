@@ -23,13 +23,16 @@ export default createVuetify({
             light: {
                 colors: {
                     primary: '#1867C0',
-                    secondary: '#2E8429',
-                    background: '#e1e6d3'
+                    secondary: '#2f9e41',
+                    tertiary: '#2f9e41',
+                    quaternary: '#cd191e',
+                    background: '#e1e6d2',
                 },
             },
             dark: {
                 colors: {
-                    secondary: '#2E8429',
+                    secondary: '#00420c',
+                    tertiary: '#2f9e41'
                 },
             },
         },

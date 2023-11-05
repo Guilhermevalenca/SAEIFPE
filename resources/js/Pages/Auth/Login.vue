@@ -72,7 +72,7 @@ export default {
                         Esqueceu sua senha?
                     </Link>
 
-                    <v-btn color="secondary" type="submit" class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                    <v-btn color="tertiary" type="submit" class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                         Conectar
                     </v-btn>
                 </div>

@@ -30,6 +30,8 @@ export default {
     methods:{
         submitDeposition(){
             this.deposition.post(route("depoimentos_criar"));
+            this.deposition.content= ""
+            this.deposition.picture= ""
         }
     }
 }

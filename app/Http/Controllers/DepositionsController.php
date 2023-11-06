@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\DepositionsResource;
 use App\Models\Depositions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,7 @@ class DepositionsController extends Controller
     public function index()
     {
         $response = [
-            'data'=> Depositions::all()
+            'data'=> DepositionsResource::collection(Depositions::all())
         ];
 //        return response($response, 200);
         return Inertia::render('depositions/Depositions',$response);

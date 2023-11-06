@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Depositions;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class DepositionsController extends Controller
@@ -27,11 +28,11 @@ class DepositionsController extends Controller
     {
         $validate = $request->validate([
             'content'=>['required','string'],
-            'picture'=>['nullable', 'string'],
-            'school' =>['required','string'],
+            'picture'=>['nullable', 'string']
         ]);
+        $validate['user_id'] = Auth::id();
         Depositions::create($validate);
-        return redirect()->route('depoimentos_mural');
+        return redirect()->route('depoimentos_criar');
     }
 
     /**

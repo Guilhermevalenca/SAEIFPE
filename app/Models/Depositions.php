@@ -10,16 +10,11 @@ use App\Models\User;
 class Depositions extends Model
 {
     use HasFactory;
-    protected $fillable = ['content','picture'];
+    protected $fillable = ['content','picture','user_id'];
 
 //    protected static function boot()
 //    {
 //        parent::boot();
 //        static::addGlobalScope(new GlobalScope());
 //    }
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'foreign_key');
-    }
 }

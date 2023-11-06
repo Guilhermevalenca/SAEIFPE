@@ -38,7 +38,8 @@ class RouteServiceProvider extends ServiceProvider
                     base_path('routes/web.php'),
                     base_path('routes/web-routes/depositionsRoutes.php'),
                     base_path('routes/web-routes/FormsRoutes.php'),
-                    base_path('routes/web-routes/postsIFPERoutes.php')
+                    base_path('routes/web-routes/postsIFPERoutes.php'),
+                    base_path('routes/web-routes/finishRegistrationRoute.php')
                 ]);
         });
     }

@@ -12,6 +12,8 @@
             IFPE Campus Igarassu
         </v-app-bar-title>
 
+        <Notification />
+
         <v-tooltip text="Clique para alterar o tema da pagina">
             <template #activator="{ props }">
                 <v-btn v-bind="props" @click="alterTheme()">
@@ -69,9 +71,10 @@
 <script>
 import { useTheme } from 'vuetify';
 import { Link } from '@inertiajs/vue3';
+import Notification from "@/Layouts/default/Notification.vue";
 
 export default {
-    components: { Link },
+    components: {Notification, Link },
     data() {
         return {
             theme: useTheme(),

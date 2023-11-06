@@ -29,7 +29,7 @@
             </v-tooltip>
             <v-tooltip text="Adicionar uma nova alternativa">
                 <template #activator="{ props }">
-                    <v-btn v-bind="props" variant="outlined" color="primary" @click="addOption()">
+                    <v-btn v-bind="props" variant="elevated" color="primary" @click="addOption()">
                         <v-icon icon="mdi-plus"/>
                     </v-btn>
                 </template>

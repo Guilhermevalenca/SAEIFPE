@@ -16,7 +16,7 @@ class DepositionsResource extends JsonResource
     public function toArray(Request $request): array
     {
 //        return parent::toArray($request);
-        return[
+        return [
             'id' => $this->id,
             'user'=> User::find($this->user_id),
             'content' => $this->content,

@@ -51,13 +51,13 @@ export default {
         },
         page: {
             handler($new) {
-
+                window.location.href = route('forms_index', {page: $new.current});
             },
             deep: true
         }
     },
     created() {
         console.log(this.data);
-    }
+    },
 }
 </script>

@@ -10,7 +10,7 @@
         </v-card-item>
         <v-card-text class="d-flex flex-row">
             <v-avatar v-slot="auto"
-                      color="black"
+                      color="pink"
                       image= "{{ depositon[index].user.profile_picture }}"
             >
             </v-avatar>
@@ -39,7 +39,7 @@ export default {
 
 
 <style scoped lang="scss">
-#Depoimentos{
+#Depositions{
     .mdi:before, .mdi-set {
         color:#2E8429;
     }

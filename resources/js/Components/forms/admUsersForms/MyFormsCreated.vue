@@ -4,7 +4,7 @@
         <v-card-text>Pelo visto você ainda não criou nenhum formulário. para criar seu primeiro formulário, clique no botão na parte superior direita "CRIAR FORMULÁRIO"</v-card-text>
     </v-card>
 
-    <v-card variant="outlined" width="900px" v-for="(form, index) in forms" :key="index">
+    <v-card class="ma-2" variant="outlined" width="900px" v-for="(form, index) in forms" :key="index">
         <v-row>
             <v-col cols="8">
                 <v-card-title>{{ form.title }}</v-card-title>

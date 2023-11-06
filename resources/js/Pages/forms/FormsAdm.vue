@@ -15,8 +15,14 @@
                 </div>
             </v-card-text>
         </v-card>
-        <template #footer>
-            <v-pagination v-model="page.current" :length="page.all" rounded="circle" />
+        <template #footer v-if="! isCreateForms">
+            <v-row>
+                <v-col />
+                <v-col>
+                    <v-pagination v-model="page.current" :length="page.all" rounded="circle" />
+                </v-col>
+                <v-col />
+            </v-row>
         </template>
     </Default>
 </template>

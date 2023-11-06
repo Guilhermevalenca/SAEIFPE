@@ -51,7 +51,7 @@
                     </v-tooltip>
                     <v-tooltip text="Adicionar nova questão">
                         <template #activator="{ props }">
-                            <v-btn v-bind="props" variant="outlined" color="secondary" @click="addQuestion()">
+                            <v-btn v-bind="props" variant="elevated" color="secondary" @click="addQuestion()">
                                 <v-icon icon="mdi-plus" />
                             </v-btn>
                         </template>

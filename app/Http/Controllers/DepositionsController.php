@@ -32,7 +32,7 @@ class DepositionsController extends Controller
         ]);
         $validate['user_id'] = Auth::id();
         Depositions::create($validate);
-        return redirect()->route('depoimentos_criar');
+        return redirect()->route('depoimentos_mural');
     }
 
     /**

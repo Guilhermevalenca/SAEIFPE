@@ -24,7 +24,7 @@
             </div>
 
             <div>
-                <v-text-field id="password_confirmation" for="password_confirmation" label="Confirme sua senha" v-model="form.password_confirmation" type="password" class="mt-1 block w-full"
+                <v-text-field id="password_confirmation" for="password_confirmation" label="Confirme sua senha" :rules="rules.password" v-model="form.password_confirmation" type="password" class="mt-1 block w-full"
                 />
 
                 <InputError :message="form.errors.password_confirmation" class="mt-2" />
@@ -61,7 +61,17 @@ export default {
                 current_password: '',
                 password: '',
                 password_confirmation: '',
-            })
+            }),
+            rules: {
+                password: [
+                    () => {
+                        if(this.form.password !== this.form.password_confirmation) {
+                            return 'Senhas diferentes'
+                        }
+                        return true;
+                    }
+                ]
+            }
         }
     },
     methods: {

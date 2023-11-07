@@ -1,37 +1,3 @@
-<script>
-import GuestLayout from '@/Layouts/GuestLayout.vue';
-import InputError from '@/Components/InputError.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
-import Default from "@/Layouts/default/Default.vue";
-
-export default {
-    components: {Head, Link, Default, InputError, GuestLayout},
-    props: {
-        canResetPassword: {
-            type: Boolean,
-        },
-        status: {
-            type: String,
-        },
-    },
-    data() {
-        return {
-            form: useForm({
-                email: '',
-                password: '',
-                remember: false,
-            }),
-        }
-    },
-    methods: {
-        submit() {
-            this.form.post(route('login'), {
-                onFinish: () => this.form.reset('password'),
-            });
-        }
-    }
-}
-</script>
 <template>
     <Default>
         <Head title="Login" />
@@ -47,13 +13,13 @@ export default {
             <v-form @submit.prevent="submit()">
                 <div>
 
-                    <v-text-field for="email" label="Email" id="email" type="email" v-model="form.email" />
+                    <v-text-field for="email" label="Email" id="email" type="email" v-model="form.email" :rules="rules.email" />
                     <InputError class="mt-2" :message="form.errors.email" />
 
                 </div>
 
                 <div class="mt-4">
-                    <v-text-field for="password" label="Password" id="password" type="password" v-model="form.password" />
+                    <v-text-field for="password" label="Password" id="password" v-model="form.password" :append-inner-icon="showIcon.password ? 'mdi-eye' : 'mdi-eye-off'" :type="showIcon.password ? 'text' : 'password'" @click:append-inner="showIcon.password = !showIcon.password" />
                     <InputError class="mt-2" :message="form.errors.password" />
                 </div>
 
@@ -81,3 +47,60 @@ export default {
         </GuestLayout>
     </Default>
 </template>
+
+<script>
+import GuestLayout from '@/Layouts/GuestLayout.vue';
+import InputError from '@/Components/InputError.vue';
+import { Head, Link, useForm } from '@inertiajs/vue3';
+import Default from "@/Layouts/default/Default.vue";
+
+export default {
+    components: {Head, Link, Default, InputError, GuestLayout},
+    props: {
+        canResetPassword: {
+            type: Boolean,
+        },
+        status: {
+            type: String,
+        },
+    },
+    data() {
+        return {
+            form: useForm({
+                email: '',
+                password: '',
+                remember: false,
+            }),
+            rules: {
+                email: [
+                    value => {
+                        if(/.+@.+\..+/.test(value)) {
+                            return true
+                        }
+                        return 'Email inválido';
+                    },
+                    value => {
+                        if(value) {
+                            if(!value.endsWith('@discente.ifpe.edu.br')) {
+                                return true;
+                            }
+                            return 'Email não pode ser o email institucional';
+                        }
+                        return 'O email é obrigatório';
+                    }
+                ]
+            },
+            showIcon: {
+              password: false
+            }
+        }
+    },
+    methods: {
+        submit() {
+            this.form.post(route('login'), {
+                onFinish: () => this.form.reset('password'),
+            });
+        }
+    }
+}
+</script>

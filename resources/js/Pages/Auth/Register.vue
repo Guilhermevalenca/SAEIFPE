@@ -1,34 +1,3 @@
-<script>
-import { Head, Link, useForm } from '@inertiajs/vue3';
-import GuestLayout from '@/Layouts/GuestLayout.vue';
-import InputError from '@/Components/InputError.vue';
-import Default from '@/Layouts/default/Default.vue';
-import { vMaska } from 'maska';
-export default {
-    name: 'Register',
-    components: {Head, Link, GuestLayout, InputError, Default},
-    directives: { maska: vMaska },
-    data() {
-        return {
-            form: useForm({
-                name: '',
-                email: '',
-                cpf: '',
-                password: '',
-                password_confirmation: ''
-            })
-        }
-    },
-    methods: {
-        submit() {
-            this.form.post(route('register'), {
-                onFinish: () => this.form.reset('password', 'password_confirmation')
-            })
-        }
-    }
-}
-</script>
-
 <template>
     <Default>
 
@@ -40,7 +9,7 @@ export default {
             <v-form @submit.prevent="submit()">
                 <div>
 
-                    <v-text-field id="name" for="name" label="Nome" type="text" class="mt-1 block w-full" v-model="form.name" required
+                    <v-text-field id="name" for="name" label="Nome" type="text" class="mt-1 block w-full" v-model="form.name" :rules="rules.name" required
                     />
 
                     <InputError class="mt-2" :message="form.errors.name" />
@@ -48,7 +17,7 @@ export default {
 
                 <div class="mt-4">
 
-                    <v-text-field id="email" for="email" label="Email" type="email" class="mt-1 block w-full" v-model="form.email" required
+                    <v-text-field id="email" for="email" label="Email" type="email" class="mt-1 block w-full" v-model="form.email" :rules="rules.email" required
                     />
 
                     <InputError class="mt-2" :message="form.errors.email" />
@@ -57,23 +26,23 @@ export default {
                 <div class="mt-4">
 
                   <input type="hidden" v-maska data-maska="###.###.###-##" v-model="form.cpf">
-                    <v-text-field for="cpf" label="cpf" id="cpf" type="text" v-model="form.cpf" />
+                    <v-text-field for="cpf" label="cpf" id="cpf" type="text" v-model="form.cpf" :rules="rules.cpf" />
                     <InputError class="mt-2" :message="form.errors.cpf" />
 
                 </div>
 
                 <div class="mt-4">
 
-                    <v-text-field id="password" for="password" label="Senha" type="password" class="mt-1 block w-full" v-model="form.password" required
-                    />
+                    <v-text-field id="password" for="password" label="Senha" class="mt-1 block w-full" v-model="form.password" :rules="rules.password" required
+                                  :append-inner-icon="showIcon.password ? 'mdi-eye' : 'mdi-eye-off'" :type="showIcon.password ? 'text' : 'password'" @click:append-inner="showIcon.password = !showIcon.password" />
 
                     <InputError class="mt-2" :message="form.errors.password" />
                 </div>
 
                 <div class="mt-4">
 
-                    <v-text-field id="password_confirmation" for="password_confirmation" label="Confirme sua senha" type="password" class="mt-1 block w-full" v-model="form.password_confirmation" required
-                    />
+                    <v-text-field id="password_confirmation" for="password_confirmation" label="Confirme sua senha" class="mt-1 block w-full" v-model="form.password_confirmation" :rules="rules.confirmPassword" required
+                                  :append-inner-icon="showIcon.confirmPassword ? 'mdi-eye' : 'mdi-eye-off'" :type="showIcon.confirmPassword ? 'text' : 'password'" @click:append-inner="showIcon.confirmPassword = !showIcon.confirmPassword" />
 
                     <InputError class="mt-2" :message="form.errors.password_confirmation" />
                 </div>
@@ -95,3 +64,104 @@ export default {
 
     </Default>
 </template>
+
+<script>
+import { Head, Link, useForm } from '@inertiajs/vue3';
+import GuestLayout from '@/Layouts/GuestLayout.vue';
+import InputError from '@/Components/InputError.vue';
+import Default from '@/Layouts/default/Default.vue';
+import { vMaska } from 'maska';
+export default {
+    name: 'Register',
+    components: {Head, Link, GuestLayout, InputError, Default},
+    directives: { maska: vMaska },
+    data() {
+        return {
+            form: useForm({
+                name: '',
+                email: '',
+                cpf: '',
+                password: '',
+                password_confirmation: ''
+            }),
+            rules: {
+                name: [
+                    value => {
+                        if(value) {
+                            return true;
+                        }
+                        return 'É preciso preencher este campo';
+                    }
+                ],
+                email: [
+                    value => {
+                        if(/.+@.+\..+/.test(value)) {
+                            return true
+                        }
+                        return 'Email inválido';
+                    },
+                    value => {
+                        if(value) {
+                            if(!value.endsWith('@discente.ifpe.edu.br')) {
+                                return true;
+                            }
+                            return 'Email não pode ser o email institucional';
+                        }
+                        return 'O email é obrigatório';
+                    }
+                ],
+                cpf: [
+                    value => {
+                        if(value) {
+                            return true;
+                        }
+                        return 'Este campo é obrigatório';
+                    }
+                ],
+                password: [
+                    value => {
+                        if(value) {
+                            if(/\d/.test(value) && /[a-zA-Z]/.test(value)) {
+                                return true;
+                            }
+                            return 'Senha precisa ter caracteres alfanuméricos (letras e números)';
+                        }
+                        return 'Senha obrigatório';
+                    },
+                    value => {
+                        if(value) {
+                            if(value.length >= 6) {
+                                return true;
+                            }
+                            return 'Senha precisa ter no mínimo 6 caracteres';
+                        }
+                        return 'Senha obrigatório';
+                    }
+                ],
+                confirmPassword: [
+                    value => {
+                        if(value) {
+                            if(value === this.form.password) {
+                                return true;
+                            }
+                            return 'Senhas diferentes';
+                        }
+                        return 'É necessário confirmar sua senha';
+                    }
+                ]
+            },
+            showIcon: {
+                password: false,
+                confirmPassword: false
+            }
+        }
+    },
+    methods: {
+        submit() {
+            this.form.post(route('register'), {
+                onFinish: () => this.form.reset('password', 'password_confirmation')
+            })
+        }
+    }
+}
+</script>

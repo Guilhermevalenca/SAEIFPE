@@ -51,7 +51,7 @@ export default {
     watch: {
         data: {
             handler() {
-                this.isCreateForms = false;
+                // this.isCreateForms = false;
             },
             deep: true
         },
@@ -63,7 +63,7 @@ export default {
         }
     },
     created() {
-        console.log(this.data);
+
     },
 }
 </script>

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -60,5 +61,17 @@ class User extends Authenticatable implements MustVerifyEmail
             return 'studying';
         }
         return 'other';
+    }
+    public function adm(): HasOne
+    {
+        return $this->hasOne(UsersAdm::class, 'users_id');
+    }
+    public function graduate(): HasOne
+    {
+        return $this->hasOne(UsersGraduates::class, 'users_id');
+    }
+    public function student(): HasOne
+    {
+        return $this->hasOne(UsersStudying::class, 'users_id');
     }
 }

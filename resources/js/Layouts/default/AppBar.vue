@@ -52,7 +52,7 @@
                                         </v-list-item>
                                     </Link>
 
-                                    <Link :href="route('logout')" method="post">
+                                    <Link :href="route('logout')" method="post" as="button">
                                         <v-list-item to="/">
                                             Deslogar
                                         </v-list-item>
@@ -89,8 +89,5 @@ export default {
     created() {
 
     },
-    mounted() {
-        console.log(this.$refs.ola);
-    }
 }
 </script>

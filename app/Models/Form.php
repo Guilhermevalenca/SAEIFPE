@@ -42,10 +42,10 @@ class Form extends Model
                 }
             }
             DB::commit();
-            return ['success' => true];
+            return true;
         } catch (\Error $e) {
             DB::rollBack();
-            return ['success' => false, 'error' => $e];
+            return back()->withErrors(['form_model' => $e->getMessage()]);
         }
     }
     public function updateForm($data)

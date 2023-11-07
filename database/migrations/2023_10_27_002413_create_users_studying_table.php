@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('users_studying', function (Blueprint $table) {
             $table->id();
+            $table->string('email_institution');
+
+            $listCourses = ['ADM', 'IPI', 'LOG', 'TGQ', 'TSI'];
+            $table->enum('course', $listCourses);
+
+            $table->string('enrollment');
             $table->foreignId('users_id')
                 ->references('id')
                 ->on('users');

@@ -37,7 +37,10 @@ class DatabaseSeeder extends Seeder
             'role' => 'student'
         ]);
         \App\Models\UsersStudying::factory()->create([
-            'users_id' => $userStudying->id
+            'users_id' => $userStudying->id,
+            'email_institution' => 'student@discente.ifpe.edu.br',
+            'course' => 'ipi',
+            'enrollment' => '20232INFIG0001'
         ]);
         //cpf phone phoneIsWhatsApp genre course
         $userGraduates1 = \App\Models\User::factory()->create([

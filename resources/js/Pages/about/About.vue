@@ -8,10 +8,10 @@
         </v-card-text>
       </v-card>
       <div class="d-flex justify-center ">
-        <v-list width="200" class="perfil ma-5">
+        <v-list width="300" class="perfil ma-5">
           <v-list-item @click="showDescription('Alice Manguinho')" class="d-flex justify-center">
-            <v-avatar size="120">
-              <v-img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/A_Girl-JapaneseSubCluture-square.jpg"/>
+            <v-avatar size="300">
+              <img src="@/assets/gato.jpg"/>
             </v-avatar>
           </v-list-item>
           <v-list-item>
@@ -140,79 +140,60 @@ export default {
 }
 </script>
 
-<!--<style>-->
-<!--.cabecalho{-->
-<!--  text-align: center;-->
-<!--  margin: 25px;-->
-<!--  font-size: larger;-->
-<!--}-->
+<style>
+.cabecalho{
+  text-align: center;
+ margin: 25px;
+  font-size: larger;
+}
 
-<!--.odio{-->
-<!--  border-style: solid;-->
-<!--  border-radius: 25px;-->
-<!--  width: 500px;-->
-<!--  font-size: large;-->
-<!--  padding: 50px;-->
-<!--  margin: 0 auto;-->
-<!--  text-align: justify;-->
-<!--  border-color: #35972F;-->
+.odio{
+  border-style: solid;
+  border-radius: 25px;
+  width: 500px;
+  font-size: large;
+  padding: 55px;
+  margin: 0 auto;
+  text-align: justify;
+  border-color: #3597;
+}
+@media screen and (max-width: 600px) {
+  .odio {
+    width: 90%;
+    font-size: medium;
+    padding: 20px;
+  }
+}
+.perfil{
+  border-radius: 50px;
+  margin: 90px;
+  text-align: center;
+  max-width: 500px;
+  height: auto;
+ 
+}
+.descricao{
+  border-radius: 100px;
+  text-align: center;
+}
+.botao{
+  width: 10px;
+  color: rgba(53, 151, 47, 1);
+}
+.description {
+  white-space: pre-line;
+}
 
-<!--}-->
-<!--@media screen and (max-width: 600px) {-->
-<!--  .odio {-->
-<!--    width: 90%;-->
-<!--    font-size: medium;-->
-<!--    padding: 20px;-->
+.bi{
+    text-align: center;
+    width: 520px;
+    font-size: medium;
+    padding: 1px;
+    margin: auto;
+    height: 600px;
+}
 
-<!--  }-->
-<!--}-->
-
-<!--.perfil{-->
-<!--  border-radius: 50px;-->
-<!--  margin: 90px;-->
-<!--  text-align: center;-->
-<!--  max-width: 500px;-->
-<!--  height: auto;-->
-<!--  -->
-<!--}-->
-
-<!--.descricao{-->
-<!--  border-radius: 100px;-->
-<!--  text-align: center;-->
-<!--}-->
-
-<!--.botao{-->
-<!--  width: 10px;-->
-<!--  color: rgba(53, 151, 47, 1);-->
-<!--}-->
-
-<!--.description {-->
-<!--  white-space: pre-line;-->
-<!--}-->
-
-<!--.card{-->
-<!--    max-width: 100%;-->
-<!--    height: auto;-->
-<!--    -->
-<!--}-->
-
-<!--.bi{-->
-<!--    text-align: center;-->
-<!--    width: 500px;-->
-<!--    font-size: medium;-->
-<!--    padding: 2px;-->
-<!--    margin: auto;-->
-
-<!--}-->
-<!--.si{-->
-<!--    font-size: 18px;-->
-<!--}-->
-
-<!--.scrr{-->
-<!--    font-size: 14px;-->
-<!--}-->
-
-<!--</style>-->
+</style>
 
 
 

@@ -33,7 +33,7 @@ export default createVuetify({
                 colors: {
                     surface: '#121212',
                     secondary: '#00420c',
-                    tertiary: '#2f9e41',
+                    tertiary: '#00420c',
                     background: '#212121',
                 },
             },
@@ -51,7 +51,7 @@ export default createVuetify({
             variant: 'outlined'
         },
         VCard: {
-            style: 'border-color: #2E8429;',
+            style: 'border: solid 1px #2E8429;',
         }
     }
 })

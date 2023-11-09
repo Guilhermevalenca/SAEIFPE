@@ -11,7 +11,7 @@
           </v-col>
 
           <v-col>
-            <v-text-field v-model="option.text" :rules="rules.text(index)" placeholder="Escreva aqui..."/>
+            <v-text-field v-model="option.text" :rules="rules" placeholder="Escreva aqui..."/>
           </v-col>
 
         </v-row>
@@ -24,14 +24,16 @@
       <v-tooltip text="Remover ultima alternativa">
         <template #activator="{ props }">
           <v-btn v-bind="props" variant="outlined" :disabled="options.length === 1" @click="removeOption()">
-            <v-icon icon="mdi-minus"/>
+            <v-icon icon="mdi-minus" size="20"/>
+            Remover a ultima opção
           </v-btn>
         </template>
       </v-tooltip>
       <v-tooltip text="Adicionar uma nova alternativa">
         <template #activator="{ props }">
           <v-btn v-bind="props" variant="elevated" color="primary" @click="addOption()">
-            <v-icon icon="mdi-plus"/>
+            <v-icon icon="mdi-plus" size="20"/>
+            Adicionar nova opção
           </v-btn>
         </template>
       </v-tooltip>
@@ -51,16 +53,14 @@ export default {
       options: [
         { text: null }
       ],
-      rules: {
-        text: (index) => [
-          () => {
-            if(this.errors[`${index}.text`]) {
-              return this.errors[`${index}.text`];
+      rules: [
+          value => {
+            if(value) {
+              return true
             }
-            return true;
+            return 'É necessário preencher este campo'
           }
-        ]
-      }
+      ]
     }
   },
   methods: {

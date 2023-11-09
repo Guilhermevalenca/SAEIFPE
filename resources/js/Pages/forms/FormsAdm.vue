@@ -1,19 +1,19 @@
 <template>
     <Head title="Formulário" />
     <Default>
-       <v-container>
+       <v-container class="d-flex justify-center">
 
-         <v-card>
+         <v-card width="900px">
            <v-card-title class="d-flex justify-center">Formulários</v-card-title>
            <v-card-actions class="d-flex justify-end">
              <v-btn color="secondary" variant="elevated" @click="isCreateForms = !isCreateForms">{{ isCreateForms ? 'Meus Formulários' : 'Criar formulário' }}</v-btn>
            </v-card-actions>
            <v-card-text>
-             <div v-show="! isCreateForms">
+             <div v-if="! isCreateForms" class="d-flex justify-center">
                <MyFormsCreated :data="data" />
              </div>
-             <div v-show="isCreateForms">
-               <CreateForms @created_form_success="isCreateForms = false" />
+             <div v-else class="d-flex justify-center">
+               <CreateForms @created_form_success="isCreateForms = false" @cancelCreateForm="isCreateForms = false" />
              </div>
            </v-card-text>
          </v-card>
@@ -57,7 +57,7 @@ export default {
     watch: {
         data: {
             handler() {
-                // this.isCreateForms = false;
+                this.isCreateForms = false;
             },
             deep: true
         },

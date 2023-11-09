@@ -51,7 +51,7 @@ export default createVuetify({
             variant: 'outlined'
         },
         VCard: {
-            style: 'border: solid 1px #2E8429;',
+            style: 'border-color: #2E8429;',
         }
     }
 })

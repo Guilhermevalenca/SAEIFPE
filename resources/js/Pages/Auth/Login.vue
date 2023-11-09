@@ -6,45 +6,55 @@
             {{ status }}
         </div>
 
-        <GuestLayout>
 
-            <v-card-title>Acesse sua conta</v-card-title>
+        <v-container class="d-flex justify-center mt-12 pa-12">
 
-            <v-form @submit.prevent="submit()">
-                <div>
+            <v-card class="w-50 sm:max-w-md" variant="flat">
+                <v-card-title class="text-center">Acesse sua conta</v-card-title>
+                <!-- w-full sm:max-w-md mt-6 px-6 shadow-md overflow-hidden sm:rounded-lg -->
+                <v-form @submit.prevent="submit()">
 
-                    <v-text-field for="email" label="Email" id="email" type="email" v-model="form.email" :rules="rules.email" />
-                    <InputError class="mt-2" :message="form.errors.email" />
+                    <v-container>
 
-                </div>
+                        <div>
 
-                <div class="mt-4">
-                    <v-text-field for="password" label="Password" id="password" v-model="form.password" :append-inner-icon="showIcon.password ? 'mdi-eye' : 'mdi-eye-off'" :type="showIcon.password ? 'text' : 'password'" @click:append-inner="showIcon.password = !showIcon.password" />
-                    <InputError class="mt-2" :message="form.errors.password" />
-                </div>
+                            <v-text-field for="email" label="Email" id="email" type="email" v-model="form.email" :rules="rules.email" />
+                            <InputError class="mt-2" :message="form.errors.email" />
 
-                <div class="block mt-4">
-                    <label class="flex items-center">
-                        <v-checkbox name="remember" label="Remember me" v-model:checked="form.remember" />
-                    </label>
-                </div>
+                        </div>
 
-                <div class="flex items-center justify-end mt-4">
-                    <Link
-                        v-if="canResetPassword"
-                        :href="route('password.request')"
-                        class="underline text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >
-                        Esqueceu sua senha?
-                    </Link>
+                        <div class="mt-4">
+                            <v-text-field for="password" label="Password" id="password" v-model="form.password" :append-inner-icon="showIcon.password ? 'mdi-eye' : 'mdi-eye-off'" :type="showIcon.password ? 'text' : 'password'" @click:append-inner="showIcon.password = !showIcon.password" />
+                            <InputError class="mt-2" :message="form.errors.password" />
+                        </div>
 
-                    <v-btn color="tertiary" type="submit" class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                        Conectar
-                    </v-btn>
-                </div>
-            </v-form>
+                        <div class="block mt-4">
+                            <label class="flex items-center">
+                                <v-checkbox name="remember" label="Remember me" v-model:checked="form.remember" />
+                            </label>
+                        </div>
 
-        </GuestLayout>
+                        <div class="flex items-center justify-end mt-4">
+                            <Link
+                                v-if="canResetPassword"
+                                :href="route('password.request')"
+                                class="underline text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            >
+                                Esqueceu sua senha?
+                            </Link>
+
+                            <v-btn color="tertiary" type="submit" class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                                Conectar
+                            </v-btn>
+                        </div>
+
+                    </v-container>
+
+                </v-form>
+            </v-card>
+
+        </v-container>
+
     </Default>
 </template>
 
@@ -91,7 +101,7 @@ export default {
                 ]
             },
             showIcon: {
-              password: false
+                password: false
             }
         }
     },

@@ -48,25 +48,25 @@ class FormController extends Controller
     }
     public function store(Request $request, Form $form)
     {
-        $validation = $request->validate([
-            'title' => ['required', 'string'],
-            'questions' => ['required', 'array'],
-            'questions.*.ask' => ['required', 'string'],
-            'questions.*.responses' => ['nullable','array'],
-            'questions.*.type' => ['required', 'in:unique,multiple,open-ended'],
-            'questions.*.responses.*.text' => ['nullable','string','required_with:questions.*.responses'],
-        ], [
-            'title.required' => 'O nome do formulário é obrigatório.',
-            'title.string' => 'O nome do formulário foi preenchido de forma incorreta.',
-            'questions.required' => 'Pelo menos uma questão é necessária.',
-            'questions.*.ask.required' => 'É necessário adicionar a pergunta.',
-            'questions.*.ask.string' => 'A pergunta foi preenchida de forma incorreta.',
-            'questions.*.responses.*.text.string' => 'A opção foi preenchida de forma incorreta.',
-            'questions.*.responses.*.text.required_with' => 'É necessário preencher as opções',
-            'questions.*.type.required' => 'O tipo de pergunta é obrigatório.',
-            'questions.*.type.in' => 'O tipo de pergunta deve ser único, múltiplo ou aberto.'
-        ]);
-        $form->createForm($validation);
+//        $validation = $request->validate([
+//            'title' => ['required', 'string'],
+//            'questions' => ['required', 'array'],
+//            'questions.*.ask' => ['required', 'string'],
+//            'questions.*.responses' => ['nullable','array'],
+//            'questions.*.type' => ['required', 'in:unique,multiple,open-ended'],
+//            'questions.*.responses.*.text' => ['nullable','string','required_with:questions.*.responses'],
+//        ], [
+//            'title.required' => 'O nome do formulário é obrigatório.',
+//            'title.string' => 'O nome do formulário foi preenchido de forma incorreta.',
+//            'questions.required' => 'Pelo menos uma questão é necessária.',
+//            'questions.*.ask.required' => 'É necessário adicionar a pergunta.',
+//            'questions.*.ask.string' => 'A pergunta foi preenchida de forma incorreta.',
+//            'questions.*.responses.*.text.string' => 'A opção foi preenchida de forma incorreta.',
+//            'questions.*.responses.*.text.required_with' => 'É necessário preencher as opções',
+//            'questions.*.type.required' => 'O tipo de pergunta é obrigatório.',
+//            'questions.*.type.in' => 'O tipo de pergunta deve ser único, múltiplo ou aberto.'
+//        ]);
+        $form->createForm($request->input());
         return redirect()->route('forms_index');
     }
     public function edit($id, Form $form)

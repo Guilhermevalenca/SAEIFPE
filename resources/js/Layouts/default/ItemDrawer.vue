@@ -32,7 +32,7 @@
                 </v-list-item>
             </Link>
 
-            <Link :href="route('home')">
+            <Link :href="route('about')">
                 <v-list-item to="/">
                     Sobre
                 </v-list-item>

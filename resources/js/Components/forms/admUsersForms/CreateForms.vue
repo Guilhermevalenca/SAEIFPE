@@ -1,7 +1,7 @@
 <template>
   <v-form ref="form" @submit.prevent="createForm()">
 
-    <v-card>
+    <v-card width="900px">
 
       <v-card-title class="text-center">
         <div>Construa seu formulário</div>
@@ -9,7 +9,7 @@
 
       <v-spacer :class="[phoneDisplay ? '' : 'pa-6']"></v-spacer>
 
-      <v-card-text class="w-75">
+      <v-card-text>
 
         <v-text-field label="Nome" persistent-placeholder placeholder="Dê um nome para o formulário" v-model="form.title" :rules="rules.title" />
 
@@ -18,23 +18,25 @@
           <v-card-text>
 
             <v-card variant="outlined">
-              <div class="ma-2">
+              <v-container>
+                <div class="mb-2 mt-2">
 
-                <v-card-title class="mb-2">Pergunta {{ index + 1 }}: </v-card-title>
+                  <v-card-title class="mb-2">Pergunta {{ index + 1 }}: </v-card-title>
 
-                <v-select placeholder="Escolha qual o tipo de pergunta..." v-model="typeQuestions[index]" :items="types" item-title="name" item-value="id" :rules="rules.type(index)" />
+                  <v-select placeholder="Escolha qual o tipo de pergunta..." v-model="typeQuestions[index]" :items="types" item-title="name" item-value="id" :rules="rules.type(index)" />
 
-                <v-textarea v-model="form.questions[index].ask" rows="1" max-rows="10" auto-grow persistent-placeholder placeholder="Escreva a pergunta aqui" hint="Exemplo de titulo" :rules="rules.ask(index)" />
+                  <v-textarea v-model="form.questions[index].ask" rows="1" max-rows="10" auto-grow persistent-placeholder placeholder="Escreva a pergunta aqui" hint="Exemplo de titulo" :rules="rules.ask(index)" />
 
-              </div>
+                </div>
 
-              <div class="ma-2" v-if="typeQuestions[index] === 'unique'">
-                <UniqueQuestionsForm @send_data="(v) => {form.questions[index].responses = v; form.questions[index].type = typeQuestions[index]}" :errors="form.errors[`questions.${index}.responses`]" />
-              </div>
+                <div class="mb-2 mt-2" v-if="typeQuestions[index] === 'unique'">
+                  <UniqueQuestionsForm @send_data="(v) => {form.questions[index].responses = v; form.questions[index].type = typeQuestions[index]}" :errors="form.errors[`questions.${index}.responses`]" />
+                </div>
 
-              <div class="ma-2" v-if="typeQuestions[index] === 'multiple'">
-                <MultipleQuestionsForm @send_data="(v) => {form.questions[index].responses = v; form.questions[index].type = typeQuestions[index]}" :errors="form.errors[`questions.${index}.responses`]" />
-              </div>
+                <div class="mb-2 mt-2" v-if="typeQuestions[index] === 'multiple'">
+                  <MultipleQuestionsForm @send_data="(v) => {form.questions[index].responses = v; form.questions[index].type = typeQuestions[index]}" :errors="form.errors[`questions.${index}.responses`]" />
+                </div>
+              </v-container>
             </v-card>
 
           </v-card-text>
@@ -45,14 +47,16 @@
           <v-tooltip text="Remover ultima questão">
             <template #activator="{ props}">
               <v-btn v-bind="props" variant="outlined" :disabled="form.questions.length === 1" @click="removeQuestion()">
-                <v-icon icon="mdi-minus" />
+                <v-icon icon="mdi-minus" size="20" />
+                remover a ultima questão
               </v-btn>
             </template>
           </v-tooltip>
           <v-tooltip text="Adicionar nova questão">
             <template #activator="{ props }">
               <v-btn v-bind="props" variant="elevated" color="secondary" @click="addQuestion()">
-                <v-icon icon="mdi-plus" />
+                <v-icon icon="mdi-plus" size="20" />
+                adicionar questão
               </v-btn>
             </template>
           </v-tooltip>
@@ -64,9 +68,28 @@
         <div> <!-- props da div: -->
           <!-- class="v-layout-item text-end pointer-events-none" style="bottom: 0px; z-index: 1004; transform: translateY(0%); position: fixed; height: 88px; left: 0px; width: calc((100% - 0px) - 0px);" -->
           <!-- precisando de solução para quando a div tiver sobreposta aos botões da pagina, não afeta-los! -->
-          <v-btn variant="tonal">Cancelar</v-btn>
+          <v-btn variant="tonal" @click="showCancelForm = true">Cancelar</v-btn>
           <v-btn type="submit" :loading="creatingForm" color="secondary" variant="elevated">Salvar formulário</v-btn>
         </div>
+        <v-dialog v-model="showCancelForm">
+          <v-container class="d-flex justify-center">
+
+            <v-card>
+
+              <v-card-title>Deseja cancelar?</v-card-title>
+              <v-card-text>
+                <div>Você perderá o que foi preenchido!!!</div>
+              </v-card-text>
+
+              <v-card-actions class="d-flex justify-end">
+                <v-btn variant="outlined">Fechar</v-btn>
+                <v-btn variant="tonal" @click="cancelCreateForm()" color="red">OK</v-btn>
+              </v-card-actions>
+
+            </v-card>
+
+          </v-container>
+        </v-dialog>
       </v-card-actions>
     </v-card>
 
@@ -84,6 +107,7 @@ export default {
   data() {
     return {
       phoneDisplay: window.innerWidth <= 800,
+      showCancelForm: false,
       form: useForm({
         title: null,
         questions: [
@@ -169,8 +193,6 @@ export default {
       this.form.questions.pop();
     },
     createForm() {
-      this.creatingForm = true;
-
       this.form.questions.map(question => {
         if(question.type === '' || question.type === null) {
           question.type = 'open-ended';
@@ -178,8 +200,15 @@ export default {
         return question;
       });
       console.log(this.form.questions);
-      this.form.post(route('forms_store'));
-      // this.clearComponent();
+      this.$refs.form.validate()
+          .then(response => {
+            console.log('response',response);
+            if(response.valid) {
+              this.creatingForm = true;
+              this.form.post(route('forms_store'));
+              this.clearComponent();
+            }
+          })
     },
     clearComponent() {
       this.form.title = null;
@@ -192,13 +221,22 @@ export default {
       ];
       this.typeQuestions = [];
       this.creatingForm = false;
+    },
+    cancelCreateForm() {
+      this.$emit('cancelCreateForm');
+      this.clearComponent();
     }
   },
   watch: {
     'form.errors': {
       handler($new) {
         console.log($new);
-        this.$refs.form.validate();
+        this.$refs.form.validate()
+            .then(response => {
+              if(! response.valid) {
+                this.creatingForm = false;
+              }
+            })
         if($new.form_model) {
           console.log($new.form_model);
         }

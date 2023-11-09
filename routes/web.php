@@ -26,6 +26,9 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
+Route::get('/about', function () {
+    return Inertia::render('about/About');
+})->name('about');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

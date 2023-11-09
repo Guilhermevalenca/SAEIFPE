@@ -10,5 +10,7 @@ Route::controller(\App\Http\Controllers\FinishRegistrationController::class)
 
         Route::post('finishRegistrationStudent','storeStudent')->name('finishRegistration_storeStudent');
 
+        Route::post('finishRegistrationGraduate', 'storeGraduate')->name('finishRegistration_storeGraduate');
+
     });
 

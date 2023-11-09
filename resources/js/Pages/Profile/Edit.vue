@@ -4,7 +4,7 @@
     <Default>
         <v-card>
             <v-card-title class="d-flex justify-center">
-                <div>Profile</div>
+                <div>Perfil</div>
             </v-card-title>
             <v-card-text>
 

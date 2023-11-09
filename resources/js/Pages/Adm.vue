@@ -12,7 +12,7 @@
                     <!-- input apenas pq o maska por misterios não funciona no text-field -->
                     <input type="hidden" v-maska data-maska="###.###.###-##" v-model="form.cpf">
                     <v-text-field v-model="form.cpf" :rules="rules.cpf" label="cpf" placeholder="Digite o cpf da pessoa que torna-la adm" />
-                    <v-btn type="submit">Adicionar</v-btn>
+                    <v-btn color="tertiary" type="submit">Adicionar</v-btn>
                 </v-form>
             </v-card-text>
         </v-card>

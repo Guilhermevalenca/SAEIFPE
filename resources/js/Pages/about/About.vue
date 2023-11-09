@@ -8,17 +8,17 @@
         </v-card-text>
       </v-card>
       <div class="d-flex justify-center ">
-        <v-list width="300" class="perfil ma-5">
+        <v-list width="200" class="perfil ma-5">
           <v-list-item @click="showDescription('Alice Manguinho')" class="d-flex justify-center">
-            <v-avatar size="300">
-              <img src="@/assets/gato.jpg"/>
+            <v-avatar size="120">
+              <img src="@/assets/alice.jpg"/>
             </v-avatar>
           </v-list-item>
           <v-list-item>
 
             <v-list-item-title class="si text-center">Alice Manguinho</v-list-item-title>
             <div>
-              <p class="scrr">{{ description }}</p>
+              <p>{{ description }}</p>
             </div>
           </v-list-item>
         </v-list>
@@ -26,13 +26,13 @@
         <v-list width="200" class="perfil ma-5">
           <v-list-item @click="showDescription('Anderson Emanoel')" class="d-flex justify-center">
             <v-avatar size="120">
-              <v-img class="card" src="https://upload.wikimedia.org/wikipedia/commons/b/b2/A_Girl-JapaneseSubCluture-square.jpg"/>
+              <img src="@/assets/son.jpg"/>
             </v-avatar>
           </v-list-item>
           <v-list-item>
             <v-list-item-title class="si text-center">Anderson Emanoel</v-list-item-title>
             <div>
-              <p class="scrr">{{ description }}</p>
+              <p>{{ description }}</p>
             </div>
           </v-list-item>
         </v-list>
@@ -40,13 +40,13 @@
         <v-list width="200" class="perfil ma-5">
           <v-list-item @click="showDescription('Claudiane Rodrigues')" class="d-flex justify-center">
             <v-avatar size="120">
-              <v-img class="card" src="https://upload.wikimedia.org/wikipedia/commons/b/b2/A_Girl-JapaneseSubCluture-square.jpg"/>
+              <img src="@/assets/clau.jpg"/>
             </v-avatar>
           </v-list-item>
           <v-list-item>
             <v-list-item-title class="si text-center">Claudiane Rodrigues</v-list-item-title>
             <div>
-              <p class="scrr">{{ description }}</p>
+              <p>{{ description }}</p>
             </div>
           </v-list-item>
         </v-list>
@@ -54,13 +54,13 @@
         <v-list width="200" class="perfil ma-5">
           <v-list-item @click="showDescription('Emmily Kathylen')" class="d-flex justify-center">
             <v-avatar size="120">
-              <v-img class="card" src="https://upload.wikimedia.org/wikipedia/commons/b/b2/A_Girl-JapaneseSubCluture-square.jpg"/>
+              <img src="@/assets/emmi.jpg"/>
             </v-avatar>
           </v-list-item>
           <v-list-item>
             <v-list-item-title class="si text-center">Emmily Kathylen</v-list-item-title>
             <div>
-              <p class="scrr">{{ description }}</p>
+              <p>{{ description }}</p>
             </div>
           </v-list-item>
         </v-list>
@@ -68,13 +68,13 @@
         <v-list width="200" class="perfil ma-5">
           <v-list-item @click="showDescription('Guilherme Valença')" class="d-flex justify-center">
             <v-avatar size="120" >
-              <v-img class="card" src="https://upload.wikimedia.org/wikipedia/commons/b/b2/A_Girl-JapaneseSubCluture-square.jpg"/>
+              <img src="@/assets/gui.jpg"/>
             </v-avatar>
           </v-list-item>
           <v-list-item>
             <v-list-item-title class="si text-center">Guilherme Valença</v-list-item-title>
             <div>
-              <p class="scrr">{{ description }}</p>
+              <p>{{ description }}</p>
             </div>
           </v-list-item>
         </v-list>
@@ -153,23 +153,16 @@ export default {
   width: 500px;
   font-size: large;
   padding: 55px;
-  margin: 0 auto;
+  margin: auto;
   text-align: justify;
-  border-color: #3597;
-}
-@media screen and (max-width: 600px) {
-  .odio {
-    width: 90%;
-    font-size: medium;
-    padding: 20px;
-  }
+  line-height: 1.5;
+  font-size: 17.1px; 
 }
 .perfil{
-  border-radius: 50px;
-  margin: 90px;
-  text-align: center;
-  max-width: 500px;
-  height: auto;
+  border-radius: 10px;
+
+  
+ ;
  
 }
 .descricao{
@@ -188,9 +181,7 @@ export default {
     text-align: center;
     width: 520px;
     font-size: medium;
-    padding: 1px;
     margin: auto;
-    height: 600px;
 }
 
 </style>

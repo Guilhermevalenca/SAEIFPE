@@ -24,7 +24,7 @@
                         </div>
 
                         <div class="mt-4">
-                            <v-text-field for="password" label="Password" id="password" v-model="form.password" :append-inner-icon="showIcon.password ? 'mdi-eye' : 'mdi-eye-off'" :type="showIcon.password ? 'text' : 'password'" @click:append-inner="showIcon.password = !showIcon.password" />
+                            <v-text-field for="password" label="Senha" id="password" v-model="form.password" :append-inner-icon="showIcon.password ? 'mdi-eye' : 'mdi-eye-off'" :type="showIcon.password ? 'text' : 'password'" @click:append-inner="showIcon.password = !showIcon.password" />
                             <InputError class="mt-2" :message="form.errors.password" />
                         </div>
 

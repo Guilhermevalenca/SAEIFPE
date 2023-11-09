@@ -24,7 +24,7 @@ export default createVuetify({
                 colors: {
                     primary: '#1867C0', //azul
                     secondary: '#2f9e41', //verde claro
-                    tertiary: '#2f9e41',
+                    tertiary: '#2f9e41', 
                     quaternary: '#cd191e', //vermelho
                     background: '#e1e6d2',
                 },
@@ -34,9 +34,9 @@ export default createVuetify({
                     primary: '#1867C0', //azul
                     surface: '#121212', //preto
                     secondary: '#00420c', //verde escuro
-                    tertiary: '#2f9e41',
-                    quaternary: '#cd191e',
-                    background: '#212121',
+                    tertiary: '#2f9e41', //verde claro
+                    quaternary: '#cd191e', //vermelho
+                    background: '#212121', //preto fosco
                 },
             },
         },

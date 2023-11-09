@@ -1,23 +1,27 @@
 <template>
     <Head title="Finalizando cadastro" />
     <Default>
-        <v-card>
+        <v-container class="w-75 mt-12 pt-12">
+
+          <v-card>
             <v-card-title>
-                <div>Finalizando cadastro</div>
+              <div>Finalizando cadastro</div>
             </v-card-title>
             <v-card-text>
 
-                <v-select :items="typeUser" v-model="type" label="Selecione..." item-title="text" item-value="id" />
+              <v-select :items="typeUser" v-model="type" label="Selecione..." item-title="text" item-value="id" />
 
-                <div v-if="type === 'graduate'">
-                    <UserGraduateRegistration />
-                </div>
-                <div v-if="type === 'student'">
-                    <UserStudentRegistration />
-                </div>
+              <div v-if="type === 'graduate'">
+                <UserGraduateRegistration />
+              </div>
+              <div v-if="type === 'student'">
+                <UserStudentRegistration />
+              </div>
 
             </v-card-text>
-        </v-card>
+          </v-card>
+
+        </v-container>
     </Default>
 </template>
 

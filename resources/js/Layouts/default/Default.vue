@@ -7,7 +7,7 @@
         <v-main class="ma-5">
             <slot />
         </v-main>
-        <v-footer>
+        <v-footer class="bg-transparent">
             <slot name="footer" />
         </v-footer>
     </v-app>

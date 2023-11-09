@@ -2,7 +2,7 @@
     <Head title="Welcome" />
 
     <Default>
-        <div class="min-h-screen d-flex justify-center items-center">
+        <div class="d-flex justify-center items-center mt-12 pa-12">
 
             <v-card :width="phoneDisplay ? '' : '900px'">
                 <v-card-title  :class="['text-center', phoneDisplay ? '' : 'justify-md-center']">

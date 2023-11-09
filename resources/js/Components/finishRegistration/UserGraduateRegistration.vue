@@ -7,26 +7,26 @@
             <v-card class="mb-5">
                 <v-card-text style="font-size: 18px;">Gênero:</v-card-text>
                     <v-card-text>
-                        <v-radio-group v-model="selectedGender"> 
+                        <v-radio-group v-model="form.genre"> 
                             <v-row>
-                                <v-cols cols="4">
+                                <v-col cols="4">
                                     <v-radio 
                                         label="Masculino"
-                                        value="masculino"
+                                        value="Masculino"
                                         ></v-radio>
-                                </v-cols>
-                                <v-cols cols="4">
+                                </v-col>
+                                <v-col cols="4">
                                     <v-radio
                                         label="Feminino"
-                                        value="feminino"
+                                        value="Feminino"
                                         ></v-radio>
-                                </v-cols>
-                                <v-cols cols="4">
+                                </v-col>
+                                <v-col cols="4">
                                     <v-radio
                                     label="Outro"
-                                    value="outro"
+                                    value="Outro"
                                     ></v-radio>
-                                </v-cols>    
+                                </v-col>    
                                     
                             </v-row>
                         </v-radio-group>
@@ -35,7 +35,8 @@
             
             <v-row>
                 <v-col>
-            <v-text-field prepend-inner-icon="mdi-phone-outline" persistent-hint label="Número do Telefone:" hint="(00) 00000-0000" placeholder="Digite o número do telefone" />
+                    <input type="hidden" v-maska data-maska="(##) #####-####" v-model="form.phone">
+            <v-text-field v-model="form.phone" prepend-inner-icon="mdi-phone-outline" persistent-hint label="Número do Telefone:" hint="(00) 00000-0000" placeholder="Digite o número do telefone" />
                 </v-col>
             </v-row>
   
@@ -47,15 +48,17 @@
 
 <script>
 import {useForm} from "@inertiajs/vue3";
+import { vMaska } from 'maska';
 
 export default {
     name: "UserGraduateRegistration",
+    directives: { maska: vMaska },
     data() {
         return {
             form:useForm({
-                email_institution: '',
                 course: '',
-                enrollment: ''
+                genre:'',
+                phone: ''
             }),
             courses: [
                 {
@@ -79,21 +82,12 @@ export default {
                     name: 'TSI - Tecnologia de Sistema para Internet'
                 },
             ],
-            genre: {
-                selected:null,
-                options: [
-                    'Masculino',
-                    'Feminino',
-                    'Outro',
-                    'Prefiro não dizer'
-                ],
-            },
-            selectedGender: '' //Armazena o gênero selecionado
         }
     },
     methods: {
         submit() {
             this.form.post(route('finishRegistration_storeGraduate'));
+           // console.log(this.form.course,this.form.selectedGender,this.form.phone)
         }
     }
     

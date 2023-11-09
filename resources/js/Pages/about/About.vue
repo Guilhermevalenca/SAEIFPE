@@ -1,86 +1,77 @@
 <template>
   <Default >
+    <v-card class="bi">
     <p class="odio"> SAEIFPE é uma aplicação em desenvolvimento pelos alunos do IFPE Campus-Igarassu na matéria de Projeto e Prática. Seu principal objetivo é manter o contato com seus alunos egressos por meio de um ambiente interativo onde todos os concluintes poderão trocar experiências, receber novidades sobre cursos e empregos enviados pelo próprio instituto e entre outras coisas que estão em processo de criação. O instituto Federal deseja continuar mantendo a comunicação com seus estudantes para que a parceria entre aluno e instuição possa ser prolongada e ambos se ajudem, egressos que estão no mercado de trabalho podem contribuir com sua experiência para com os recem formandos, enquanto o instituto poderá fazer um acompanhamento de carreira. Estamos aceitando todos(a) os(as) estudantes, mas se você está próximo da finalização do curso, sua adesão é imprescindível.</p>
-
+</v-card>
     <div class="d-flex justify-space-between">
       <v-list class="perfil">
         <v-list-item @click="showDescription('Alice Manguinho')">
-          <v-list-item-avatar>
             <v-avatar size="120">
               <v-img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/A_Girl-JapaneseSubCluture-square.jpg"/>
             </v-avatar>
-          </v-list-item-avatar>
-          <v-list-item-content>
-            <v-list-item-title>Alice Manguinho</v-list-item-title>
-            <div>
-              <p>{{ description }}</p>
-            </div>
-          </v-list-item-content>
         </v-list-item>
+        <v-list-item>
+            
+            <v-list-item-title class="si">Alice Manguinho</v-list-item-title>
+            <div>
+              <p class="scrr">{{ description }}</p>
+            </div>
+          </v-list-item>
       </v-list>
 
       <v-list class="perfil">
         <v-list-item @click="showDescription('Anderson Emanoel')">
-          <v-list-item-avatar>
             <v-avatar size="120">
-              <v-img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/A_Girl-JapaneseSubCluture-square.jpg"/>
+              <v-img class="card" src="https://upload.wikimedia.org/wikipedia/commons/b/b2/A_Girl-JapaneseSubCluture-square.jpg"/>
             </v-avatar>
-          </v-list-item-avatar>
-          <v-list-item-content>
-            <v-list-item-title>Anderson Emanoel</v-list-item-title>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-title class="si">Anderson Emanoel</v-list-item-title>
             <div>
-              <p>{{ description }}</p>
+              <p class="scrr">{{ description }}</p>
             </div>
-          </v-list-item-content>
-        </v-list-item>
+          </v-list-item>
       </v-list>
-
+      
       <v-list class="perfil">
         <v-list-item @click="showDescription('Claudiane Rodrigues')">
-          <v-list-item-avatar>
             <v-avatar size="120">
-              <v-img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/A_Girl-JapaneseSubCluture-square.jpg"/>
+              <v-img class="card" src="https://upload.wikimedia.org/wikipedia/commons/b/b2/A_Girl-JapaneseSubCluture-square.jpg"/>
             </v-avatar>
-          </v-list-item-avatar>
-          <v-list-item-content>
-            <v-list-item-title>Claudiane Rodrigues</v-list-item-title>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-title class="si">Claudiane Rodrigues</v-list-item-title>
             <div>
-              <p>{{ description }}</p>
+              <p class="scrr">{{ description }}</p>
             </div>
-          </v-list-item-content>
         </v-list-item>
       </v-list>
 
       <v-list class="perfil">
         <v-list-item @click="showDescription('Emmily Kathylen')">
-          <v-list-item-avatar>
             <v-avatar size="120">
-              <v-img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/A_Girl-JapaneseSubCluture-square.jpg"/>
+              <v-img class="card" src="https://upload.wikimedia.org/wikipedia/commons/b/b2/A_Girl-JapaneseSubCluture-square.jpg"/>
             </v-avatar>
-          </v-list-item-avatar>
-          <v-list-item-content>
-            <v-list-item-title>Emmily Kathylen</v-list-item-title>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-title class="si">Emmily Kathylen</v-list-item-title>
             <div>
-              <p>{{ description }}</p>
+              <p class="scrr">{{ description }}</p>
             </div>
-          </v-list-item-content>
         </v-list-item>
       </v-list>
 
       <v-list class="perfil">
         <v-list-item @click="showDescription('Guilherme Valença')">
-          <v-list-item-avatar>
             <v-avatar size="120" >
-              <v-img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/A_Girl-JapaneseSubCluture-square.jpg"/>
+              <v-img class="card" src="https://upload.wikimedia.org/wikipedia/commons/b/b2/A_Girl-JapaneseSubCluture-square.jpg"/>
             </v-avatar>
-          </v-list-item-avatar>
-          <v-list-item-content>
-            <v-list-item-title>Guilherme Valença</v-list-item-title>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-title class="si">Guilherme Valença</v-list-item-title>
             <div>
-              <p>{{ description }}</p>
+              <p class="scrr">{{ description }}</p>
             </div>
-
-          </v-list-item-content>
         </v-list-item>
       </v-list>
     </div>
@@ -120,7 +111,7 @@ export default {
       },
       description: '',
       mostrarMensagem: false,
-      exibirMensagem: '',
+         exibirMensagem: '',
       links: {
         'Alice Manguinho': 'https://github.com/AliceManguinho',
         'Anderson Emanoel': 'https://github.com/Anderson-446',
@@ -172,8 +163,12 @@ export default {
 }
 
 .perfil{
-  max-width: 200px;
-  margin: 50px 10px;
+  border-radius: 50px;
+  margin: 90px;
+  text-align: center;
+  max-width: 500px;
+  height: auto;
+  
 }
 
 .descricao{
@@ -188,6 +183,28 @@ export default {
 
 .description {
   white-space: pre-line;
+}
+
+.card{
+    max-width: 100%;
+    height: auto;
+    
+}
+
+.bi{
+    text-align: center;
+    width: 500px;
+    font-size: medium;
+    padding: 2px;
+    margin: auto;
+
+}
+.si{
+    font-size: 18px;
+}
+
+.scrr{
+    font-size: 14px;
 }
 
 </style>

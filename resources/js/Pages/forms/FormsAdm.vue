@@ -3,7 +3,7 @@
     <Default>
        <v-container class="d-flex justify-center">
 
-         <v-card width="900px">
+         <v-card width="1300px">
            <v-card-title class="d-flex justify-center">Formulários</v-card-title>
            <v-card-actions class="d-flex justify-end">
              <v-btn color="secondary" variant="elevated" @click="isCreateForms = !isCreateForms">{{ isCreateForms ? 'Meus Formulários' : 'Criar formulário' }}</v-btn>

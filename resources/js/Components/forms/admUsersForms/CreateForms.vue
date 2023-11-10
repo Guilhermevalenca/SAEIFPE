@@ -13,7 +13,7 @@
 
         <v-text-field label="Nome" persistent-placeholder placeholder="Dê um nome para o formulário" v-model="form.title" :rules="rules.title" />
 
-        <v-card variant="plain" class="mb-10" v-for="(question, index) in form.questions" :key="index">
+        <v-card variant="text" class="mb-10" v-for="(question, index) in form.questions" :key="index">
 
           <v-card-text>
 

@@ -35,11 +35,11 @@
         <div v-else>
             <v-tooltip text="Opções do usuário">
                 <template #activator="{ props }">
-                    <v-card v-bind="props" variant="elevated" class="mr-2">
-
+                    <v-card v-bind="props" variant="outlined" class="mr-2">
+                        <!-- :variant="(theme.global.name == 'light') ? 'elevated' : 'outlined'" -->
                         <v-menu class="w-full">
                             <template #activator="{ props }">
-                                <v-btn variant="plain" v-bind="props">
+                                <v-btn variant="tonal" v-bind="props">
                                     {{ $page.props.auth.user.name }}
 <!--                                    <template #prepend>-->
 <!--                                        <v-avatar>-->
@@ -49,13 +49,13 @@
                                 </v-btn>
                             </template>
                             <v-list>
-                                <Link :href="route('profile.edit')">
+                                <Link :href="route('profile.edit')" class="w-full" as="button">
                                     <v-list-item to="/">
                                         Perfil
                                     </v-list-item>
                                 </Link>
 
-                                <Link :href="route('logout')" method="post" as="button">
+                                <Link :href="route('logout')" class="w-full" method="post" as="button">
                                     <v-list-item to="/">
                                         Deslogar
                                     </v-list-item>
@@ -89,7 +89,7 @@ export default {
         }
     },
     created() {
-
+        // console.log(this.$page.props.auth.user);
     },
 }
 </script>

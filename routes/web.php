@@ -17,6 +17,9 @@ use Inertia\Inertia;
 |
 */
 
+/*
+A home da pagina se encontra no arquivo web-routes/postsIFPERoutes.php
+
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -26,23 +29,16 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
+A home da pagina se encontra no arquivo web-routes/postsIFPERoutes.php
+
+A home da pagina se encontra no arquivo web-routes/postsIFPERoutes.php
+
+A home da pagina se encontra no arquivo web-routes/postsIFPERoutes.php
+*/
+
 Route::get('/about', function () {
     return Inertia::render('about/About');
 })->name('about');
-
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::get('/testing', function () {
-    return Inertia::render('Testing');
-})->middleware(['auth', 'verified'])->name('testing');
-
-Route::post('/testing', function(Request $request) {
-    return Inertia::render('Testing', [
-        'data' => $request->input()
-    ]);
-})->middleware('auth')->name('testing_create');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -52,12 +48,3 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::controller(\App\Http\Controllers\TestController::class)
-    ->whereNumber('id')
-    ->group(function () {
-
-        Route::get('test','index')->name('test_index');
-        Route::get('test/create','create')->name('test_create');
-        Route::post('test/create','store')->name('test_store');
-
-    });

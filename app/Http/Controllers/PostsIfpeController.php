@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\PostsIfpeResource;
 use App\Models\PostsIfpe;
+use App\Models\UsersGraduates;
+use App\Models\UsersStudying;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class PostsIfpeController extends Controller
 {
@@ -13,7 +17,65 @@ class PostsIfpeController extends Controller
      */
     public function index()
     {
-        return PostsIfpeResource::collection(PostsIfpe::paginate(5));
+        if(Auth::check()) {
+            $user = Auth::user();
+
+            if( is_null($user['role']) ) {
+
+                $pagination = PostsIfpe::with('user')
+                    ->whereNull('send_to')
+                    ->paginate();
+//                dd($pagination);
+
+            } else {
+                if($user['role'] === 'adm') {
+
+                    $pagination = PostsIfpe::with('user')
+                        ->paginate();
+
+                } else {
+
+                    if($user['role'] === 'graduate') {
+
+                        $userGraduate = UsersGraduates::where('users_id','=',$user['id'])->get();
+//                        dd($userGraduate[0]['course']);
+                        $pagination = PostsIfpe::with('user')
+                            ->whereNull('send_to')
+                            ->orWhereJsonContains('send_to',$userGraduate[0]['course'])
+                            ->paginate();
+
+                    } else if($user['role'] === 'student') {
+
+                        $userStudent = UsersStudying::find($user['id']);
+                        $pagination = PostsIfpe::with('user')
+                            ->whereNull('send_to')
+                            ->orWhereJsonContains('send_to',$userStudent['course'])
+                            ->paginate();
+
+                    }
+
+                }
+
+            }
+
+        } else {
+
+            $pagination = PostsIfpe::with('user')
+                ->whereNull('send_to')
+                ->paginate();
+
+        }
+        $data = PostsIfpeResource::collection($pagination->items());
+        $last_page = $pagination->lastPage();
+        return Inertia::render('posts/PostsIfpe', [
+            'data' => $data,
+            'last_page' => $last_page
+        ]);
+    }
+
+    public function create()
+    {
+        return Inertia::render('posts/CreatePosts');
     }
 
     /**
@@ -24,16 +86,24 @@ class PostsIfpeController extends Controller
         $validation = $request->validate([
             'title' => ['required','string'],
             'content' => ['required','string'],
-            'send_to' => 'required'
+            'send_to' => ['nullable', 'array', 'in:ADM,IPI,LOG,TGQ,TSI']
+        ],[
+            'title.required' => 'Você precisa adicionar um titulo',
+            'title.string' => 'Você adicionou um valor inválido',
+            'content.required' => 'É necessário adicionar algum conteúdo',
+            'content.string' => 'Você adicionou um valor inválido',
+            'send_to.array' => 'Valor inválido',
+            'send_to.in' => 'Você adicionou um valor errado'
         ]);
+
         if($validation) {
-            $validation['user_id'] = $request->user()->id;
+            $validation['user_id'] = Auth::id();
             $validation['send_to'] = json_encode($validation['send_to']);
             try {
                 PostsIfpe::create($validation);
-                return response(['success' => true],201);
+                return redirect()->route('home');
             } catch (\Error $e) {
-                return response(['error' => $e],400);
+                dd($e);
             }
 
         }

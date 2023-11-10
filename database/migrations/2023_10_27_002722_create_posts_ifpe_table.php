@@ -15,11 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('content');
-            $table->json('send_to');
+            $table->json('send_to')->default(null);
             $table->foreignId('user_id')
                 ->references('id')
                 ->on('users');
-            $table->boolean('visible')->default(true);
+            $table->boolean('visible')
+                ->default(true);
             $table->timestamps();
         });
     }

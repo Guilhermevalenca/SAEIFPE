@@ -10,7 +10,7 @@ class UsersGraduates extends Model
 {
     use HasFactory;
     protected $table = 'users_graduates';
-    protected $fillable = ['course', 'genre', 'phone', 'users_id'];
+    protected $fillable = ['id','course', 'genre', 'phone', 'users_id'];
 
     public function users(): BelongsTo
     {

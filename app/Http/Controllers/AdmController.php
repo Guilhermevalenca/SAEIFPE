@@ -21,13 +21,18 @@ class AdmController extends Controller
         DB::beginTransaction();
 
         try {
-            $user = User::where('cpf','=',$request->input('cpf'));
-            $user->update([
-                'role' => 'adm'
-            ]);
-            UsersAdm::create([
-                'users_id' => $user['id']
-            ]);
+            $user = User::where('cpf','=',$request->input('cpf'))->get();
+
+            if($user->count() > 0) {
+                User::where('id', '=' , $user[0]['id'])->update([
+                    'role' => 'adm'
+                ]);
+                UsersAdm::create([
+                    'users_id' => $user[0]['id']
+                ]);
+            } else {
+                return back()->withErrors(['cpf' => 'cpf invalido ou não existe']);
+            }
         } catch (\Error $e) {
             DB::rollBack();
 

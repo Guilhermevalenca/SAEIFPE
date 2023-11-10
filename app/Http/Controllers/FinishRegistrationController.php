@@ -30,8 +30,7 @@ class FinishRegistrationController extends Controller
 
             UsersStudying::create($validation);
 
-            $user = User::find(Auth::id());
-            $user->update([
+            User::where('id', '=' , Auth::id())->update([
                 'role' => 'student'
             ]);
 
@@ -59,8 +58,7 @@ class FinishRegistrationController extends Controller
 
             UsersGraduates::create($validation);
 
-            $user = User::find(Auth::id());
-            $user->update([
+            User::where('id', '=' , Auth::id())->update([
                 'role' => 'graduate'
             ]);
         } catch (\Error $e) {

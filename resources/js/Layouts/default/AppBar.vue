@@ -41,11 +41,11 @@
                             <template #activator="{ props }">
                                 <v-btn variant="plain" v-bind="props">
                                     {{ $page.props.auth.user.name }}
-                                    <template #prepend>
-                                        <v-avatar>
-                                            <img src="@/assets/gato.jpg" alt="gato">
-                                        </v-avatar>
-                                    </template>
+<!--                                    <template #prepend>-->
+<!--                                        <v-avatar>-->
+<!--                                            <img src="@/assets/gato.jpg" alt="gato">-->
+<!--                                        </v-avatar>-->
+<!--                                    </template>-->
                                 </v-btn>
                             </template>
                             <v-list>

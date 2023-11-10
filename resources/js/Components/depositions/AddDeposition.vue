@@ -8,8 +8,8 @@
             </v-container>
         </v-card-text>
     <div class="d-flex justify-end ma-0 pa-2">
-        <v-btn @click="cancelAddDeposition( this.$emit('cancel'))" color="tertiary" variant="outlined">Cancelar</v-btn>
-        <v-btn @submit.prevent="submitDeposition()" class="mb-6 d-flex justify-end" color="tertiary" variant="flat">Enviar</v-btn>
+        <v-btn @click="$emit('cancel')" color="tertiary" variant="outlined">Cancelar</v-btn>
+        <v-btn type="submit" class="mb-6 d-flex justify-end" color="tertiary" variant="flat">Enviar</v-btn>
     </div>
     </v-form>
 </v-card>

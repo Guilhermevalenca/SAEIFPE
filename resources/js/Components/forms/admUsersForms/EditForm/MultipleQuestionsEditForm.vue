@@ -26,13 +26,15 @@
                 <template #activator="{ props }">
                     <v-btn v-bind="props" variant="outlined" :disabled="options.length === 1" @click="removeOption()">
                         <v-icon icon="mdi-minus"/>
+                        Remover a ultima opção
                     </v-btn>
                 </template>
             </v-tooltip>
             <v-tooltip text="Adicionar uma nova alternativa">
                 <template #activator="{ props }">
-                    <v-btn v-bind="props" variant="outlined" color="primary" @click="addOption()">
+                    <v-btn v-bind="props" variant="elevated" color="primary" @click="addOption()">
                         <v-icon icon="mdi-plus"/>
+                        Adicionar nova opção
                     </v-btn>
                 </template>
             </v-tooltip>

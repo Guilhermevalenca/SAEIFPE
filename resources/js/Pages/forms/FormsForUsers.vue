@@ -1,16 +1,20 @@
 <template>
     <Head title="Formulário" />
     <Default>
-        <v-card>
+        <v-container class="d-flex justify-center">
 
-            <v-card-title class="d-flex justify-center">Formulários</v-card-title>
-            <v-card-subtitle>Aqui estão alguns formulários que podem ser respondidos</v-card-subtitle>
+            <v-card width="900px">
 
-            <v-card-text>
-                <ShowFormsForUsers :data="data" />
-            </v-card-text>
+                <v-card-title class="d-flex justify-center">Formulários</v-card-title>
+                <v-card-subtitle>Aqui estão alguns formulários que podem ser respondidos</v-card-subtitle>
 
-        </v-card>
+                <v-card-text>
+                    <ShowFormsForUsers :data="data" />
+                </v-card-text>
+
+            </v-card>
+
+        </v-container>
     </Default>
 </template>
 

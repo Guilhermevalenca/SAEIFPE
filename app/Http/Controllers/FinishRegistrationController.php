@@ -68,7 +68,7 @@ class FinishRegistrationController extends Controller
         }
 
         DB::commit();
-        
+
         return redirect()->route('home');
     }
 }

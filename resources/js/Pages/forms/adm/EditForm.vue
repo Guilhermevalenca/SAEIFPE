@@ -1,80 +1,102 @@
 <template>
     <Head title="Editando formulário" />
-    <Default>
-        <v-form @submit.prevent="submit()">
+    <Default class="d-flex justify-center">
+        <v-container>
+
             <v-card>
 
                 <v-card-title class="text-center">
                     <div>Edite seu formulário</div>
                 </v-card-title>
 
-                <v-card-text class="w-75">
+                <v-form @submit.prevent="submit()" class="d-flex justify-center">
 
-                    <v-text-field label="Nome" v-model="form.title" />
+                    <v-container class="w-75">
 
-                    <v-card v-for="(question, index) in form.questions">
+                        <v-text-field label="Nome" v-model="form.title" />
 
-                        <v-card-text>
+                        <v-card variant="text" v-for="(question, index) in form.questions">
 
-                            <v-card variant="outlined">
+                            <v-card-text>
 
-                                <div class="ma-2">
+                                <v-card variant="outlined">
 
-                                    <v-card-title class="ma-2">
-                                        <div>Pergunta {{ index + 1 }}</div>
-                                    </v-card-title>
+                                    <div class="ma-2">
 
-                                    <v-card-text>
+                                        <v-card-title class="ma-2">
+                                            <div>Pergunta {{ index + 1 }}</div>
+                                        </v-card-title>
 
-                                        <v-select placeholder="Escolha qual o tipo de pergunta..." :items="typeQuestions" item-title="name" item-value="id" v-model="question.type" />
+                                        <v-card-text>
 
-                                        <v-textarea v-model="question.ask" rows="1" max-rows="10" auto-grow persistent-placeholder placeholder="Escreva a pergunta aqui" hint="Exemplo de titulo" />
+                                            <v-select placeholder="Escolha qual o tipo de pergunta..." :items="typeQuestions" item-title="name" item-value="id" v-model="question.type" />
+
+                                            <v-textarea v-model="question.ask" rows="1" max-rows="10" auto-grow persistent-placeholder placeholder="Escreva a pergunta aqui" hint="Exemplo de titulo" />
+
+                                        </v-card-text>
+
+                                    </div>
+
+                                    <v-card-text class="ma-2">
+
+                                        <div v-if="question.type === 'unique'">
+                                            <UniqueQuestionsEditForm :options="question.options" @send_data="(value) => question.options = value" />
+                                        </div>
+                                        <div v-if="question.type === 'multiple'">
+                                            <MultipleQuestionsEditForm :options="question.options" @send_data="(value) => question.options = value" />
+                                        </div>
 
                                     </v-card-text>
 
-                                </div>
+                                </v-card>
 
-                                <v-card-text class="ma-2">
+                            </v-card-text>
 
-                                    <div v-if="question.type === 'unique'">
-                                        <UniqueQuestionsEditForm :options="question.options" @send_data="(value) => question.options = value" />
-                                    </div>
-                                    <div v-if="question.type === 'multiple'">
-                                        <MultipleQuestionsEditForm :options="question.options" @send_data="(value) => question.options = value" />
-                                    </div>
+                        </v-card>
 
-                                </v-card-text>
+                        <v-card-actions class="d-flex justify-end">
+                            <v-tooltip text="Remover ultima questão">
+                                <template #activator="{ props}">
+                                    <v-btn v-bind="props" variant="outlined" :disabled="form.questions.length === 1" @click="removeQuestion()">
+                                        <v-icon icon="mdi-minus" />
+                                        Remover a ultima questão
+                                    </v-btn>
+                                </template>
+                            </v-tooltip>
+                            <v-tooltip text="Adicionar nova questão">
+                                <template #activator="{ props }">
+                                    <v-btn v-bind="props" variant="elevated" color="secondary" @click="addQuestion()">
+                                        <v-icon icon="mdi-plus" />
+                                        Adicionar questão
+                                    </v-btn>
+                                </template>
+                            </v-tooltip>
+                        </v-card-actions>
 
-                            </v-card>
+                        <v-card-actions class="d-flex justify-end mt-12">
+                            <v-btn color="error" variant="tonal" @click="cancelEditForm = true">
+                                cancelar
+                            </v-btn>
+                            <v-btn type="submit" variant="elevated" color="secondary">Editar formulário</v-btn>
+                        </v-card-actions>
 
+                    </v-container>
+                </v-form>
+                <v-dialog width="600px" v-model="cancelEditForm">
+                    <v-card>
+                        <v-card-title>Desejar cancelar?</v-card-title>
+                        <v-card-text>
+                            <div>Ao cancelar você perderá qualquer edição que tenha sido realizada</div>
                         </v-card-text>
-
+                        <v-card-actions>
+                            <v-btn @click="cancelEditForm = false">Fechar</v-btn>
+                            <v-btn color="error" variant="tonal" @click="myFormsCreated()">OK!!!</v-btn>
+                        </v-card-actions>
                     </v-card>
-
-                    <v-card-actions class="d-flex justify-end">
-                        <v-tooltip text="Remover ultima questão">
-                            <template #activator="{ props}">
-                                <v-btn v-bind="props" variant="outlined" :disabled="form.questions.length === 1" @click="removeQuestion()">
-                                    <v-icon icon="mdi-minus" />
-                                </v-btn>
-                            </template>
-                        </v-tooltip>
-                        <v-tooltip text="Adicionar nova questão">
-                            <template #activator="{ props }">
-                                <v-btn v-bind="props" variant="outlined" color="secondary" @click="addQuestion()">
-                                    <v-icon icon="mdi-plus" />
-                                </v-btn>
-                            </template>
-                        </v-tooltip>
-                    </v-card-actions>
-
-                </v-card-text>
-
-                <v-card-actions class="d-flex justify-end">
-                    <v-btn type="submit" variant="outlined" color="secondary">Editar formulário</v-btn>
-                </v-card-actions>
+                </v-dialog>
             </v-card>
-        </v-form>
+
+        </v-container>
     </Default>
 </template>
 
@@ -85,6 +107,7 @@ import UniqueQuestionsEditForm from "@/Components/forms/admUsersForms/EditForm/U
 import MultipleQuestionsEditForm from "@/Components/forms/admUsersForms/EditForm/MultipleQuestionsEditForm.vue";
 export default {
     name: "EditForm",
+    computed: {},
     components: {Head, MultipleQuestionsEditForm, UniqueQuestionsEditForm, Default},
     props: {
         data: Object
@@ -109,7 +132,8 @@ export default {
                     id: 'multiple',
                     name: 'Múltipla escolhas'
                 }
-            ]
+            ],
+            cancelEditForm: false
         }
     },
     created() {
@@ -142,6 +166,9 @@ export default {
         removeQuestion() {
             this.form.questions.pop();
         },
+        myFormsCreated() {
+            window.history.back();
+        }
     }
 }
 </script>

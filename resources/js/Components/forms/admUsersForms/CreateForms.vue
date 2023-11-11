@@ -245,7 +245,7 @@ export default {
     }
   },
   mounted() {
-    console.log(this.form);
+    // console.log(this.form);
   }
 }
 

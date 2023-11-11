@@ -22,6 +22,15 @@
 
                             <v-autocomplete label="Para quem deseja enviar" persistent-hint hint="Caso não preencha este campo, todos os usuários poderão ver está postagem." :items="courses" item-title="name" item-value="id" v-model="form.send_to" :rules="rules.send_to" multiple chips />
 
+                            <v-card variant="outlined" class="mt-8">
+                                <v-checkbox-btn v-model="selectForm">
+                                    <template #label>
+                                        <div>Deseja adicionar um formulário?</div>
+                                    </template>
+                                </v-checkbox-btn>
+                                <SelectForm v-if="selectForm" />
+                            </v-card>
+
                             <v-card-actions class="d-flex justify-end">
                                 <v-btn color="secondary" type="submit" variant="elevated">Criar postagem</v-btn>
                             </v-card-actions>
@@ -37,11 +46,11 @@
 <script>
 import Default from "@/Layouts/default/Default.vue";
 import { Head, Link, useForm } from '@inertiajs/vue3';
-import {ru} from "vuetify/locale";
+import SelectForm from "@/Components/posts/createPosts/SelectForm.vue";
 
 export default {
     name: "CreatePosts",
-    components: {Default, Head, Link},
+    components: {Default, Head, Link, SelectForm},
     data() {
         return {
             form: useForm({
@@ -108,7 +117,8 @@ export default {
                         return true
                     }
                 ]
-            }
+            },
+            selectForm: false
         }
     },
     methods: {

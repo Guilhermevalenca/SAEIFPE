@@ -119,4 +119,16 @@ class FormController extends Controller
         ]);
         return redirect()->route('forms_index');
     }
+    public function searchByTitle(Request $request, Form $form)
+    {
+        $validate = $request->validate([
+           'title' => ['required', 'string']
+        ], [
+            'title.required' => 'É necessário Digitar o titulo do formulário',
+            'title.string' => 'É necessário digitar um valor valido para pesquisa'
+        ]);
+        $title = $validate['title'];
+        $data = $form->where('title','LIKE',$title . '%')->get();
+        return back()->with(['result' => $data]);
+    }
 }

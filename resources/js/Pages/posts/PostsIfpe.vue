@@ -6,12 +6,14 @@
                 <v-card-title class="d-flex justify-center">
                     <div>Postagens do IFPE Campus Igarassu</div>
                 </v-card-title>
-                <v-card-actions class="d-flex justify-end">
+                <v-card-actions v-if="$page.props.auth.user && $page.props.auth.user.role === 'adm'" class="d-flex justify-end">
                     <Link :href="route('posts_create')">
                         <v-btn color="secondary" variant="elevated">Criar nova postagem</v-btn>
                     </Link>
                 </v-card-actions>
                 <v-card-text>
+
+                    <RenderingPosts v-for="(post, index) in data.data" :key="index" :data="post" />
 
                 </v-card-text>
             </v-card>
@@ -21,9 +23,10 @@
 <script>
 import Default from "@/Layouts/default/Default.vue";
 import { Head, Link } from '@inertiajs/vue3';
+import RenderingPosts from "@/Components/posts/RenderingPosts.vue";
 export default {
     name: "PostsIfpe",
-    components: {Default, Head, Link},
+    components: {RenderingPosts, Default, Head, Link},
     props: {
         data: Object,
         last_page: Number

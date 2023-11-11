@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         // ]);
         //name //email // password
         $userAdm = \App\Models\User::factory()->create([
-            'name' => 'usuário administrador',
+            'name' => 'Usuário Administrador',
             'cpf' => '12345678910',
             'email' => 'adm@gmail.com',
             'password' => 'ipi123',
@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             'users_id' => $userAdm->id
         ]);
         $userStudying = \App\Models\User::factory()->create([
-            'name' => 'usuário estudante',
+            'name' => 'Usuário Estudante',
             'cpf' => '12345678911',
             'email' => 'student@gmail.com',
             'password' => 'ipi123',
@@ -44,7 +44,7 @@ class DatabaseSeeder extends Seeder
         ]);
         //cpf phone phoneIsWhatsApp genre course
         $userGraduates1 = \App\Models\User::factory()->create([
-            'name' => 'usuário egresso',
+            'name' => 'Usuário Egresso',
             'cpf' => '12345678912',
             'email' => 'graduate@gmail.com',
             'password' => 'ipi123',
@@ -58,7 +58,7 @@ class DatabaseSeeder extends Seeder
             'course' => 'IPI'
         ]);
         $userGraduates2 = \App\Models\User::factory()->create([
-            'name' => 'usuário egresso2',
+            'name' => 'Usuário Egresso2',
             'cpf' => '12345678913',
             'email' => 'graduate2@gmail.com',
             'password' => 'ipi123',

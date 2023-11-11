@@ -28,7 +28,7 @@
                                         <div>Deseja adicionar um formulário?</div>
                                     </template>
                                 </v-checkbox-btn>
-                                <SelectForm v-if="selectForm" />
+                                <SelectForm v-if="selectForm" :result="result" />
                             </v-card>
 
                             <v-card-actions class="d-flex justify-end">
@@ -51,6 +51,9 @@ import SelectForm from "@/Components/posts/createPosts/SelectForm.vue";
 export default {
     name: "CreatePosts",
     components: {Default, Head, Link, SelectForm},
+    props: {
+        result: Object
+    },
     data() {
         return {
             form: useForm({

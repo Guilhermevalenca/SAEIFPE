@@ -2,11 +2,11 @@
     <v-container>
         <div>
             <v-btn @click="displayForms = true">Selecione um formulário</v-btn>
-
         </div>
         <v-dialog v-model="displayForms">
             <v-container>
                 <v-card>
+                    <v-card-title v-if="result">{{ result }}</v-card-title>
                     <v-card-title>
                         <div>Selecione o formulário</div>
                     </v-card-title>
@@ -41,6 +41,9 @@ import {useForm} from "@inertiajs/vue3";
 
 export default {
     name: "SelectCourse",
+    props: {
+        result: Object
+    },
     data() {
         return {
             displayForms: false,

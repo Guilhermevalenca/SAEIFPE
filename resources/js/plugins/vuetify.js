@@ -18,13 +18,13 @@ export default createVuetify({
     components,
     directives,
     theme: {
-        defaultTheme: 'light',
+        defaultTheme: localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light',
         themes: {
             light: {
                 colors: {
                     primary: '#1867C0', //azul
                     secondary: '#2f9e41', //verde claro
-                    tertiary: '#2f9e41', 
+                    tertiary: '#2f9e41',
                     quaternary: '#cd191e', //vermelho
                     background: '#e1e6d2',
                 },

@@ -19,7 +19,7 @@
       </v-container>
     </v-card-text>
 
-    <v-card-actions class="d-flex justify-end">
+    <v-card-actions :class="$phoneDisplay ? '' : 'd-flex justify-end'">
       <v-tooltip text="Remover ultima alternativa">
         <template #activator="{ props }">
           <v-btn v-bind="props" variant="outlined" :disabled="options.length === 1" @click="removeOption()">

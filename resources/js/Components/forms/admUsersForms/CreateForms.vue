@@ -1,7 +1,7 @@
 <template>
   <v-form ref="form" @submit.prevent="createForm()">
 
-    <v-card width="900px">
+    <v-card :width="$phoneDisplay ? '' : '900px'">
 
       <v-card-title class="text-center">
         <div>Construa seu formulário</div>

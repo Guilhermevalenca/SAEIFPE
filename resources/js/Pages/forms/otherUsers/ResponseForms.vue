@@ -36,7 +36,7 @@
 
             </v-card>
         </v-container>
-        <v-dialog width="900px" v-model="dialogResponseSuccess">
+        <v-dialog :width="$phoneDisplay ? '' : '900px'" v-model="dialogResponseSuccess">
 
             <v-card class="w-75">
                 <v-card-title class="d-flex justify-center">

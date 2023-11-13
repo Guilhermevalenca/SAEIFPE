@@ -8,7 +8,7 @@
                 </v-card-text>
             </v-card>
             <div class="d-flex justify-center ">
-                <v-list width="200" class="perfil ma-5">
+                <v-list :width="$phoneDisplay ? '': '200'" class="perfil ma-5">
                     <v-list-item @click="showDescription('Alice Manguinho')" class="d-flex justify-center">
                         <v-avatar size="120">
                             <img src="@/assets/alice.jpg"/>
@@ -23,7 +23,7 @@
                     </v-list-item>
                 </v-list>
 
-                <v-list width="200" class="perfil ma-5">
+                <v-list :width="$phoneDisplay ? '' : '200'" class="perfil ma-5">
                     <v-list-item @click="showDescription('Anderson Emanoel')" class="d-flex justify-center">
                         <v-avatar size="120">
                             <img src="@/assets/son.jpg"/>
@@ -37,7 +37,7 @@
                     </v-list-item>
                 </v-list>
 
-                <v-list width="200" class="perfil ma-5">
+                <v-list :width="$phoneDisplay ? '' : '200'" class="perfil ma-5">
                     <v-list-item @click="showDescription('Claudiane Rodrigues')" class="d-flex justify-center">
                         <v-avatar size="120">
                             <img src="@/assets/clau.jpg"/>
@@ -51,7 +51,7 @@
                     </v-list-item>
                 </v-list>
 
-                <v-list width="200" class="perfil ma-5">
+                <v-list :width="$phoneDisplay ? '' : '200'" class="perfil ma-5">
                     <v-list-item @click="showDescription('Emmily Kathylen')" class="d-flex justify-center">
                         <v-avatar size="120">
                             <img src="@/assets/emmi.jpg"/>
@@ -65,7 +65,7 @@
                     </v-list-item>
                 </v-list>
 
-                <v-list width="200" class="perfil ma-5">
+                <v-list :width="$phoneDisplay ? '' : '200'" class="perfil ma-5">
                     <v-list-item @click="showDescription('Guilherme Valença')" class="d-flex justify-center">
                         <v-avatar size="120" >
                             <img src="@/assets/gui.jpg"/>
@@ -82,7 +82,7 @@
         </v-container>
         <v-dialog v-model="mostrarMensagem">
             <v-container class="d-flex justify-center">
-                <v-card class="descricao text-center" width="400px">
+                <v-card class="descricao text-center" :width="$phoneDisplay ? '' : '400px'">
 
                     <div class="ma-5">
 

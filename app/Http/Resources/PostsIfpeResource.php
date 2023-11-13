@@ -14,6 +14,13 @@ class PostsIfpeResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+//        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'content' => $this->content,
+            'send_to' => json_decode($this->send_to),
+            'user' => $this->user->name
+        ];
     }
 }

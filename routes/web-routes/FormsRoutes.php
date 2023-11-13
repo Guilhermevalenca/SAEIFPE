@@ -30,6 +30,9 @@ Route::controller(FormController::class)
             ->name('forms_createSendEmail');
         Route::post('forms/sendEmail/{id}','sendEmail')
             ->name('forms_sendEmail');
+
+        Route::post('forms/searchByTitle','searchByTitle')
+            ->name('searchForFormsInCreatePosts');
     });
 
 Route::controller(FormResponseController::class)

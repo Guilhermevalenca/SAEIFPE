@@ -30,11 +30,37 @@ class FinishRegistrationController extends Controller
 
             UsersStudying::create($validation);
 
-            $user = User::find(Auth::id());
-            $user->update([
+            User::where('id', '=' , Auth::id())->update([
                 'role' => 'student'
             ]);
 
+        } catch (\Error $e) {
+            DB::rollBack();
+        }
+
+        DB::commit();
+
+        return redirect()->route('home');
+    }
+    public function storeGraduate(Request $request)
+    {
+        $validation = $request->validate([
+            'course' => ['required', 'string'],
+            'genre' => ['required', 'string'],
+            'phone' => ['required', 'string'],
+        ]);
+        $validation['users_id'] = Auth::id();
+        //dd($validation);
+        //return;
+        DB::beginTransaction();
+
+        try {
+
+            UsersGraduates::create($validation);
+
+            User::where('id', '=' , Auth::id())->update([
+                'role' => 'graduate'
+            ]);
         } catch (\Error $e) {
             DB::rollBack();
         }

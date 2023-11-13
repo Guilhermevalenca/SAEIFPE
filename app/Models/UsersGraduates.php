@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class UsersGraduates extends Model
 {
     use HasFactory;
+    protected $table = 'users_graduates';
+    protected $fillable = ['id','course', 'genre', 'phone', 'users_id'];
 
     public function users(): BelongsTo
     {

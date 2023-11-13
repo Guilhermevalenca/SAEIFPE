@@ -1,66 +1,74 @@
 <template>
     <Default>
+        <Head title="Register" />
 
-        <GuestLayout>
+        <v-container class="d-flex justify-center mt-12 pa-12">
 
-            <Head title="Register" />
+            <v-card class="w-50 sm:max-w-md" variant="flat">
 
-            <v-card-title>Registrar</v-card-title>
-            <v-form @submit.prevent="submit()">
-                <div>
+                <v-card-title>Registrar</v-card-title>
+                <v-form @submit.prevent="submit()">
+                    <v-container>
 
-                    <v-text-field id="name" for="name" label="Nome" type="text" class="mt-1 block w-full" v-model="form.name" :rules="rules.name" required
-                    />
+                        <div>
 
-                    <InputError class="mt-2" :message="form.errors.name" />
-                </div>
+                            <v-text-field id="name" for="name" label="Nome" type="text" class="mt-1 block w-full" v-model="form.name" :rules="rules.name" required
+                            />
 
-                <div class="mt-4">
+                            <InputError class="mt-2" :message="form.errors.name" />
+                        </div>
 
-                    <v-text-field id="email" for="email" label="Email" type="email" class="mt-1 block w-full" v-model="form.email" :rules="rules.email" required
-                    />
+                        <div class="mt-4">
 
-                    <InputError class="mt-2" :message="form.errors.email" />
-                </div>
+                            <v-text-field id="email" for="email" label="Email" type="email" class="mt-1 block w-full" v-model="form.email" :rules="rules.email" required
+                            />
 
-                <div class="mt-4">
+                            <InputError class="mt-2" :message="form.errors.email" />
+                        </div>
 
-                  <input type="hidden" v-maska data-maska="###.###.###-##" v-model="form.cpf">
-                    <v-text-field for="cpf" label="cpf" id="cpf" type="text" v-model="form.cpf" :rules="rules.cpf" />
-                    <InputError class="mt-2" :message="form.errors.cpf" />
+                        <div class="mt-4">
 
-                </div>
+                            <input type="hidden" v-maska data-maska="###.###.###-##" v-model="form.cpf">
+                            <v-text-field for="cpf" label="cpf" id="cpf" type="text" v-model="form.cpf" :rules="rules.cpf" />
+                            <InputError class="mt-2" :message="form.errors.cpf" />
 
-                <div class="mt-4">
+                        </div>
 
-                    <v-text-field id="password" for="password" label="Senha" class="mt-1 block w-full" v-model="form.password" :rules="rules.password" required
-                                  :append-inner-icon="showIcon.password ? 'mdi-eye' : 'mdi-eye-off'" :type="showIcon.password ? 'text' : 'password'" @click:append-inner="showIcon.password = !showIcon.password" />
+                        <div class="mt-4">
 
-                    <InputError class="mt-2" :message="form.errors.password" />
-                </div>
+                            <v-text-field id="password" for="password" label="Senha" class="mt-1 block w-full" v-model="form.password" :rules="rules.password" required
+                                          :append-inner-icon="showIcon.password ? 'mdi-eye' : 'mdi-eye-off'" :type="showIcon.password ? 'text' : 'password'" @click:append-inner="showIcon.password = !showIcon.password" />
 
-                <div class="mt-4">
+                            <InputError class="mt-2" :message="form.errors.password" />
+                        </div>
 
-                    <v-text-field id="password_confirmation" for="password_confirmation" label="Confirme sua senha" class="mt-1 block w-full" v-model="form.password_confirmation" :rules="rules.confirmPassword" required
-                                  :append-inner-icon="showIcon.confirmPassword ? 'mdi-eye' : 'mdi-eye-off'" :type="showIcon.confirmPassword ? 'text' : 'password'" @click:append-inner="showIcon.confirmPassword = !showIcon.confirmPassword" />
+                        <div class="mt-4">
 
-                    <InputError class="mt-2" :message="form.errors.password_confirmation" />
-                </div>
+                            <v-text-field id="password_confirmation" for="password_confirmation" label="Confirme sua senha" class="mt-1 block w-full" v-model="form.password_confirmation" :rules="rules.confirmPassword" required
+                                          :append-inner-icon="showIcon.confirmPassword ? 'mdi-eye' : 'mdi-eye-off'" :type="showIcon.confirmPassword ? 'text' : 'password'" @click:append-inner="showIcon.confirmPassword = !showIcon.confirmPassword" />
 
-                <div class="flex items-center justify-end mt-4">
-                    <Link
-                        :href="route('login')"
-                        class="underline text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >
-                        Já registrado?
-                    </Link>
+                            <InputError class="mt-2" :message="form.errors.password_confirmation" />
+                        </div>
 
-                    <v-btn color="secondary" type="submit" class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                        Registrar
-                    </v-btn>
-                </div>
-            </v-form>
-        </GuestLayout>
+                        <div class="flex items-center justify-end mt-4">
+                            <Link
+                                    :href="route('login')"
+                                    class="underline text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            >
+                                Já registrado?
+                            </Link>
+
+                            <v-btn color="tertiary" type="submit" class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                                Registrar
+                            </v-btn>
+                        </div>
+
+                    </v-container>
+                </v-form>
+
+            </v-card>
+
+        </v-container>
 
     </Default>
 </template>

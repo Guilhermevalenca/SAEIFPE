@@ -1,55 +1,64 @@
 <template>
     <Head title="Responder formulário" />
     <Default>
-        <v-card>
-            <v-card-title class="d-flex justify-center">
-                <div>{{ form.title }}</div>
-            </v-card-title>
-            <v-card-text>
+        <v-container>
 
-                <v-select class="w-50" label="Escolha o tipo de grafico" :items="graphTypes" item-title="name" item-value="id" v-model="currentGraphType" />
+            <v-card>
+                <v-card-title class="d-flex justify-center">
+                    <div>{{ form.title }}</div>
+                </v-card-title>
 
-                <v-card class="w-25 ma-5" v-for="(question, index) in questions" :key="index">
+                <v-card-actions class="d-flex justify-end">
+                    <v-btn @click="myFormsCreated()" variant="elevated" color="secondary">Meus Formulários</v-btn>
+                </v-card-actions>
 
-                    <div v-if="question[0].type !== 'open-ended'">
+                <v-card-text>
 
-                        <v-card variant="outlined">
+                    <v-select class="w-50" label="Escolha o tipo de grafico" :items="graphTypes" item-title="name" item-value="id" v-model="currentGraphType" />
 
-                            <v-card-title>
-                                <div>{{ question[0].ask }}</div>
-                            </v-card-title>
+                    <v-card class="w-25 ma-5" v-for="(question, index) in questions" :key="index">
 
-                            <v-card-text>
+                        <div v-if="question[0].type !== 'open-ended'">
 
-                                <ResponseAssembleGraphs :question="question" :index="index" :type="currentGraphType" />
+                            <v-card variant="outlined">
 
-                            </v-card-text>
+                                <v-card-title>
+                                    <div>{{ question[0].ask }}</div>
+                                </v-card-title>
 
-                        </v-card>
+                                <v-card-text>
 
-                    </div>
-                    <div v-else>
+                                    <ResponseAssembleGraphs :question="question" :index="index" :type="currentGraphType" />
 
-                        <v-card variant="outlined">
+                                </v-card-text>
 
-                            <v-card-title>
-                                <div>{{ question[0].ask }}</div>
-                            </v-card-title>
+                            </v-card>
 
-                            <v-card-text>
+                        </div>
+                        <div v-else>
 
-                                <ResponseOpenEnded :questions="question" />
+                            <v-card variant="outlined">
 
-                            </v-card-text>
+                                <v-card-title>
+                                    <div>{{ question[0].ask }}</div>
+                                </v-card-title>
 
-                        </v-card>
+                                <v-card-text>
 
-                    </div>
+                                    <ResponseOpenEnded :questions="question" />
 
-                </v-card>
+                                </v-card-text>
 
-            </v-card-text>
-        </v-card>
+                            </v-card>
+
+                        </div>
+
+                    </v-card>
+
+                </v-card-text>
+            </v-card>
+
+        </v-container>
     </Default>
 </template>
 
@@ -103,7 +112,9 @@ export default {
         }
     },
     methods: {
-
+        myFormsCreated() {
+            window.history.back();
+        }
     },
     created() {
         this.form = this.data.form.data;

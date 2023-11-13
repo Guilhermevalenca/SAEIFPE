@@ -2,15 +2,17 @@
     <v-app-bar color="secondary" variant="flat">
         <v-app-bar-nav-icon @click="$emit('drawer')" />
 
-        <v-app-bar-title>
-<!--            <v-avatar>-->
-<!--                <v-img src="https://ingresso.ifpe.edu.br/static/img/ifpe-logo.svg" cover />-->
-<!--            </v-avatar>-->
-            <v-avatar>
-                <img ref="ola" src="../../assets/ifpe_logo_white.svg" >
-            </v-avatar>
-            IFPE Campus Igarassu
-        </v-app-bar-title>
+            <v-app-bar-title>
+                <Link :href="route('home')">
+                    <!--            <v-avatar>-->
+                    <!--                <v-img src="https://ingresso.ifpe.edu.br/static/img/ifpe-logo.svg" cover />-->
+                    <!--            </v-avatar>-->
+                    <v-avatar>
+                        <img ref="ola" src="../../assets/ifpe_logo_white.svg" >
+                    </v-avatar>
+                    IFPE Campus Igarassu
+                </Link>
+            </v-app-bar-title>
 
         <Notification />
 
@@ -33,32 +35,32 @@
         <div v-else>
             <v-tooltip text="Opções do usuário">
                 <template #activator="{ props }">
-                    <v-card v-bind="props" variant="flat">
-
-                        <v-menu>
+                    <v-card v-bind="props" variant="outlined" class="mr-2">
+                        <!-- :variant="(theme.global.name == 'light') ? 'elevated' : 'outlined'" -->
+                        <v-menu class="w-full">
                             <template #activator="{ props }">
-                                <v-btn variant="plain" v-bind="props">
+                                <v-btn variant="tonal" v-bind="props">
                                     {{ $page.props.auth.user.name }}
-<!--                                    <v-avatar>-->
-<!--                                        <v-img src="https://thumbs.dreamstime.com/z/s%C3%ADmbolo-de-perfil-masculino-inteligente-retrato-estilo-desenho-animado-m%C3%ADnimo-166146967.jpg" />-->
-<!--                                    </v-avatar>-->
+<!--                                    <template #prepend>-->
+<!--                                        <v-avatar>-->
+<!--                                            <img src="@/assets/gato.jpg" alt="gato">-->
+<!--                                        </v-avatar>-->
+<!--                                    </template>-->
                                 </v-btn>
                             </template>
-                            <v-card>
-                                <v-list>
-                                    <Link :href="route('profile.edit')">
-                                        <v-list-item to="/">
-                                            Perfil
-                                        </v-list-item>
-                                    </Link>
+                            <v-list>
+                                <Link :href="route('profile.edit')" class="w-full" as="button">
+                                    <v-list-item to="/">
+                                        Perfil
+                                    </v-list-item>
+                                </Link>
 
-                                    <Link :href="route('logout')" method="post" as="button">
-                                        <v-list-item to="/">
-                                            Deslogar
-                                        </v-list-item>
-                                    </Link>
-                                </v-list>
-                            </v-card>
+                                <Link :href="route('logout')" class="w-full" method="post" as="button">
+                                    <v-list-item to="/">
+                                        Deslogar
+                                    </v-list-item>
+                                </Link>
+                            </v-list>
                         </v-menu>
 
                     </v-card>
@@ -87,7 +89,7 @@ export default {
         }
     },
     created() {
-
+        // console.log(this.$page.props.auth.user);
     },
 }
 </script>

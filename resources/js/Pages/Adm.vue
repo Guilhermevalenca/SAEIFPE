@@ -12,20 +12,35 @@
                     <!-- input apenas pq o maska por misterios não funciona no text-field -->
                     <input type="hidden" v-maska data-maska="###.###.###-##" v-model="form.cpf">
                     <v-text-field v-model="form.cpf" :rules="rules.cpf" label="cpf" placeholder="Digite o cpf da pessoa que torna-la adm" />
-                    <v-btn type="submit">Adicionar</v-btn>
+                    <v-btn :loading="loading" color="tertiary" type="submit">Adicionar</v-btn>
                 </v-form>
             </v-card-text>
         </v-card>
+        <v-dialog v-model="showSuccess">
+            <v-container class="d-flex justify-center">
+                <v-card class="w-50">
+                    <v-card-title>Usuário adm adicionando com sucesso</v-card-title>
+                    <v-card-actions class="d-flex justify-end mt-5">
+                        <v-btn>
+                            <Link :href="route('home')">
+                                Voltar pro inicio
+                            </Link>
+                        </v-btn>
+                        <v-btn variant="tonal" color="secondary" @click="showSuccess = false">Adicionar novo adm</v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-container>
+        </v-dialog>
     </Default>
 </template>
 
 <script>
 import Default from "@/Layouts/default/Default.vue";
-import {Head, useForm} from '@inertiajs/vue3';
+import {Head, useForm, Link} from '@inertiajs/vue3';
 import { vMaska } from 'maska';
 export default {
     name: "Adm",
-    components: {Default, Head},
+    components: {Default, Head, Link},
     directives: { maska: vMaska },
     data() {
         return {
@@ -43,11 +58,14 @@ export default {
                         } return true
                     }
                 ]
-            }
+            },
+            loading: false,
+            showSuccess: false
         }
     },
     methods: {
         submit() {
+            this.loading = true;
             const modifyCPF = (value) => {
                 if(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(value)) {
                     return value.replace(/[^0-9]/g, "");
@@ -62,7 +80,18 @@ export default {
     watch: {
         'form.errors': {
             handler() {
-              this.$refs.form.validate();
+                this.$refs.form.validate();
+                this.loading = false;
+            },
+            deep: true
+        },
+        form: {
+            handler($new) {
+                if($new.wasSuccessful) {
+                    $new.reset();
+                    this.showSuccess = true;
+                    this.loading = false;
+                }
             },
             deep: true
         }

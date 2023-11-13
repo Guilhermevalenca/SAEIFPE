@@ -1,5 +1,5 @@
 <template>
-    <v-card class="ma-2" variant="outlined" width="900px" v-for="(form, index) in forms" :key="index" :color="form.responded ? 'secondary' : ''">
+    <v-card class="ma-2" variant="outlined" v-for="(form, index) in forms" :key="index" :color="form.responded ? 'secondary' : ''">
         <v-row>
             <v-col cols="8">
                 <v-card-title>

@@ -1,39 +1,41 @@
 <template>
     <Head title="Responder formulário" />
     <Default>
-        <v-card class="w-75">
-            <v-card-title>{{ form.title }}</v-card-title>
-            <v-card-text>
-                <v-card v-for="(question, index) in questions" :key="index">
+        <v-container>
+            <v-card class="w-75">x
+                <v-card-title>{{ form.title }}</v-card-title>
+                <v-card-text>
+                    <v-card v-for="(question, index) in questions" :key="index">
 
-                    <v-card-text>
-                        <v-card variant="outlined">
+                        <v-card-text>
+                            <v-card variant="outlined">
 
-                            <v-card-title class="mb-2" >{{ index + 1 }} - {{ question.ask }}</v-card-title>
+                                <v-card-title class="mb-2" >{{ index + 1 }} - {{ question.ask }}</v-card-title>
 
-                            <div class="ma-2" v-if="question.type === 'open-ended'">
-                                <v-text-field v-model="responses[index].response_text" placeholder="resposta..." />
-                            </div>
+                                <div class="ma-2" v-if="question.type === 'open-ended'">
+                                    <v-text-field v-model="responses[index].response_text" placeholder="resposta..." />
+                                </div>
 
-                            <div class="ma-2" v-if="question.type === 'unique'">
-                                <UniqueQuestionsResponse  :options="question.options" @send_response="(value) => responses[index].response_choose.push(value)" />
-                            </div>
+                                <div class="ma-2" v-if="question.type === 'unique'">
+                                    <UniqueQuestionsResponse  :options="question.options" @send_response="(value) => responses[index].response_choose.push(value)" />
+                                </div>
 
-                            <div class="ma-2" v-if="question.type === 'multiple'">
-                                <MultipleQuestionsResponse  :options="question.options" @send_response="(value) => responses[index].response_choose = value" />
-                            </div>
+                                <div class="ma-2" v-if="question.type === 'multiple'">
+                                    <MultipleQuestionsResponse  :options="question.options" @send_response="(value) => responses[index].response_choose = value" />
+                                </div>
 
-                        </v-card>
-                    </v-card-text>
+                            </v-card>
+                        </v-card-text>
 
-                </v-card>
-            </v-card-text>
+                    </v-card>
+                </v-card-text>
 
-            <v-card-actions class="d-flex justify-end">
-                <v-btn @click="sendResponses()" variant="tonal" color="secondary">Responder</v-btn>
-            </v-card-actions>
+                <v-card-actions class="d-flex justify-end">
+                    <v-btn @click="sendResponses()" variant="tonal" color="secondary">Responder</v-btn>
+                </v-card-actions>
 
-        </v-card>
+            </v-card>
+        </v-container>
         <v-dialog width="900px" v-model="dialogResponseSuccess">
 
             <v-card class="w-75">

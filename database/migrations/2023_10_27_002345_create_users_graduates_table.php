@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('users_graduates', function (Blueprint $table) {
             $table->id();
-            $table->string('phone')->nullable();
+            $table->string('phone')->nullable()->unique();
             $table->boolean('phoneIsWhatsApp')->default(false);
             $table->string('genre')->nullable();
 

@@ -36,10 +36,6 @@ A home da pagina se encontra no arquivo web-routes/postsIFPERoutes.php
 A home da pagina se encontra no arquivo web-routes/postsIFPERoutes.php
 */
 
-Route::get('/about', function () {
-    return Inertia::render('about/About');
-})->name('about');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

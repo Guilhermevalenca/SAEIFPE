@@ -86,6 +86,7 @@ export default {
     methods: {
         alterTheme() {
             this.theme.global.name = this.theme.global.current.dark ? 'light' : 'dark';
+            localStorage.setItem('theme',this.theme.global.name);
         }
     },
     created() {

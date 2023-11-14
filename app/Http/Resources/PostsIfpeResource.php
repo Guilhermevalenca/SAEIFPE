@@ -20,7 +20,8 @@ class PostsIfpeResource extends JsonResource
             'title' => $this->title,
             'content' => $this->content,
             'send_to' => json_decode($this->send_to),
-            'user' => $this->user->name
+            'user' => $this->user->name,
+            'form_id' => $this->form_id
         ];
     }
 }

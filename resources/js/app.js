@@ -22,6 +22,7 @@ createInertiaApp({
         app.use(Vuetify);
         app.use(plugin);
         app.use(ZiggyVue, Ziggy);
+        app.config.globalProperties.$phoneDisplay = window.innerWidth <= 800;
         app.mount(el);
         return app;
     },

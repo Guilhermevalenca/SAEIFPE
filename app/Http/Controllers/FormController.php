@@ -129,6 +129,6 @@ class FormController extends Controller
         ]);
         $title = $validate['title'];
         $data = $form->where('title','LIKE',$title . '%')->get();
-        return back()->with(['result' => $data]);
+        return response($data, 200);
     }
 }

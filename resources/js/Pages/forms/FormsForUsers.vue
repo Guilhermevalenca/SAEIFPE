@@ -3,7 +3,7 @@
     <Default>
         <v-container class="d-flex justify-center">
 
-            <v-card width="900px">
+            <v-card :width="$phoneDisplay ? '' : '900px'">
 
                 <v-card-title class="d-flex justify-center">Formulários</v-card-title>
                 <v-card-subtitle>Aqui estão alguns formulários que podem ser respondidos</v-card-subtitle>

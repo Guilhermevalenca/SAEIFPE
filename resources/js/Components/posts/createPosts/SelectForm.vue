@@ -6,7 +6,6 @@
         <v-dialog v-model="displayForms">
             <v-container>
                 <v-card>
-                    <v-card-title v-if="result">{{ result }}</v-card-title>
                     <v-card-title>
                         <div>Selecione o formulário</div>
                     </v-card-title>
@@ -20,15 +19,31 @@
                                 </v-text-field>
                             </v-container>
                         </v-form>
-                        <v-card variant="text" :loading="searching">
-                            <v-card-title>
-                                <div>Formulário selecionado: {{  }}</div>
-                            </v-card-title>
-                            <v-row v-for="(form, index) in data" :key="index">
-                                <v-btn class="tonal">{{ form.title }}</v-btn>
+                        <v-card variant="text" class="mb-2" :loading="searching">
+                            <v-row>
+                                <v-card-title>
+                                    <div>Formulário selecionado: {{ selectedForm ? selectedForm.title : '' }}</div>
+                                </v-card-title>
+                            </v-row>
+                            <v-row>
+                                <v-col v-for="(form, index) in data" :key="index">
+                                    <v-btn @click="selectedForm = form" class="tonal">{{ form.title }}</v-btn>
+                                </v-col>
                             </v-row>
                         </v-card>
                     </v-card-text>
+                    <v-card-actions class="d-flex justify-end">
+                        <v-tooltip text="Este botão não salvará seu formulário selecionado">
+                            <template #activator="{ props }">
+                                <v-btn v-bind="props" @click="displayForms = false">cancelar</v-btn>
+                            </template>
+                        </v-tooltip>
+                        <v-tooltip text="Clique para salvar formulário selecionado">
+                            <template #activator="{ props }">
+                                <v-btn v-bind="props" variant="elevated" color="secondary" @click="confirmed()">OK</v-btn>
+                            </template>
+                        </v-tooltip>
+                    </v-card-actions>
                 </v-card>
             </v-container>
         </v-dialog>
@@ -41,9 +56,6 @@ import {useForm} from "@inertiajs/vue3";
 
 export default {
     name: "SelectCourse",
-    props: {
-        result: Object
-    },
     data() {
         return {
             displayForms: false,
@@ -52,6 +64,7 @@ export default {
             }),
             searching: false,
             data: null,
+            selectedForm: null,
             rules: [
                 value => {
                     return value ? true : 'É necessário digitar um valor'
@@ -67,18 +80,18 @@ export default {
     },
     methods: {
         submit() {
-            this.form.post(route('searchForFormsInCreatePosts'), {
-                onSuccess: response => console.log(response),
-            });
-            // axios.post(route('searchForFormsInCreatePosts'), {
-            //     title: $new
-            // })
-            //     .then(response => {
-            //         console.log(response.data);
-            //         // this.data = response.data;
-            //     })
-            //     .catch(error => console.log(error));
-
+            axios.post(route('searchForFormsInCreatePosts'), {
+                title: this.form.title
+            })
+                .then(response => {
+                    console.log(response.data);
+                    this.data = response.data;
+                })
+                .catch(error => console.log(error));
+        },
+        confirmed() {
+            this.$emit('form',this.selectedForm);
+            this.displayForms = false;
         }
     },
     watch: {

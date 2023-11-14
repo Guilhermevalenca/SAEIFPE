@@ -2,16 +2,16 @@
     <Head title="Enviar email" />
     <Default>
         <div class="d-flex justify-center">
-            <v-card width="900px">
+            <v-card :width="$phoneDisplay ? '' : '900px'">
                 <v-card-title class="text-center">
                     <div>Monte seu email</div>
                 </v-card-title>
-                <v-dialog width="900px" v-model="isDialogOpen">
+                <v-dialog :width="$phoneDisplay ? '' : '900px'" v-model="isDialogOpen">
                     <TemplateSendFormByEmail :title="form.title" :text="form.text" :form_id="data.id" />
                 </v-dialog>
                 <v-form ref="form" @submit.prevent="submit()" class="d-flex justify-center ma-10">
 
-                    <v-card variant="outlined" width="900px">
+                    <v-card variant="outlined" :width="$phoneDisplay ? '' : '900px'">
 
                         <div class="d-flex justify-space-between">
                             <v-card-title>
@@ -58,7 +58,7 @@
                     </v-card>
 
                 </v-form>
-                <v-dialog v-model="showCancel" width="600px">
+                <v-dialog v-model="showCancel" :width="$phoneDisplay ? '' : '600px'">
                     <v-container>
                         <v-card>
                             <v-card-title>Deseja cancelar:</v-card-title>
@@ -74,7 +74,7 @@
                 </v-dialog>
                 <v-dialog v-model="sendEmailSuccess" persistent>
                     <v-container class="d-flex justify-center">
-                        <v-card width="600px">
+                        <v-card :width="$phoneDisplay ? '' : '600px'">
                             <v-card-title>Email enviado</v-card-title>
                             <v-card-subtitle>Email enviado com sucesso, para todos os destinatarios</v-card-subtitle>
                             <v-card-actions class="d-flex justify-space-between ma-2">

@@ -15,17 +15,16 @@ class PostsIfpeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(PostsIfpe $postsIfpe)
     {
         if(Auth::check()) {
             $user = Auth::user();
 
             if( is_null($user['role']) ) {
-
-                $pagination = PostsIfpe::with('user')
-                    ->whereNull('send_to')
+                $pagination = $postsIfpe
+                    ->whereJsonContains('send_to','all')
+                    ->with('user')
                     ->paginate();
-//                dd($pagination);
 
             } else {
                 if($user['role'] === 'adm') {
@@ -40,7 +39,7 @@ class PostsIfpeController extends Controller
                         $userGraduate = UsersGraduates::where('users_id','=',$user['id'])->get();
 //                        dd($userGraduate[0]['course']);
                         $pagination = PostsIfpe::with('user')
-                            ->whereNull('send_to')
+                            ->whereJsonContains('send_to','all')
                             ->orWhereJsonContains('send_to',$userGraduate[0]['course'])
                             ->paginate();
 
@@ -48,7 +47,7 @@ class PostsIfpeController extends Controller
 
                         $userStudent = UsersStudying::find($user['id']);
                         $pagination = PostsIfpe::with('user')
-                            ->whereNull('send_to')
+                            ->whereJsonContains('send_to','all')
                             ->orWhereJsonContains('send_to',$userStudent['course'])
                             ->paginate();
 
@@ -61,7 +60,7 @@ class PostsIfpeController extends Controller
         } else {
 
             $pagination = PostsIfpe::with('user')
-                ->whereNull('send_to')
+                ->whereJsonContains('send_to','all')
                 ->paginate();
 
         }
@@ -86,19 +85,21 @@ class PostsIfpeController extends Controller
         $validation = $request->validate([
             'title' => ['required','string'],
             'content' => ['required','string'],
-            'send_to' => ['nullable', 'array', 'in:ADM,IPI,LOG,TGQ,TSI']
+            'send_to' => ['nullable', 'array', 'in:ADM,IPI,LOG,TGQ,TSI'],
+            'form_id' => ['nullable', 'exists:forms,id']
         ],[
             'title.required' => 'Você precisa adicionar um titulo',
             'title.string' => 'Você adicionou um valor inválido',
             'content.required' => 'É necessário adicionar algum conteúdo',
             'content.string' => 'Você adicionou um valor inválido',
             'send_to.array' => 'Valor inválido',
-            'send_to.in' => 'Você adicionou um valor errado'
+            'send_to.in' => 'Você adicionou um valor errado',
+            'form_id.exists' => 'Você precisa adicionar um formulário valido'
         ]);
 
         if($validation) {
             $validation['user_id'] = Auth::id();
-            $validation['send_to'] = json_encode($validation['send_to']);
+            $validation['send_to'] = is_null($validation['send_to']) ? json_encode(['all']) : json_encode($validation['send_to']);
             try {
                 PostsIfpe::create($validation);
                 return redirect()->route('home');

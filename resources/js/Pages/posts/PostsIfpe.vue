@@ -12,8 +12,9 @@
                     </Link>
                 </v-card-actions>
                 <v-card-text>
-
-                    <RenderingPosts v-for="(post, index) in data.data" :key="index" :data="post" />
+                    <v-expansion-panels class="w-75" variant="inset" multiple>
+                        <RenderingPosts v-for="(post, index) in data.data" :key="index" :data="post" />
+                    </v-expansion-panels>
 
                 </v-card-text>
             </v-card>

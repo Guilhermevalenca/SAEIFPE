@@ -28,7 +28,10 @@
                                         <div>Deseja adicionar um formulário?</div>
                                     </template>
                                 </v-checkbox-btn>
-                                <SelectForm v-if="selectForm" :result="result" />
+                                <SelectForm v-if="selectForm" @form="v => {form.form_id = v.id; selectedFormTitle = v.title}" />
+                                <v-card-text>
+                                    <span v-if="form.form_id && selectForm">Este foi o formulário que você selecionou: <strong>{{ selectedFormTitle }}</strong></span>
+                                </v-card-text>
                             </v-card>
 
                             <v-card-actions class="d-flex justify-end">
@@ -51,16 +54,15 @@ import SelectForm from "@/Components/posts/createPosts/SelectForm.vue";
 export default {
     name: "CreatePosts",
     components: {Default, Head, Link, SelectForm},
-    props: {
-        result: Object
-    },
     data() {
         return {
             form: useForm({
                 title: null,
                 content: null,
-                send_to: null
+                send_to: null,
+                form_id: null
             }),
+            selectedFormTitle: null,
             courses: [
                 {
                     id: 'ADM',
@@ -129,6 +131,10 @@ export default {
             this.$refs.form.validate()
                 .then(response => {
                     if(response.valid) {
+                        if(!this.selectForm) {
+                            this.form.reset('form_id');
+                            this.selectedFormTitle = null;
+                        }
                         this.form.post(route('posts_store'));
                     }
                 })

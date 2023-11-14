@@ -23,6 +23,9 @@ export default {
         return {
             isDrawerOpen: false
         }
+    },
+    created() {
+
     }
 }
 </script>

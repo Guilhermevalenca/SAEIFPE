@@ -2,8 +2,11 @@
     <Head title="Responder formulário" />
     <Default>
         <v-container>
-            <v-card class="w-75">x
-                <v-card-title>{{ form.title }}</v-card-title>
+            <v-card class="w-75">
+                <div class="d-flex justify-space-between">
+                    <v-card-title>{{ form.title }}</v-card-title>
+                    <v-btn @click="returnPage()" color="primary">Voltar</v-btn>
+                </div>
                 <v-card-text>
                     <v-card v-for="(question, index) in questions" :key="index">
 
@@ -87,6 +90,9 @@ export default {
             const submit = useForm(data);
             submit.post(route('forms_store_response'));
         },
+        returnPage() {
+            window.history.back();
+        }
     },
     created() {
         console.log(this.data);

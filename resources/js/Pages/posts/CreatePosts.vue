@@ -18,11 +18,11 @@
 
                             <v-text-field label="Titulo" placeholder="Titulo da postagem" v-model="form.title" :rules="rules.title" />
 
-                            <v-textarea label="Conteúdo" placeholder="Escreva o conteúdo da postagem" v-model="form.content" :rules="rules.content" />
+                            <v-textarea label="Conteúdo" variant="outlined" placeholder="Escreva o conteúdo da postagem" v-model="form.content" :rules="rules.content" />
 
-                            <v-autocomplete label="Para quem deseja enviar" persistent-hint hint="Caso não preencha este campo, todos os usuários poderão ver está postagem." :items="courses" item-title="name" item-value="id" v-model="form.send_to" :rules="rules.send_to" multiple chips />
+                            <v-autocomplete variant="outlined" label="Para quem deseja enviar" persistent-hint hint="Caso não preencha este campo, todos os usuários poderão ver está postagem." :items="courses" item-title="name" item-value="id" v-model="form.send_to" :rules="rules.send_to" multiple chips />
 
-                            <v-card variant="outlined" class="mt-8">
+                            <v-card :variant="selectForm ? 'outlined' : 'flat'" class="mt-8">
                                 <v-checkbox-btn v-model="selectForm">
                                     <template #label>
                                         <div>Deseja adicionar um formulário?</div>

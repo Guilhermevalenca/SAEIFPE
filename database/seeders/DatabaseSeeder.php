@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Form;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -71,5 +72,6 @@ class DatabaseSeeder extends Seeder
             'genre' => 'Masculino',
             'course' => 'IPI'
         ]);
+        Form::factory(30)->create();
     }
 }

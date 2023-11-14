@@ -1,8 +1,8 @@
 <template>
     <Head title="Postagens" />
     <Default>
-        <v-container>
-            <v-card>
+        <v-container class="d-flex justify-center">
+            <v-card class="w-75">
                 <v-card-title class="d-flex justify-center">
                     <div>Postagens do IFPE Campus Igarassu</div>
                 </v-card-title>

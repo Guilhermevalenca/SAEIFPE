@@ -1,35 +1,38 @@
 <template>
     <Head title="Formulário" />
     <Default>
-       <v-container :class="$phoneDisplay ? '' : 'd-flex justify-center'">
+        <v-container :class="$phoneDisplay ? '' : 'd-flex justify-center'">
 
-         <v-card :width="$phoneDisplay ? '' : '1300px'">
-           <v-card-title class="d-flex justify-center">Formulários</v-card-title>
-           <v-card-actions class="d-flex justify-end">
-             <v-btn color="secondary" variant="elevated" @click="isCreateForms = !isCreateForms">{{ isCreateForms ? 'Meus Formulários' : 'Criar formulário' }}</v-btn>
-           </v-card-actions>
-           <v-card-text>
-             <div v-if="! isCreateForms" :class="$phoneDisplay ? '' : 'd-flex justify-center'">
-               <MyFormsCreated :data="data" />
-             </div>
-             <div v-else :class="$phoneDisplay ? '' : 'd-flex justify-center'">
-               <CreateForms @created_form_success="isCreateForms = false" @cancelCreateForm="isCreateForms = false" />
-             </div>
-           </v-card-text>
-         </v-card>
+            <v-card :class="[$phoneDisplay ? '' : 'w-50']">
+                <v-card-title class="d-flex justify-center mt-4">Formulários</v-card-title>
+                <v-card-actions class="d-flex justify-end mr-8 mt-3">
+                    <v-btn color="secondary" variant="elevated" @click="isCreateForms = !isCreateForms">{{ isCreateForms ? 'Meus Formulários' : 'Criar formulário' }}</v-btn>
+                </v-card-actions>
+                <v-card-text>
+                    <div v-if="! isCreateForms">
+                        <v-container class="d-flex justify-start">
+                            <v-card class="w-50" variant="flat">
+                                <v-pagination v-model="page.current" :length="page.all" rounded="circle" />
+                            </v-card>
+                        </v-container>
 
-       </v-container>
-      <template #footer v-if="! isCreateForms">
-        <v-card class="d-flex justify-center">
-          <v-row>
-            <v-col />
-            <v-col>
-              <v-pagination v-model="page.current" :length="page.all" rounded="circle" />
-            </v-col>
-            <v-col />
-          </v-row>
-        </v-card>
-      </template>
+                        <MyFormsCreated :data="data" />
+
+                        <v-container class="d-flex justify-end">
+                            <v-card class="w-50" variant="flat">
+                                <v-pagination v-model="page.current" :length="page.all" rounded="circle" />
+                            </v-card>
+                        </v-container>
+                    </div>
+                    <div v-else :class="$phoneDisplay ? '' : 'd-flex justify-center'">
+                        <CreateForms @created_form_success="isCreateForms = false" @cancelCreateForm="isCreateForms = false" />
+                    </div>
+                </v-card-text>
+            </v-card>
+
+        </v-container>
+        <template #footer v-if="! isCreateForms">
+        </template>
     </Default>
 </template>
 

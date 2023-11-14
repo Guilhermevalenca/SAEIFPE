@@ -128,7 +128,7 @@ class FormController extends Controller
             'title.string' => 'É necessário digitar um valor valido para pesquisa'
         ]);
         $title = $validate['title'];
-        $data = $form->where('title','LIKE',$title . '%')->get();
+        $data = $form->where('title','LIKE',$title . '%')->paginate();
         return response($data, 200);
     }
 }

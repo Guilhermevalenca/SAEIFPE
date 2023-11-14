@@ -3,7 +3,7 @@
         <div>
             <v-btn @click="displayForms = true">Selecione um formulário</v-btn>
         </div>
-        <v-dialog v-model="displayForms">
+        <v-dialog v-model="displayForms" class="w-50">
             <v-container>
                 <v-card>
                     <v-card-title>
@@ -28,6 +28,11 @@
                             <v-row>
                                 <v-col v-for="(form, index) in data" :key="index">
                                     <v-btn @click="selectedForm = form" class="tonal">{{ form.title }}</v-btn>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col>
+                                    <v-pagination v-if="page.all !== 1" v-model="page.current" :length="page.all" rounded="circle" />
                                 </v-col>
                             </v-row>
                         </v-card>
@@ -75,17 +80,21 @@ export default {
                     }
                     return true;
                 }
-            ]
+            ],
+            page: {
+                current: 1,
+                all: 1
+            }
         }
     },
     methods: {
         submit() {
-            axios.post(route('searchForFormsInCreatePosts'), {
+            axios.post(route('searchForFormsInCreatePosts') + `?page=${this.page.current}`, {
                 title: this.form.title
             })
                 .then(response => {
-                    console.log(response.data);
-                    this.data = response.data;
+                    this.data = response.data.data;
+                    this.page.all = response.data.last_page;
                 })
                 .catch(error => console.log(error));
         },
@@ -95,12 +104,15 @@ export default {
         }
     },
     watch: {
-        // form: {
-        //     handler($new) {
-        //         console.log($new);
-        //     },
-        //     deep: true
-        // },
+        page: {
+            handler($new) {
+                if($new.current <= 0) {
+                    this.page.current = 1;
+                }
+                this.submit();
+            },
+            deep: true
+        }
     }
 }
 </script>

@@ -47,7 +47,7 @@ const closeModal = () => {
               sua conta, baixe quaisquer dados ou informações que você deseja reter.
             </p>
         </header>
-        <DangerButton @click="confirmUserDeletion">Delete Account</DangerButton>
+        <DangerButton @click="confirmUserDeletion">Deletar conta</DangerButton>
 
         <v-dialog width="900px" v-model="confirmingUserDeletion" @close="closeModal">
             <v-card>

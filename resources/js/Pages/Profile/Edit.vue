@@ -12,6 +12,18 @@
                     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
 
                         <v-container class="d-flex justify-center">
+                            <v-card variant="flat" class="w-50">
+
+                              <div class="p-4 sm:p-8 shadow sm:rounded-lg default-card-border">
+
+                                <AddProfile />
+
+                              </div>
+
+                            </v-card>
+                        </v-container>
+
+                        <v-container class="d-flex justify-center">
 
                             <v-card variant="flat" class="w-50">
                                 <div class="p-4 sm:p-8 shadow sm:rounded-lg default-card-border">
@@ -58,10 +70,11 @@ import UpdatePasswordForm from './Partials/UpdatePasswordForm.vue';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm.vue';
 import { Head } from '@inertiajs/vue3';
 import Default from "@/Layouts/default/Default.vue";
+import AddProfile from "@/Pages/Profile/Partials/AddProfile.vue";
 
 export default {
     name: 'Edit',
-    components: {Default, DeleteUserForm, UpdatePasswordForm, UpdateProfileInformationForm, Head},
+    components: {AddProfile, Default, DeleteUserForm, UpdatePasswordForm, UpdateProfileInformationForm, Head},
     props: {
         mustVerifyEmail: {
             type: Boolean,

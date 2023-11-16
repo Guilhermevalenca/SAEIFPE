@@ -23,14 +23,12 @@ class PostsIfpeController extends Controller
             if( is_null($user['role']) ) {
                 $pagination = $postsIfpe
                     ->whereJsonContains('send_to','all')
-                    ->with('user')
-                    ->paginate();
+                    ->with('user');
 
             } else {
                 if($user['role'] === 'adm') {
 
-                    $pagination = PostsIfpe::with('user')
-                        ->paginate();
+                    $pagination = PostsIfpe::with('user');
 
                 } else {
 
@@ -40,16 +38,14 @@ class PostsIfpeController extends Controller
 //                        dd($userGraduate[0]['course']);
                         $pagination = PostsIfpe::with('user')
                             ->whereJsonContains('send_to','all')
-                            ->orWhereJsonContains('send_to',$userGraduate[0]['course'])
-                            ->paginate();
+                            ->orWhereJsonContains('send_to',$userGraduate[0]['course']);
 
                     } else if($user['role'] === 'student') {
 
                         $userStudent = UsersStudying::find($user['id']);
                         $pagination = PostsIfpe::with('user')
                             ->whereJsonContains('send_to','all')
-                            ->orWhereJsonContains('send_to',$userStudent['course'])
-                            ->paginate();
+                            ->orWhereJsonContains('send_to',$userStudent['course']);
 
                     }
 
@@ -60,15 +56,17 @@ class PostsIfpeController extends Controller
         } else {
 
             $pagination = PostsIfpe::with('user')
-                ->whereJsonContains('send_to','all')
-                ->paginate();
+                ->whereJsonContains('send_to','all');
 
         }
+        $pagination = $pagination->paginate(10);
         $data = PostsIfpeResource::collection($pagination->items());
         $last_page = $pagination->lastPage();
+        $current_page = $pagination->currentPage();
         return Inertia::render('posts/PostsIfpe', [
             'data' => $data,
-            'last_page' => $last_page
+            'last_page' => $last_page,
+            'current_page' => $current_page
         ]);
     }
 

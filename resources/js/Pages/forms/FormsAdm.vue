@@ -3,7 +3,7 @@
     <Default>
         <v-container :class="$phoneDisplay ? '' : 'd-flex justify-center'">
 
-            <v-card :class="[$phoneDisplay ? '' : 'w-50']">
+            <v-card :class="[$phoneDisplay ? '' : $sreenMediumDisplay ? 'w-75' : 'w-50']">
                 <v-card-title class="d-flex justify-center mt-4">Formulários</v-card-title>
                 <v-card-actions class="d-flex justify-end mr-8 mt-3">
                     <v-btn color="secondary" variant="elevated" @click="isCreateForms = !isCreateForms">{{ isCreateForms ? 'Meus Formulários' : 'Criar formulário' }}</v-btn>
@@ -72,7 +72,7 @@ export default {
         }
     },
     created() {
-        console.log(this.$phoneDisplay);
+
     },
 }
 </script>

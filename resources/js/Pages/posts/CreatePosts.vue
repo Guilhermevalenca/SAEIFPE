@@ -35,6 +35,7 @@
                             </v-card>
 
                             <v-card-actions class="d-flex justify-end">
+                                <v-btn @click="historyBack()">Cancelar</v-btn>
                                 <v-btn color="secondary" type="submit" variant="elevated">Criar postagem</v-btn>
                             </v-card-actions>
 
@@ -138,6 +139,9 @@ export default {
                         this.form.post(route('posts_store'));
                     }
                 })
+        },
+        historyBack() {
+            window.history.back();
         }
     },
     watch: {

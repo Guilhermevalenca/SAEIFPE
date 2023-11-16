@@ -21,6 +21,7 @@ return new class extends Migration
                 ->references('id')
                 ->on('users');
             $table->foreignId('form_id')
+                ->nullable()
                 ->references('id')
                 ->on('forms');
             $table->boolean('visible')

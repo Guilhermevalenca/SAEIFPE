@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Depositions;
 use App\Models\Form;
+use App\Models\PostsIfpe;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -73,5 +75,7 @@ class DatabaseSeeder extends Seeder
             'course' => 'IPI'
         ]);
         Form::factory(30)->create();
+        Depositions::factory(1)->create();
+        PostsIfpe::factory(30)->create();
     }
 }

@@ -6,15 +6,17 @@
     <v-container>
     </v-container>
     <v-main class="d-flex align-center flex-column justify-center pb-16">
-        <v-container class="d-flex justify-end w-75">
-        <v-btn @click="showFormAdd() ; changeTheButton()">{{ changeButton }}</v-btn>
-        </v-container>
-        <v-container class="d-flex justify-center" v-if="showAddDeposition">
-        <AddDeposition @send="showDepositions()" @cancel="showDepositions()"/>
-        </v-container>
-        <v-container class="d-flex align-center flex-column justify-center pt-10" v-if="showViewDepositions">
-        <ViewDepositions :data="data"/>
-        </v-container>
+      <v-container class="pa-0">
+          <v-container class="d-flex justify-end">
+              <v-btn @click="showFormAdd() ; changeButton" color="tertiary" :prepend-icon="changeButton ? 'mdi-plus' : '' ">{{  changeButton ? 'Adicionar Depoimento' : 'Voltar' }}</v-btn>
+          </v-container>
+          <v-container class="d-flex justify-center" v-if="showAddDeposition">
+              <AddDeposition @send="showDepositions()" @cancelAction="showDepositions()"/>
+          </v-container>
+          <v-container class="d-flex align-center flex-column justify-center pt-10" v-if="showViewDepositions">
+              <ViewDepositions :data="data"/>
+          </v-container>
+      </v-container>
     </v-main>
 </Default>
 </template>
@@ -33,31 +35,26 @@ export default {
         return{
             showAddDeposition: false,
             showViewDepositions: true,
-            changeButton: "Adicionar Depoimento"
+            changeButton: true,
         }
     },
     methods:{
       showFormAdd(){
-          if(this.showAddDeposition != true){
+          if(!this.showAddDeposition){
               this.showAddDeposition = true
               this.showViewDepositions = false
+              this.changeButton = false
           }else{
               this.showAddDeposition = false
               this.showViewDepositions = true
+              this.changeButton = true
           }
       },
           showDepositions(){
               this.showViewDepositions = true
               this.showAddDeposition = false
-              this.changeButton = "Adicionar Depoimento"
+              this.changeButton = true
           },
-        changeTheButton(){
-          if(this.showAddDeposition == true){
-              this.changeButton = "Voltar"
-          }else{
-              this.changeButton = "Adicionar Depoimento"
-          }
-        }
     },
     created() {
         console.log(this.data);

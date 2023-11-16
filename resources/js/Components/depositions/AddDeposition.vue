@@ -4,11 +4,12 @@
         <v-card-text class="d-flex pa-0 flex-column">
     <v-textarea v-model="deposition.content" persistent-placeholder placeholder="Digite aqui seu depoimento" variant="outlined" :style="'border:#2E8429;'" auto-grow class="mb-0 rounded-xl"></v-textarea>
             <v-container id="test" class="pa-0 justify-start">
-                <v-file-input v-model="deposition.picture" prepend-icon="mdi mdi-camera"></v-file-input>
+                <v-file-input v-model="deposition.picture" prepend-icon="mdi mdi-image-plus" accept="image/png, image/jpg, image/bmp"></v-file-input>
             </v-container>
+            <img :src="imageUrl" v-if="imageUrl" alt="ovo"/>
         </v-card-text>
     <div class="d-flex justify-end ma-0 pa-2">
-        <v-btn @click="$emit('cancel')" color="tertiary" variant="outlined">Cancelar</v-btn>
+        <v-btn @click="$emit('cancelAction')" color="tertiary" variant="outlined">Cancelar</v-btn>
         <v-btn type="submit" class="mb-6 d-flex justify-end" color="tertiary" variant="flat">Enviar</v-btn>
     </div>
     </v-form>
@@ -22,6 +23,7 @@ export default {
     name: "AddDeposition",
     data(){
         return{
+            imageUrl: null,
             deposition:useForm({
                 content:"",
                 picture:"",
@@ -35,6 +37,16 @@ export default {
             this.deposition.picture= ""
             this.$emit('send')
         },
+        watch:{
+            "deposition.picture":{
+                handler($new){
+                    if($new){
+                        this.imageUrl = URL.createObjectURL($new[0]);
+                    }
+                },
+                deep: true
+            }
+        }
     }
 }
 </script>
@@ -47,6 +59,9 @@ export default {
     .v-input{
         font-size: 1.6em;
         color: #2E8429;
+    }
+    .v-input-field{
+        display-inside: ruby;
     }
 }
 </style>

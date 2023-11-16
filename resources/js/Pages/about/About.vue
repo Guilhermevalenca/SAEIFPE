@@ -189,10 +189,23 @@ export default {
 
 .bi{
     text-align: center;
+    max-width: 100%;
     width: 700px;
     font-size: medium;
     margin: auto;
+    padding: 16px;
 }
+
+.v-list-item {
+  cursor: pointer; /* Adicione um indicador de cursor para itens clicáveis */
+}
+
+@media only screen and (max-width: 600px) {
+  .bi {
+    font-size: small; /* Ajuste o tamanho da fonte para tamanhos menores de tela, se necessário */
+  }
+}
+
 
 </style>
 

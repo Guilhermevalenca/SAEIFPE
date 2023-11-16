@@ -6,16 +6,16 @@
                 end
                 icon="mdi mdi-school"
             ></v-icon>
-            <span>a</span>
+            <span>{{ deposition[index].user[1].course }}</span>
         </v-card-item>
         <v-card-text class="d-flex flex-row">
             <v-avatar v-slot="auto"
                       color="pink"
-                      image= "{{ depositon[index].user.profile_picture }}"
+                      image= "{{ deposition[index].user[0].profile_picture }}"
             >
             </v-avatar>
             <v-card-title>
-                {{ deposition[index].user.name}}
+                {{ deposition[index].user[0].name}}
             </v-card-title>
         </v-card-text>
         <v-card-text>

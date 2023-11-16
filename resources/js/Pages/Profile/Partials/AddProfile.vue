@@ -1,6 +1,13 @@
 <template>
-  <v-form @submit.prevent="submit()">
-    <v-file-input label="Foto de perfil" v-model="form.profile_picture" :rules="rules" />
+  <header>
+    <h2 class="text-lg font-medium">Foto de perfil</h2>
+
+    <p class="mt-1 text-sm">
+      Atualize sua foto de perfil
+    </p>
+  </header>
+  <v-form @submit.prevent="submit()" class="mt-6 space-y-6">
+    <v-file-input variant="outlined" label="Foto de perfil" v-model="form.profile_picture" :rules="rules" />
     <div>
       <p>{{ form.profile_picture ? 'Veja como vai ficar sua foto de perfil:' : 'Nenhuma foto selecionada' }}</p>
       <v-tooltip text="Clique para visualizar melhor a imagem">

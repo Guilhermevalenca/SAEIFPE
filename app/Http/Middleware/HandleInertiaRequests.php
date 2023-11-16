@@ -31,11 +31,15 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
-        $data = new UserResource($request->user());
+        $data = null;
+        if($request->user()) {
+            $data = new UserResource($request->user());
+            $data = json_decode($data->toJson());
+        }
         return [
             ...parent::share($request),
             'auth' => [
-                'user' => json_decode($data->toJson()),
+                'user' => $data,
             ],
             'ziggy' => fn () => [
                 ...(new Ziggy)->toArray(),

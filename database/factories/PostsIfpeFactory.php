@@ -19,7 +19,7 @@ class PostsIfpeFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->title(),
+            'title' => fake()->jobTitle(),
             'content' => fake()->text('1000'),
             'send_to' => json_encode(['all']),
             'user_id' => User::pluck('id')->random(),

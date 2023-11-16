@@ -59,7 +59,7 @@ class PostsIfpeController extends Controller
                 ->whereJsonContains('send_to','all');
 
         }
-        $pagination = $pagination->paginate(10);
+        $pagination = $pagination->paginate(5);
         $data = PostsIfpeResource::collection($pagination->items());
         $last_page = $pagination->lastPage();
         $current_page = $pagination->currentPage();

@@ -11,8 +11,8 @@
     </template>
     <template #no-data>
       <v-container>
-        <div v-show="items === null">Você deve pesquisar pelo formulário para ver visualiza-los</div>
-        <div v-show="items !== null">Nenhum dado encontrado</div>
+        <div v-show="items.length === 0">Você deve pesquisar pelo formulário para visualiza-los!</div>
+        <div v-show="items.length !== 0">Nenhum dado encontrado</div>
       </v-container>
     </template>
   </v-autocomplete>

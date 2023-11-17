@@ -9,7 +9,7 @@
         <v-main class="d-flex align-center flex-column justify-center pb-16">
             <v-container class="pa-0">
                 <v-container class="d-flex justify-end">
-                    <v-btn @click="showFormAdd() ; changeButton" color="tertiary" :prepend-icon="changeButton ? 'mdi-plus' : '' ">{{  changeButton ? 'Adicionar Depoimento' : 'Voltar' }}</v-btn>
+                    <v-btn @click="showFormAdd() ; changeButton" color="tertiary" variant="flat" :prepend-icon="changeButton ? 'mdi-plus' : '' ">{{  changeButton ? 'Adicionar Depoimento' : 'Voltar' }}</v-btn>
                 </v-container>
                 <v-container class="d-flex justify-center" v-if="showAddDeposition">
                     <AddDeposition @send="showDepositions()" @cancelAction="showDepositions()"/>

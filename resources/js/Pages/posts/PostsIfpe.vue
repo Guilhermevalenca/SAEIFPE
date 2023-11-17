@@ -11,7 +11,7 @@
 
                 <v-card-actions v-if="$page.props.auth.user && $page.props.auth.user.role === 'adm'" class="d-flex justify-end">
                     <Link :href="route('posts_create')" class="mr-4">
-                        <v-btn color="secondary" variant="elevated">Criar nova postagem</v-btn>
+                        <v-btn color="secondary" variant="flat">Criar nova postagem</v-btn>
                     </Link>
                 </v-card-actions>
 

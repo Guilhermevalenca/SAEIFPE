@@ -1,11 +1,13 @@
 <template>
     <Head title="Postagens" />
     <Default>
-        <v-container class="d-flex justify-center">
-            <v-card class="w-75">
-                <v-card-title class="d-flex justify-center ma-4">
-                    <div>Postagens do IFPE Campus Igarassu</div>
-                </v-card-title>
+
+        <v-card-title class="d-flex justify-center">
+            Postagens do IFPE Campus Igarassu
+        </v-card-title>
+
+        <v-main  class="d-flex flex-column">
+            <v-container>
 
                 <v-card-actions v-if="$page.props.auth.user && $page.props.auth.user.role === 'adm'" class="d-flex justify-end">
                     <Link :href="route('posts_create')" class="mr-4">
@@ -13,26 +15,29 @@
                     </Link>
                 </v-card-actions>
 
-                <v-container class="d-flex justify-start">
+                <v-container class="d-flex justify-start w-75">
                     <v-card class="w-50" variant="flat">
                         <v-pagination v-model="page.current" :length="page.all" rounded="circle" />
                     </v-card>
                 </v-container>
 
-                <v-card-text>
+                <v-container>
+                    <RenderingPosts v-for="(post, index) in data.data" :key="index" :data="post"/>
+                </v-container>
+<!--
                     <v-expansion-panels variant="inset" multiple>
-                        <RenderingPosts v-for="(post, index) in data.data" :key="index" :data="post" />
+                        <RenderingPosts v-for="(post, index) in data.data" :key="index" :data="post" class="d-flex flex-column justify-center pa-10 mb-4 h-auto rounded-xl" variant="flat" :style="'border: 1px solid #2E8429;'"/>
                     </v-expansion-panels>
-                </v-card-text>
+-->
 
-                <v-container class="d-flex justify-end">
+                <v-container class="d-flex justify-end w-75">
                     <v-card class="w-50" variant="flat">
                         <v-pagination v-model="page.current" :length="page.all" rounded="circle" />
                     </v-card>
                 </v-container>
 
-            </v-card>
-        </v-container>
+            </v-container>
+        </v-main>
     </Default>
 </template>
 <script>

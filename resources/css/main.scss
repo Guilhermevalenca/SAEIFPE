@@ -1,0 +1,10 @@
+$dark-primary: #3F51B5;
+$dark-accent: #4CAF50;
+$dark-secondary: #757575;
+
+$vuetify-theme-dark: get (theme ("dark"), {
+  primary: $dark-primary,
+  secondary: $dark-secondary,
+
+  '--v-primary-text': $dark-primary,
+});

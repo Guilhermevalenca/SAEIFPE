@@ -3,7 +3,7 @@
     <v-container v-show="wantNewEmails">
         <v-row v-for="(email, index) in newEmails" :key="index">
             <v-col>
-                <v-text-field label="Email" v-model="newEmails[index]" placeholder="Adicione emails externos ao sistema" />
+                <v-text-field :rules="rules" label="Email" v-model="newEmails[index]" placeholder="Adicione emails externos ao sistema" />
             </v-col>
             <v-col class="d-flex">
                 <v-btn icon="mdi-minus" @click="newEmails.splice(index, 1)" :disabled="newEmails.length === 1" />
@@ -19,7 +19,21 @@ export default {
     data() {
         return {
             wantNewEmails: null,
-            newEmails: [null]
+            newEmails: [null],
+            rules: [
+                value => {
+                    if(value) {
+                        return true;
+                    }
+                    return 'É necessário preencher este campo'
+                },
+                value => {
+                    if(/.+@.+\..+/.test(value)) {
+                        return true
+                    }
+                    return 'Email inválido';
+                }
+            ]
         }
     },
     watch: {

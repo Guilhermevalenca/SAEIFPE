@@ -22,7 +22,7 @@
                                     <v-card-title class="text-center mt-2 mb-8">Dados da postagem</v-card-title>
                                     <v-text-field label="Titulo" placeholder="Titulo da postagem" v-model="form.title" :rules="rules.title" />
 
-                                    <v-textarea label="Conteúdo" variant="outlined" placeholder="Escreva o conteúdo da postagem" v-model="form.content" :rules="rules.content" />
+                                    <AddPostContent @form_content="v => form.content = v" />
 
                                     <v-autocomplete variant="outlined" label="Para quem deseja enviar" persistent-hint hint="Caso não preencha este campo, todos os usuários poderão ver está postagem." :items="courses" item-title="name" item-value="id" v-model="form.send_to" :rules="rules.send_to" multiple chips />
 
@@ -58,10 +58,11 @@
 import Default from "@/Layouts/default/Default.vue";
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import SelectForm from "@/Components/posts/createPosts/SelectForm.vue";
+import AddPostContent from "@/Components/posts/createPosts/AddPostContent.vue";
 
 export default {
     name: "CreatePosts",
-    components: {Default, Head, Link, SelectForm},
+    components: {AddPostContent, Default, Head, Link, SelectForm},
     data() {
         return {
             form: useForm({
@@ -104,20 +105,6 @@ export default {
                     () => {
                         if(this.form.errors.title) {
                             return this.form.errors.title;
-                        }
-                        return true
-                    }
-                ],
-                content: [
-                    value => {
-                        if(value) {
-                            return true;
-                        }
-                        return 'É necessário adicionar algum tipo de conteúdo'
-                    },
-                    () => {
-                        if(this.form.errors.content) {
-                            return this.form.errors.content;
                         }
                         return true
                     }

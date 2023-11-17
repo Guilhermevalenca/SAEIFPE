@@ -18,11 +18,11 @@
 
                             <v-text-field label="Titulo" placeholder="Titulo da postagem" v-model="form.title" :rules="rules.title" />
 
-                            <v-textarea label="Conteúdo" placeholder="Escreva o conteúdo da postagem" v-model="form.content" :rules="rules.content" />
+                            <v-textarea label="Conteúdo" variant="outlined" placeholder="Escreva o conteúdo da postagem" v-model="form.content" :rules="rules.content" />
 
-                            <v-autocomplete label="Para quem deseja enviar" persistent-hint hint="Caso não preencha este campo, todos os usuários poderão ver está postagem." :items="courses" item-title="name" item-value="id" v-model="form.send_to" :rules="rules.send_to" multiple chips />
+                            <v-autocomplete variant="outlined" label="Para quem deseja enviar" persistent-hint hint="Caso não preencha este campo, todos os usuários poderão ver está postagem." :items="courses" item-title="name" item-value="id" v-model="form.send_to" :rules="rules.send_to" multiple chips />
 
-                            <v-card variant="outlined" class="mt-8">
+                            <v-card :variant="selectForm ? 'outlined' : 'flat'" class="mt-8">
                                 <v-checkbox-btn v-model="selectForm">
                                     <template #label>
                                         <div>Deseja adicionar um formulário?</div>
@@ -35,6 +35,7 @@
                             </v-card>
 
                             <v-card-actions class="d-flex justify-end">
+                                <v-btn @click="historyBack()">Cancelar</v-btn>
                                 <v-btn color="secondary" type="submit" variant="elevated">Criar postagem</v-btn>
                             </v-card-actions>
 
@@ -138,6 +139,9 @@ export default {
                         this.form.post(route('posts_store'));
                     }
                 })
+        },
+        historyBack() {
+            window.history.back();
         }
     },
     watch: {

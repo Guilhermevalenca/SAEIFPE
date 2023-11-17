@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -59,5 +60,17 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+    public function updateProfilePicture(Request $request)
+    {
+        $profile_picture = $request->file('profile_picture');
+        $binary = file_get_contents($profile_picture[0]->getRealPath());
+        $json = [
+            'base64' => base64_encode($binary),
+            'mimeType' => $profile_picture[0]->getMimeType()
+        ];
+        Auth::user()->update([
+            'profile_picture' => json_encode($json)
+        ]);
     }
 }

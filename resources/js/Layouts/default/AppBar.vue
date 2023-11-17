@@ -1,18 +1,18 @@
 <template>
-    <v-app-bar color="secondary" variant="flat">
+    <v-app-bar color="secondary">
         <v-app-bar-nav-icon @click="$emit('drawer')" />
 
-            <v-app-bar-title>
-                <Link :href="route('home')">
-                    <!--            <v-avatar>-->
-                    <!--                <v-img src="https://ingresso.ifpe.edu.br/static/img/ifpe-logo.svg" cover />-->
-                    <!--            </v-avatar>-->
-                    <v-avatar>
-                        <img ref="ola" src="../../assets/ifpe_logo_white.svg" >
-                    </v-avatar>
-                    IFPE Campus Igarassu
-                </Link>
-            </v-app-bar-title>
+        <v-app-bar-title>
+            <Link :href="route('home')">
+                <!--            <v-avatar>-->
+                <!--                <v-img src="https://ingresso.ifpe.edu.br/static/img/ifpe-logo.svg" cover />-->
+                <!--            </v-avatar>-->
+                <v-avatar>
+                    <img ref="ola" src="../../assets/ifpe_logo_white.svg" >
+                </v-avatar>
+                IFPE Campus Igarassu
+            </Link>
+        </v-app-bar-title>
 
         <Notification />
 
@@ -32,40 +32,40 @@
                 <v-btn>registrar</v-btn>
             </Link>
         </div>
-        <div v-else>
-            <v-tooltip text="Opções do usuário">
-                <template #activator="{ props }">
-                    <v-card v-bind="props" variant="outlined" class="mr-2">
-                        <!-- :variant="(theme.global.name == 'light') ? 'elevated' : 'outlined'" -->
-                        <v-menu class="w-full">
-                            <template #activator="{ props }">
-                                <v-btn variant="tonal" v-bind="props">
-                                    {{ $page.props.auth.user.name }}
-<!--                                    <template #prepend>-->
-<!--                                        <v-avatar>-->
-<!--                                            <img src="@/assets/gato.jpg" alt="gato">-->
-<!--                                        </v-avatar>-->
-<!--                                    </template>-->
+        <div v-else class="d-flex">
+            <v-container class="mr-2">
+                <!-- :variant="(theme.global.name == 'light') ? 'elevated' : 'outlined'" -->
+                <v-menu :close-on-content-click="false">
+                    <template #activator="{ props: menu }">
+                        <v-tooltip text="Opções do usuário">
+                            <template #activator="{ props: tooltip }">
+                                <v-btn variant="tonal" v-bind="menu">
+                                    <div v-bind="tooltip">
+                                        {{ $page.props.auth.user.name }}
+                                    </div>
+                                    <template #append>
+                                        <v-avatar v-if="$page.props.auth.user.profile_picture">
+                                            <v-img :src="$page.props.auth.user.profile_picture" />
+                                        </v-avatar>
+                                    </template>
                                 </v-btn>
                             </template>
-                            <v-list>
-                                <Link :href="route('profile.edit')" class="w-full" as="button">
-                                    <v-list-item to="/">
-                                        Perfil
-                                    </v-list-item>
-                                </Link>
-
-                                <Link :href="route('logout')" class="w-full" method="post" as="button">
-                                    <v-list-item to="/">
-                                        Deslogar
-                                    </v-list-item>
-                                </Link>
-                            </v-list>
-                        </v-menu>
-
-                    </v-card>
-                </template>
-            </v-tooltip>
+                        </v-tooltip>
+                    </template>
+                    <v-list>
+                        <Link :href="route('profile.edit')">
+                            <v-list-item to="/">
+                                Editar perfil
+                            </v-list-item>
+                        </Link>
+                        <Link :href="route('logout')" class="w-full" method="post" as="button">
+                            <v-list-item class="text-start" to="/">
+                                Deslogar
+                            </v-list-item>
+                        </Link>
+                    </v-list>
+                </v-menu>
+            </v-container>
         </div>
     </v-app-bar>
 </template>
@@ -90,7 +90,10 @@ export default {
         }
     },
     created() {
-        // console.log(this.$page.props.auth.user);
+        // console.log(this.$page.props.auth);
     },
 }
+</script>
+
+<script setup>
 </script>

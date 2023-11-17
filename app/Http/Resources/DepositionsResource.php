@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Models\User;
+use App\Models\UsersGraduates;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -15,10 +16,14 @@ class DepositionsResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $user= User::where('id','=',$this->user_id)->get();
+        $userGraduate = UsersGraduates::where('users_id','=',$this->user_id)->get();
+        $userGraduate = $userGraduate[0];
+        $user = $user[0];
 //        return parent::toArray($request);
         return [
             'id' => $this->id,
-            'user'=> User::find($this->user_id),
+            'user'=> [$user,$userGraduate],
             'content' => $this->content,
             'picture' => $this->picture
         ];

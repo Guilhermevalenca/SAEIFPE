@@ -1,14 +1,14 @@
 <template>
     <v-card class="d-flex justify-center">
-        <v-form class="w-50 ma-5" @submit.prevent="submit()">
+        <v-form class="w-100 w-sm-75 w-md-50 w-lg-40 w-xl-30 ma-5" @submit.prevent="submit()">
 
-            <v-text-field v-model="form.email_institution" label="Email institucional" placeholder="example@discente.ifpe.edu.br" />
+            <v-text-field cols="12" md="6" v-model="form.email_institution" label="Email institucional" placeholder="example@discente.ifpe.edu.br" />
 
-            <v-autocomplete label="Seu curso" :items="courses" item-title="name" item-value="id" v-model="form.course" />
+            <v-autocomplete cols="12" md="6" label="Seu curso" :items="courses" item-title="name" item-value="id" v-model="form.course" />
 
-            <v-text-field v-model="form.enrollment" label="Matricula" placeholder="20232INFIG0001" />
+            <v-text-field cols="12" md="6" v-model="form.enrollment" label="Matricula" placeholder="20232INFIG0001" />
 
-            <v-btn type="submit">Cadastrar novos dados</v-btn>
+            <v-btn class="mt-3" color="tertiary" variant="flat" type="submit">Cadastrar novos dados</v-btn>
 
         </v-form>
     </v-card>

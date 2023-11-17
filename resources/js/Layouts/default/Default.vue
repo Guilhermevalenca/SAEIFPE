@@ -1,11 +1,15 @@
 <template>
     <v-app>
-        <ItemDrawer v-model="isDrawerOpen" />
-
-        <DefaultAppBar @drawer="isDrawerOpen = !isDrawerOpen" />
-
+        <header>
+            <DefaultAppBar @drawer="isDrawerOpen = !isDrawerOpen" />
+        </header>
         <v-main class="ma-5">
-            <slot />
+            <section>
+                <ItemDrawer v-model="isDrawerOpen" />
+            </section>
+            <section>
+                <slot />
+            </section>
         </v-main>
         <v-footer class="bg-transparent">
             <slot name="footer" />

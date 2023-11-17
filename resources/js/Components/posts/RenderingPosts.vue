@@ -15,13 +15,11 @@
                         <v-card-title>Formulário anexado:</v-card-title>
                         <v-tooltip text="Clique para ir até o formulário respectivo">
                             <template #activator="{ props }">
-                              <v-container v-bind="props">
-                                <v-btn variant="elevated" color="primary">
-                                  <Link :href="route('forms_show_response', {id: data.form_id})">
-                                    Ir para o formulário
-                                  </Link>
+                                <v-btn v-bind="props" variant="elevated" color="primary">
+                                    <Link :href="route('forms_show_response', {id: data.form_id})">
+                                        Ir para o formulário
+                                    </Link>
                                 </v-btn>
-                              </v-container>
                             </template>
                         </v-tooltip>
                     </v-container>

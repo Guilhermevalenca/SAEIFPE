@@ -42,10 +42,10 @@ class PostsIfpeController extends Controller
 
                     } else if($user['role'] === 'student') {
 
-                        $userStudent = UsersStudying::find($user['id']);
+                        $userStudent = UsersStudying::where('users_id','=',$user['id'])->get();
                         $pagination = PostsIfpe::with('user')
                             ->whereJsonContains('send_to','all')
-                            ->orWhereJsonContains('send_to',$userStudent['course']);
+                            ->orWhereJsonContains('send_to',$userStudent[0]['course']);
 
                     }
 

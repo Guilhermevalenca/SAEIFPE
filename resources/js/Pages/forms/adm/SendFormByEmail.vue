@@ -47,6 +47,8 @@
                                 </template>
                             </v-tooltip>
 
+                            <AddNewsEmails />
+
 
                         </v-card-text>
 
@@ -93,10 +95,11 @@
 import Default from "@/Layouts/default/Default.vue";
 import {Head, useForm} from "@inertiajs/vue3";
 import TemplateSendFormByEmail from "@/Pages/mail/forms/TemplateSendFormByEmail.vue";
+import AddNewsEmails from '@/Components/forms/admUsersForms/sendFormByEmail/AddNewsEmails.vue';
 
 export default {
     name: "sendFormByEmail",
-    components: {TemplateSendFormByEmail, Head, Default},
+    components: {TemplateSendFormByEmail, Head, Default, AddNewsEmails},
     props: {
         data: Object
     },

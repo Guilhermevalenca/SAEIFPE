@@ -5,9 +5,14 @@
 
       <v-card :class="[$phoneDisplay ? '' : $sreenMediumDisplay ? 'w-75' : 'w-50']">
         <v-card-title class="d-flex justify-center mt-4">Formulários</v-card-title>
-        <v-card-actions class="d-flex justify-end mr-8 mt-3">
+
+        <v-card-actions class="d-flex justify-space-between mr-8 mt-3">
+
+          <SearchForms />
+
           <v-btn color="secondary" variant="elevated" @click="isCreateForms = !isCreateForms">{{ isCreateForms ? 'Meus Formulários' : 'Criar formulário' }}</v-btn>
         </v-card-actions>
+
         <v-card-text>
           <div v-if="! isCreateForms">
             <v-container class="d-flex justify-start">
@@ -41,10 +46,11 @@ import Default from "@/Layouts/default/Default.vue";
 import ShowFormsForUsers from "@/Components/forms/otherUsersForms/ShowFormsForUsers.vue";
 import MyFormsCreated from "@/Components/forms/admUsersForms/MyFormsCreated.vue";
 import CreateForms from "@/Components/forms/admUsersForms/CreateForms.vue";
+import SearchForms from "@/Components/forms/admUsersForms/SearchForms.vue";
 import {Link, Head} from '@inertiajs/vue3';
 export default {
   name: "FormsAdm",
-  components: {Default, ShowFormsForUsers, MyFormsCreated, CreateForms, Link, Head},
+  components: {Default, ShowFormsForUsers, MyFormsCreated, CreateForms, SearchForms, Link, Head},
   data() {
     return {
       isCreateForms: false,

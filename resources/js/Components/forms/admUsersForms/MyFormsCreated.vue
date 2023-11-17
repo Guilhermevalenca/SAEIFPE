@@ -8,54 +8,7 @@
     <!-- class="d-flex justify-center flex-row" class="d-flex flex-column"  -->
     <div>
       <v-card :class="['ma-2']" variant="outlined" v-for="(form, index) in forms" :key="index">
-        <v-row>
-          <v-col cols="7">
-            <v-card-title>{{ form.title }}</v-card-title>
-          </v-col>
-          <v-col>
-            <v-card-actions class="v-card__actions">
-              <v-tooltip text="Enviar este formulário pelo email">
-                <template #activator="{ props }">
-                  <Link v-bind="props" :href="route('forms_createSendEmail', { id: form.id })">
-                    <v-btn icon="mdi-email-multiple-outline" />
-                  </Link>
-                </template>
-              </v-tooltip>
-
-              <v-tooltip text="Gráficos das respostas">
-                <template #activator="{ props }">
-                  <Link v-bind="props" :href="route('forms_showByFormId_responded', {id: form.id})">
-                    <v-btn icon="mdi-chart-line" />
-                  </Link>
-                </template>
-              </v-tooltip>
-
-              <v-tooltip text="Editar formulário">
-                <template #activator="{ props }">
-                  <Link v-bind="props" :href="route('forms_edit', {id: form.id})">
-                    <v-btn icon="mdi-pencil-outline" />
-                  </Link>
-                </template>
-              </v-tooltip>
-
-              <v-tooltip text="Apagar formulário">
-                <template #activator="{ props }">
-                  <Link v-bind="props" :href="route('forms_destroy', {id: form.id})" method="delete" as="button">
-                    <v-btn icon="mdi-delete" />
-                  </Link>
-                </template>
-              </v-tooltip>
-
-              <v-tooltip text="Visualizar formulário">
-                <template #activator="{ props }">
-                  <Link v-bind="props" :href="route('forms_show', {id: form.id})">
-                    <v-btn icon="mdi-text-search-variant" />
-                  </Link>
-                </template>
-              </v-tooltip>
-            </v-card-actions>
-          </v-col>
-        </v-row>
+        <CreatedFormTemplate :form="form" />
       </v-card>
     </div>
 
@@ -64,9 +17,10 @@
 
 <script>
 import { Link } from '@inertiajs/vue3';
+import CreatedFormTemplate from "@/Components/forms/admUsersForms/MyFormsCreated/CreatedFormTemplate.vue";
 export default {
   name: "MyFormsCreated",
-  components: {Link},
+  components: {CreatedFormTemplate, Link},
   props: {
     data: Object
   },

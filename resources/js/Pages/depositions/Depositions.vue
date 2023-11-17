@@ -4,20 +4,20 @@
         <v-card-title class="d-flex align-center flex-row justify-center">
             Depoimentos
         </v-card-title>
-        <v-container>
-        </v-container>
-        <v-main class="d-flex align-center flex-column justify-center pb-16">
-            <v-container class="pa-0">
-                <v-container class="d-flex justify-end">
-                    <v-btn @click="showFormAdd() ; changeButton" color="tertiary" variant="flat" :prepend-icon="changeButton ? 'mdi-plus' : '' ">{{  changeButton ? 'Adicionar Depoimento' : 'Voltar' }}</v-btn>
+        <v-main class="d-flex align-center flex-column justify-center pb-16 ma-0 pa-0">
+            <v-card variant="flat" color="transparent" :class="[$phoneDisplay ? 'w-100' : $screenMediumDisplay ? 'w-75' : 'w-50']">
+                <v-container class="pa-0 ma-0">
+                    <v-container class="d-flex justify-end">
+                        <v-btn @click="showFormAdd() ; changeButton" color="tertiary" variant="flat" :prepend-icon="changeButton ? 'mdi-plus' : '' ">{{  changeButton ? 'Adicionar Depoimento' : 'Voltar' }}</v-btn>
+                    </v-container>
+                    <v-container class="d-flex justify-center" v-if="showAddDeposition">
+                        <AddDeposition @send="showDepositions()" @cancelAction="showDepositions()"/>
+                    </v-container>
+                    <v-container class="d-flex align-center flex-column justify-center pt-10" v-if="showViewDepositions">
+                        <ViewDepositions :data="data"/>
+                    </v-container>
                 </v-container>
-                <v-container class="d-flex justify-center" v-if="showAddDeposition">
-                    <AddDeposition @send="showDepositions()" @cancelAction="showDepositions()"/>
-                </v-container>
-                <v-container class="d-flex align-center flex-column justify-center pt-10" v-if="showViewDepositions">
-                    <ViewDepositions :data="data"/>
-                </v-container>
-            </v-container>
+            </v-card>
         </v-main>
     </Default>
 </template>

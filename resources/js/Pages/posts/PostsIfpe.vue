@@ -1,41 +1,43 @@
 <template>
     <Head title="Postagens" />
     <Default>
-
-        <v-card-title class="d-flex justify-center">
-            Postagens do IFPE Campus Igarassu
-        </v-card-title>
-
+        <header>
+            <v-card-title class="d-flex justify-center">
+                Postagens do IFPE Campus Igarassu
+            </v-card-title>
+        </header>
         <v-main  class="d-flex flex-column">
-            <v-container>
+            <v-container class="d-flex justify-center">
+                <v-card class="w-75" variant="flat" color="transparent">
 
-                <v-card-actions v-if="$page.props.auth.user && $page.props.auth.user.role === 'adm'" class="d-flex justify-end">
-                    <Link :href="route('posts_create')" class="mr-4">
-                        <v-btn color="secondary" variant="flat">Criar nova postagem</v-btn>
-                    </Link>
-                </v-card-actions>
+                    <v-card-actions v-if="$page.props.auth.user && $page.props.auth.user.role === 'adm'" class="d-flex justify-end">
+                        <Link :href="route('posts_create')" class="mr-4">
+                            <v-btn color="secondary" variant="flat">Criar nova postagem</v-btn>
+                        </Link>
+                    </v-card-actions>
 
-                <v-container class="d-flex justify-start w-75">
-                    <v-card class="w-50" variant="flat">
-                        <v-pagination v-model="page.current" :length="page.all" rounded="circle" />
-                    </v-card>
-                </v-container>
+                    <v-container class="d-flex justify-start w-75" v-if="data.data.length !== 0">
+                        <v-card class="w-50" variant="flat">
+                            <v-pagination v-model="page.current" :length="page.all" rounded="circle" />
+                        </v-card>
+                    </v-container>
 
-                <v-container>
-                    <RenderingPosts v-for="(post, index) in data.data" :key="index" :data="post"/>
-                </v-container>
-<!--
-                    <v-expansion-panels variant="inset" multiple>
-                        <RenderingPosts v-for="(post, index) in data.data" :key="index" :data="post" class="d-flex flex-column justify-center pa-10 mb-4 h-auto rounded-xl" variant="flat" :style="'border: 1px solid #2E8429;'"/>
-                    </v-expansion-panels>
--->
+                    <v-container>
+                        <RenderingPosts v-for="(post, index) in data.data" :key="index" :data="post"/>
+                    </v-container>
+                    <!--
+                                        <v-expansion-panels variant="inset" multiple>
+                                            <RenderingPosts v-for="(post, index) in data.data" :key="index" :data="post" class="d-flex flex-column justify-center pa-10 mb-4 h-auto rounded-xl" variant="flat" :style="'border: 1px solid #2E8429;'"/>
+                                        </v-expansion-panels>
+                    -->
 
-                <v-container class="d-flex justify-end w-75">
-                    <v-card class="w-50" variant="flat">
-                        <v-pagination v-model="page.current" :length="page.all" rounded="circle" />
-                    </v-card>
-                </v-container>
+                    <v-container class="d-flex justify-end w-75" v-if="data.data.length !== 0">
+                        <v-card class="w-50" variant="flat">
+                            <v-pagination v-model="page.current" :length="page.all" rounded="circle" />
+                        </v-card>
+                    </v-container>
 
+                </v-card>
             </v-container>
         </v-main>
     </Default>

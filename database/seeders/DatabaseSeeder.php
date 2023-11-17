@@ -74,8 +74,8 @@ class DatabaseSeeder extends Seeder
             'genre' => 'Masculino',
             'course' => 'IPI'
         ]);
-        Form::factory(30)->create();
-        Depositions::factory(1)->create();
-        PostsIfpe::factory(30)->create();
+        // Form::factory(30)->create();
+        // Depositions::factory(1)->create();
+        // PostsIfpe::factory(30)->create();
     }
 }

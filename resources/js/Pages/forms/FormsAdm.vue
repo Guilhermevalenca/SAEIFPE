@@ -6,16 +6,16 @@
       <v-card :class="[$phoneDisplay ? '' : $sreenMediumDisplay ? 'w-75' : 'w-50']">
         <v-card-title class="d-flex justify-center mt-4">Formulários</v-card-title>
 
-        <v-card-actions class="d-flex justify-space-between mr-8 mt-3">
+        <v-card-actions class="d-flex justify-end mr-8 mt-3">
 
-          <SearchForms />
+          <SearchForms v-if="false" />
 
           <v-btn color="secondary" variant="elevated" @click="isCreateForms = !isCreateForms">{{ isCreateForms ? 'Meus Formulários' : 'Criar formulário' }}</v-btn>
         </v-card-actions>
 
         <v-card-text>
           <div v-if="! isCreateForms">
-            <v-container class="d-flex justify-start">
+            <v-container class="d-flex justify-start" v-if="data.forms.data.length !== 0">
               <v-card class="w-50" variant="flat">
                 <v-pagination v-model="page.current" :length="page.all" rounded="circle" />
               </v-card>
@@ -23,7 +23,7 @@
 
             <MyFormsCreated :data="data" />
 
-            <v-container class="d-flex justify-end">
+            <v-container class="d-flex justify-end" v-if="data.forms.data.length !== 0">
               <v-card class="w-50" variant="flat">
                 <v-pagination v-model="page.current" :length="page.all" rounded="circle" />
               </v-card>
@@ -78,7 +78,7 @@ export default {
     }
   },
   created() {
-
+      console.log(this.data);
   },
 }
 </script>

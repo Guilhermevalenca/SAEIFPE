@@ -1,6 +1,6 @@
 <template>
     <v-card class="d-flex justify-center">
-        <v-form class="w-50 ma-5" @submit.prevent="submit()">
+        <v-form class="w-100 w-sm-75 w-md-50 w-lg-40 w-xl-30 ma-5" @submit.prevent="submit()">
 
             <v-autocomplete label="Que curso concluiu no campus?" :items="courses" item-title="name" item-value="id" v-model="form.course" />
 
@@ -9,19 +9,15 @@
                     <v-card-text>
                         <v-radio-group v-model="form.genre"> 
                             <v-row>
-                                <v-col cols="4">
+                                <v-col cols="12" md="4">
                                     <v-radio 
                                         label="Masculino"
                                         value="Masculino"
                                         ></v-radio>
-                                </v-col>
-                                <v-col cols="4">
-                                    <v-radio
+                                    <v-radio 
                                         label="Feminino"
                                         value="Feminino"
                                         ></v-radio>
-                                </v-col>
-                                <v-col cols="4">
                                     <v-radio
                                     label="Outro"
                                     value="Outro"
@@ -34,13 +30,13 @@
             </v-card>
             
             <v-row>
-                <v-col>
+                <v-col cols="12">
                     <input type="hidden" v-maska data-maska="(##) #####-####" v-model="form.phone">
             <v-text-field v-model="form.phone" prepend-inner-icon="mdi-phone-outline" persistent-hint label="Número do Telefone:" hint="(00) 00000-0000" placeholder="Digite o número do telefone" />
                 </v-col>
             </v-row>
   
-            <v-btn type="submit">Cadastrar novos dados</v-btn>
+            <v-btn class="mt-3" color="tertiary" variant="flat" type="submit">Cadastrar novos dados</v-btn>
 
         </v-form>
     </v-card>

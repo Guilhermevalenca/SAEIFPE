@@ -2,7 +2,7 @@
 <v-card id="Add-card" class="d-flex flex-column justify-center pa-10 w-75 h-auto rounded-xl" variant="flat" :style="'border: solid 1px #2E8429;'">
     <v-form @submit.prevent="submitDeposition()">
         <v-card-text class="d-flex pa-0 flex-column">
-    <v-textarea v-model="deposition.content" persistent-placeholder placeholder="Digite aqui seu depoimento" variant="flat" auto-grow class="mb-0 rounded-xl"></v-textarea>
+    <v-textarea v-model="deposition.content" persistent-placeholder placeholder="Digite aqui seu depoimento" variant="outlined" auto-grow class="mb-0 rounded-xl"></v-textarea>
             <img :src="imageUrl" v-if="imageUrl" alt="ovo"/>
             <v-container id="test" class="pa-0 justify-start">
                 <v-file-input v-model="deposition.picture" prepend-icon="mdi mdi-image-plus" accept="image/png, image/jpg, image/bmp"></v-file-input>

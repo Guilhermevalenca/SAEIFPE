@@ -68,8 +68,8 @@
         <div> <!-- props da div: -->
           <!-- class="v-layout-item text-end pointer-events-none" style="bottom: 0px; z-index: 1004; transform: translateY(0%); position: fixed; height: 88px; left: 0px; width: calc((100% - 0px) - 0px);" -->
           <!-- precisando de solução para quando a div tiver sobreposta aos botões da pagina, não afeta-los! -->
-          <v-btn variant="elevated" @click="showCancelForm = true" color="error">Cancelar</v-btn>
-          <v-btn type="submit" :loading="creatingForm" color="secondary" variant="elevated">Salvar formulário</v-btn>
+          <v-btn variant="elevated" @click="showCancelForm = true" color="quaternary">Cancelar</v-btn>
+          <v-btn type="submit" :loading="creatingForm" color="tertiary" variant="flat" class="mr-4">Salvar formulário</v-btn>
         </div>
         <v-dialog v-model="showCancelForm">
           <v-container class="d-flex justify-center">

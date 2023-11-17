@@ -1,44 +1,45 @@
 <template>
-  <Head title="Formulário" />
-  <Default>
-    <v-container :class="$phoneDisplay ? '' : 'd-flex justify-center'">
-
-      <v-card :class="[$phoneDisplay ? '' : $screenMediumDisplay ? 'w-75' : 'w-50']">
+    <Head title="Formulário" />
+    <Default>
         <v-card-title class="d-flex justify-center mt-4">Formulários</v-card-title>
+        <v-container :class="$phoneDisplay ? '' : 'd-flex justify-center'">
 
-        <v-card-actions class="d-flex justify-end mr-8 mt-3">
+            <v-card variant="flat" color="transparent" :class="[$phoneDisplay ? '' : $sreenMediumDisplay ? 'w-75' : 'w-50']">
 
-          <SearchForms v-if="false" />
 
-          <v-btn color="secondary" variant="elevated" @click="isCreateForms = !isCreateForms">{{ isCreateForms ? 'Meus Formulários' : 'Criar formulário' }}</v-btn>
-        </v-card-actions>
+                <v-card-actions class="d-flex justify-end mr-8 mt-3">
 
-        <v-card-text>
-          <div v-if="! isCreateForms">
-            <v-container class="d-flex justify-start" v-if="data.forms.data.length !== 0">
-              <v-card class="w-50" variant="flat">
-                <v-pagination v-model="page.current" :length="page.all" rounded="circle" />
-              </v-card>
-            </v-container>
+                    <SearchForms v-if="false" />
 
-            <MyFormsCreated :data="data" />
+                    <v-btn color="secondary" variant="elevated" @click="isCreateForms = !isCreateForms">{{ isCreateForms ? 'Meus Formulários' : 'Criar formulário' }}</v-btn>
+                </v-card-actions>
 
-            <v-container class="d-flex justify-end" v-if="data.forms.data.length !== 0">
-              <v-card class="w-50" variant="flat">
-                <v-pagination v-model="page.current" :length="page.all" rounded="circle" />
-              </v-card>
-            </v-container>
-          </div>
-          <div v-else :class="$phoneDisplay ? '' : 'd-flex justify-center'">
-            <CreateForms @created_form_success="isCreateForms = false" @cancelCreateForm="isCreateForms = false" />
-          </div>
-        </v-card-text>
-      </v-card>
+                <v-card-text>
+                    <div v-if="! isCreateForms">
+                        <v-container class="d-flex justify-start" v-if="data.forms.data.length !== 0">
+                            <v-card :class="$phoneDisplay ? '' : 'w-50'" variant="flat">
+                                <v-pagination v-model="page.current" :length="page.all" rounded="circle" />
+                            </v-card>
+                        </v-container>
 
-    </v-container>
-    <template #footer v-if="! isCreateForms">
-    </template>
-  </Default>
+                        <MyFormsCreated :data="data" />
+
+                        <v-container class="d-flex justify-end" v-if="data.forms.data.length !== 0">
+                            <v-card :class="$phoneDisplay ? '' : 'w-50'" variant="flat">
+                                <v-pagination v-model="page.current" :length="page.all" rounded="circle" />
+                            </v-card>
+                        </v-container>
+                    </div>
+                    <div v-else :class="$phoneDisplay ? '' : 'd-flex justify-center'">
+                        <CreateForms @created_form_success="isCreateForms = false" @cancelCreateForm="isCreateForms = false" />
+                    </div>
+                </v-card-text>
+            </v-card>
+
+        </v-container>
+        <template #footer v-if="! isCreateForms">
+        </template>
+    </Default>
 </template>
 
 <script>
@@ -49,36 +50,36 @@ import CreateForms from "@/Components/forms/admUsersForms/CreateForms.vue";
 import SearchForms from "@/Components/forms/admUsersForms/SearchForms.vue";
 import {Link, Head} from '@inertiajs/vue3';
 export default {
-  name: "FormsAdm",
-  components: {Default, ShowFormsForUsers, MyFormsCreated, CreateForms, SearchForms, Link, Head},
-  data() {
-    return {
-      isCreateForms: false,
-      page: {
-        current: this.data.page.current_page,
-        all: this.data.page.last_page
-      }
-    }
-  },
-  props: {
-    data: Object
-  },
-  watch: {
-    data: {
-      handler() {
-        this.isCreateForms = false;
-      },
-      deep: true
+    name: "FormsAdm",
+    components: {Default, ShowFormsForUsers, MyFormsCreated, CreateForms, SearchForms, Link, Head},
+    data() {
+        return {
+            isCreateForms: false,
+            page: {
+                current: this.data.page.current_page,
+                all: this.data.page.last_page
+            }
+        }
     },
-    page: {
-      handler($new) {
-        window.location.href = route('forms_index', {page: $new.current});
-      },
-      deep: true
-    }
-  },
-  created() {
-      console.log(this.data);
-  },
+    props: {
+        data: Object
+    },
+    watch: {
+        data: {
+            handler() {
+                this.isCreateForms = false;
+            },
+            deep: true
+        },
+        page: {
+            handler($new) {
+                window.location.href = route('forms_index', {page: $new.current});
+            },
+            deep: true
+        }
+    },
+    created() {
+        console.log(this.data);
+    },
 }
 </script>

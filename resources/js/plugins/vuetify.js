@@ -39,7 +39,6 @@ export default createVuetify({
                     background: '#212121', //preto fosco
                     quinary: '#e6e3e3', //branco
                 },
-                variables: {GlobalStyles}
             },
         },
     },

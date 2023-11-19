@@ -59,7 +59,7 @@ class PostsIfpeController extends Controller
                 ->whereJsonContains('send_to','all');
 
         }
-        $pagination = $pagination->paginate(5);
+        $pagination = $pagination->orderByDesc('id')->paginate(5);
         $data = PostsIfpeResource::collection($pagination->items());
         $last_page = $pagination->lastPage();
         $current_page = $pagination->currentPage();
@@ -84,7 +84,9 @@ class PostsIfpeController extends Controller
             'title' => ['required','string'],
             'content' => ['required','string'],
             'send_to' => ['nullable', 'array', 'in:ADM,IPI,LOG,TGQ,TSI'],
-            'form_id' => ['nullable', 'exists:forms,id']
+            'form_id' => ['nullable', 'exists:forms,id'],
+            'links' => ['nullable', 'array'],
+            'img.0' => ['nullable', 'image']
         ],[
             'title.required' => 'Você precisa adicionar um titulo',
             'title.string' => 'Você adicionou um valor inválido',
@@ -94,10 +96,21 @@ class PostsIfpeController extends Controller
             'send_to.in' => 'Você adicionou um valor errado',
             'form_id.exists' => 'Você precisa adicionar um formulário valido'
         ]);
-
         if($validation) {
             $validation['user_id'] = Auth::id();
             $validation['send_to'] = is_null($validation['send_to']) ? json_encode(['all']) : json_encode($validation['send_to']);
+
+            //montando img em string:
+            $binary = file_get_contents($validation['img'][0]->getRealPath());
+            $dataImg = [
+                'base64' => base64_encode($binary),
+                'mimeType' => $validation['img'][0]->getMimeType()
+            ];
+            $validation['img'] = 'data:' . $dataImg['mimeType'] . ';base64,' . $dataImg['base64'];
+
+
+            $validation['links'] = $validation['links'] !== null ? json_encode($validation['links']) : null;
+
             try {
                 PostsIfpe::create($validation);
                 return redirect()->route('home');

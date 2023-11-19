@@ -12,7 +12,7 @@ class PostsIfpe extends Model
 {
     use HasFactory;
     protected $table = 'posts_ifpe';
-    protected $fillable = ['title','content','send_to','user_id','visible', 'form_id'];
+    protected $fillable = ['title','content','send_to','user_id','visible', 'form_id', 'img', 'links'];
 
     public function user(): BelongsTo
     {

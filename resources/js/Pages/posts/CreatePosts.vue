@@ -22,7 +22,7 @@
                                     <v-card-title class="text-center mt-2 mb-8">Dados da postagem</v-card-title>
                                     <v-text-field label="Titulo" placeholder="Titulo da postagem" v-model="form.title" :rules="rules.title" />
 
-                                    <AddPostContent @form_content="v => form.content = v" />
+                                    <AddPostContent @form_content="v => form.content = v" @form_content_links="v => form.links = v" @form_content_img="v => form.img = v" />
 
                                     <v-autocomplete variant="outlined" label="Para quem deseja enviar" persistent-hint hint="Caso não preencha este campo, todos os usuários poderão ver está postagem." :items="courses" item-title="name" item-value="id" v-model="form.send_to" :rules="rules.send_to" multiple chips />
 
@@ -68,6 +68,8 @@ export default {
             form: useForm({
                 title: null,
                 content: null,
+                img: null,
+                links: null,
                 send_to: null,
                 form_id: null
             }),
@@ -140,7 +142,8 @@ export default {
     },
     watch: {
         "form.errors": {
-            handler() {
+            handler($new) {
+                console.log($new);
                 this.$refs.form.validate();
             },
             deep: true

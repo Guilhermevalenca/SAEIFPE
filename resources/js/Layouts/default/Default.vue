@@ -1,8 +1,12 @@
 <template>
     <v-app>
         <header>
-            <DefaultAppBar @drawer="isDrawerOpen = !isDrawerOpen" />
-            <slot name="header" />
+            <section>
+                <DefaultAppBar @drawer="isDrawerOpen = !isDrawerOpen" />
+            </section>
+            <section>
+                <slot name="header" />
+            </section>
         </header>
         <v-main class="ma-5">
             <section>

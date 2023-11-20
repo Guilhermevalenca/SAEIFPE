@@ -5,7 +5,7 @@
             Postagens do IFPE Campus Igarassu
         </v-card-title>
 
-        <v-main  class="d-flex flex-column pb-16 ma-0 pa-0">
+        <v-main class="d-flex flex-column pb-16 ma-0 pa-0">
             <v-container class="d-flex justify-center">
                 <v-card :class="$sreenMediumDisplay ? 'w-75' : 'w-50'" variant="flat" color="transparent">
 

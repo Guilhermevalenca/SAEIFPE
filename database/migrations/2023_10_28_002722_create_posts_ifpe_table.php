@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('title');
             $table->text('content');
             $table->text('img')->nullable();
-            $table->json('links')->nullable();
             $table->json('send_to');
             $table->foreignId('user_id')
                 ->references('id')

@@ -85,7 +85,6 @@ class PostsIfpeController extends Controller
             'content' => ['required','string'],
             'send_to' => ['nullable', 'array', 'in:ADM,IPI,LOG,TGQ,TSI'],
             'form_id' => ['nullable', 'exists:forms,id'],
-            'links' => ['nullable', 'array'],
             'img.0' => ['nullable', 'image']
         ],[
             'title.required' => 'Você precisa adicionar um titulo',
@@ -107,9 +106,6 @@ class PostsIfpeController extends Controller
                 'mimeType' => $validation['img'][0]->getMimeType()
             ];
             $validation['img'] = 'data:' . $dataImg['mimeType'] . ';base64,' . $dataImg['base64'];
-
-
-            $validation['links'] = $validation['links'] !== null ? json_encode($validation['links']) : null;
 
             try {
                 PostsIfpe::create($validation);

@@ -1,14 +1,10 @@
 <template>
-    <v-textarea label="Conteúdo" variant="outlined" placeholder="Escreva o conteúdo da postagem" v-model="textContent" :rules="rules.content" rows="8" no-resize>
+    <v-textarea label="Conteúdo" variant="outlined" placeholder="Escreva o conteúdo da postagem" :rules="rules.content" v-model="textContent" rows="8" no-resize>
         <template #append-inner>
             <div class="d-flex flex-column">
                 <v-btn variant="flat" @click="show.file = true" icon="mdi-file-image-plus" />
                 <v-btn variant="flat" @click="show.links = true" icon="mdi-link-box-outline" />
             </div>
-        </template>
-
-        <template #message="{ message }">
-            <div>{{ message }}</div>
         </template>
 
         <template #details>
@@ -29,18 +25,25 @@
 
         </template>
     </v-textarea>
-    <AddImgInContent :show="show.file" @close_select_img="show.file = false" @new_img="value => { fileContent = value; show.file = false}" />
 
-    <AddLinksInContent :show="show.links" @close_add_links="show.links = false" @new_links="value => {this.links = value; show.links = false}" />
+    <v-card variant="outlined" class="mb-5">
+
+        <v-card-title>Como será exibido para o usuário</v-card-title>
+
+        <div v-html="textContent" ref="textContentHtml"></div>
+
+    </v-card>
+    <AddImgInContent :show="show.file" @close_select_img="show.file = false" @new_img="value => { fileContent = value; show.file = false}" />
+    <AddLinkInContent :addLink="show.links" @close_dialog_link="show.links = false" />
 </template>
 
 <script>
 import AddImgInContent from "@/Components/posts/createPosts/addContent/AddImgInContent.vue";
-import AddLinksInContent from "@/Components/posts/createPosts/addContent/AddLinksInContent.vue";
+import AddLinkInContent from "@/Components/posts/createPosts/addContent/AddLinkInContent.vue";
 
 export default {
     name: "AddPostContent",
-    components: {AddLinksInContent, AddImgInContent},
+    components: {AddLinkInContent, AddImgInContent},
     data() {
         return {
             rules: {
@@ -53,9 +56,8 @@ export default {
                     }
                 ],
             },
-            textContent: null,
+            textContent: '',
             fileContent: null,
-            links: [],
             show: {
                 file: false,
                 links: false,
@@ -68,6 +70,7 @@ export default {
     watch: {
         textContent: {
             handler($new) {
+                console.log($new);
                 this.$emit('form_content',$new);
             },
             deep: true
@@ -91,6 +94,15 @@ export default {
                 return URL.createObjectURL(this.fileContent[0]);
             }
             return null;
+        },
+    },
+    methods: {
+        adicionarQuebraDeLinha() {
+            // Adicione uma quebra de linha ao atingir o comprimento máximo desejado
+            const comprimentoMaximo = 20; // Ajuste conforme necessário
+            if (this.textContent.length % comprimentoMaximo === 0) {
+                this.textContent += '<br>';
+            }
         },
     }
 }

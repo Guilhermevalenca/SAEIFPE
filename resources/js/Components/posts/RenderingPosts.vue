@@ -72,6 +72,7 @@
 -->
 
 <script>
+import linkifyHtml from 'linkify-html';
 import { Link } from '@inertiajs/vue3';
 export default {
     name: "RenderingPosts",
@@ -87,7 +88,7 @@ export default {
                 .join('') + '...';
         },*/
         identifyingLinks() {
-            return this.data.content;
+            return linkifyHtml(this.data.content);
         }
     },
     data() {

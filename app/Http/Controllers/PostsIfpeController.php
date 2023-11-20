@@ -99,14 +99,15 @@ class PostsIfpeController extends Controller
             $validation['user_id'] = Auth::id();
             $validation['send_to'] = is_null($validation['send_to']) ? json_encode(['all']) : json_encode($validation['send_to']);
 
-            //montando img em string:
-            $binary = file_get_contents($validation['img'][0]->getRealPath());
-            $dataImg = [
-                'base64' => base64_encode($binary),
-                'mimeType' => $validation['img'][0]->getMimeType()
-            ];
-            $validation['img'] = 'data:' . $dataImg['mimeType'] . ';base64,' . $dataImg['base64'];
-
+            if(array_key_exists('img', $validation)) {
+                //montando img em string:
+                $binary = file_get_contents($validation['img'][0]->getRealPath());
+                $dataImg = [
+                    'base64' => base64_encode($binary),
+                    'mimeType' => $validation['img'][0]->getMimeType()
+                ];
+                $validation['img'] = 'data:' . $dataImg['mimeType'] . ';base64,' . $dataImg['base64'];
+            }
             try {
                 PostsIfpe::create($validation);
                 return redirect()->route('home');

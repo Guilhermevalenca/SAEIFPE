@@ -7,7 +7,7 @@
     </v-card>
     <!-- class="d-flex justify-center flex-row" class="d-flex flex-column"  -->
     <div>
-      <v-card :class="['ma-2']" variant="outlined" v-for="(form, index) in forms" :key="index">
+      <v-card :class="['ma-2']" v-for="(form, index) in forms" :key="index">
         <CreatedFormTemplate :form="form" />
       </v-card>
     </div>

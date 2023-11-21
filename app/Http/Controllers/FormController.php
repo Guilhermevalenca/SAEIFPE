@@ -108,6 +108,10 @@ class FormController extends Controller
         foreach ($recipients as $index => $value) {
             $data['recipients'][$index] = new Address($value['users']['email'], $value['users']['name']);
         }
+        foreach ($request->input('newEmails') as $value) {
+            $address = new Address($value, $value);
+            array_push($data['recipients'], $address);
+        }
         Mail::to(Auth::user(),Auth::getName())->send(new FormEmail($data));
 
     }

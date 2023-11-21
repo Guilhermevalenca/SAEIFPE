@@ -47,6 +47,8 @@
                                 </template>
                             </v-tooltip>
 
+                            <AddNewsEmails @want_new_emails="v => wantNewEmails = v" @new_emails="v => form.newEmails = v" />
+
 
                         </v-card-text>
 
@@ -58,32 +60,11 @@
                     </v-card>
 
                 </v-form>
-                <v-dialog v-model="showCancel" :width="$phoneDisplay ? '' : '600px'">
-                    <v-container>
-                        <v-card>
-                            <v-card-title>Deseja cancelar:</v-card-title>
-                            <v-card-text>
-                                <div>Ao cancelar você perderá o que foi preenchido</div>
-                            </v-card-text>
-                            <v-card-actions class="ma-2">
-                                <v-btn @click="showCancel = false">Fechar</v-btn>
-                                <v-btn color="error" variant="elevated" @click="historyBack()">OK</v-btn>
-                            </v-card-actions>
-                        </v-card>
-                    </v-container>
-                </v-dialog>
-                <v-dialog v-model="sendEmailSuccess" persistent>
-                    <v-container class="d-flex justify-center">
-                        <v-card :width="$phoneDisplay ? '' : '600px'">
-                            <v-card-title>Email enviado</v-card-title>
-                            <v-card-subtitle>Email enviado com sucesso, para todos os destinatarios</v-card-subtitle>
-                            <v-card-actions class="d-flex justify-space-between ma-2">
-                                <v-btn variant="outlined" @click="this.sendEmailSuccess = false;sendOtherEmail()">Enviar novo email</v-btn>
-                                <v-btn variant="elevated" color="secondary" @click="historyBack()">OK</v-btn>
-                            </v-card-actions>
-                        </v-card>
-                    </v-container>
-                </v-dialog>
+
+                <DialogCancelAlert @closeShowCancel="showCancel = false" :showCancel="showCancel" />
+
+                <DialogMessaSuccessEmail :sendEmailSuccess="sendEmailSuccess" @sendOtherEmail="sendEmailSuccess = false; sendOtherEmail()" />
+
             </v-card>
         </div>
     </Default>
@@ -93,10 +74,13 @@
 import Default from "@/Layouts/default/Default.vue";
 import {Head, useForm} from "@inertiajs/vue3";
 import TemplateSendFormByEmail from "@/Pages/mail/forms/TemplateSendFormByEmail.vue";
+import AddNewsEmails from '@/Components/forms/admUsersForms/sendFormByEmail/AddNewsEmails.vue';
+import DialogCancelAlert from "@/Components/forms/admUsersForms/sendFormByEmail/DialogCancelAlert.vue";
+import DialogMessaSuccessEmail from "@/Components/forms/admUsersForms/sendFormByEmail/DialogMessaSuccessEmail.vue";
 
 export default {
     name: "sendFormByEmail",
-    components: {TemplateSendFormByEmail, Head, Default},
+    components: {DialogMessaSuccessEmail, DialogCancelAlert, TemplateSendFormByEmail, Head, Default, AddNewsEmails},
     props: {
         data: Object
     },
@@ -106,12 +90,14 @@ export default {
             sendEmailSuccess: false,
             loadingSendEmail: false,
             showCancel: false,
+            wantNewEmails: false,
             form: useForm({
                 title: '',
                 text: '',
                 courses: null,
                 allGraduates: false,
-                student: false
+                student: false,
+                newEmails: []
             }),
             courses: [
                 {
@@ -158,7 +144,12 @@ export default {
             this.$refs.form.validate()
                 .then(response => {
                     if(response.valid) {
-                        this.form.post(route('forms_sendEmail', { id: this.data.id}));
+                        if(!this.wantNewEmails) {
+                            this.form.newEmails = [];
+                        }
+                        this.form.post(route('forms_sendEmail', { id: this.data.id}), {
+                            onError: v => console.log(v)
+                        });
                     } else {
                         this.loadingSendEmail = false;
                     }

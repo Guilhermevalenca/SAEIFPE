@@ -1,14 +1,13 @@
 <template>
     <Head title="Postagens" />
     <Default>
-        <header>
-            <v-card-title class="d-flex justify-center">
-                Postagens do IFPE Campus Igarassu
-            </v-card-title>
-        </header>
-        <v-main  class="d-flex flex-column">
+        <v-card-title class="d-flex justify-center">
+            Postagens do IFPE Campus Igarassu
+        </v-card-title>
+
+        <v-main class="d-flex flex-column pb-16 ma-0 pa-0">
             <v-container class="d-flex justify-center">
-                <v-card class="w-75" variant="flat" color="transparent">
+                <v-card :class="$sreenMediumDisplay ? 'w-75' : 'w-50'" variant="flat" color="transparent">
 
                     <v-card-actions v-if="$page.props.auth.user && $page.props.auth.user.role === 'adm'" class="d-flex justify-end">
                         <Link :href="route('posts_create')" class="mr-4">
@@ -17,7 +16,7 @@
                     </v-card-actions>
 
                     <v-container class="d-flex justify-start w-75" v-if="data.data.length !== 0">
-                        <v-card class="w-50" variant="flat">
+                        <v-card :class="$sreenMediumDisplay ? 'w-75' : 'w-50'" variant="flat">
                             <v-pagination v-model="page.current" :length="page.all" rounded="circle" />
                         </v-card>
                     </v-container>
@@ -32,7 +31,7 @@
                     -->
 
                     <v-container class="d-flex justify-end w-75" v-if="data.data.length !== 0">
-                        <v-card class="w-50" variant="flat">
+                        <v-card :class="$sreenMediumDisplay ? 'w-75' : 'w-50'" variant="flat">
                             <v-pagination v-model="page.current" :length="page.all" rounded="circle" />
                         </v-card>
                     </v-container>

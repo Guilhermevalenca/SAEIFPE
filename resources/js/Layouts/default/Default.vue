@@ -1,7 +1,12 @@
 <template>
     <v-app>
         <header>
-            <DefaultAppBar @drawer="isDrawerOpen = !isDrawerOpen" />
+            <section>
+                <DefaultAppBar @drawer="isDrawerOpen = !isDrawerOpen" />
+            </section>
+            <section>
+                <slot name="header" />
+            </section>
         </header>
         <v-main class="ma-5">
             <section>
@@ -9,6 +14,10 @@
             </section>
             <section>
                 <slot />
+            </section>
+            <section>
+                <!-- Pra caso necessite de uma segunda section para sua pagina -->
+                <slot name="main-2" />
             </section>
         </v-main>
         <v-footer class="bg-transparent">

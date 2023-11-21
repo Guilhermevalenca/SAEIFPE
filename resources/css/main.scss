@@ -1,10 +1,17 @@
+@import "../../node_modules/vuetify/styles";
+
 $dark-primary: #3F51B5;
 $dark-accent: #4CAF50;
 $dark-secondary: #757575;
 
-$vuetify-theme-dark: get (theme ("dark"), {
-  primary: $dark-primary,
-  secondary: $dark-secondary,
+$material-dark: (
+    'font-family': 'Roboto, sans-serif',
+    'primary': #2f9e41
+);
 
-  '--v-primary-text': $dark-primary,
-});
+//$vuetify-theme-dark: get (theme ("dark"), {
+//  primary: $dark-primary,
+//  secondary: $dark-secondary,
+//
+//  '--v-primary-text': $dark-primary,
+//});

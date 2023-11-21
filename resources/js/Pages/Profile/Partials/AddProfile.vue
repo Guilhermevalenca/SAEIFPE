@@ -7,7 +7,7 @@
     </p>
   </header>
   <v-form @submit.prevent="submit()" class="mt-6 space-y-6">
-    <v-file-input variant="outlined" label="Foto de perfil" v-model="form.profile_picture" :rules="rules" />
+    <v-file-input accept="image/png, image/jpg, image/bmp" variant="outlined" label="Foto de perfil" v-model="form.profile_picture" :rules="rules" />
     <div>
       <p>{{ form.profile_picture ? 'Veja como vai ficar sua foto de perfil:' : 'Nenhuma foto selecionada' }}</p>
       <v-tooltip text="Clique para visualizar melhor a imagem">

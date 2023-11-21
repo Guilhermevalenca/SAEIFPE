@@ -7,7 +7,8 @@
             <v-row no-gutters>
                 <v-col cols="12">
                     <v-card-text>
-                        {{ data.content }}
+                        <div v-html="identifyingLinks" class="highlight-links"></div>
+                        <v-img v-if="data.img" :src="data.img" />
                     </v-card-text>
                 </v-col>
                 <v-col>
@@ -71,6 +72,7 @@
 -->
 
 <script>
+import linkifyHtml from 'linkify-html';
 import { Link } from '@inertiajs/vue3';
 export default {
     name: "RenderingPosts",
@@ -85,17 +87,25 @@ export default {
                 .slice(0, 255)
                 .join('') + '...';
         },*/
+        identifyingLinks() {
+            return linkifyHtml(this.data.content);
+        }
     },
     data() {
         return {
 
         }
-    }
+    },
 }
 </script>
 
 <style scoped>
 div {
     padding: 5px;
+}
+</style>
+<style>
+.highlight-links a{
+    color:#0d47a1;
 }
 </style>

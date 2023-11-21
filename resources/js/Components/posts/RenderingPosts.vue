@@ -1,5 +1,5 @@
 <template>
-    <v-container class="d-flex flex-column justify-center pa-0 w-75 h-auto rounded-xl">
+    <v-container class="d-flex flex-column justify-center pa-0 h-auto rounded-xl">
         <v-card class="d-flex flex-column justify-center pa-10 mb-4 h-auto rounded-xl" variant="flat" :style="'border: 1px solid #2E8429;'">
             <v-card-title>
                     {{ data.user }} - {{ data.title }}
@@ -88,7 +88,8 @@ export default {
                 .join('') + '...';
         },*/
         identifyingLinks() {
-            return linkifyHtml(this.data.content);
+            const textHtml = linkifyHtml(this.data.content);
+            return textHtml.replace(/\n/g, "<br>");
         }
     },
     data() {

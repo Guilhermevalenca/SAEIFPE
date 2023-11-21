@@ -16,9 +16,7 @@
                     </v-card-actions>
 
                     <v-container class="d-flex justify-start w-75" v-if="data.data.length !== 0">
-                        <v-card :class="$sreenMediumDisplay ? 'w-75' : 'w-50'" variant="flat">
-                            <v-pagination v-model="page.current" :length="page.all" rounded="circle" />
-                        </v-card>
+                        <v-pagination v-model="page.current" :length="page.all" rounded="circle" />
                     </v-container>
 
                     <v-container>
@@ -31,9 +29,7 @@
                     -->
 
                     <v-container class="d-flex justify-end w-75" v-if="data.data.length !== 0">
-                        <v-card :class="$sreenMediumDisplay ? 'w-75' : 'w-50'" variant="flat">
-                            <v-pagination v-model="page.current" :length="page.all" rounded="circle" />
-                        </v-card>
+                        <v-pagination v-model="page.current" :length="page.all" rounded="circle" />
                     </v-container>
 
                 </v-card>

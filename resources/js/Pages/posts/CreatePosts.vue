@@ -7,7 +7,7 @@
 
         <v-main class="pb-16 ma-0 pa-0">
             <v-container class="d-flex justify-center">
-                <v-card class="w-75" variant="flat" color="transparent">
+                <v-card :class="$sreenMediumDisplay ? 'w-75' : 'w-50'" variant="flat" color="transparent">
 
                     <v-card-actions class="d-flex justify-end">
                         <Link :href="route('home')">

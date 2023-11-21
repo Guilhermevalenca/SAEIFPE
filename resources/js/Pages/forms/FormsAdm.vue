@@ -16,18 +16,14 @@
 
                 <v-card-text>
                     <div v-if="! isCreateForms">
-                        <v-container class="d-flex justify-start" v-if="data.forms.data.length !== 0">
-                            <v-card :class="$phoneDisplay ? '' : 'w-50'" variant="flat">
-                                <v-pagination v-model="page.current" :length="page.all" rounded="circle" />
-                            </v-card>
+                        <v-container v-if="data.forms.data.length !== 0">
+                            <v-pagination v-model="page.current" :length="page.all" rounded="circle" />
                         </v-container>
 
                         <MyFormsCreated :data="data" />
 
-                        <v-container class="d-flex justify-end" v-if="data.forms.data.length !== 0">
-                            <v-card :class="$phoneDisplay ? '' : 'w-50'" variant="flat">
-                                <v-pagination v-model="page.current" :length="page.all" rounded="circle" />
-                            </v-card>
+                        <v-container v-if="data.forms.data.length !== 0">
+                            <v-pagination v-model="page.current" :length="page.all" rounded="circle" />
                         </v-container>
                     </div>
                     <div v-else :class="$phoneDisplay ? '' : 'd-flex justify-center'">

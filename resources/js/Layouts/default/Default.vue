@@ -8,7 +8,7 @@
                 <slot name="header" />
             </section>
         </header>
-        <v-main class="ma-5">
+        <v-main class="ma-5 person-main">
             <section>
                 <ItemDrawer v-model="isDrawerOpen" />
             </section>

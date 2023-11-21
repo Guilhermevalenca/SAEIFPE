@@ -7,7 +7,7 @@
         <v-main class="d-flex align-center flex-column justify-center pb-16 ma-0 pa-0">
             <v-card variant="flat" color="transparent" :class="[$phoneDisplay ? 'w-100' : $sreenMediumDisplay ? 'w-75' : 'w-50']">
                 <v-container class="pa-0 ma-0">
-                    <v-container class="d-flex justify-end">
+                    <v-container class="d-flex justify-end" v-if="$page.props.auth.user !== null && $page.props.auth.user.role === 'graduate'">
                         <v-btn @click="showFormAdd() ; changeButton" color="tertiary" variant="flat" :prepend-icon="changeButton ? 'mdi-plus' : '' ">{{  changeButton ? 'Adicionar Depoimento' : 'Voltar' }}</v-btn>
                     </v-container>
                     <v-container class="d-flex justify-center" v-if="showAddDeposition">

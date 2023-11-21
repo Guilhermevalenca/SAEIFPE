@@ -8,6 +8,7 @@ use App\Mail\FormEmail;
 use App\Models\Form;
 use App\Models\User;
 use App\Models\UsersGraduates;
+use App\Policies\FormPolicy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -18,6 +19,8 @@ class FormController extends Controller
 {
     public function index()
     {
+        $this->authorize('index');
+
         $paginate = Form::where('user_id','=',Auth::id())->where('visible','=','1')->paginate(10);
         $forms = FormResource::collection($paginate);
 

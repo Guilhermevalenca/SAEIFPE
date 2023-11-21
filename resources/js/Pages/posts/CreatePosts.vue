@@ -10,7 +10,7 @@
                 <v-card :class="$sreenMediumDisplay ? 'w-75' : 'w-50'" variant="flat" color="transparent">
 
                     <v-card-actions class="d-flex justify-end">
-                        <Link :href="route('home')">
+                        <Link :href="route('home')" class="mr-4">
                             <v-btn color="secondary" variant="elevated">Todas as postagens</v-btn>
                         </Link>
                     </v-card-actions>

@@ -20,7 +20,9 @@ class FormController extends Controller
     public function index()
     {
 //        $this->authorize('index');
-        $paginate = Form::where('user_id','=',Auth::id())->where('visible','=','1')->paginate(10);
+        $paginate = Form::where('user_id','=',Auth::id())->where('visible','=','1')
+            ->orderByDesc('id')
+            ->paginate(10);
         $forms = FormResource::collection($paginate);
 
 

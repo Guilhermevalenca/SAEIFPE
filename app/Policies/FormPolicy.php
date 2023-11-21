@@ -4,6 +4,8 @@ namespace App\Policies;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Gate;
 
 class FormPolicy
 {
@@ -14,8 +16,8 @@ class FormPolicy
     {
         //
     }
-    public function index()
+    public function viewAny(User $user): bool
     {
-        return true;
+        return $user->role === 'adm';
     }
 }

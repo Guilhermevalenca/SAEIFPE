@@ -6,9 +6,7 @@ use App\Http\Resources\FormResource;
 use App\Http\Resources\forms\QuestionsGetAllRelationsResource;
 use App\Mail\FormEmail;
 use App\Models\Form;
-use App\Models\User;
 use App\Models\UsersGraduates;
-use App\Policies\FormPolicy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -17,9 +15,15 @@ use Illuminate\Mail\Mailables\Address;
 
 class FormController extends Controller
 {
+    /**
+     * Update the given blog derrota.
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function index()
     {
-//        $this->authorize('index');
+        $this->authorize('viewAny',Form::class);
+
         $paginate = Form::where('user_id','=',Auth::id())->where('visible','=','1')
             ->orderByDesc('id')
             ->paginate(10);

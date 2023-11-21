@@ -17,9 +17,23 @@ class DepositionsFactory extends Factory
      */
     public function definition(): array
     {
+        $userGraduate = \App\Models\User::factory()->create([
+            'name' => fake()->name,
+            'cpf' => fake()->numerify('###########'),
+            'email' => fake()->unique()->safeEmail(),
+            'password' => 'ipi123',
+            'role' => 'graduate'
+        ]);
+        \App\Models\UsersGraduates::factory()->create([
+            'users_id' => $userGraduate->id,
+            'phone' => fake()->numerify('#########'),
+            'phoneIsWhatsApp' => true,
+            'genre' => 'Autobot',
+            'course' => 'IPI'
+        ]);
         return [
             'content' => fake()->text('378'),
-            'user_id' => User::where('role', '=', 'graduate')->pluck('id')->random()
+            'user_id' => $userGraduate->id
         ];
     }
 }

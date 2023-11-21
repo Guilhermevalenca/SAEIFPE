@@ -45,7 +45,7 @@
       </div>
 
       <div class="flex items-center gap-4">
-        <v-btn type="submit" color="secondary" :disabled="form.processing">Salvar</v-btn>
+        <v-btn type="submit" color="tertiary" :disabled="form.processing">Salvar</v-btn>
 
         <Transition
             enter-active-class="transition ease-in-out"

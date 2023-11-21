@@ -21,13 +21,16 @@ class FormController extends Controller
     {
 //        $this->authorize('index');
 
-        $paginate = Form::where('user_id','=',Auth::id())->where('visible','=','1')->paginate(10);
+        //where('user_id','=',Auth::id())->where('visible','=','1')->
+
+        $paginate = Form::paginate(10);
         $forms = FormResource::collection($paginate);
+
 
         $response = [
             'forms' => $forms,
             'allPages' => $paginate->lastPage(),
-            'page' => $paginate
+            'current_page' => $paginate->currentPage(),
         ];
         return Inertia::render('forms/FormsAdm', [
             'data' => $response

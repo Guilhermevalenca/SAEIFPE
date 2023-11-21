@@ -52,8 +52,8 @@ export default {
         return {
             isCreateForms: false,
             page: {
-                current: this.data.page.current_page,
-                all: this.data.page.last_page
+                current: this.data.current_page,
+                all: this.data.allPages
             }
         }
     },

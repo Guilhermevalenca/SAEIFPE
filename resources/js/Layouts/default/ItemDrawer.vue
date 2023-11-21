@@ -20,14 +20,14 @@
                 </v-list-item>
             </Link>
 
-            <v-list-group>
+            <v-list-group v-if="$page.props.auth.user !== null && $page.props.auth.user.role === 'adm'">
                 <template #activator="{ props }">
                   <v-list-item to="/" v-bind="props">
                     Administrativo
                   </v-list-item>
                 </template>
 
-                <Link v-if="$page.props.auth.user !== null && $page.props.auth.user.role === 'adm'" :href="route('adm_index')">
+                <Link :href="route('adm_index')">
                     <v-list-item to="/">
                         Adicionar usuário administrador
                     </v-list-item>

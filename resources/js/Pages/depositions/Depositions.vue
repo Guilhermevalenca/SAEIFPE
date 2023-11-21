@@ -14,7 +14,7 @@
                         <AddDeposition @send="changeButton = true" @cancelAction="changeButton = true"/>
                     </v-container>
                     <v-container class="d-flex align-center flex-column justify-center pt-10" v-else>
-                        <ViewDepositions :data="data"/>
+                        <ViewDepositions :data="data" :currentPage="currentPage" :lastPage="lastPage"/>
                     </v-container>
                 </v-container>
             </v-card>
@@ -30,6 +30,8 @@ import { Head } from '@inertiajs/vue3';
 export default {
     props: {
         data: Object,
+        lastPage: Number,
+        currentPage: Number
     },
     name: "Depositions",
     components: {ViewDepositions, AddDeposition, Default, Head},
@@ -42,6 +44,7 @@ export default {
 
     },
     created() {
+        console.log(this.lastPage,this.currentPage)
         console.log(this.data);
     }
 }

@@ -15,8 +15,11 @@ class DepositionsController extends Controller
      */
     public function index()
     {
+        $paginate= Depositions::orderByDesc('id')->paginate(5);
         $response = [
-            'data'=> DepositionsResource::collection(Depositions::orderByDesc('id')->get())
+            'data'=> DepositionsResource::collection($paginate->items()),
+            'lastPage'=> $paginate->lastPage(),
+            'currentPage'=> $paginate->currentPage(),
         ];
 //        return response($response, 200);
         return Inertia::render('depositions/Depositions',$response);

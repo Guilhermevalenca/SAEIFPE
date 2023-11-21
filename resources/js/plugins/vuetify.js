@@ -37,7 +37,6 @@ export default createVuetify({
                     tertiary: '#2f9e41', //verde claro
                     quaternary: '#cd191e', //vermelho
                     background: '#212121', //preto fosco
-                    quinary: '#e6e3e3', //branco
                 },
             },
         },

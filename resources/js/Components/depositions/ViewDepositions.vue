@@ -9,9 +9,9 @@
             <span>{{ deposition[index].user[1].course }}</span>
         </v-card-item>
         <v-card-text class="d-flex flex-row">
-            <v-avatar v-slot="auto"
+            <v-avatar
                       color="pink"
-                      image= "{{ deposition[index].user[0].profile_picture }}"
+                      :image= "deposition[index].user[0].profile_picture"
             >
             </v-avatar>
             <v-card-title>
@@ -20,6 +20,8 @@
         </v-card-text>
         <v-card-text>
             {{deposition[index].content}}
+            <v-img :src="deposition[index].picture">
+            </v-img>
         </v-card-text>
     </v-card>
 </v-container>
@@ -33,7 +35,10 @@ export default {
    data(){
         return{
         }
-   }
+   },
+    created() {
+        console.log(this.data)
+    }
 }
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-    <v-textarea label="Conteúdo" variant="outlined" placeholder="Escreva o conteúdo da postagem" :rules="rules.content" v-model="textContent" rows="8" no-resize hint="Para adicionar links, basta apenas adicionar o link no conteúdo, que ele será exibido corretamente na areá de exibição das postagens" persistent-hint>
+    <v-textarea label="Conteúdo" variant="outlined" placeholder="Escreva o conteúdo da postagem" :rules="rules.content" v-model="textContent" rows="8" no-resize hint="Para adicionar links, apenas digite a url" persistent-hint>
         <template #append-inner>
             <div class="d-flex flex-column">
                 <v-btn variant="flat" @click="show.file = true" icon="mdi-file-image-plus" />

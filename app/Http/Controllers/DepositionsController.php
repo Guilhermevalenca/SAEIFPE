@@ -16,7 +16,7 @@ class DepositionsController extends Controller
     public function index()
     {
         $response = [
-            'data'=> DepositionsResource::collection(Depositions::all())
+            'data'=> DepositionsResource::collection(Depositions::orderByDesc('id')->get())
         ];
 //        return response($response, 200);
         return Inertia::render('depositions/Depositions',$response);

@@ -63,14 +63,22 @@ class ProfileController extends Controller
     }
     public function updateProfilePicture(Request $request)
     {
+        $request->validate([
+            'profile_picture.0' => ['required','image']
+        ]);
+
         $profile_picture = $request->file('profile_picture');
+
         $binary = file_get_contents($profile_picture[0]->getRealPath());
         $json = [
             'base64' => base64_encode($binary),
             'mimeType' => $profile_picture[0]->getMimeType()
         ];
+
+        $img = 'data:' . $json['mimeType'] . ';base64,' . $json['base64'];
         Auth::user()->update([
-            'profile_picture' => json_encode($json)
+            'profile_picture' => $img
         ]);
+
     }
 }

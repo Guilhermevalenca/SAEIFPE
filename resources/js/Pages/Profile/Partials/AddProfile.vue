@@ -54,6 +54,7 @@ export default {
   computed: {
     renderProfile() {
       if(this.form.profile_picture) {
+          console.log(this.form.profile_picture);
         return URL.createObjectURL(this.form.profile_picture[0]);
       }
       return null;

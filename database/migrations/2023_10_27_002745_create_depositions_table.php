@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('depositions', function (Blueprint $table) {
             $table->id();
             $table->text('content');
-            $table->string('picture')->nullable();
+            $table->longText('picture')->nullable();
             $table->timestamps();
             $table->foreignId('user_id')->unique()->references('id')->on('users');
 

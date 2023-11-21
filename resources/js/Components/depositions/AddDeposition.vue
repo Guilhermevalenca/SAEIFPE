@@ -5,7 +5,7 @@
     <v-textarea v-model="deposition.content" persistent-placeholder placeholder="Digite aqui seu depoimento" variant="outlined" auto-grow class="mb-0 rounded-xl"></v-textarea>
             <img :src="imageUrl" v-if="imageUrl" alt="ovo"/>
             <v-container id="test" class="pa-0 justify-start">
-                <v-file-input v-model="deposition.picture" @input="deposition.picture = $event.target.files[0]" prepend-icon="mdi mdi-image-plus" accept="image/png, image/jpg, image/bmp"></v-file-input>
+                <v-file-input v-model="deposition.picture" prepend-icon="mdi mdi-image-plus" accept="image/png, image/jpg, image/bmp"></v-file-input>
             </v-container>
         </v-card-text>
     <div class="d-flex justify-end ma-0 pa-2">
@@ -25,17 +25,19 @@ export default {
         return{
             imageUrl: null,
             deposition:useForm({
-                content:"",
+                content:null,
                 picture: null,
             })
         }
     },
     methods:{
         submitDeposition(){
-            this.deposition.post(route("depoimentos_criar"));
-            this.deposition.content= ""
-            this.deposition.picture= ""
-            this.$emit('send')
+            this.deposition.post(route("depoimentos_criar"),{
+                onSuccess: () =>{
+                    this.deposition.reset()
+                    this.$emit('send')
+                }
+            });
         }
             },
     watch:{

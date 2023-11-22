@@ -1,6 +1,6 @@
 <template>
     <v-row>
-        <v-col :cols="$sreenMediumDisplay ? 7 : 7">
+        <v-col cols="8">
             <v-card-title>{{ form.title }}</v-card-title>
         </v-col>
         <v-col>

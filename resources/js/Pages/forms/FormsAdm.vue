@@ -4,7 +4,7 @@
         <v-card-title class="d-flex justify-center mt-4">Formulários</v-card-title>
         <v-container :class="$phoneDisplay ? '' : 'd-flex justify-center'">
 
-            <v-card variant="flat" color="transparent" :class="[$phoneDisplay ? '' : $sreenMediumDisplay ? 'w-75' : 'w-50']">
+            <v-card variant="flat" color="transparent">
 
 
                 <v-card-actions class="d-flex justify-end mr-8 mt-3">
@@ -15,7 +15,7 @@
                 </v-card-actions>
 
                 <v-card-text>
-                    <div v-if="! isCreateForms">
+                    <div v-if="!isCreateForms">
                         <v-container v-if="data.forms.data.length !== 0">
                             <v-pagination v-model="page.current" :length="page.all" rounded="circle" />
                         </v-container>

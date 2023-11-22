@@ -75,7 +75,7 @@ class DatabaseSeeder extends Seeder
             'course' => 'IPI'
         ]);
          Form::factory(30)->create();
-         Depositions::factory(50)->create();
+         Depositions::factory(30)->create();
          PostsIfpe::factory(30)->create();
     }
 }

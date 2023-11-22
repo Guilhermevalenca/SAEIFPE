@@ -5,8 +5,12 @@
  */
 
 // Styles
-import '@mdi/font/css/materialdesignicons.css'
-import 'vuetify/styles'
+import '@mdi/font/css/materialdesignicons.css';
+//estilização padrão:
+import 'vuetify/styles';
+//Alterando estilização:
+import '@/assets/scss/main.scss';
+
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 

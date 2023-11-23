@@ -8,7 +8,7 @@
             <v-card variant="flat" color="transparent" :class="[$phoneDisplay ? 'w-100' : $screenMediumDisplay ? 'w-75' : 'w-50']">
                 <v-card class="pa-0 ma-0 " color="transparent" variant="flat">
                     <v-container class="d-flex justify-end" v-if="$page.props.auth.user !== null && $page.props.auth.user.role === 'graduate'">
-                        <v-btn @click="changeButton = !changeButton" color="tertiary" variant="flat" :prepend-icon="changeButton ? 'mdi-plus' : '' ">{{  changeButton ? 'Adicionar Depoimento' : 'Voltar' }}</v-btn>
+                        <v-btn @click="changeButton = !changeButton" color="secondary" variant="flat" :prepend-icon="changeButton ? 'mdi-plus' : '' ">{{  changeButton ? 'Adicionar Depoimento' : 'Voltar' }}</v-btn>
                     </v-container>
                     <v-container class="d-flex align-center flex-column justify-center" v-if="!changeButton">
                         <AddDeposition @send="changeButton = true" @cancelAction="changeButton = true"/>

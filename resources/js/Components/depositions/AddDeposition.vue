@@ -10,7 +10,7 @@
                     </v-container>
                 </v-card-text>
                 <div class="d-flex justify-end">
-                    <v-btn @click="$emit('cancelAction')" class='ma-2' color="tertiary" variant="outlined">Cancelar</v-btn>
+                    <v-btn @click="$emit('cancelAction')" class='ma-2' color="quaternary" variant="flat">Cancelar</v-btn>
                     <v-btn type="submit" class="ma-2 d-flex justify-end" color="tertiary" variant="flat">Enviar</v-btn>
                 </div>
             </v-form>

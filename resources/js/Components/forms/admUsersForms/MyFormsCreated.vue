@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+    <v-card color="transparent" variant="flat">
 
         <v-card class="mb-10" v-show="noForms">
             <v-card-title>Nenhum formulário encontrado!!!</v-card-title>
@@ -12,7 +12,7 @@
             </v-card>
         </div>
 
-    </v-container>
+    </v-card>
 </template>
 
 <script>

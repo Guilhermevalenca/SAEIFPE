@@ -4,8 +4,8 @@
             <v-card-title>{{ form.title }}</v-card-title>
         </v-col>
         <v-col>
-            <v-card-actions class="v-card__actions">
-                <v-tooltip text="Enviar este formulário pelo email">
+            <v-card-actions class="v-card__actions d-flex justify-end">
+                <v-tooltip text="Enviar este formulário por email">
                     <template #activator="{ props }">
                         <Link v-bind="props" :href="route('forms_createSendEmail', { id: form.id })">
                             <v-btn icon="mdi-email-multiple-outline" />

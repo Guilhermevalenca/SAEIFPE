@@ -4,10 +4,8 @@
         <v-card-title class="d-flex justify-center">
             Postagens do IFPE Campus Igarassu
         </v-card-title>
-
-        <v-main class="d-flex flex-column pb-16 ma-0 pa-0">
-            <v-container class="d-flex justify-center">
-                <v-card :class="$sreenMediumDisplay ? 'w-75' : 'w-50'" variant="flat" color="transparent">
+            <v-container :class="[$phoneDisplay ? 'w-100' : $screenMediumDisplay ? 'w-75' : 'w-50']">
+                <v-card variant="flat" color="transparent">
 
                     <v-card-actions v-if="$page.props.auth.user && $page.props.auth.user.role === 'adm'" class="d-flex justify-end">
                         <Link :href="route('posts_create')" class="mr-4">
@@ -34,7 +32,6 @@
 
                 </v-card>
             </v-container>
-        </v-main>
     </Default>
 </template>
 <script>

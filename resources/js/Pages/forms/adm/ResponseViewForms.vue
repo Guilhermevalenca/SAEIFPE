@@ -14,9 +14,9 @@
 
                 <v-card-text>
 
-                    <v-select class="w-50" label="Escolha o tipo de grafico" :items="graphTypes" item-title="name" item-value="id" v-model="currentGraphType" />
+                    <v-select class="w-50" label="Tamanho do grafico" :items="sizeGraph.options" item-title="name" item-value="class" v-model="sizeGraph.value" />
 
-                    <v-card class="w-25 ma-5" v-for="(question, index) in questions" :key="index">
+                    <v-card :class="[sizeGraph.value ,'ma-5']" v-for="(question, index) in questions" :key="index">
 
                         <div v-if="question[0].type !== 'open-ended'">
 
@@ -28,7 +28,9 @@
 
                                 <v-card-text>
 
-                                    <ResponseAssembleGraphs :question="question" :index="index" :type="currentGraphType" />
+                                    <v-select label="Escolha o tipo de grafico" :items="graphTypes" item-title="name" item-value="id" v-model="currentGraphType[index]" />
+
+                                    <ResponseAssembleGraphs :question="question" :index="index" :type="currentGraphType[index]" :size="sizeGraph.value" />
 
                                 </v-card-text>
 
@@ -78,7 +80,7 @@ export default {
         return {
             form: '',
             questions: [],
-            currentGraphType: 'doughnut',
+            currentGraphType: [],
             graphTypes: [
                 {
                     id: 'bar',
@@ -108,7 +110,28 @@ export default {
                     id: 'scatter',
                     name: 'espalhar/dispersão'
                 }
-            ]
+            ],
+            sizeGraph: {
+                value: 'w-25',
+                options: [
+                    {
+                        class: 'w-25',
+                        name: 'Pequeno'
+                    },
+                    {
+                        class: 'w-50',
+                        name: 'Médio'
+                    },
+                    {
+                        class: 'w-75',
+                        name: 'Grande'
+                    },
+                    {
+                        class: 'w-100',
+                        name: 'Muito grande'
+                    }
+                ]
+            }
         }
     },
     methods: {
@@ -118,7 +141,8 @@ export default {
     },
     created() {
         this.form = this.data.form.data;
-        this.questions = this.data.questions.map(question => {
+        this.questions = this.data.questions.map((question, index) => {
+            this.currentGraphType[index] = 'doughnut';
             return question.data;
         });
         console.log(this.questions);

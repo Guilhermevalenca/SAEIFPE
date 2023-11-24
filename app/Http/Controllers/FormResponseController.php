@@ -16,7 +16,7 @@ class FormResponseController extends Controller
 {
     public function index()
     {
-        $paginate = Form::where('visible','=','1')->paginate();
+        $paginate = Form::where('visible','=','1')->orderByDesc('id')->paginate();
         $forms = FormResponseTwoResource::collection($paginate);
 
         $response = [

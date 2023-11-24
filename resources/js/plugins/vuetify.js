@@ -7,7 +7,7 @@
 // Styles
 import '@mdi/font/css/materialdesignicons.css';
 //estilização padrão:
-import 'vuetify/styles';
+// import 'vuetify/styles';
 //Alterando estilização:
 import '@/assets/scss/main.scss';
 
@@ -15,7 +15,7 @@ import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 
 // Composables
-import { createVuetify } from 'vuetify'
+import { createVuetify } from 'vuetify';
 
 // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
 export default createVuetify({

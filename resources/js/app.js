@@ -10,6 +10,7 @@ import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 import { loadFonts } from './plugins/webfontloader.js';
 import Vuetify from "./plugins/vuetify";
 
+
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 createInertiaApp({
@@ -31,3 +32,4 @@ createInertiaApp({
         color: '#4B5563',
     },
 });
+

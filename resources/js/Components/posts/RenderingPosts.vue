@@ -5,71 +5,31 @@
                     {{ data.user }} - {{ data.title }}
             </v-card-title>
             <v-row no-gutters>
-                <v-col cols="12">
-                    <v-card-text>
-                        <div v-html="identifyingLinks" class="highlight-links"></div>
-                        <v-img v-if="data.img" :src="data.img" />
-                    </v-card-text>
-                </v-col>
-                <v-col>
-                    <v-container v-if="data.form_id" class="d-flex justify-end">
-                        <v-card-title>Formulário anexado:</v-card-title>
-                        <v-tooltip text="Clique para ir até o formulário respectivo">
-                            <template #activator="{ props }">
-                                <v-btn v-bind="props" variant="flat" color="tertiary">
-                                    <Link :href="route('forms_show_response', {id: data.form_id})">
-                                        Ir para o formulário
-                                    </Link>
-                                </v-btn>
-                            </template>
-                        </v-tooltip>
-                    </v-container>
-                </v-col>
+                <v-card-text>
+                    <div v-html="identifyingLinks" class="highlight-links"></div>
+                    <v-img v-if="data.img" :src="data.img" />
+                </v-card-text>
+            </v-row>
+            <v-row>
+                <v-container v-if="data.form_id" class="d-flex justify-start default-card-border">
+                    <v-card-title>Responder formulário:</v-card-title>
+                    <v-tooltip text="Clique para ir até o formulário respectivo">
+                        <template #activator="{ props }">
+                            <v-btn v-bind="props" variant="flat" color="tertiary">
+                                <template #prepend>
+                                    <v-icon icon="mdi-text-search-variant" />
+                                </template>
+                                <Link :href="route('forms_show_response', {id: data.form_id})">
+                                    {{ data.title }}
+                                </Link>
+                            </v-btn>
+                        </template>
+                    </v-tooltip>
+                </v-container>
             </v-row>
         </v-card>
     </v-container>
 </template>
-
-<!--
-<v-expansion-panel>
-    <template #title>
-        <v-container>
-            <v-card-title>
-                <div>
-                    {{ data.user }} - {{ data.title }}
-                </div>
-            </v-card-title>
-            <v-card-text>
-                {{ partialContent }}
-            </v-card-text>
-        </v-container>
-    </template>
-    <template #text>
-        <v-row no-gutters>
-            <v-col cols="12">
-                <v-card-text>
-                    {{ data.content }}
-                </v-card-text>
-            </v-col>
-            <v-divider color="secondary" class="mx-4 border-opacity-100"></v-divider>
-            <v-col>
-                <div v-if="data.form_id" class="d-flex justify-end">
-                    <v-card-title>Formulário anexado:</v-card-title>
-                        <v-tooltip text="Clique para ir até o formulário respectivo">
-                            <template #activator="{ props }">
-                                <v-btn v-bind="props" variant="elevated" color="primary">
-                                    <Link :href="route('forms_show_response', {id: data.form_id})">
-                                        Ir para o formulário
-                                    </Link>
-                                </v-btn>
-                            </template>
-                        </v-tooltip>
-                </div>
-            </v-col>
-        </v-row>
-    </template>
-</v-expansion-panel>
--->
 
 <script>
 import linkifyHtml from 'linkify-html';
@@ -81,12 +41,6 @@ export default {
         data: Object
     },
     computed: {
-      /*  partialContent() {
-            return this.data.content
-                .split('')
-                .slice(0, 255)
-                .join('') + '...';
-        },*/
         identifyingLinks() {
             const textHtml = linkifyHtml(this.data.content);
             return textHtml.replace(/\n/g, "<br>");
@@ -97,6 +51,9 @@ export default {
 
         }
     },
+    created() {
+        console.log(this.data);
+    }
 }
 </script>
 

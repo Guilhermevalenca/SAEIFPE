@@ -20,11 +20,6 @@
                     <v-container>
                         <RenderingPosts v-for="(post, index) in data.data" :key="index" :data="post"/>
                     </v-container>
-                    <!--
-                                        <v-expansion-panels variant="inset" multiple>
-                                            <RenderingPosts v-for="(post, index) in data.data" :key="index" :data="post" class="d-flex flex-column justify-center pa-10 mb-4 h-auto rounded-xl" variant="flat" :style="'border: 1px solid #2E8429;'"/>
-                                        </v-expansion-panels>
-                    -->
 
                     <v-container class="d-flex justify-end w-75" v-if="data.data.length !== 0">
                         <v-pagination v-model="page.current" :length="page.all" rounded="circle" />

@@ -34,7 +34,17 @@
                                         </v-checkbox-btn>
                                         <SelectForm v-if="selectForm" @form="v => {form.form_id = v.id; selectedFormTitle = v.title}" />
                                         <v-card-text>
-                                            <span v-if="form.form_id && selectForm">Este foi o formulário que você selecionou: <strong>{{ selectedFormTitle }}</strong></span>
+                                            <span v-if="form.form_id && selectForm">Este foi o formulário que você selecionou:
+                                                <v-tooltip>
+                                                    <template #default>
+                                                        <div>Deseja visualizar este formulário ?</div>
+                                                        <div>Obs.: isso irá abrir uma nova aba no seu navegador!</div>
+                                                    </template>
+                                                    <template #activator="{ props }">
+                                                        <v-btn v-bind="props" @click="viewForm(form.form_id)" variant="flat" color="secondary">{{ selectedFormTitle }}</v-btn>
+                                                    </template>
+                                                </v-tooltip>
+                                            </span>
                                         </v-card-text>
                                     </v-card>
 
@@ -138,6 +148,9 @@ export default {
         },
         historyBack() {
             window.history.back();
+        },
+        viewForm(id) {
+            window.open(route('forms_show', {id: id}), "_blank");
         }
     },
     watch: {

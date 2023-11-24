@@ -26,13 +26,13 @@
                                 </v-card-title>
                             </v-row>
                             <v-row>
-                                <v-col v-for="(form, index) in data" :key="index">
-                                    <v-btn @click="selectedForm = form" class="tonal">{{ form.title }}</v-btn>
-                                </v-col>
-                            </v-row>
-                            <v-row>
-                                <v-col>
-                                    <v-pagination v-if="page.all !== 1" v-model="page.current" :length="page.all" rounded="circle" />
+                                <v-col cols="12" v-if="data">
+                                    <v-virtual-scroll :items="data" :height="300">
+                                        <template #default="{ item, index }">
+                                            <v-btn @click="selectedForm = item" :color="selectedForm && selectedForm.id === item.id ? 'secondary' : ''" variant="flat">
+                                                {{ index }} - {{ item.title }}</v-btn>
+                                        </template>
+                                    </v-virtual-scroll>
                                 </v-col>
                             </v-row>
                         </v-card>
@@ -81,20 +81,15 @@ export default {
                     return true;
                 }
             ],
-            page: {
-                current: 1,
-                all: 1
-            }
         }
     },
     methods: {
         submit() {
-            axios.post(route('searchForFormsInCreatePosts') + `?page=${this.page.current}`, {
+            axios.post(route('searchForFormsInCreatePosts'), {
                 title: this.form.title
             })
                 .then(response => {
-                    this.data = response.data.data;
-                    this.page.all = response.data.last_page;
+                    this.data = response.data;
                 })
                 .catch(error => console.log(error));
         },
@@ -104,15 +99,7 @@ export default {
         }
     },
     watch: {
-        page: {
-            handler($new) {
-                if($new.current <= 0) {
-                    this.page.current = 1;
-                }
-                this.submit();
-            },
-            deep: true
-        }
+
     }
 }
 </script>

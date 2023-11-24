@@ -11,7 +11,7 @@
           </v-col>
 
           <v-col>
-            <v-text-field v-model="option.text" :rules="rules" placeholder="Escreva aqui..."/>
+            <v-textarea rows="1" max-rows="10" auto-grow v-model="option.text" :rules="rules" placeholder="Escreva aqui..."/>
           </v-col>
 
         </v-row>

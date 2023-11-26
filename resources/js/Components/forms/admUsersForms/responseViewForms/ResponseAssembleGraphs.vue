@@ -78,7 +78,6 @@ export default {
         }
     },
     mounted() {
-        // console.log(this.question);
         this.separatingInformation();
     },
     watch: {

@@ -154,8 +154,7 @@ export default {
     },
     watch: {
         "form.errors": {
-            handler($new) {
-                console.log($new);
+            handler() {
                 this.$refs.form.validate();
             },
             deep: true

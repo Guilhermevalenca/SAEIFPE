@@ -151,7 +151,6 @@ export default {
                         if(this.form.img === null) {
                             this.form.img = this.currentImg;
                         }
-                        console.log(this.form.img);
                         this.form.post(route('posts_update', {id: this.data.id}), {
                             onError: error => console.log(error)
                         });

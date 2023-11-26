@@ -7,14 +7,14 @@
             <v-card class="mb-5">
                 <v-card-text style="font-size: 18px;">Gênero:</v-card-text>
                     <v-card-text>
-                        <v-radio-group v-model="form.genre"> 
+                        <v-radio-group v-model="form.genre">
                             <v-row>
                                 <v-col cols="12" md="4">
-                                    <v-radio 
+                                    <v-radio
                                         label="Masculino"
                                         value="Masculino"
                                         ></v-radio>
-                                    <v-radio 
+                                    <v-radio
                                         label="Feminino"
                                         value="Feminino"
                                         ></v-radio>
@@ -22,20 +22,20 @@
                                     label="Outro"
                                     value="Outro"
                                     ></v-radio>
-                                </v-col>    
-                                    
+                                </v-col>
+
                             </v-row>
                         </v-radio-group>
                     </v-card-text>
             </v-card>
-            
+
             <v-row>
                 <v-col cols="12">
                     <input type="hidden" v-maska data-maska="(##) #####-####" v-model="form.phone">
             <v-text-field v-model="form.phone" prepend-inner-icon="mdi-phone-outline" persistent-hint label="Número do Telefone:" hint="(00) 00000-0000" placeholder="Digite o número do telefone" />
                 </v-col>
             </v-row>
-  
+
             <v-btn class="mt-3" color="tertiary" variant="flat" type="submit">Cadastrar novos dados</v-btn>
 
         </v-form>
@@ -83,10 +83,9 @@ export default {
     methods: {
         submit() {
             this.form.post(route('finishRegistration_storeGraduate'));
-           // console.log(this.form.course,this.form.selectedGender,this.form.phone)
         }
     }
-    
+
 }
 </script>
 

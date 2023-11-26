@@ -44,8 +44,7 @@ export default {
 
     },
     created() {
-        console.log(this.lastPage,this.currentPage)
-        console.log(this.data);
+
     }
 }
 </script>

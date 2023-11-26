@@ -23,6 +23,7 @@ class PostsIfpeResource extends JsonResource
             'user' => $this->user->name,
             'form_id' => $this->form_id,
             'img' => $this->img,
+            'form' => $this->form
         ];
     }
 }

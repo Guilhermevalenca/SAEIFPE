@@ -87,9 +87,7 @@ export default {
             if(result.valid) {
               this.form.profile_picture = this.form.profile_picture[0];
               this.form.post(route('test_store'), {
-                onError: error => {
-                  console.log(error.hello);
-                },
+                onError: error => console.log(error),
               });
             }
           });

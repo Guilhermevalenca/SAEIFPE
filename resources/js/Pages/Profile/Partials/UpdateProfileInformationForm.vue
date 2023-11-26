@@ -85,12 +85,7 @@ export default {
     }
   },
   watch: {
-    "form.profile_picture" : {
-      handler($new) {
-        console.log($new)
-      },
-      deep: true
-    }
+
   },
   computed: {
 

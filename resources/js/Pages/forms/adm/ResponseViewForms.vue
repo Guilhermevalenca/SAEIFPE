@@ -145,7 +145,6 @@ export default {
             this.currentGraphType[index] = 'doughnut';
             return question.data;
         });
-        console.log(this.questions);
     }
 }
 </script>

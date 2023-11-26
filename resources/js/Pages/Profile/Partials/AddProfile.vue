@@ -54,7 +54,6 @@ export default {
   computed: {
     renderProfile() {
       if(this.form.profile_picture) {
-          console.log(this.form.profile_picture);
         return URL.createObjectURL(this.form.profile_picture[0]);
       }
       return null;
@@ -66,12 +65,7 @@ export default {
     }
   },
   watch: {
-    "form.errors": {
-      handler($new) {
-        console.log($new);
-      },
-      deep: true
-    }
+    
   }
 }
 </script>

@@ -63,7 +63,6 @@ export default {
     watch: {
         textContent: {
             handler($new) {
-                console.log($new);
                 this.$emit('form_content',$new);
             },
             deep: true

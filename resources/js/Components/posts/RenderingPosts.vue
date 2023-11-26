@@ -27,7 +27,7 @@
                                     <v-icon icon="mdi-text-search-variant" />
                                 </template>
                                 <Link :href="route('forms_show_response', {id: data.form_id})">
-                                    {{ data.title }}
+                                    {{ data.form.title }}
                                 </Link>
                             </v-btn>
                         </template>

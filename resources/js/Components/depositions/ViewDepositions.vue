@@ -43,16 +43,16 @@
         <v-card v-for='deposition in data' :key="deposition.id"  id="Depositions" class="d-flex min-h-screen">
             <v-card v-for="(value, index) in deposition" :key="index">
                 <v-carousel-item>
-                        <v-sheet height="100%">
-                            <v-card >
-                                <v-card-title>
-                                    {{ deposition[index].user[0].name}}
-                                </v-card-title>
-                                <v-card-text>
-                                    {{deposition[index].content}}
-                                </v-card-text>
-                            </v-card>
-                        </v-sheet>
+                    <v-sheet height="100%">
+                        <v-card >
+                            <v-card-title>
+                                {{ deposition[index].user[0].name}}
+                            </v-card-title>
+                            <v-card-text>
+                                {{deposition[index].content}}
+                            </v-card-text>
+                        </v-card>
+                    </v-sheet>
                 </v-carousel-item>
             </v-card>
         </v-card>
@@ -62,34 +62,18 @@
 <script>
 
 export default {
+    name: "ViewDepositions",
     props:{
         data: Object,
-        //lastPage: Number,
-       // currentPage: Number
     },
-    name: "ViewDepositions",
-   data(){
+    data(){
         return{
-//            pageCurrent: this.currentPage,
+
         }
-   },
-    created() {
-        console.log(this.data)
     },
-    /*
-    watch:{
-        pageCurrent: {
-            handler($new){
-                window.location.href = route('depoimentos_mural', {
-                    page: $new
-                })
-            },
-            deep:true
-        }
+    created() {
 
-    }
-
-     */
+    },
 }
 </script>
 

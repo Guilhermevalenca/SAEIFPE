@@ -137,15 +137,10 @@ export default {
         }
     },
     created() {
-        console.log(this.form);
+
     },
     watch: {
-        form: {
-            handler($new) {
-                console.log($new);
-            },
-            deep: true
-        }
+
     },
     methods: {
         submit() {

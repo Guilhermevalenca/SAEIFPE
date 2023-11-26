@@ -195,10 +195,8 @@ export default {
         }
         return question;
       });
-      console.log(this.form.questions);
       this.$refs.form.validate()
           .then(response => {
-            console.log('response',response);
             if(response.valid) {
               this.creatingForm = true;
               this.form.post(route('forms_store'));
@@ -225,23 +223,19 @@ export default {
   },
   watch: {
     'form.errors': {
-      handler($new) {
-        console.log($new);
+      handler() {
         this.$refs.form.validate()
             .then(response => {
               if(! response.valid) {
                 this.creatingForm = false;
               }
             })
-        if($new.form_model) {
-          console.log($new.form_model);
-        }
       },
       deep: true
     }
   },
   mounted() {
-    // console.log(this.form);
+
   }
 }
 

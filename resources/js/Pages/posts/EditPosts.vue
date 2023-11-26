@@ -13,7 +13,7 @@
                         </Link>
                     </v-card-actions>
                     <v-card-text>
-                        <v-form ref="form" @submit.prevent="submit()">
+                        <v-form ref="form" @submit.prevent="submit">
                             <v-card class="mt-6">
                                 <v-container>
                                     <v-text-field label="Titulo" placeholder="Titulo da postagem" v-model="form.title" :rules="rules.title"/>
@@ -75,16 +75,17 @@ export default {
         data: Object
     },
     data() {
+        const data = this.data;
         return {
             form: useForm({
-                title: this.data.title,
-                content: this.data.content,
+                title: data.title,
+                content: data.content,
                 img: null,
-                send_to: this.data.send_to,
-                form_id: this.data.form_id
+                send_to: data.send_to,
+                form_id: data.form_id
             }),
-            currentImg: this.data.img,
-            currentForm: this.data.form,
+            currentImg: data.img,
+            currentForm: data.form,
             courses: [
                 {
                     id: 'ADM',
@@ -139,7 +140,7 @@ export default {
         historyBack() {
             window.history.back();
         },
-        submit() {
+        submit(e) {
             this.$refs.form.validate()
                 .then(response => {
                     if(response.valid) {
@@ -150,16 +151,19 @@ export default {
                         if(this.form.img === null) {
                             this.form.img = this.currentImg;
                         }
-                        console.log(this.form);
-                        this.form.put(route('posts_update', {id: this.data.id}), {
+                        console.log(this.form.img);
+                        this.form.post(route('posts_update', {id: this.data.id}), {
                             onError: error => console.log(error)
                         });
                     }
                 })
+        },
+        viewForm(id) {
+            window.open(route('forms_show', {id: id}), "_blank");
         }
     },
     created() {
-        console.log(this.data);
+
     }
 }
 </script>

@@ -14,7 +14,7 @@
             <v-row no-gutters>
                 <v-card-text>
                     <div v-html="identifyingLinks" class="highlight-links"></div>
-                    <v-img v-if="data.img" :src="data.img" />
+                    <v-img v-if="data.img" :src="data.img" max-height="300px" />
                 </v-card-text>
             </v-row>
             <v-row>

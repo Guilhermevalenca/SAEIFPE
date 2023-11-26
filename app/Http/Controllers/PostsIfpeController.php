@@ -140,7 +140,6 @@ class PostsIfpeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $request->input();
         $validation = $request->validate([
             'title' => ['required','string'],
             'content' => ['required','string'],
@@ -157,11 +156,12 @@ class PostsIfpeController extends Controller
             'form_id.exists' => 'Você precisa adicionar um formulário valido'
         ]);
 
-        if($request->file('img')) {
-            $binary = file_get_contents($validation['img']->getRealPath());
+        $img = $request->file('img');
+        if($img) {
+            $binary = file_get_contents($img->getRealPath());
             $dataImg = [
                 'base64' => base64_encode($binary),
-                'mimeType' => $validation['img'][0]->getMimeType()
+                'mimeType' => $img->getMimeType()
             ];
             $validation['img'] = 'data:' . $dataImg['mimeType'] . ';base64,' . $dataImg['base64'];
         }

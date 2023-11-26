@@ -90,13 +90,7 @@ export default {
         },
     },
     methods: {
-        adicionarQuebraDeLinha() {
-            // Adicione uma quebra de linha ao atingir o comprimento máximo desejado
-            const comprimentoMaximo = 20; // Ajuste conforme necessário
-            if (this.textContent.length % comprimentoMaximo === 0) {
-                this.textContent += '<br>';
-            }
-        },
+
     }
 }
 </script>

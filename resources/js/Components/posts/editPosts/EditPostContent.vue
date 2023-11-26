@@ -14,12 +14,12 @@
 
             <v-container class="d-flex justify-end">
 
-                <div v-if="fileContent">
+                <div>
                     <div>Imagem selecionada:</div>
-                    <v-img :src="renderImg" @click="show.viewFileSelected = true" />
+                    <v-img :src="renderImg ? renderImg : currentImg" @click="show.viewFileSelected = true" />
                     <v-dialog v-model="show.viewFileSelected" class="w-50">
                         <v-container>
-                            <v-img :src="renderImg" />
+                            <v-img :src="renderImg ? renderImg : currentImg" />
                         </v-container>
                     </v-dialog>
                 </div>
@@ -29,15 +29,21 @@
         </template>
     </v-textarea>
 
-    <AddImgInContent :show="show.file" @close_select_img="show.file = false" @new_img="value => { fileContent = value; show.file = false}" />
+    <EditImgInContent :show="show.file" @close_select_img="show.file = false" @new_img="value => { fileContent = value; show.file = false}" />
 </template>
 
+
 <script>
+import EditImgInContent from "@/Components/posts/editPosts/editContent/EditImgInContent.vue";
 import AddImgInContent from "@/Components/posts/createPosts/addContent/AddImgInContent.vue";
 
 export default {
-    name: "AddPostContent",
-    components: {AddImgInContent},
+    name: "EditPostContent",
+    components: {AddImgInContent, EditImgInContent},
+    props: {
+        content: String,
+        currentImg: String
+    },
     data() {
         return {
             rules: {
@@ -50,7 +56,7 @@ export default {
                     }
                 ],
             },
-            textContent: '',
+            textContent: this.content,
             fileContent: null,
             show: {
                 file: false,
@@ -95,8 +101,6 @@ export default {
 }
 </script>
 
-<style>
-.v-input__details {
-    align-items: flex-start;
-}
+<style scoped>
+
 </style>

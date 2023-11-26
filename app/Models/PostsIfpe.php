@@ -18,4 +18,8 @@ class PostsIfpe extends Model
     {
         return $this->BelongsTo(User::class, 'user_id');
     }
+    public function form(): BelongsTo
+    {
+        return $this->belongsTo(Form::class, 'form_id');
+    }
 }

@@ -56,11 +56,10 @@
 </template>
 
 <script>
-
 import {useForm} from "@inertiajs/vue3";
 
 export default {
-    name: "SelectForm",
+    name: "EditSelectForm",
     data() {
         return {
             displayForms: false,

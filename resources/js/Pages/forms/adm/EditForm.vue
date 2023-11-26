@@ -77,7 +77,7 @@
                             <v-btn color="error" variant="tonal" @click="cancelEditForm = true">
                                 cancelar
                             </v-btn>
-                            <v-btn type="submit" variant="elevated" color="secondary">Editar formulário</v-btn>
+                            <v-btn type="submit" variant="elevated" color="secondary">Salvar alterações</v-btn>
                         </v-card-actions>
 
                     </v-container>

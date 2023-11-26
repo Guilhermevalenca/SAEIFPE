@@ -1,14 +1,12 @@
 <template>
-    <Head title="Criando post" />
+    <Head title="Editar postagem" />
     <Default>
         <v-card-title class="d-flex justify-center">
-            <div>Crie suas postagens aqui</div>
+            <div>Editando postagem</div>
         </v-card-title>
-
         <v-main class="pb-16 ma-0 pa-0">
             <v-container :class="[$phoneDisplay ? 'w-100' : $screenMediumDisplay ? 'w-75' : 'w-50']">
                 <v-card variant="flat" color="transparent">
-
                     <v-card-actions class="d-flex justify-end">
                         <Link :href="route('home')" class="mr-4">
                             <v-btn color="secondary" variant="elevated">Todas as postagens</v-btn>
@@ -18,11 +16,9 @@
                         <v-form ref="form" @submit.prevent="submit()">
                             <v-card class="mt-6">
                                 <v-container>
+                                    <v-text-field label="Titulo" placeholder="Titulo da postagem" v-model="form.title" :rules="rules.title"/>
 
-                                    <v-card-title class="text-center mt-2 mb-8">Dados da postagem</v-card-title>
-                                    <v-text-field label="Titulo" placeholder="Titulo da postagem" v-model="form.title" :rules="rules.title" />
-
-                                    <AddPostContent @form_content="v => form.content = v" @form_content_img="v => form.img = v" />
+                                    <EditPostContent :content="form.content" :currentImg="currentImg" @form_content="v => form.content = v" @form_content_img="v => form.img = v[0]" />
 
                                     <v-autocomplete variant="outlined" label="Para quem deseja enviar" persistent-hint hint="Caso não preencha este campo, todos os usuários poderão ver está postagem." :items="courses" item-title="name" item-value="id" v-model="form.send_to" :rules="rules.send_to" multiple chips />
 
@@ -32,7 +28,9 @@
                                                 <div>Deseja adicionar um formulário?</div>
                                             </template>
                                         </v-checkbox-btn>
-                                        <SelectForm v-if="selectForm" @form="v => {form.form_id = v.id; selectedFormTitle = v.title}" />
+
+                                        <EditSelectForm v-show="selectForm" @form="v => {form.form_id = v.id; selectedFormTitle = v.title}" />
+
                                         <v-card-text>
                                             <span v-if="form.form_id && selectForm">Este foi o formulário que você selecionou:
                                                 <v-tooltip>
@@ -41,7 +39,7 @@
                                                         <div>Obs.: isso irá abrir uma nova aba no seu navegador!</div>
                                                     </template>
                                                     <template #activator="{ props }">
-                                                        <v-btn v-bind="props" @click="viewForm(form.form_id)" variant="flat" color="secondary">{{ selectedFormTitle }}</v-btn>
+                                                        <v-btn v-bind="props" @click="viewForm(form.form_id)" variant="flat" color="secondary">{{ selectedFormTitle ? selectForm : currentForm.title }}</v-btn>
                                                     </template>
                                                 </v-tooltip>
                                             </span>
@@ -50,7 +48,7 @@
 
                                     <v-card-actions class="d-flex justify-end">
                                         <v-btn @click="historyBack()">Cancelar</v-btn>
-                                        <v-btn color="tertiary" type="submit" variant="elevated">Criar postagem</v-btn>
+                                        <v-btn color="tertiary" type="submit" variant="elevated">Salvar alterações</v-btn>
                                     </v-card-actions>
 
                                 </v-container>
@@ -60,29 +58,33 @@
                 </v-card>
             </v-container>
         </v-main>
-
     </Default>
 </template>
 
 <script>
+import {Head, Link, useForm} from '@inertiajs/vue3';
 import Default from "@/Layouts/default/Default.vue";
-import { Head, Link, useForm } from '@inertiajs/vue3';
-import SelectForm from "@/Components/posts/createPosts/SelectForm.vue";
+import EditSelectForm from "@/Components/posts/editPosts/EditSelectForm.vue";
+import EditPostContent from "@/Components/posts/editPosts/EditPostContent.vue";
 import AddPostContent from "@/Components/posts/createPosts/AddPostContent.vue";
-
+import SelectForm from "@/Components/posts/createPosts/SelectForm.vue";
 export default {
-    name: "CreatePosts",
-    components: {AddPostContent, Default, Head, Link, SelectForm},
+    name: "EditPosts",
+    components: {SelectForm, AddPostContent, EditPostContent, EditSelectForm, Link, Default, Head},
+    props: {
+        data: Object
+    },
     data() {
         return {
             form: useForm({
-                title: null,
-                content: null,
+                title: this.data.title,
+                content: this.data.content,
                 img: null,
-                send_to: null,
-                form_id: null
+                send_to: this.data.send_to,
+                form_id: this.data.form_id
             }),
-            selectedFormTitle: null,
+            currentImg: this.data.img,
+            currentForm: this.data.form,
             courses: [
                 {
                     id: 'ADM',
@@ -129,10 +131,14 @@ export default {
                     }
                 ]
             },
-            selectForm: false
+            selectForm: true,
+            selectedFormTitle: null,
         }
     },
     methods: {
+        historyBack() {
+            window.history.back();
+        },
         submit() {
             this.$refs.form.validate()
                 .then(response => {
@@ -141,25 +147,19 @@ export default {
                             this.form.reset('form_id');
                             this.selectedFormTitle = null;
                         }
-                        this.form.post(route('posts_store'));
+                        if(this.form.img === null) {
+                            this.form.img = this.currentImg;
+                        }
+                        console.log(this.form);
+                        this.form.put(route('posts_update', {id: this.data.id}), {
+                            onError: error => console.log(error)
+                        });
                     }
                 })
-        },
-        historyBack() {
-            window.history.back();
-        },
-        viewForm(id) {
-            window.open(route('forms_show', {id: id}), "_blank");
         }
     },
-    watch: {
-        "form.errors": {
-            handler($new) {
-                console.log($new);
-                this.$refs.form.validate();
-            },
-            deep: true
-        }
+    created() {
+        console.log(this.data);
     }
 }
 </script>

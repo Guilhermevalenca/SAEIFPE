@@ -126,12 +126,48 @@ class PostsIfpeController extends Controller
         //
     }
 
+    public function edit($id)
+    {
+        $post = PostsIfpe::with('form')->find($id);
+        $post['send_to'] = json_decode($post['send_to']);
+        return Inertia::render('posts/EditPosts', [
+            'data' => $post
+        ]);
+    }
+
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, postsIfpe $postsIfpe)
+    public function update(Request $request, $id)
     {
-        //
+        return $request->input();
+        $validation = $request->validate([
+            'title' => ['required','string'],
+            'content' => ['required','string'],
+            'send_to' => ['nullable', 'array', 'in:ADM,IPI,LOG,TGQ,TSI'],
+            'form_id' => ['nullable', 'exists:forms,id'],
+            'img' => ['nullable'],
+        ],[
+            'title.required' => 'Você precisa adicionar um titulo',
+            'title.string' => 'Você adicionou um valor inválido',
+            'content.required' => 'É necessário adicionar algum conteúdo',
+            'content.string' => 'Você adicionou um valor inválido',
+            'send_to.array' => 'Valor inválido',
+            'send_to.in' => 'Você adicionou um valor errado',
+            'form_id.exists' => 'Você precisa adicionar um formulário valido'
+        ]);
+
+        if($request->file('img')) {
+            $binary = file_get_contents($validation['img']->getRealPath());
+            $dataImg = [
+                'base64' => base64_encode($binary),
+                'mimeType' => $validation['img'][0]->getMimeType()
+            ];
+            $validation['img'] = 'data:' . $dataImg['mimeType'] . ';base64,' . $dataImg['base64'];
+        }
+        PostsIfpe::where('id', '=', $id)->update($validation);
+        return redirect()->route('home');
+
     }
 
     /**

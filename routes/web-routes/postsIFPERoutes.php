@@ -14,6 +14,9 @@ Route::controller(PostsIfpeController::class)
                 Route::get('/posts/create', 'create')->name('posts_create');
                 Route::post('/posts/create', 'store')->name('posts_store');
 
+                Route::get('/posts/edit/{id}', 'edit')->name('posts_edit');
+                Route::put('/posts/update/{id}', 'update')->name('posts_update');
+
             });
 
     });

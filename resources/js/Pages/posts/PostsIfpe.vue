@@ -58,10 +58,7 @@ export default {
         }
     },
     created() {
-        // this.data = this.data.data;
-        console.log(this.data);
-        console.log(this.last_page);
-        console.log(this.current_page);
+
     }
 }
 </script>

@@ -29,9 +29,10 @@
 <script>
 import DefaultAppBar from "@/Layouts/default/AppBar.vue";
 import ItemDrawer from "@/Layouts/default/ItemDrawer.vue";
+import { Head } from '@inertiajs/vue3';
 export default {
     name: "Default",
-    components: {ItemDrawer, DefaultAppBar},
+    components: {ItemDrawer, DefaultAppBar, Head},
     data() {
         return {
             isDrawerOpen: false

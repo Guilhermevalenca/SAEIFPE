@@ -1,8 +1,15 @@
 <template>
     <v-container class="d-flex flex-column justify-center pa-0 h-auto rounded-xl">
         <v-card class="d-flex flex-column justify-center pa-10 mb-4 h-auto rounded-xl" variant="flat" :style="'border: 1px solid #2E8429;'">
-            <v-card-title>
+            <v-card-title class="d-flex justify-space-between">
+                <div>
                     {{ data.user }} - {{ data.title }}
+                </div>
+                <div v-if="$page.props.auth.user && $page.props.auth.user.role === 'adm'">
+                    <Link :href="route('posts_edit', {id: data.id})">
+                        <v-btn icon="mdi-pencil-outline" color="secondary" variant="flat" />
+                    </Link>
+                </div>
             </v-card-title>
             <v-row no-gutters>
                 <v-card-text>
@@ -52,7 +59,7 @@ export default {
         }
     },
     created() {
-        console.log(this.data);
+
     }
 }
 </script>

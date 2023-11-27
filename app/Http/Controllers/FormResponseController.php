@@ -16,7 +16,7 @@ class FormResponseController extends Controller
 {
     public function index()
     {
-        $paginate = Form::where('visible','=','1')->paginate();
+        $paginate = Form::where('visible','=','1')->orderByDesc('id')->paginate();
         $forms = FormResponseTwoResource::collection($paginate);
 
         $response = [
@@ -60,7 +60,7 @@ class FormResponseController extends Controller
         $result = Options::whereIn('id',$ids)->count();
 
         if($result !== count($ids)) {
-            throw new \Exception("tem algo errado ai");
+            throw new \Exception("As opções tem id incompativeis");
         } else {
 
             $response = [];

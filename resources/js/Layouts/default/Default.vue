@@ -8,7 +8,7 @@
                 <slot name="header" />
             </section>
         </header>
-        <v-main class="ma-5">
+        <v-main class="ma-5 person-main">
             <section>
                 <ItemDrawer v-model="isDrawerOpen" />
             </section>
@@ -29,9 +29,10 @@
 <script>
 import DefaultAppBar from "@/Layouts/default/AppBar.vue";
 import ItemDrawer from "@/Layouts/default/ItemDrawer.vue";
+import { Head } from '@inertiajs/vue3';
 export default {
     name: "Default",
-    components: {ItemDrawer, DefaultAppBar},
+    components: {ItemDrawer, DefaultAppBar, Head},
     data() {
         return {
             isDrawerOpen: false
@@ -43,6 +44,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss">
 
 </style>

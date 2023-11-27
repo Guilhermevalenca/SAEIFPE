@@ -17,7 +17,8 @@ return new class extends Migration
             $table->enum('type',['open-ended', 'unique', 'multiple']);
             $table->foreignId('form_id')
                 ->references('id')
-                ->on('forms');
+                ->on('forms')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

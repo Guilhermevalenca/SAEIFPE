@@ -32,9 +32,9 @@ class Form extends Model
 
                 if($question['type'] !== 'open-ended') {
 
-                    foreach ($value['responses'] as $elements) {
+                    foreach ($value['options'] as $elements) {
                         Options::create([
-                            'descriptions' => $elements['text'],
+                            'descriptions' => $elements['descriptions'],
                             'questions_id' => $question['id']
                         ]);
                     }
@@ -42,7 +42,7 @@ class Form extends Model
                 }
             }
             DB::commit();
-            return true;
+            return ['success' => true,  'form' => $form];
         } catch (\Error $e) {
             DB::rollBack();
             return back()->withErrors(['form_model' => $e->getMessage()]);
@@ -52,15 +52,12 @@ class Form extends Model
     {
         DB::beginTransaction();
         try {
-            $this->find($data['forms_id'])
-                ->update([
-                    'visible' => 0
-                ]);
-            $form = $this->create([
-                'title' => $data['title'],
-                'user_id' => Auth::id(),
-                'forms_id' => $data['forms_id']
+            $form = $this->find($data['forms_id']);
+            $form->update([
+                    'title' => $data['title']
             ]);
+            Questions::where('form_id', '=', $form['id'])->delete();
+
             foreach ($data['questions'] as $value) {
 
                 $question = Questions::create([

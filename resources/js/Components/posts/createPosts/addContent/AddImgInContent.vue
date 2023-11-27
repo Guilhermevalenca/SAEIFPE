@@ -7,7 +7,7 @@
                 <v-card-text>
                     <v-file-input accept="image/png, image/jpg, image/bmp" label="Imagem" v-model="fileContent" placeholder="clique para selecionar uma imagem" />
                     <div>Sua imagem será carregada aqui:</div>
-                    <v-img :src="renderImg" />
+                    <v-img :src="renderImg" max-height="600px" />
                 </v-card-text>
 
                 <v-card-actions class="d-flex justify-end">

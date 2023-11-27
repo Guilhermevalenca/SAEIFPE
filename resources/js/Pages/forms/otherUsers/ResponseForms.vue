@@ -20,7 +20,7 @@
                                 </div>
 
                                 <div class="ma-2" v-if="question.type === 'unique'">
-                                    <UniqueQuestionsResponse  :options="question.options" @send_response="(value) => responses[index].response_choose.push(value)" />
+                                    <UniqueQuestionsResponse  :options="question.options" @send_response="(value) => responses[index].response_choose[0] = value" />
                                 </div>
 
                                 <div class="ma-2" v-if="question.type === 'multiple'">
@@ -95,7 +95,6 @@ export default {
         }
     },
     created() {
-        console.log(this.data);
         this.form = this.data.form.data;
         this.questions = this.data.questions;
         this.questions.forEach((question, index) => {

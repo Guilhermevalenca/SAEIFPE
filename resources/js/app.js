@@ -10,6 +10,7 @@ import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 import { loadFonts } from './plugins/webfontloader.js';
 import Vuetify from "./plugins/vuetify";
 
+
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 createInertiaApp({
@@ -23,7 +24,7 @@ createInertiaApp({
         app.use(plugin);
         app.use(ZiggyVue, Ziggy);
         app.config.globalProperties.$phoneDisplay = window.innerWidth <= 800;
-        app.config.globalProperties.$sreenMediumDisplay = window.innerWidth <= 1400;
+        app.config.globalProperties.$screenMediumDisplay = window.innerWidth <= 1400;
         app.mount(el);
         return app;
     },
@@ -31,3 +32,4 @@ createInertiaApp({
         color: '#4B5563',
     },
 });
+

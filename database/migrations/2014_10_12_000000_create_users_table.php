@@ -22,7 +22,7 @@ return new class extends Migration
             $roles = ['adm', 'student', 'graduate'];
             $table->enum('role',$roles)->nullable();
 
-            $table->json('profile_picture')->nullable();
+            $table->longText('profile_picture')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

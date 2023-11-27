@@ -19,7 +19,7 @@
       </v-tooltip>
     </div>
 
-    <v-btn color="secondary" type="submit" class="mt-8">Salvar</v-btn>
+    <v-btn color="tertiary" type="submit" class="mt-8">Salvar</v-btn>
   </v-form>
 
   <v-dialog class="w-50" v-model="showImg">
@@ -65,12 +65,7 @@ export default {
     }
   },
   watch: {
-    "form.errors": {
-      handler($new) {
-        console.log($new);
-      },
-      deep: true
-    }
+    
   }
 }
 </script>

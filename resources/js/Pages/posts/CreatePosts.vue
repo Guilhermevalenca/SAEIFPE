@@ -6,11 +6,11 @@
         </v-card-title>
 
         <v-main class="pb-16 ma-0 pa-0">
-            <v-container class="d-flex justify-center">
-                <v-card class="w-75" variant="flat" color="transparent">
+            <v-container :class="[$phoneDisplay ? 'w-100' : $screenMediumDisplay ? 'w-75' : 'w-50']">
+                <v-card variant="flat" color="transparent">
 
                     <v-card-actions class="d-flex justify-end">
-                        <Link :href="route('home')">
+                        <Link :href="route('home')" class="mr-4">
                             <v-btn color="secondary" variant="elevated">Todas as postagens</v-btn>
                         </Link>
                     </v-card-actions>
@@ -22,7 +22,7 @@
                                     <v-card-title class="text-center mt-2 mb-8">Dados da postagem</v-card-title>
                                     <v-text-field label="Titulo" placeholder="Titulo da postagem" v-model="form.title" :rules="rules.title" />
 
-                                    <AddPostContent @form_content="v => form.content = v" @form_content_links="v => form.links = v" @form_content_img="v => form.img = v" />
+                                    <AddPostContent @form_content="v => form.content = v" @form_content_img="v => form.img = v" />
 
                                     <v-autocomplete variant="outlined" label="Para quem deseja enviar" persistent-hint hint="Caso não preencha este campo, todos os usuários poderão ver está postagem." :items="courses" item-title="name" item-value="id" v-model="form.send_to" :rules="rules.send_to" multiple chips />
 
@@ -34,7 +34,17 @@
                                         </v-checkbox-btn>
                                         <SelectForm v-if="selectForm" @form="v => {form.form_id = v.id; selectedFormTitle = v.title}" />
                                         <v-card-text>
-                                            <span v-if="form.form_id && selectForm">Este foi o formulário que você selecionou: <strong>{{ selectedFormTitle }}</strong></span>
+                                            <span v-if="form.form_id && selectForm">Este foi o formulário que você selecionou:
+                                                <v-tooltip>
+                                                    <template #default>
+                                                        <div>Deseja visualizar este formulário ?</div>
+                                                        <div>Obs.: isso irá abrir uma nova aba no seu navegador!</div>
+                                                    </template>
+                                                    <template #activator="{ props }">
+                                                        <v-btn v-bind="props" @click="viewForm(form.form_id)" variant="flat" color="secondary">{{ selectedFormTitle }}</v-btn>
+                                                    </template>
+                                                </v-tooltip>
+                                            </span>
                                         </v-card-text>
                                     </v-card>
 
@@ -69,7 +79,6 @@ export default {
                 title: null,
                 content: null,
                 img: null,
-                links: null,
                 send_to: null,
                 form_id: null
             }),
@@ -138,12 +147,14 @@ export default {
         },
         historyBack() {
             window.history.back();
+        },
+        viewForm(id) {
+            window.open(route('forms_show', {id: id}), "_blank");
         }
     },
     watch: {
         "form.errors": {
-            handler($new) {
-                console.log($new);
+            handler() {
                 this.$refs.form.validate();
             },
             deep: true

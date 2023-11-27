@@ -17,7 +17,7 @@ class FormFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->jobTitle(),
+            'title' => 'a' . fake()->unique()->jobTitle(),
             'user_id' => 1
         ];
     }

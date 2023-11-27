@@ -37,6 +37,9 @@ import {useForm, Head} from "@inertiajs/vue3";
 export default {
   name: "Test",
   components: {Default, Head},
+  props: {
+    data: Object,
+  },
   data() {
     return {
       imageUrl: null,
@@ -87,9 +90,7 @@ export default {
             if(result.valid) {
               this.form.profile_picture = this.form.profile_picture[0];
               this.form.post(route('test_store'), {
-                onError: error => {
-                  console.log(error.hello);
-                },
+                onError: error => console.log(error),
               });
             }
           });
@@ -105,6 +106,9 @@ export default {
       deep: true
     }
   },
+  created() {
+    console.log(this.data);
+  }
 }
 </script>
 

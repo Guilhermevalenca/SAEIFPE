@@ -16,6 +16,7 @@ class OptionsDependenceRelationsResource extends JsonResource
     {
 //        return parent::toArray($request);
         return [
+            'id' => $this->id,
             'descriptions' => $this->descriptions
         ];
     }

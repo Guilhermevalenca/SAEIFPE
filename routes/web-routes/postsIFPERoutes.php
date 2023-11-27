@@ -8,8 +8,15 @@ Route::controller(PostsIfpeController::class)
 
         Route::get('/','index')->name('home');
 
-        Route::get('/posts/create', 'create')->name('posts_create');
+        Route::middleware('auth')
+            ->group(function () {
 
-        Route::post('/posts/create', 'store')->name('posts_store');
+                Route::get('/posts/create', 'create')->name('posts_create');
+                Route::post('/posts/create', 'store')->name('posts_store');
+
+                Route::get('/posts/edit/{id}', 'edit')->name('posts_edit');
+                Route::post('/posts/update/{id}', 'update')->name('posts_update');
+
+            });
 
     });

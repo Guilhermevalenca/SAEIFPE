@@ -5,13 +5,17 @@
  */
 
 // Styles
-import '@mdi/font/css/materialdesignicons.css'
-import 'vuetify/styles'
+import '@mdi/font/css/materialdesignicons.css';
+//estilização padrão:
+// import 'vuetify/styles';
+//Alterando estilização:
+import '@/assets/scss/main.scss';
+
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 
 // Composables
-import { createVuetify } from 'vuetify'
+import { createVuetify } from 'vuetify';
 
 // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
 export default createVuetify({
@@ -37,7 +41,6 @@ export default createVuetify({
                     tertiary: '#2f9e41', //verde claro
                     quaternary: '#cd191e', //vermelho
                     background: '#212121', //preto fosco
-                    quinary: '#e6e3e3', //branco
                 },
             },
         },
@@ -52,9 +55,6 @@ export default createVuetify({
         },
         VSelect: {
             variant: 'outlined'
-        },
-        VCard: {
-            style: 'border-color: #2E8429;',
         },
     },
 });

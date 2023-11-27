@@ -4,21 +4,21 @@
         <v-card-title class="d-flex align-center flex-row justify-center">
             Depoimentos
         </v-card-title>
-        <v-main class="d-flex align-center flex-column justify-center pb-16 ma-0 pa-0">
-            <v-card variant="flat" color="transparent" :class="[$phoneDisplay ? 'w-100' : $sreenMediumDisplay ? 'w-75' : 'w-50']">
-                <v-container class="pa-0 ma-0">
-                    <v-container class="d-flex justify-end">
-                        <v-btn @click="showFormAdd() ; changeButton" color="tertiary" variant="flat" :prepend-icon="changeButton ? 'mdi-plus' : '' ">{{  changeButton ? 'Adicionar Depoimento' : 'Voltar' }}</v-btn>
+        <v-card class="d-flex align-center flex-column justify-center pb-16 ma-0 pa-0" variant="flat" color="transparent">
+            <v-card variant="flat" color="transparent" :class="[$phoneDisplay ? 'w-100' : $screenMediumDisplay ? 'w-75' : 'w-50']">
+                <v-card class="pa-0 ma-0 " color="transparent" variant="flat">
+                    <v-container class="d-flex justify-end" v-if="$page.props.auth.user !== null && $page.props.auth.user.role === 'graduate'">
+                        <v-btn @click="changeButton = !changeButton" color="secondary" variant="flat" :prepend-icon="changeButton ? 'mdi-plus' : '' ">{{  changeButton ? 'Adicionar Depoimento' : 'Voltar' }}</v-btn>
                     </v-container>
-                    <v-container class="d-flex justify-center" v-if="showAddDeposition">
-                        <AddDeposition @send="showDepositions()" @cancelAction="showDepositions()"/>
+                    <v-container class="d-flex align-center flex-column justify-center" v-if="!changeButton">
+                        <AddDeposition @send="changeButton = true" @cancelAction="changeButton = true"/>
                     </v-container>
-                    <v-container class="d-flex align-center flex-column justify-center pt-10" v-if="showViewDepositions">
-                        <ViewDepositions :data="data"/>
+                    <v-container class="d-flex align-center flex-column justify-center pt-10" v-else>
+                        <ViewDepositions :data="data" :currentPage="currentPage" :lastPage="lastPage"/>
                     </v-container>
-                </v-container>
+                </v-card>
             </v-card>
-        </v-main>
+        </v-card>
     </Default>
 </template>
 <script>
@@ -30,36 +30,21 @@ import { Head } from '@inertiajs/vue3';
 export default {
     props: {
         data: Object,
+        lastPage: Number,
+        currentPage: Number
     },
     name: "Depositions",
     components: {ViewDepositions, AddDeposition, Default, Head},
     data(){
         return{
-            showAddDeposition: false,
-            showViewDepositions: true,
             changeButton: true,
         }
     },
     methods:{
-        showFormAdd(){
-            if(!this.showAddDeposition){
-                this.showAddDeposition = true
-                this.showViewDepositions = false
-                this.changeButton = false
-            }else{
-                this.showAddDeposition = false
-                this.showViewDepositions = true
-                this.changeButton = true
-            }
-        },
-        showDepositions(){
-            this.showViewDepositions = true
-            this.showAddDeposition = false
-            this.changeButton = true
-        },
+
     },
     created() {
-        console.log(this.data);
+
     }
 }
 </script>

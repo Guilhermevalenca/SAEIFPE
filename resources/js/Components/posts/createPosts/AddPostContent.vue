@@ -6,6 +6,10 @@
             </div>
         </template>
 
+        <template #message="{ message }">
+            <div>{{ message }}</div>
+        </template>
+
         <template #details>
 
             <v-container class="d-flex justify-end">
@@ -59,7 +63,6 @@ export default {
     watch: {
         textContent: {
             handler($new) {
-                console.log($new);
                 this.$emit('form_content',$new);
             },
             deep: true

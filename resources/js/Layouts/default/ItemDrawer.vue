@@ -1,5 +1,5 @@
 <template>
-    <v-navigation-drawer color="secondary">
+    <v-navigation-drawer color="secondary" temporary> <!-- expand-on-hover rail -->
         <v-list>
 
             <Link :href="route('home')">
@@ -20,11 +20,20 @@
                 </v-list-item>
             </Link>
 
-            <Link v-if="$page.props.auth.user !== null && $page.props.auth.user.role === 'adm'" :href="route('adm_index')">
-                <v-list-item to="/">
-                    adm
-                </v-list-item>
-            </Link>
+            <v-list-group v-if="$page.props.auth.user !== null && $page.props.auth.user.role === 'adm'">
+                <template #activator="{ props }">
+                  <v-list-item to="/" v-bind="props">
+                    Administrativo
+                  </v-list-item>
+                </template>
+
+                <Link :href="route('adm_index')">
+                    <v-list-item to="/">
+                        Adicionar usuário administrador
+                    </v-list-item>
+                </Link>
+
+            </v-list-group>
 
             <Link :href="route('about')">
                 <v-list-item to="/">

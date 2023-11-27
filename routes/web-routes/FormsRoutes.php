@@ -33,6 +33,10 @@ Route::controller(FormController::class)
 
         Route::post('forms/searchByTitle','searchByTitle')
             ->name('searchForFormsInCreatePosts');
+
+        Route::get('forms/copyForm/{id}','copyFormById')->name('form_copyFormById');
+        Route::post('forms/copyForm}','copyForm')
+            ->name('form_copyForm');
     });
 
 Route::controller(FormResponseController::class)

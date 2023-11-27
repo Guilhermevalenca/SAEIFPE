@@ -1,99 +1,95 @@
 <template>
-  <v-form ref="form" @submit.prevent="createForm()">
 
-    <v-card :width="$phoneDisplay ? '' : '900px'">
+    <v-container>
+        <v-form ref="form" @submit.prevent="createForm()">
+            <v-card class="pa-6 rounded-xl" :style="'border: 1px solid #2E8429;'">
+                <v-card-title class="text-center">
+                    Construa seu formulário
+                </v-card-title>
 
-      <v-card-title class="text-center">
-        <div>Construa seu formulário</div>
-      </v-card-title>
+                <v-spacer :class="[phoneDisplay ? '' : 'pa-6']"></v-spacer>
 
-      <v-spacer :class="[phoneDisplay ? '' : 'pa-6']"></v-spacer>
+                <v-card  variant="flat"  class="pa-4 rounded-xl">
 
-      <v-card-text>
+                    <v-text-field label="Nome" persistent-placeholder placeholder="Dê um nome para o formulário" v-model="form.title" :rules="rules.title" />
 
-        <v-text-field label="Nome" persistent-placeholder placeholder="Dê um nome para o formulário" v-model="form.title" :rules="rules.title" />
+                    <v-card variant="text" class="mb-10" v-for="(question, index) in form.questions" :key="index">
 
-        <v-card variant="text" class="mb-10" v-for="(question, index) in form.questions" :key="index">
+                            <v-card variant="outlined" class="pa-4">
+                                    <div class="mb-2 mt-2">
 
-          <v-card-text>
+                                        <v-card-title class="mb-2">Pergunta {{ index + 1 }}: </v-card-title>
 
-            <v-card variant="outlined">
-              <v-container>
-                <div class="mb-2 mt-2">
+                                        <v-select placeholder="Escolha qual o tipo de pergunta..." v-model="typeQuestions[index]" :items="types" item-title="name" item-value="id" :rules="rules.type(index)" />
 
-                  <v-card-title class="mb-2">Pergunta {{ index + 1 }}: </v-card-title>
+                                        <v-textarea v-model="form.questions[index].ask" rows="1" max-rows="10" auto-grow persistent-placeholder placeholder="Escreva a pergunta aqui" hint="Exemplo de titulo" :rules="rules.ask(index)" />
 
-                  <v-select placeholder="Escolha qual o tipo de pergunta..." v-model="typeQuestions[index]" :items="types" item-title="name" item-value="id" :rules="rules.type(index)" />
+                                    </div>
 
-                  <v-textarea v-model="form.questions[index].ask" rows="1" max-rows="10" auto-grow persistent-placeholder placeholder="Escreva a pergunta aqui" hint="Exemplo de titulo" :rules="rules.ask(index)" />
+                                    <div class="mb-2 mt-2" v-if="typeQuestions[index] === 'unique'">
+                                        <UniqueQuestionsForm @send_data="(v) => {form.questions[index].options = v; form.questions[index].type = typeQuestions[index]}" :errors="form.errors[`questions.${index}.options`]" />
+                                    </div>
 
-                </div>
+                                    <div class="mb-2 mt-2" v-if="typeQuestions[index] === 'multiple'">
+                                        <MultipleQuestionsForm @send_data="(v) => {form.questions[index].options = v; form.questions[index].type = typeQuestions[index]}" :errors="form.errors[`questions.${index}.options`]" />
+                                    </div>
+                            </v-card>
 
-                <div class="mb-2 mt-2" v-if="typeQuestions[index] === 'unique'">
-                  <UniqueQuestionsForm @send_data="(v) => {form.questions[index].responses = v; form.questions[index].type = typeQuestions[index]}" :errors="form.errors[`questions.${index}.responses`]" />
-                </div>
+                    </v-card>
 
-                <div class="mb-2 mt-2" v-if="typeQuestions[index] === 'multiple'">
-                  <MultipleQuestionsForm @send_data="(v) => {form.questions[index].responses = v; form.questions[index].type = typeQuestions[index]}" :errors="form.errors[`questions.${index}.responses`]" />
-                </div>
-              </v-container>
+                    <v-card-actions class="d-flex justify-end">
+                        <v-tooltip text="Remover ultima questão">
+                            <template #activator="{ props}">
+                                <v-btn v-bind="props" variant="outlined" :disabled="form.questions.length === 1" @click="removeQuestion()">
+                                    <v-icon icon="mdi-minus" size="20" />
+                                    Remover a ultima questão
+                                </v-btn>
+                            </template>
+                        </v-tooltip>
+                        <v-tooltip text="Adicionar nova questão">
+                            <template #activator="{ props }">
+                                <v-btn v-bind="props" variant="flat" color="tertiary" @click="addQuestion()">
+                                    <v-icon icon="mdi-plus" size="20" />
+                                    Adicionar questão
+                                </v-btn>
+                            </template>
+                        </v-tooltip>
+                    </v-card-actions>
+
+                </v-card>
+
+                <v-card-actions class="d-flex justify-end w-100 h-100 ma-4">
+                    <div> <!-- props da div: -->
+                        <!-- class="v-layout-item text-end pointer-events-none" style="bottom: 0px; z-index: 1004; transform: translateY(0%); position: fixed; height: 88px; left: 0px; width: calc((100% - 0px) - 0px);" -->
+                        <!-- precisando de solução para quando a div tiver sobreposta aos botões da pagina, não afeta-los! -->
+                        <v-btn variant="flat" @click="showCancelForm = true" color="quaternary">Cancelar</v-btn>
+                        <v-btn type="submit" :loading="creatingForm" color="tertiary" variant="flat" class="mr-4">Salvar formulário</v-btn>
+                    </div>
+                    <v-dialog v-model="showCancelForm">
+                        <v-container class="d-flex justify-center">
+
+                            <v-card>
+
+                                <v-card-title>Deseja cancelar?</v-card-title>
+                                <v-card-text>
+                                    <div>Você perderá tudo o que foi preenchido!</div>
+                                </v-card-text>
+
+                                <v-card-actions class="d-flex justify-end">
+                                    <v-btn variant="outlined" @click="showCancelForm = false">Fechar</v-btn>
+                                    <v-btn variant="flat" @click="cancelCreateForm()" color="error">OK</v-btn>
+                                </v-card-actions>
+
+                            </v-card>
+
+                        </v-container>
+                    </v-dialog>
+                </v-card-actions>
+
             </v-card>
+        </v-form>
+    </v-container>
 
-          </v-card-text>
-
-        </v-card>
-
-        <v-card-actions class="d-flex justify-end">
-          <v-tooltip text="Remover ultima questão">
-            <template #activator="{ props}">
-              <v-btn v-bind="props" variant="outlined" :disabled="form.questions.length === 1" @click="removeQuestion()">
-                <v-icon icon="mdi-minus" size="20" />
-                remover a ultima questão
-              </v-btn>
-            </template>
-          </v-tooltip>
-          <v-tooltip text="Adicionar nova questão">
-            <template #activator="{ props }">
-              <v-btn v-bind="props" variant="elevated" color="secondary" @click="addQuestion()">
-                <v-icon icon="mdi-plus" size="20" />
-                adicionar questão
-              </v-btn>
-            </template>
-          </v-tooltip>
-        </v-card-actions>
-
-      </v-card-text>
-
-      <v-card-actions class="d-flex justify-end w-100 h-100">
-        <div> <!-- props da div: -->
-          <!-- class="v-layout-item text-end pointer-events-none" style="bottom: 0px; z-index: 1004; transform: translateY(0%); position: fixed; height: 88px; left: 0px; width: calc((100% - 0px) - 0px);" -->
-          <!-- precisando de solução para quando a div tiver sobreposta aos botões da pagina, não afeta-los! -->
-          <v-btn variant="elevated" @click="showCancelForm = true" color="quaternary">Cancelar</v-btn>
-          <v-btn type="submit" :loading="creatingForm" color="tertiary" variant="flat" class="mr-4">Salvar formulário</v-btn>
-        </div>
-        <v-dialog v-model="showCancelForm">
-          <v-container class="d-flex justify-center">
-
-            <v-card>
-
-              <v-card-title>Deseja cancelar?</v-card-title>
-              <v-card-text>
-                <div>Você perderá tudo o que foi preenchido!!!</div>
-              </v-card-text>
-
-              <v-card-actions class="d-flex justify-end">
-                <v-btn variant="outlined" @click="showCancelForm = false">Fechar</v-btn>
-                <v-btn variant="elevated" @click="cancelCreateForm()" color="error">OK</v-btn>
-              </v-card-actions>
-
-            </v-card>
-
-          </v-container>
-        </v-dialog>
-      </v-card-actions>
-    </v-card>
-
-  </v-form>
 </template>
 
 <script>
@@ -113,7 +109,7 @@ export default {
         questions: [
           {
             ask: null,
-            responses: [],
+            options: [],
             type: null
           }
         ],
@@ -184,7 +180,7 @@ export default {
     addQuestion() {
       const defaultObject = {
         ask: null,
-        responses: [],
+        options: [],
         type: null
       }
       this.form.questions.push(defaultObject);
@@ -199,14 +195,14 @@ export default {
         }
         return question;
       });
-      console.log(this.form.questions);
       this.$refs.form.validate()
           .then(response => {
-            console.log('response',response);
             if(response.valid) {
               this.creatingForm = true;
-              this.form.post(route('forms_store'));
-              this.clearComponent();
+              this.form.post(route('forms_store'), {
+                onSuccess: () => this.clearComponent(),
+                onError: () => this.creatingForm = false
+              });
             }
           })
     },
@@ -215,7 +211,7 @@ export default {
       this.form.questions = [
         {
           ask: null,
-          responses: [],
+          options: [],
           type: null
         }
       ];
@@ -229,23 +225,19 @@ export default {
   },
   watch: {
     'form.errors': {
-      handler($new) {
-        console.log($new);
+      handler() {
         this.$refs.form.validate()
             .then(response => {
               if(! response.valid) {
                 this.creatingForm = false;
               }
             })
-        if($new.form_model) {
-          console.log($new.form_model);
-        }
       },
       deep: true
     }
   },
   mounted() {
-    // console.log(this.form);
+
   }
 }
 

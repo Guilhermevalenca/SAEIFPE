@@ -8,7 +8,7 @@
                 <!--                <v-img src="https://ingresso.ifpe.edu.br/static/img/ifpe-logo.svg" cover />-->
                 <!--            </v-avatar>-->
                 <v-avatar>
-                    <img ref="ola" src="../../assets/ifpe_logo_white.svg" >
+                    <img ref="ola" src="@/assets/ifpe_logo_white.svg" />
                 </v-avatar>
                 IFPE Campus Igarassu
             </Link>
@@ -90,7 +90,7 @@ export default {
         }
     },
     created() {
-        // console.log(this.$page.props.auth);
+        
     },
 }
 </script>

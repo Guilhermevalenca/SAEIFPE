@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\finishRegistration\FinishRegistrationStoreGraduateRequest;
+use App\Http\Requests\finishRegistration\FinishRegistrationStoreStudentRequest;
 use App\Models\User;
 use App\Models\UsersGraduates;
 use App\Models\UsersStudying;
@@ -15,13 +17,9 @@ class FinishRegistrationController extends Controller
     public function index() {
         return Inertia::render('FinishRegistration');
     }
-    public function storeStudent(Request $request)
+    public function storeStudent(FinishRegistrationStoreStudentRequest $request)
     {
-        $validation = $request->validate([
-            'email_institution' => ['required', 'email'],
-            'enrollment' => ['required','string'],
-            'course' => ['required','string']
-        ]);
+        $validation = $request->validated();
         $validation['users_id'] = Auth::id();
 
         DB::beginTransaction();
@@ -42,13 +40,9 @@ class FinishRegistrationController extends Controller
 
         return redirect()->route('home');
     }
-    public function storeGraduate(Request $request)
+    public function storeGraduate(FinishRegistrationStoreGraduateRequest $request)
     {
-        $validation = $request->validate([
-            'course' => ['required', 'string'],
-            'genre' => ['required', 'string'],
-            'phone' => ['required', 'string'],
-        ]);
+        $validation = $request->validated();
         $validation['users_id'] = Auth::id();
         //dd($validation);
         //return;

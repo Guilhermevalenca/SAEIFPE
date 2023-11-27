@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\posts\PostsIfpeStoreRequest;
+use App\Http\Requests\posts\PostsIfpeUpdateRequest;
 use App\Http\Resources\PostsIfpeResource;
 use App\Models\PostsIfpe;
 use App\Models\UsersGraduates;
@@ -78,23 +80,9 @@ class PostsIfpeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PostsIfpeStoreRequest $request)
     {
-        $validation = $request->validate([
-            'title' => ['required','string'],
-            'content' => ['required','string'],
-            'send_to' => ['nullable', 'array', 'in:ADM,IPI,LOG,TGQ,TSI'],
-            'form_id' => ['nullable', 'exists:forms,id'],
-            'img.0' => ['nullable', 'image']
-        ],[
-            'title.required' => 'Você precisa adicionar um titulo',
-            'title.string' => 'Você adicionou um valor inválido',
-            'content.required' => 'É necessário adicionar algum conteúdo',
-            'content.string' => 'Você adicionou um valor inválido',
-            'send_to.array' => 'Valor inválido',
-            'send_to.in' => 'Você adicionou um valor errado',
-            'form_id.exists' => 'Você precisa adicionar um formulário valido'
-        ]);
+        $validation = $request->validated();
         if($validation) {
             $validation['user_id'] = Auth::id();
             $validation['send_to'] = is_null($validation['send_to']) ? json_encode(['all']) : json_encode($validation['send_to']);
@@ -138,23 +126,9 @@ class PostsIfpeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(PostsIfpeUpdateRequest $request, $id)
     {
-        $validation = $request->validate([
-            'title' => ['required','string'],
-            'content' => ['required','string'],
-            'send_to' => ['nullable', 'array', 'in:ADM,IPI,LOG,TGQ,TSI'],
-            'form_id' => ['nullable', 'exists:forms,id'],
-            'img' => ['nullable'],
-        ],[
-            'title.required' => 'Você precisa adicionar um titulo',
-            'title.string' => 'Você adicionou um valor inválido',
-            'content.required' => 'É necessário adicionar algum conteúdo',
-            'content.string' => 'Você adicionou um valor inválido',
-            'send_to.array' => 'Valor inválido',
-            'send_to.in' => 'Você adicionou um valor errado',
-            'form_id.exists' => 'Você precisa adicionar um formulário valido'
-        ]);
+        $validation = $request->validated();
 
         $img = $request->file('img');
         if($img) {

@@ -37,6 +37,9 @@ import {useForm, Head} from "@inertiajs/vue3";
 export default {
   name: "Test",
   components: {Default, Head},
+  props: {
+    data: Object,
+  },
   data() {
     return {
       imageUrl: null,
@@ -103,6 +106,9 @@ export default {
       deep: true
     }
   },
+  created() {
+    console.log(this.data);
+  }
 }
 </script>
 

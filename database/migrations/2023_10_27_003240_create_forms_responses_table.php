@@ -21,7 +21,8 @@ return new class extends Migration
                 ->on('forms');
             $table->foreignId('questions_id')
                 ->references('id')
-                ->on('forms_questions');
+                ->on('forms_questions')
+                ->onDelete('cascade');
             $table->json('selected_responses')->nullable();
             $table->string('open_ended_responses')->nullable();
             $table->timestamps();

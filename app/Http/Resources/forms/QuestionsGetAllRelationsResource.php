@@ -16,6 +16,7 @@ class QuestionsGetAllRelationsResource extends JsonResource
     {
 //        return parent::toArray($request);
         return [
+            'id' => $this->id,
             'ask' => $this->ask,
             'type' => $this->type,
             'options' => OptionsDependenceRelationsResource::collection($this->options),

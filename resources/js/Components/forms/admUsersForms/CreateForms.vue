@@ -27,11 +27,11 @@
                                     </div>
 
                                     <div class="mb-2 mt-2" v-if="typeQuestions[index] === 'unique'">
-                                        <UniqueQuestionsForm @send_data="(v) => {form.questions[index].responses = v; form.questions[index].type = typeQuestions[index]}" :errors="form.errors[`questions.${index}.responses`]" />
+                                        <UniqueQuestionsForm @send_data="(v) => {form.questions[index].options = v; form.questions[index].type = typeQuestions[index]}" :errors="form.errors[`questions.${index}.options`]" />
                                     </div>
 
                                     <div class="mb-2 mt-2" v-if="typeQuestions[index] === 'multiple'">
-                                        <MultipleQuestionsForm @send_data="(v) => {form.questions[index].responses = v; form.questions[index].type = typeQuestions[index]}" :errors="form.errors[`questions.${index}.responses`]" />
+                                        <MultipleQuestionsForm @send_data="(v) => {form.questions[index].options = v; form.questions[index].type = typeQuestions[index]}" :errors="form.errors[`questions.${index}.options`]" />
                                     </div>
                             </v-card>
 
@@ -109,7 +109,7 @@ export default {
         questions: [
           {
             ask: null,
-            responses: [],
+            options: [],
             type: null
           }
         ],
@@ -180,7 +180,7 @@ export default {
     addQuestion() {
       const defaultObject = {
         ask: null,
-        responses: [],
+        options: [],
         type: null
       }
       this.form.questions.push(defaultObject);
@@ -199,8 +199,10 @@ export default {
           .then(response => {
             if(response.valid) {
               this.creatingForm = true;
-              this.form.post(route('forms_store'));
-              this.clearComponent();
+              this.form.post(route('forms_store'), {
+                onSuccess: () => this.clearComponent(),
+                onError: () => this.creatingForm = false
+              });
             }
           })
     },
@@ -209,7 +211,7 @@ export default {
       this.form.questions = [
         {
           ask: null,
-          responses: [],
+          options: [],
           type: null
         }
       ];

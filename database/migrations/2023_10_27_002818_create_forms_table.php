@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id')
                 ->references('id')
                 ->on('users');
+            $table->unique(['title', 'user_id']);
             $table->boolean('visible')->default(1);
             //Utilizando referencia pra mesma tabela, para realizar a edição
             //Guardando respostas antigas para esse formulário

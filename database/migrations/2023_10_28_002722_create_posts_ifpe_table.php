@@ -24,7 +24,8 @@ return new class extends Migration
             $table->foreignId('form_id')
                 ->nullable()
                 ->references('id')
-                ->on('forms');
+                ->on('forms')
+                ->onDelete('cascade');
             $table->boolean('visible')
                 ->default(true);
             $table->timestamps();

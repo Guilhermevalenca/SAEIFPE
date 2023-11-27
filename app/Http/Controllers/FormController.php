@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\form\FormsRequest;
+use App\Http\Requests\form\FormsSearchByTitleRequest;
 use App\Http\Resources\FormResource;
 use App\Http\Resources\forms\QuestionsGetAllRelationsResource;
 use App\Mail\FormEmail;
 use App\Models\Form;
+use App\Models\forms\Responses;
 use App\Models\UsersGraduates;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
 use Illuminate\Mail\Mailables\Address;
+use function Termwind\render;
 
 class FormController extends Controller
 {
@@ -55,26 +59,9 @@ class FormController extends Controller
             'data' => $response
         ]);
     }
-    public function store(Request $request, Form $form)
+    public function store(FormsRequest $request, Form $form)
     {
-        $validation = $request->validate([
-            'title' => ['required', 'string'],
-            'questions' => ['required', 'array'],
-            'questions.*.ask' => ['required', 'string'],
-            'questions.*.responses' => ['nullable','array'],
-            'questions.*.type' => ['required', 'in:unique,multiple,open-ended'],
-            'questions.*.responses.*.text' => ['nullable','string','required_with:questions.*.responses'],
-        ], [
-            'title.required' => 'O nome do formulário é obrigatório.',
-            'title.string' => 'O nome do formulário foi preenchido de forma incorreta.',
-            'questions.required' => 'Pelo menos uma questão é necessária.',
-            'questions.*.ask.required' => 'É necessário adicionar a pergunta.',
-            'questions.*.ask.string' => 'A pergunta foi preenchida de forma incorreta.',
-            'questions.*.responses.*.text.string' => 'A opção foi preenchida de forma incorreta.',
-            'questions.*.responses.*.text.required_with' => 'É necessário preencher as opções',
-            'questions.*.type.required' => 'O tipo de pergunta é obrigatório.',
-            'questions.*.type.in' => 'O tipo de pergunta deve ser único, múltiplo ou aberto.'
-        ]);
+        $validation = $request->validated();
         $form->createForm($validation);
         return redirect()->route('forms_index');
     }
@@ -88,7 +75,8 @@ class FormController extends Controller
 
         $response = [
             'form' => new FormResource($form),
-            'questions' => QuestionsGetAllRelationsResource::collection($questions)
+            'questions' => QuestionsGetAllRelationsResource::collection($questions),
+            'answered' => Responses::where('forms_id', '=' , $id)->count() >= 1
         ];
         return Inertia::render('forms/adm/EditForm', [
             'data' => $response
@@ -126,22 +114,32 @@ class FormController extends Controller
     }
     public function destroy($id)
     {
-        $form = Form::findOrFail($id);
-        $form->update([
-            'visible' => 0
-        ]);
+        Form::destroy($id);
         return redirect()->route('forms_index');
     }
-    public function searchByTitle(Request $request, Form $form)
+    public function searchByTitle(FormsSearchByTitleRequest $request, Form $form)
     {
-        $validate = $request->validate([
-           'title' => ['required', 'string']
-        ], [
-            'title.required' => 'É necessário Digitar o titulo do formulário',
-            'title.string' => 'É necessário digitar um valor valido para pesquisa'
-        ]);
+        $validate = $request->validated();
         $title = $validate['title'];
         $data = $form->where('title','LIKE',$title . '%')->get();
         return response($data, 200);
+    }
+    public function copyForm(FormsRequest $request, Form $form)
+    {
+        $validation = $request->validated();
+        $result = $form->createForm($validation);
+        return redirect()->route('forms_edit', ['id' => $result['form']['id']]);
+    }
+    public function copyFormById(Form $form, $id)
+    {
+        $formData = $form->find($id);
+        $formData['title'] = 'copia de ' . $formData['title'];
+        $formData['questions'] = $formData
+            ->questions()
+            ->with('options')
+            ->select('id','ask','type')
+            ->get();
+        $result = $form->createForm($formData);
+        return redirect()->route('forms_edit', ['id' => $result['form']['id']]);
     }
 }

@@ -11,7 +11,7 @@
           </v-col>
 
           <v-col>
-            <v-textarea rows="1" max-rows="10" auto-grow v-model="option.text" :rules="rules" placeholder="Escreva aqui..." />
+            <v-textarea rows="1" max-rows="10" auto-grow v-model="option.descriptions" :rules="rules" placeholder="Escreva aqui..." />
           </v-col>
 
         </v-row>
@@ -50,7 +50,7 @@ export default {
   data() {
     return {
       options: [
-        { text: null }
+        { descriptions: null }
       ],
       rules: [
         value => {
@@ -65,7 +65,7 @@ export default {
   methods: {
     addOption() {
       let objeto = {
-        text: null
+        descriptions: null
       }
       this.options.push(objeto)
     },

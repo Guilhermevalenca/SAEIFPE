@@ -13,17 +13,31 @@
                         </Link>
                     </v-card-actions>
 
-                    <v-container class="d-flex justify-start w-75" v-if="data.data.length !== 0">
+                    <div>
+                      <div v-show="page.all <= 8">
+                        <v-container class="d-flex justify-start" v-if="data.data.length !== 0">
+                          <v-pagination v-model="page.current" :length="page.all" rounded="circle" />
+                        </v-container>
+                      </div>
+                      <div v-show=" !(page.all <= 8)">
                         <v-pagination v-model="page.current" :length="page.all" rounded="circle" />
-                    </v-container>
+                      </div>
+                    </div>
 
                     <v-container>
                         <RenderingPosts v-for="(post, index) in data.data" :key="index" :data="post"/>
                     </v-container>
 
-                    <v-container class="d-flex justify-end w-75" v-if="data.data.length !== 0">
+                  <div>
+                    <div v-show="page.all <= 8">
+                      <v-container class="d-flex justify-start" v-if="data.data.length !== 0">
                         <v-pagination v-model="page.current" :length="page.all" rounded="circle" />
-                    </v-container>
+                      </v-container>
+                    </div>
+                    <div v-show=" !(page.all <= 8)">
+                      <v-pagination v-model="page.current" :length="page.all" rounded="circle" />
+                    </div>
+                  </div>
 
                 </v-card>
             </v-container>
@@ -46,7 +60,7 @@ export default {
             page: {
                 current: this.current_page,
                 all: this.last_page
-            }
+            },
         }
     },
     watch: {
@@ -59,7 +73,7 @@ export default {
     },
     created() {
 
-    }
+    },
 }
 </script>
 

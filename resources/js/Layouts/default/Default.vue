@@ -35,7 +35,7 @@ export default {
     components: {ItemDrawer, DefaultAppBar, Head},
     data() {
         return {
-            isDrawerOpen: false
+            isDrawerOpen: true
         }
     },
     created() {

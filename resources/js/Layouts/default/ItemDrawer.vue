@@ -1,10 +1,10 @@
 <template>
-    <v-navigation-drawer color="secondary" expand-on-hover :rail="fullNavigation"> <!-- temporary -->
+    <v-navigation-drawer color="secondary" expand-on-hover :rail="fullNavigation" width="full"> <!-- temporary -->
         <v-list>
 
             <Link :href="route('home')">
                 <v-list-item to="/" prepend-icon="mdi-home">
-                    Inicio
+                    Pagina inicial
                 </v-list-item>
             </Link>
 

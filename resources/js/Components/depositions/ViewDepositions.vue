@@ -39,7 +39,7 @@
         height="30em"
         hide-delimiters
     >
-            <v-carousel-item v-for="(value, index) in deposition" :key="index" >
+            <v-carousel-item v-for="(value, index) in deposition" :key="index">
                 <v-card  class="d-flex flex-column justify-center rounded-xl fill-height fill-width pa-10" variant="flat" :style="'border: 1px solid #2E8429;'">
                         <v-card-text class="d-flex flex-column align-center justify-center">
                             <v-avatar

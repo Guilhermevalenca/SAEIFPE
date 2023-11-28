@@ -37,16 +37,18 @@ class DepositionsController extends Controller
         ]);
         $validate['user_id'] = Auth::id();
        //if(array_key_exists("picture", $validate)){}
-        $picture = $request->file('picture');
+        if(array_key_exists('picture', $validate)) {
+            $picture = $request->file('picture');
 
-        $binary = file_get_contents($picture[0]->getRealPath());
-        $json = [
-            'base64' => base64_encode($binary),
-            'mimeType' => $picture[0]->getMimeType()
-        ];
+            $binary = file_get_contents($picture[0]->getRealPath());
+            $json = [
+                'base64' => base64_encode($binary),
+                'mimeType' => $picture[0]->getMimeType()
+            ];
 
-        $img = 'data:' . $json['mimeType'] . ';base64,' . $json['base64'];
-        $validate['picture'] = $img;
+            $img = 'data:' . $json['mimeType'] . ';base64,' . $json['base64'];
+            $validate['picture'] = $img;
+        }
 
         Depositions::create($validate);
         return redirect()->route('depoimentos_mural');

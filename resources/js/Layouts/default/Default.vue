@@ -10,7 +10,7 @@
         </header>
         <v-main class="ma-5 person-main">
             <section>
-                <ItemDrawer v-model="isDrawerOpen" />
+                <ItemDrawer :isFullNavigation="isDrawerOpen" />
             </section>
             <section>
                 <slot />

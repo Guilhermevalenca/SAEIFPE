@@ -35,32 +35,48 @@
     <!----
     <v-pagination v-model="pageCurrent" :length="lastPage" rounded="circle"/>
     ---->
-    <v-carousel
-        height="400"
+    <v-carousel v-for='deposition in data' :key="deposition.id" id="Depositions" class="d-flex  justify-center align-center"
+        height="30em"
         hide-delimiters
-        progress="primary"
     >
-        <v-card v-for='deposition in data' :key="deposition.id"  id="Depositions" class="d-flex min-h-screen">
-            <v-card v-for="(value, index) in deposition" :key="index">
-                <v-carousel-item>
-                    <v-sheet height="100%">
-                        <v-card >
+            <v-carousel-item v-for="(value, index) in deposition" :key="index" >
+                <v-card  class="d-flex flex-column justify-center rounded-xl fill-height fill-width pa-10" variant="flat" :style="'border: 1px solid #2E8429;'">
+                        <v-card-text class="d-flex flex-column align-center justify-center">
+                            <v-avatar
+                                size="8em"
+                                color="pink"
+                                :image= "deposition[index].user[0].profile_picture"
+                            >
+                            </v-avatar>
                             <v-card-title>
                                 {{ deposition[index].user[0].name}}
                             </v-card-title>
-                            <v-card-text>
-                                {{deposition[index].content}}
-                            </v-card-text>
-                        </v-card>
-                    </v-sheet>
+                            <v-card-item class="d-flex justify-end ma-0 pa-0">
+                                <template #prepend>
+                                    <v-icon
+                                        end
+                                        icon="mdi mdi-school"
+                                    ></v-icon>
+                                    <span>{{ deposition[index].user[1].course }}</span>
+                                </template>
+                            </v-card-item>
+                        </v-card-text>
+                        <v-card-text class="justify-center" :style="'font-size:1rem;'">
+                            {{deposition[index].content}}
+                        </v-card-text>
+                    <v-card-item>
+                        <v-img :src="deposition[index].picture"
+                        width="auto"
+                               height="auto"
+                        >
+                        </v-img>
+                    </v-card-item>
+                </v-card>
                 </v-carousel-item>
-            </v-card>
-        </v-card>
     </v-carousel>
 
 </template>
 <script>
-
 export default {
     name: "ViewDepositions",
     props:{

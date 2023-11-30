@@ -74,6 +74,7 @@ class PostsIfpeController extends Controller
 
     public function create()
     {
+        $this->authorize('createPost', PostsIfpe::class);
         return Inertia::render('posts/CreatePosts');
     }
 
@@ -82,6 +83,7 @@ class PostsIfpeController extends Controller
      */
     public function store(PostsIfpeStoreRequest $request)
     {
+        $this->authorize('createPost', PostsIfpe::class);
         $validation = $request->validated();
         if($validation) {
             $validation['user_id'] = Auth::id();
@@ -128,6 +130,7 @@ class PostsIfpeController extends Controller
      */
     public function update(PostsIfpeUpdateRequest $request, $id)
     {
+        $this->authorize('createPost', PostsIfpe::class);
         $validation = $request->validated();
 
         $img = $request->file('img');

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->text('content');
             $table->longText('picture')->nullable();
             $table->foreignId('user_id')->unique()->references('id')->on('users');
-            
+            $table->boolean('approved')->default(false);
             $table->timestamps();
 
         });

@@ -24,11 +24,11 @@
                 </v-card-text>
                 <v-card-text>
                     {{deposition[index].content}}
-                    <v-img :src="deposition[index].picture">
+                    <v-img :src="deposition[index].picture">S
                     </v-img>
                 </v-card-text>
             --->
-            <v-card-actions class="d-flex justify-end" v-if="$page.props.auth.user !== null && $page.props.auth.user.role === 'adm'">
+            <v-card-actions class="d-flex justify-end" v-if="$page.props.auth.user.id === deposition[index].user[0].id">
                 <v-menu>
                     <template #activator="{ props: menu }">
                         <v-tooltip text="Opções">
@@ -43,7 +43,6 @@
                     </template>
                     <v-list>
                         <v-list-item prepend-icon="mdi-trash-can" icon="mdi-trash-can">Apagar</v-list-item>
-                        <v-list-item prepend-icon="mdi-pencil">Editar</v-list-item>
                     </v-list>
                 </v-menu>
             </v-card-actions>

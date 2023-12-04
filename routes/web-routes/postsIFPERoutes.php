@@ -17,6 +17,7 @@ Route::controller(PostsIfpeController::class)
                 Route::get('/posts/edit/{id}', 'edit')->name('posts_edit');
                 Route::post('/posts/update/{id}', 'update')->name('posts_update');
 
+                Route::delete('/posts/delete/{id}', 'destroy')->name('posts_delete');
             });
 
     });

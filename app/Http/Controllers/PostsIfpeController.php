@@ -88,16 +88,6 @@ class PostsIfpeController extends Controller
         if($validation) {
             $validation['user_id'] = Auth::id();
             $validation['send_to'] = is_null($validation['send_to']) ? json_encode(['all']) : json_encode($validation['send_to']);
-
-            if(array_key_exists('img', $validation)) {
-                //montando img em string:
-                $binary = file_get_contents($validation['img'][0]->getRealPath());
-                $dataImg = [
-                    'base64' => base64_encode($binary),
-                    'mimeType' => $validation['img'][0]->getMimeType()
-                ];
-                $validation['img'] = 'data:' . $dataImg['mimeType'] . ';base64,' . $dataImg['base64'];
-            }
             try {
                 PostsIfpe::create($validation);
                 return redirect()->route('home');
@@ -119,7 +109,7 @@ class PostsIfpeController extends Controller
     public function edit($id)
     {
         $post = PostsIfpe::with('form')->find($id);
-        $post['send_to'] = json_decode($post['send_to']);
+        $post['send_to'] = json_decode($post['send_to'], true)[0] === ['all'] ? null : json_decode($post['send_to']);
         return Inertia::render('posts/EditPosts', [
             'data' => $post
         ]);
@@ -133,15 +123,6 @@ class PostsIfpeController extends Controller
         $this->authorize('createPost', PostsIfpe::class);
         $validation = $request->validated();
 
-        $img = $request->file('img');
-        if($img) {
-            $binary = file_get_contents($img->getRealPath());
-            $dataImg = [
-                'base64' => base64_encode($binary),
-                'mimeType' => $img->getMimeType()
-            ];
-            $validation['img'] = 'data:' . $dataImg['mimeType'] . ';base64,' . $dataImg['base64'];
-        }
         PostsIfpe::where('id', '=', $id)->update($validation);
         return redirect()->route('home');
 
@@ -150,8 +131,9 @@ class PostsIfpeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(postsIfpe $postsIfpe)
+    public function destroy($id)
     {
-        //
+        PostsIfpe::destroy($id);
+        return redirect()->route('home');
     }
 }

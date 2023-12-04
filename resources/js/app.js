@@ -1,4 +1,4 @@
-import './bootstrap';
+import './bootstrap.js';
 import '../css/app.css';
 
 import { createApp, h } from 'vue';
@@ -10,6 +10,9 @@ import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 import { loadFonts } from './plugins/webfontloader.js';
 import Vuetify from "./plugins/vuetify";
 
+//froala
+import './plugins/Froala/index.js';
+import VueFroala from 'vue-froala-wysiwyg';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
@@ -21,6 +24,7 @@ createInertiaApp({
             render: () => h(App, props) });
         loadFonts();
         app.use(Vuetify);
+        app.use(VueFroala);
         app.use(plugin);
         app.use(ZiggyVue, Ziggy);
         app.config.globalProperties.$phoneDisplay = window.innerWidth <= 800;

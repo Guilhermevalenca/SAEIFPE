@@ -26,7 +26,6 @@ class PostsIfpeUpdateRequest extends FormRequest
             'content' => ['required','string'],
             'send_to' => ['nullable', 'array', 'in:ADM,IPI,LOG,TGQ,TSI'],
             'form_id' => ['nullable', 'exists:forms,id'],
-            'img' => ['nullable'],
         ];
     }
     public function messages(): array

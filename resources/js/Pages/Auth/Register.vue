@@ -20,7 +20,7 @@
 
                         <div class="mt-4">
 
-                            <v-text-field id="email" for="email" label="Email" type="email" class="mt-1 block w-full" v-model="form.email" :rules="rules.email" required
+                            <v-text-field id="email" for="email" label="Email" type="email" class="mt-1 block w-full" placeholder="Email pessoal" v-model="form.email" :rules="rules.email" required
                             />
 
                             <InputError class="mt-2" :message="form.errors.email" />

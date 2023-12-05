@@ -2,7 +2,7 @@
   <v-container class="d-flex flex-column justify-center pa-0 h-auto rounded-xl">
     <v-card class="d-flex flex-column justify-center pa-10 mb-4 h-auto rounded-xl" variant="flat" :style="'border: 1px solid #2E8429;'">
       <v-card-title class="d-flex justify-space-between">
-        <div class="d-flex flex-wrap">
+        <div class="text-wrap">
           {{ data.user }} - {{ data.title }}
         </div>
         <div v-if="$page.props.auth.user && $page.props.auth.user.role === 'adm'">

@@ -37,7 +37,7 @@ class RegisteredUserRequest extends FormRequest
             'cpf.required' => 'Você tem que digitar seu cpf',
             'cpf.unique' => 'Este cpf já foi cadastro no sistema',
             'email.required' => 'É necessário adicionar seu email',
-            'email.unique' => 'Email já cadastrado no sistema'
+            'email.unique' => 'Email já foi cadastrado no sistema'
         ];
     }
 }

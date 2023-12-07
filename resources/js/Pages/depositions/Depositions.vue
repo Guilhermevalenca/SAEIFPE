@@ -15,7 +15,7 @@
                     <v-container class="d-flex justify-end" v-if="$page.props.auth.user !== null && $page.props.auth.user.role === 'graduate'">
                         <v-btn @click="changeButton = !changeButton" color="secondary" variant="flat" :prepend-icon="changeButton ? 'mdi-plus' : '' ">{{  changeButton ? 'Adicionar Depoimento' : 'Depoimentos' }}</v-btn>
                     </v-container>
-                    <v-container class="d-flex justify-end">
+                    <v-container class="d-flex justify-end" v-if="$page.props.auth.user !== null && $page.props.auth.user.role === 'adm'">
                     <Link :href="route('depoimentos_adm')">
                         <v-btn prepend-icon="mdi mdi-progress-check" color="secondary" variant="flat">Visualizar depoimentos em análise</v-btn>
                     </Link>

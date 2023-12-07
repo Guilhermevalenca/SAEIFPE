@@ -35,7 +35,7 @@ class DepositionsController extends Controller
             'currentPage' => $paginate->currentPage(),
         ];
 //        return response($response, 200);
-        return Inertia::render('depositions/Depositions', $response);
+        return Inertia::render('depositions/DepositionsAdmPage', $response);
     }
 
     /**

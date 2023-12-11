@@ -15,15 +15,27 @@ class DepositionsController extends Controller
      */
     public function index()
     {
-     //   $paginate= Depositions::orderByDesc('id')->paginate(5);
+            $paginate = Depositions::where('approved', true)->orderByDesc('id')->paginate(5);
+            $response = [
+                //'data'=> DepositionsResource::collection(Depositions::orderByDesc('id')->get()),
+                'data' => DepositionsResource::collection($paginate->items()),
+                'lastPage' => $paginate->lastPage(),
+                'currentPage' => $paginate->currentPage(),
+            ];
+//        return response($response, 200);
+            return Inertia::render('depositions/Depositions', $response);
+        }
+    public function approve()
+    {
+        $paginate = Depositions::where('approved', false)->orderByDesc('id')->paginate(5);
         $response = [
-            'data'=> DepositionsResource::collection(Depositions::orderByDesc('id')->get()),
-           // 'data'=> DepositionsResource::collection($paginate->items()),
-           // 'lastPage'=> $paginate->lastPage(),
-           // 'currentPage'=> $paginate->currentPage(),
+            //'data'=> DepositionsResource::collection(Depositions::orderByDesc('id')->get()),
+            'data' => DepositionsResource::collection($paginate->items()),
+            'lastPage' => $paginate->lastPage(),
+            'currentPage' => $paginate->currentPage(),
         ];
 //        return response($response, 200);
-        return Inertia::render('depositions/Depositions',$response);
+        return Inertia::render('depositions/DepositionsAdmPage', $response);
     }
 
     /**
@@ -37,16 +49,18 @@ class DepositionsController extends Controller
         ]);
         $validate['user_id'] = Auth::id();
        //if(array_key_exists("picture", $validate)){}
-        $picture = $request->file('picture');
+        if(array_key_exists('picture', $validate)) {
+            $picture = $request->file('picture');
 
-        $binary = file_get_contents($picture[0]->getRealPath());
-        $json = [
-            'base64' => base64_encode($binary),
-            'mimeType' => $picture[0]->getMimeType()
-        ];
+            $binary = file_get_contents($picture[0]->getRealPath());
+            $json = [
+                'base64' => base64_encode($binary),
+                'mimeType' => $picture[0]->getMimeType()
+            ];
 
-        $img = 'data:' . $json['mimeType'] . ';base64,' . $json['base64'];
-        $validate['picture'] = $img;
+            $img = 'data:' . $json['mimeType'] . ';base64,' . $json['base64'];
+            $validate['picture'] = $img;
+        }
 
         Depositions::create($validate);
         return redirect()->route('depoimentos_mural');

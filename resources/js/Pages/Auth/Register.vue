@@ -20,7 +20,7 @@
 
                         <div class="mt-4">
 
-                            <v-text-field id="email" for="email" label="Email" type="email" class="mt-1 block w-full" v-model="form.email" :rules="rules.email" required
+                            <v-text-field id="email" for="email" label="Email" type="email" class="mt-1 block w-full" placeholder="Email pessoal" v-model="form.email" :rules="rules.email" required
                             />
 
                             <InputError class="mt-2" :message="form.errors.email" />
@@ -124,6 +124,47 @@ export default {
                             return true;
                         }
                         return 'Este campo é obrigatório';
+                    },
+                    (value) => {
+                        let test = value.replace(/[^0-9]/g, '');
+
+                        if (test.length === 11) {
+                            let add = 0;
+
+                            for (let i = 0; i < 9; i++) {
+                                add += parseInt(test.charAt(i)) * (10 - i);
+                            }
+
+                            let rev = 11 - (add % 11);
+
+                            if (rev === 10 || rev === 11) {
+                                rev = 0;
+                            }
+
+                            if (rev !== parseInt(test.charAt(9))) {
+                                return 'CPF inválido';
+                            }
+
+                            add = 0;
+
+                            for (let i = 0; i < 10; i++) {
+                                add += parseInt(test.charAt(i)) * (11 - i);
+                            }
+
+                            rev = 11 - (add % 11);
+
+                            if (rev === 10 || rev === 11) {
+                                rev = 0;
+                            }
+
+                            if (rev !== parseInt(test.charAt(10))) {
+                                return 'CPF inválido';
+                            }
+
+                            return true;
+                        } else {
+                            return 'CPF inválido';
+                        }
                     }
                 ],
                 password: [
@@ -166,6 +207,7 @@ export default {
     },
     methods: {
         submit() {
+            this.form.cpf = this.form.cpf.replace(/[^0-9]/g, '');
             this.form.post(route('register'), {
                 onFinish: () => this.form.reset('password', 'password_confirmation')
             })

@@ -33,7 +33,8 @@ class DepositionsFactory extends Factory
         ]);
         return [
             'content' => fake()->text('378'),
-            'user_id' => $userGraduate->id
+            'user_id' => $userGraduate->id,
+            'approved' => 1
         ];
     }
 }

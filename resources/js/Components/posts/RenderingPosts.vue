@@ -2,13 +2,24 @@
   <v-container class="d-flex flex-column justify-center pa-0 h-auto rounded-xl">
     <v-card class="d-flex flex-column justify-center pa-10 mb-4 h-auto rounded-xl" variant="flat" :style="'border: 1px solid #2E8429;'">
       <v-card-title class="d-flex justify-space-between">
-        <div>
+        <div class="text-wrap">
           {{ data.user }} - {{ data.title }}
         </div>
         <div v-if="$page.props.auth.user && $page.props.auth.user.role === 'adm'">
-          <Link :href="route('posts_edit', {id: data.id})">
-            <v-btn icon="mdi-pencil-outline" color="secondary" variant="flat" />
-          </Link>
+          <v-tooltip text="Editar postagem">
+            <template #activator="{ props }">
+              <Link v-bind="props" :href="route('posts_edit', {id: data.id})">
+                <v-btn icon="mdi-pencil-outline" color="secondary" variant="flat" />
+              </Link>
+            </template>
+          </v-tooltip>
+          <v-tooltip text="Deletar postagem">
+            <template #activator="{ props }">
+              <Link v-bind="props" :href="route('posts_delete', {id: data.id})" method="DELETE" as="button">
+                <v-btn icon="mdi-delete" color="quaternary" variant="flat" />
+              </Link>
+            </template>
+          </v-tooltip>
         </div>
       </v-card-title>
       <v-card-subtitle>
@@ -17,8 +28,7 @@
       </v-card-subtitle>
       <v-row no-gutters>
         <v-card-text>
-          <div v-html="identifyingLinks" class="highlight-links"></div>
-          <v-img v-if="data.img" :src="data.img" max-height="300px" />
+          <div v-html="data.content" class="highlight-links"></div>
         </v-card-text>
       </v-row>
       <v-row>

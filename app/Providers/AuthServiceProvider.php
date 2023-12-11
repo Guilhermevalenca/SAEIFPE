@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use App\Models\Form;
+use App\Models\PostsIfpe;
 use App\Models\User;
 use App\Policies\FormPolicy;
 use App\Policies\FormResponsePolicy;
+use App\Policies\PostsIfpePolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -18,6 +20,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         Form::class => FormPolicy::class,
+        PostsIfpe::class => PostsIfpePolicy::class
     ];
 
     /**

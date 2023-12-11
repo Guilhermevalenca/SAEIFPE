@@ -4,7 +4,7 @@
       <v-card-title>{{ form.title }}</v-card-title>
     </v-col>
     <v-col>
-      <v-card-actions class="v-card__actions d-flex justify-end">
+      <v-card-actions class="d-flex justify-end">
 
         <v-tooltip text="Copiar formulário">
           <template #activator="{ props }">
@@ -40,7 +40,7 @@
 
         <v-tooltip text="Apagar formulário">
           <template #activator="{ props }">
-            <v-btn v-bind="props" @click="deleteForm = true" icon="mdi-delete" />
+            <v-btn color="quaternary" v-bind="props" @click="deleteForm = true" icon="mdi-delete" />
           </template>
         </v-tooltip>
 

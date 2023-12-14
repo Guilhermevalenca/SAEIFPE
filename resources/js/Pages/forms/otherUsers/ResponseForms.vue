@@ -1,7 +1,7 @@
 <template>
     <Head title="Responder formulário" />
     <Default>
-        <v-container>
+        <v-container class="d-flex justify-center">
             <v-card class="w-75">
                 <div class="d-flex justify-space-between">
                     <v-card-title>{{ form.title }}</v-card-title>

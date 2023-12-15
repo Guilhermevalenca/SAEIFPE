@@ -53,6 +53,7 @@
                 </v-img>
             </v-card-item>
             <v-card-actions class="d-flex justify-end">
+                <v-btn prepend-icon="mdi-cancel" color="quaternary" variant="flat">Não aprovado</v-btn>
             <v-btn prepend-icon="mdi-check" color="tertiary" variant="flat">Aprovar depoimento</v-btn>
             </v-card-actions>
         </v-card>

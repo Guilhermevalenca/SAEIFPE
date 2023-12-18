@@ -8,7 +8,7 @@
                <v-card class="pa-0 ma-0 " color="transparent" variant="flat">
                    <v-container class="d-flex justify-end">
                        <Link :href="route('depoimentos_mural')">
-                           <v-btn color="secondary" variant="flat">Voltar</v-btn>
+                           <v-btn color="secondary" variant="flat">Voltar para os depoimentos</v-btn>
                        </Link>
                    </v-container>
                    <v-container class="d-flex align-center flex-column justify-center pt-10">

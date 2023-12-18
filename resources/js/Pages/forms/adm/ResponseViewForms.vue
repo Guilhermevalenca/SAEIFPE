@@ -23,7 +23,7 @@
                             <v-card variant="outlined">
 
                                 <v-card-title>
-                                    <div>{{ question[0].ask }}</div>
+                                    <div class="text-wrap">{{ question[0].ask }}</div>
                                 </v-card-title>
 
                                 <v-card-text>
@@ -42,7 +42,7 @@
                             <v-card variant="outlined">
 
                                 <v-card-title>
-                                    <div>{{ question[0].ask }}</div>
+                                    <div class="text-wrap">{{ question[0].ask }}</div>
                                 </v-card-title>
 
                                 <v-card-text>

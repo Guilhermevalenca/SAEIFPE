@@ -81,9 +81,9 @@ class DepositionsController extends Controller
     {
         $depositions = Depositions::find($id);
         $depositions->update([
-            'approved'=>$depositions['approved'] === 'true' ? 'false' : 'true'
+            'approved'=> ! $depositions['approved']
         ]);
-        return Inertia::render('depositions/DepositionsAdmPage', $depositions);
+        return back();
     }
 
     /**

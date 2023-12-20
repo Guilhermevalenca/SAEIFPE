@@ -24,7 +24,7 @@ class PostsIfpeUpdateRequest extends FormRequest
         return [
             'title' => ['required','string'],
             'content' => ['required','string'],
-            'send_to' => ['nullable', 'array', 'in:ADM,IPI,LOG,TGQ,TSI'],
+            'send_to' => ['nullable', 'array', 'in:ADM,IPI,LOG,TGQ,TSI,ALL,all'],
             'form_id' => ['nullable', 'exists:forms,id'],
         ];
     }

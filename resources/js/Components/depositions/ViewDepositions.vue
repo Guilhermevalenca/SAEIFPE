@@ -18,7 +18,7 @@
                         </v-tooltip>
                     </template>
                     <v-list>
-                        <v-list-item prepend-icon="mdi-trash-can" icon="mdi-trash-can">Apagar</v-list-item>
+                        <v-list-item prepend-icon="mdi-trash-can" @click="DeleteDeposition(value.id)" icon="mdi-trash-can">Apagar</v-list-item>
                     </v-list>
                 </v-menu>
             </v-card-actions>
@@ -61,7 +61,7 @@
 
 </template>
 <script>
-
+import {useForm} from "@inertiajs/vue3";
 export default {
     props:{
         data: Object,
@@ -72,7 +72,15 @@ export default {
     data(){
         return{
             pageCurrent: this.currentPage,
+            deposition:useForm({
+
+            })
         }
+    },
+    methods:{
+      DeleteDeposition(id){
+          this.deposition.delete(route('apagar_depoimento',{id: id}));
+      }
     },
     created() {
         console.log(this.data)

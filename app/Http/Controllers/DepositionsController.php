@@ -89,8 +89,10 @@ class DepositionsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Depositions $depositions)
+    public function destroy($id)
     {
-        //
+        $depositions = Depositions::find($id);
+        $depositions->delete();
+        return back();
     }
 }

@@ -53,7 +53,7 @@
                 </v-img>
             </v-card-item>
             <v-card-actions class="d-flex justify-end">
-                <v-btn prepend-icon="mdi-cancel" color="quaternary" variant="flat">Não aprovado</v-btn>
+                <v-btn prepend-icon="mdi-cancel" @click="DeleteDeposition(value.id)" color="quaternary" variant="flat">Não aprovado</v-btn>
                 <v-btn prepend-icon="mdi-check" @click="ChangeStatus(value.id)" color="tertiary" variant="flat">Aprovar depoimento</v-btn>
             </v-card-actions>
         </v-card>
@@ -85,6 +85,9 @@ export default {
     methods:{
         ChangeStatus(id){
             this.deposition.patch(route('depoimentos_aprovar',{id: id}));
+        },
+        DeleteDeposition(id){
+            this.deposition.delete(route('apagar_depoimento',{id: id}));
         }
     },
     watch:{

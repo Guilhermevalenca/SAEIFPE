@@ -11,5 +11,5 @@ Route::controller(DepositionsController::class)
         Route::get('depoimentos/adm','approve')->name('depoimentos_adm');
         Route::post('depoimentos/criar','store')->name('depoimentos_criar');
         Route::patch('depoimentos/aprovar/{depositions}', 'update_approved')->name('depoimentos_aprovar');
-
+        Route::delete('depoimentos/apagar/{depositions}', 'destroy')->name('apagar_depoimento');
     });

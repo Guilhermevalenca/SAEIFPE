@@ -10,7 +10,7 @@ use App\Models\User;
 class Depositions extends Model
 {
     use HasFactory;
-    protected $fillable = ['content','picture','user_id'];
+    protected $fillable = ['content','picture','user_id', 'approved'];
 
 //    protected static function boot()
 //    {

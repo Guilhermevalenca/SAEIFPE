@@ -77,16 +77,22 @@ class DepositionsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Depositions $depositions)
+    public function update_approved($id)
     {
-        //
+        $depositions = Depositions::find($id);
+        $depositions->update([
+            'approved'=> ! $depositions['approved']
+        ]);
+        return back();
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Depositions $depositions)
+    public function destroy($id)
     {
-        //
+        $depositions = Depositions::find($id);
+        $depositions->delete();
+        return back();
     }
 }

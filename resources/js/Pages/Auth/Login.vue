@@ -9,7 +9,7 @@
 
         <v-container class="d-flex justify-center mt-12 pa-12">
 
-            <v-card class="w-50 sm:max-w-md" variant="flat">
+            <v-card :class="[$phoneDisplay ? '' : 'w-50', 'sm:max-w-md']" variant="flat">
                 <v-card-title class="text-center">Acesse sua conta</v-card-title>
                 <!-- w-full sm:max-w-md mt-6 px-6 shadow-md overflow-hidden sm:rounded-lg -->
                 <v-form @submit.prevent="submit()">

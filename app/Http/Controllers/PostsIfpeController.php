@@ -122,7 +122,9 @@ class PostsIfpeController extends Controller
     {
         $this->authorize('createPost', PostsIfpe::class);
         $validation = $request->validated();
-
+        if(is_null($validation['send_to']) || $validation['send_to'] === []) {
+            $validation['send_to'] = json_encode(['all']);
+        }
         PostsIfpe::where('id', '=', $id)->update($validation);
         return redirect()->route('home');
 

@@ -4,7 +4,7 @@
 
         <v-container class="d-flex justify-center mt-12 pa-12">
 
-            <v-card class="w-50 sm:max-w-md" variant="flat">
+            <v-card :class="[$phoneDisplay ? '' : 'w-50', 'sm:max-w-md']" variant="flat">
 
                 <v-card-title>Registrar</v-card-title>
                 <v-form @submit.prevent="submit()">
